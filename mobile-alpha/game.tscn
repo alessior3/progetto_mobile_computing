@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://djp58fqnrvjcw"]
+
+[ext_resource type="Script" uid="uid://jelht517jwcq" path="res://character_body_2d.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://bjonibbxpb3y6" path="res://asset/character-spritesheet (Copy).png" id="2_feb5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jktm"]
+atlas = ExtResource("2_feb5d")
+region = Rect2(0, 260, 63, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryrav"]
+atlas = ExtResource("2_feb5d")
+region = Rect2(63, 260, 63, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eow3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jktm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryrav")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="game" type="Node2D" unique_id=321541983]
+metadata/_edit_lock_ = true
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1116861553]
+position = Vector2(188.5, 151.5)
+motion_mode = 1
+script = ExtResource("1_e2o6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1742960582]
+shape = SubResource("RectangleShape2D_fc0e3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1122309840]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_eow3j")
+animation = &"idle"
+frame_progress = 0.2806398
+metadata/_edit_group_ = true
