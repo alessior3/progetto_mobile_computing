@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1772621411
+::res://::1772641539
 icon.svg::CompressedTexture2D::1328017967790570852::1772620404::1772620404::1::::<><><>0<>0<>1043625b48950c5dbea6a12760044c8c<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile::-1::1772620404::0::1::::<><><>0<>0<><>::
 ::res://Assets/::1772620404
@@ -211,9 +211,9 @@ Bone.png::CompressedTexture2D::4436747184051935445::1772620404::1772620404::1:::
 Hands.png::CompressedTexture2D::2501016271157347667::1772620404::1772620404::1::::<><><>0<>0<>ee96fd8ccf503a00b59bf56d5b24eb89<>res://.godot/imported/Hands.png-ccd1f50d236acd62dce737eb38cdaf77.ctex::
 ::res://Assets/Weapons/Wood/::1772620404
 Wood.png::CompressedTexture2D::6914471758889324991::1772620404::1772620404::1::::<><><>0<>0<>50970a7a953dfceab305ce33fa762960<>res://.godot/imported/Wood.png-b70a39c737f17dbcca6f6528d9c38d2a.ctex::
-::res://Scenes/::1772620404
+::res://Scenes/::1772635864
 player.tscn::PackedScene::3689349258434230961::1772620404::0::1::::<><><>0<>0<><>::uid://jelht517jwcq::::res://Scripts/player.gd<>uid://dyeamna0prni0::::res://Assets/Character/character-spritesheet_swordless.png
-world.tscn::PackedScene::4439001377685203183::1772620404::0::1::::<><><>0<>0<><>::uid://c4o5wdlf38uev::::res://Assets/Environment/Tilesets/Floors_Tiles.png<>uid://bp7aov0jbjwfc::::res://Assets/Environment/Tilesets/Water_tiles.png<>uid://cwlbj34m5am3k::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_02.png<>uid://cqpykocvq7ndb::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_05.png<>uid://bstfbqarthdp6::::res://Scenes/player.tscn<>uid://dgurjcx00nr8f::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_04.png<>uid://vbd4f1f32u8j::::res://Assets/Environment/Structures/Buildings/Walls.png<>uid://bul46e1ocb1yu::::res://Assets/Environment/Structures/Buildings/Roofs.png<>uid://ds7lwyjc1a3um::::res://Assets/Environment/Structures/Buildings/Props.png
+world.tscn::PackedScene::4439001377685203183::1772635864::0::1::::<><><>0<>0<><>::uid://c4o5wdlf38uev::::res://Assets/Environment/Tilesets/Floors_Tiles.png<>uid://bp7aov0jbjwfc::::res://Assets/Environment/Tilesets/Water_tiles.png<>uid://cwlbj34m5am3k::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_02.png<>uid://cqpykocvq7ndb::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_05.png<>uid://bstfbqarthdp6::::res://Scenes/player.tscn<>uid://dgurjcx00nr8f::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_04.png<>uid://vbd4f1f32u8j::::res://Assets/Environment/Structures/Buildings/Walls.png<>uid://bul46e1ocb1yu::::res://Assets/Environment/Structures/Buildings/Roofs.png<>uid://ds7lwyjc1a3um::::res://Assets/Environment/Structures/Buildings/Props.png<>uid://b67e0u2ehvs0l::::res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png<>uid://b3xvup7vx71eb::::res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png
 ::res://Scripts/::1772620404
 player.gd::GDScript::640638536748544180::1772620404::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Top_Down_Adventure_Pack_v.1.0/::1772620668
