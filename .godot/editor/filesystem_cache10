@@ -1,8 +1,9 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1772711167
+::res://::1772722918
 icon.svg::CompressedTexture2D::1328017967790570852::1772677810::1772677810::1::::<><><>0<>0<>1043625b48950c5dbea6a12760044c8c<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 README.md::TextFile::-1::1772677810::0::1::::<><><>0<>0<><>::
-::res://Assets/::1772677810
+::res://Assets/::1772726446
+menuStartImage.png::CompressedTexture2D::1603666085445160013::1772726446::1772726448::1::::<><><>0<>0<>a83cbceaf38815414dedf5d3b72ebddf<>res://.godot/imported/menuStartImage.png-2efca936648d235d2351bbc84210683d.ctex::
 Terms.txt::TextFile::-1::1772677810::0::1::::<><><>0<>0<><>::
 ::res://Assets/Character/::1772677810
 character-spritesheet (Copy 2).png::CompressedTexture2D::1407580267511008964::1772677810::1772677810::1::::<><><>0<>0<>5246a5c66feb830aa45a984b6fa09f75<>res://.godot/imported/character-spritesheet (Copy 2).png-520ab967de1dd0e40f4eaa5ff964a228.ctex::
@@ -214,17 +215,19 @@ Bone.png::CompressedTexture2D::4436747184051935445::1772677810::1772677810::1:::
 Hands.png::CompressedTexture2D::2501016271157347667::1772677810::1772677810::1::::<><><>0<>0<>ee96fd8ccf503a00b59bf56d5b24eb89<>res://.godot/imported/Hands.png-ccd1f50d236acd62dce737eb38cdaf77.ctex::
 ::res://Assets/Weapons/Wood/::1772677810
 Wood.png::CompressedTexture2D::6914471758889324991::1772677810::1772677810::1::::<><><>0<>0<>50970a7a953dfceab305ce33fa762960<>res://.godot/imported/Wood.png-b70a39c737f17dbcca6f6528d9c38d2a.ctex::
-::res://Scenes/::1772677810
+::res://Scenes/::1772724714
 House1.tscn::PackedScene::4027601170771342908::1772677810::0::1::::<><><>0<>0<><>::uid://dufk8a6wh7vqr::::res://Top_Down_Adventure_Pack_v.1.0/d1a575ca-b5b2-4303-9e61-3e81fd2ce035.png<>uid://b65yj3rihx4rd::::res://Scripts/house_1.gd
 inside_house_1.tscn::PackedScene::7443023892551186985::1772677810::0::1::::<><><>0<>0<><>::uid://days0hgoudb68::::res://Scripts/inside_house_1.gd<>uid://cfcr4rant5obh::::res://Assets/Environment/Structures/Buildings/Floors2.png<>uid://bstfbqarthdp6::::res://Scenes/player.tscn
+main_menu.tscn::PackedScene::3881819539813395129::1772724714::0::1::::<><><>0<>0<><>::uid://dmbc0xc0a4hnr::::res://Scripts/main_menu.gd
 player.tscn::PackedScene::3689349258434230961::1772677810::0::1::::<><><>0<>0<><>::uid://jelht517jwcq::::res://Scripts/player.gd<>uid://dyeamna0prni0::::res://Assets/Character/character-spritesheet_swordless.png<>uid://cpwhlg157pmpt::::res://Assets/Icons/Keys.png<>uid://c217fai78xbhq::::res://Assets/Icons/Keys copia.png
 world.gd::GDScript::2257702439790031780::1772677810::0::1::::<>Node2D<><>0<>0<><>::
-world.tscn::PackedScene::4439001377685203183::1772677810::0::1::::<><><>0<>0<><>::uid://c4o5wdlf38uev::::res://Assets/Environment/Tilesets/Floors_Tiles.png<>uid://7fwa850ior3y::::res://Scenes/world.gd<>uid://bp7aov0jbjwfc::::res://Assets/Environment/Tilesets/Water_tiles.png<>uid://cwlbj34m5am3k::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_02.png<>uid://cqpykocvq7ndb::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_05.png<>uid://bstfbqarthdp6::::res://Scenes/player.tscn<>uid://dgurjcx00nr8f::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_04.png<>uid://vbd4f1f32u8j::::res://Assets/Environment/Structures/Buildings/Walls.png<>uid://bul46e1ocb1yu::::res://Assets/Environment/Structures/Buildings/Roofs.png<>uid://ds7lwyjc1a3um::::res://Assets/Environment/Structures/Buildings/Props.png<>uid://b67e0u2ehvs0l::::res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png<>uid://b3xvup7vx71eb::::res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png<>uid://bxnaadjy2w4iy::::res://Scenes/House1.tscn<>uid://debprstwe8fj2::::res://Scenes/inside_house_1.tscn
-::res://Scripts/::1772677810
-Global.gd::GDScript::4589221846785029040::1772677810::0::1::::<>Node<><>0<>0<><>::
+world.tscn::PackedScene::4439001377685203183::1772718985::0::1::::<><><>0<>0<><>::uid://c4o5wdlf38uev::::res://Assets/Environment/Tilesets/Floors_Tiles.png<>uid://7fwa850ior3y::::res://Scenes/world.gd<>uid://bp7aov0jbjwfc::::res://Assets/Environment/Tilesets/Water_tiles.png<>uid://cwlbj34m5am3k::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_02.png<>uid://cqpykocvq7ndb::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_05.png<>uid://bstfbqarthdp6::::res://Scenes/player.tscn<>uid://dgurjcx00nr8f::::res://Assets/Environment/Props/Static/Trees/Model_01/Size_04.png<>uid://vbd4f1f32u8j::::res://Assets/Environment/Structures/Buildings/Walls.png<>uid://bul46e1ocb1yu::::res://Assets/Environment/Structures/Buildings/Roofs.png<>uid://ds7lwyjc1a3um::::res://Assets/Environment/Structures/Buildings/Props.png<>uid://b67e0u2ehvs0l::::res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png<>uid://b3xvup7vx71eb::::res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png<>uid://bxnaadjy2w4iy::::res://Scenes/House1.tscn<>uid://debprstwe8fj2::::res://Scenes/inside_house_1.tscn
+::res://Scripts/::1772724714
+Global.gd::GDScript::4589221846785029040::1772724622::0::1::::<>Node<><>0<>0<><>::
 house_1.gd::GDScript::4625680946354692385::1772677810::0::1::::<>Node2D<><>0<>0<><>::
 inside_house_1.gd::GDScript::7209945045489376859::1772677810::0::1::::<>Node2D<><>0<>0<><>::
-player.gd::GDScript::640638536748544180::1772677810::0::1::::<>CharacterBody2D<><>0<>0<><>::
+main_menu.gd::GDScript::8003759843586602991::1772724622::0::1::::<>Control<><>0<>0<><>::
+player.gd::GDScript::640638536748544180::1772724714::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Top_Down_Adventure_Pack_v.1.0/::1772677810
 d1a575ca-b5b2-4303-9e61-3e81fd2ce035.png::CompressedTexture2D::8574026962635929077::1772677810::1772677810::1::::<><><>0<>0<>2cb7ea70de776ba9c498e28faa177e9e<>res://.godot/imported/d1a575ca-b5b2-4303-9e61-3e81fd2ce035.png-6b701c1b3644ed9f031b309700063c25.ctex::
 Dungeon_Tileset.png::CompressedTexture2D::4400500604897737345::1772677810::1772677810::1::::<><><>0<>0<>c22a1e64d5801cc5c6193a47b4028c69<>res://.godot/imported/Dungeon_Tileset.png-091270a877b3da5d89867bd0be04deb3.ctex::
