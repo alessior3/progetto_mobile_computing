@@ -5,8 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cpwhlg157pmpt" path="res://Assets/Icons/Keys.png" id="3_vgqql"]
 [ext_resource type="Texture2D" uid="uid://c217fai78xbhq" path="res://Assets/Icons/Keys copia.png" id="4_fkybt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
-size = Vector2(22.5, 50)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("3_6t5aa")
@@ -310,14 +309,15 @@ _data = {
 
 [node name="player" type="CharacterBody2D" unique_id=293458414]
 position = Vector2(2393, 303)
+scale = Vector2(0.5, 0.5)
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=490341889]
 y_sort_enabled = true
-position = Vector2(0.25, 5.5)
-shape = SubResource("RectangleShape2D_fc0e3")
+position = Vector2(0, 17)
+shape = SubResource("CapsuleShape2D_vgqql")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1379833046]
 texture_filter = 1
