@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="mobile_alpha"
-run/main_scene="uid://b4ijx68xk5olr"
+run/main_scene="uid://bvknaa1yoy5qb"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
