@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://jelht517jwcq" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://dyeamna0prni0" path="res://Assets/Character/character-spritesheet_swordless.png" id="3_6t5aa"]
+[ext_resource type="Texture2D" uid="uid://cpwhlg157pmpt" path="res://Assets/Icons/Keys.png" id="3_vgqql"]
+[ext_resource type="Texture2D" uid="uid://c217fai78xbhq" path="res://Assets/Icons/Keys copia.png" id="4_fkybt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
 size = Vector2(22.5, 50)
@@ -270,8 +272,45 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_x3wgy"]
+resource_name = "KeyPrompt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_vgqql"), ExtResource("4_fkybt")]
+}
+
+[sub_resource type="Animation" id="Animation_3smsa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_vgqql")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8erm5"]
+_data = {
+&"KeyPrompt": SubResource("Animation_x3wgy"),
+&"RESET": SubResource("Animation_3smsa")
+}
+
 [node name="player" type="CharacterBody2D" unique_id=293458414]
-position = Vector2(188.5, 151.5)
+position = Vector2(2393, 303)
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
@@ -284,3 +323,13 @@ shape = SubResource("RectangleShape2D_fc0e3")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_eow3j")
 animation = &"idle_side"
+
+[node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
+position = Vector2(0.5, -31.5)
+texture = ExtResource("3_vgqql")
+hframes = 5
+vframes = 8
+frame = 4
+
+[node name="KeyPrompt" type="AnimationPlayer" parent="." unique_id=200768255]
+libraries/ = SubResource("AnimationLibrary_8erm5")

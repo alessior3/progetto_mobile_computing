@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bxnaadjy2w4iy"]
+
+[ext_resource type="Texture2D" uid="uid://dufk8a6wh7vqr" path="res://Top_Down_Adventure_Pack_v.1.0/d1a575ca-b5b2-4303-9e61-3e81fd2ce035.png" id="1_ekktk"]
+[ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_jsdfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
+size = Vector2(72, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u85mr"]
+
+[node name="House1" type="Node2D" unique_id=948734644]
+script = ExtResource("1_jsdfy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
+position = Vector2(0, -20)
+texture = ExtResource("1_ekktk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=678984241]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=540551866]
+position = Vector2(-3, -5)
+shape = SubResource("RectangleShape2D_o2j0i")
+metadata/_edit_lock_ = true
+
+[node name="DoorWay" type="Area2D" parent="." unique_id=1208213178]
+position = Vector2(-19, 8)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorWay" unique_id=645230459]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_u85mr")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="DoorWay" to="." method="_on_door_way_body_entered"]
+[connection signal="body_exited" from="DoorWay" to="." method="_on_door_way_body_exited"]
