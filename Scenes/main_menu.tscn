@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bvknaa1yoy5qb"]
+
+[ext_resource type="Script" uid="uid://dmbc0xc0a4hnr" path="res://main_menu.gd" id="1_28flt"]
+
+[node name="MainMenu" type="Control" unique_id=937286253]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_28flt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=672948596]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UsernameInput" type="LineEdit" parent="VBoxContainer" unique_id=1159827406]
+layout_mode = 2
+placeholder_text = "Inserisci Username"
+
+[node name="PasswordInput" type="LineEdit" parent="VBoxContainer" unique_id=1870473307]
+layout_mode = 2
+placeholder_text = "Inserisci Password"
+
+[node name="btnlogin" type="Button" parent="VBoxContainer" unique_id=1202566177]
+layout_mode = 2
+text = "login"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=863120653]
+layout_mode = 2
+
+[node name="btnInizia" type="Button" parent="VBoxContainer" unique_id=9485944]
+layout_mode = 2
+text = "inizia nuova partita"
+
+[node name="btnCarica" type="Button" parent="VBoxContainer" unique_id=7891940]
+layout_mode = 2
+text = "carica partita"
+
+[node name="btnQuit" type="Button" parent="VBoxContainer" unique_id=953899404]
+layout_mode = 2
+text = "esci dal gioco
+"
+
+[connection signal="pressed" from="VBoxContainer/btnlogin" to="." method="_on_btn_login_pressed"]
+[connection signal="pressed" from="VBoxContainer/btnInizia" to="." method="_on_btn_inizia_pressed"]
+[connection signal="pressed" from="VBoxContainer/btnCarica" to="." method="_on_btn_carica_pressed"]
+[connection signal="pressed" from="VBoxContainer/btnQuit" to="." method="_on_btn_quit_pressed"]
