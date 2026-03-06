@@ -5,12 +5,15 @@
 [ext_resource type="Shape2D" uid="uid://dxvxl1tepcysi" path="res://Resources/Stick/stick_collision_shape.tres" id="1_mqd2k"]
 
 [node name="PickUpItem" type="Area2D" unique_id=1473875551]
+y_sort_enabled = true
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_dsyg8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=577696055]
+y_sort_enabled = true
 shape = ExtResource("1_mqd2k")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=453063927]
+y_sort_enabled = true
 texture = ExtResource("1_8jd25")
