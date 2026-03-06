@@ -1,11 +1,10 @@
 [gd_scene format=3 uid="uid://bstfbqarthdp6"]
 
 [ext_resource type="Script" uid="uid://jelht517jwcq" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Shape2D" uid="uid://btpfdpfo1eps3" path="res://Resources/Player/player_collision_shape.tres" id="2_fkybt"]
 [ext_resource type="Texture2D" uid="uid://dyeamna0prni0" path="res://Assets/Character/character-spritesheet_swordless.png" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://cpwhlg157pmpt" path="res://Assets/Icons/Keys.png" id="3_vgqql"]
 [ext_resource type="Texture2D" uid="uid://c217fai78xbhq" path="res://Assets/Icons/Keys copia.png" id="4_fkybt"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgqql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("3_6t5aa")
@@ -308,24 +307,24 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D" unique_id=293458414]
-position = Vector2(2393, 303)
-scale = Vector2(0.5, 0.5)
 collision_layer = 2
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=490341889]
 y_sort_enabled = true
-position = Vector2(0, 17)
-shape = SubResource("CapsuleShape2D_vgqql")
+position = Vector2(0, 7)
+shape = ExtResource("2_fkybt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1379833046]
 texture_filter = 1
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_eow3j")
 animation = &"idle_side"
 
 [node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
-position = Vector2(0.5, -31.5)
+position = Vector2(0.5, -19)
 texture = ExtResource("3_vgqql")
 hframes = 5
 vframes = 8
@@ -333,3 +332,12 @@ frame = 4
 
 [node name="KeyPrompt" type="AnimationPlayer" parent="." unique_id=200768255]
 libraries/ = SubResource("AnimationLibrary_8erm5")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=877386485]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1160132405]
+position = Vector2(0, 7)
+shape = ExtResource("2_fkybt")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

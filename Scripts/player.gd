@@ -101,3 +101,8 @@ func play_anim(movement):
 			anim.play("walk_back")
 		else:
 			anim.play("idle_back")
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area is PickUpItem:
+		area.queue_free()

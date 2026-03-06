@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://b3xvup7vx71eb" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
 [ext_resource type="PackedScene" uid="uid://bxnaadjy2w4iy" path="res://Scenes/House1.tscn" id="12_7yui6"]
 [ext_resource type="PackedScene" uid="uid://debprstwe8fj2" path="res://Scenes/inside_house_1.tscn" id="14_e0ngr"]
+[ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="15_hgpy0"]
+[ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="16_t2t4p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("1_8j60k")
@@ -1663,6 +1665,7 @@ position = Vector2(-3, 5)
 script = ExtResource("1_c5t2i")
 
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
+position = Vector2(2191, 375)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=846630186]
 zoom = Vector2(2, 2)
@@ -1706,3 +1709,7 @@ inside_scene = ExtResource("14_e0ngr")
 position = Vector2(-2118, -308)
 tile_map_data = PackedByteArray("AAB2ABoAAAAMAAAAAAA=")
 tile_set = SubResource("TileSet_1cojt")
+
+[node name="PickUpItem" parent="." unique_id=1473875551 instance=ExtResource("15_hgpy0")]
+position = Vector2(2136, 386)
+inventory_item = ExtResource("16_t2t4p")
