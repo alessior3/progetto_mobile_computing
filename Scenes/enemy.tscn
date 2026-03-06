@@ -354,8 +354,6 @@ animations = [{
 
 [node name="BombPlant" type="CharacterBody2D" unique_id=79269094]
 script = ExtResource("1_8uf12")
-max_health = null
-damage_to_player = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=393941556]
 sprite_frames = SubResource("SpriteFrames_fv6oi")
@@ -376,3 +374,5 @@ shape = ExtResource("9_tk7xo")
 max_health = 100
 
 [node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("11_haro7")]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

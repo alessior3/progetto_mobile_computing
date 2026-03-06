@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name Spider
+class_name PinkSlime
 @export var speed: float = 100
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time = 1.0
