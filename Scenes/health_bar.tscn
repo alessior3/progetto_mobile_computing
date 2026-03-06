@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://doo4ofrsk7u37"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_po0sg"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_haro7"]
+bg_color = Color(0.6220889, 0.0008801069, 0.00048279957, 1)
+
+[node name="ProgressBar" type="ProgressBar" unique_id=1165259361]
+offset_left = -10.0
+offset_top = -14.0
+offset_right = 10.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_po0sg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_haro7")
+step = 1.0
+fill_mode = 1
+show_percentage = false
