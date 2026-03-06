@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c40tkocx3rhr0" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_down_anim_strip_4.png" id="6_m4x7e"]
 [ext_resource type="Texture2D" uid="uid://x3vj0ty5hlln" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_up_anim_strip_4.png" id="7_vt4ob"]
 [ext_resource type="Texture2D" uid="uid://b14ga24141pvq" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_hit_anim_all_dir_strip_4.png" id="8_hgeoe"]
-[ext_resource type="Script" uid="uid://dbtojwg53p8jt" path="res://Scenes/phantom_animated_sprite_2d.gd" id="9_56vhr"]
+[ext_resource type="Script" uid="uid://cr7uekf4jiaus" path="res://Scenes/PlantAnimatedSprite.gd" id="9_56vhr"]
 [ext_resource type="Shape2D" uid="uid://dxew5axtupgcb" path="res://enemies/bombplant_collision_shape.tres" id="9_tk7xo"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="10_po0sg"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="11_haro7"]
@@ -352,8 +352,10 @@ animations = [{
 "speed": 7.0
 }]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=79269094]
+[node name="BombPlant" type="CharacterBody2D" unique_id=79269094]
 script = ExtResource("1_8uf12")
+max_health = null
+damage_to_player = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=393941556]
 sprite_frames = SubResource("SpriteFrames_fv6oi")

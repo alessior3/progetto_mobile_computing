@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
-# 1. ERRORE ROSSO RISOLTO: Cambiato nome alla classe!
-class_name PhantomEnemy
-
+class_name Enemy
 @export var speed: float = 100
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time = 1.0
@@ -11,6 +9,7 @@ class_name PhantomEnemy
 @export var health: int = 50
 @export var item_to_drop: InventoryItem
 
+# MODIFICA IMPORTANTE: Ora accetta qualsiasi AnimatedSprite2D (Fantasma, Ragno, ecc.)
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var health_system: HealthSystem = $HealthSystem
 @onready var progress_bar: ProgressBar = $ProgressBar
@@ -55,28 +54,21 @@ func move_along_path(delta: float):
 			current_patrol_target = (current_patrol_target + 1) % patrol_path.size()
 
 func on_died():
+	# Fermiamo la fisica e facciamo partire l'animazione (che deve chiamarsi "died")
 	set_physics_process(false)
+	animated_sprite_2d.play("died")
 	
-	# 2. MODIFICA MORTE: Diciamo allo sprite di gestirsi la morte a destra/sinistra
-	animated_sprite_2d.play_death_animation()
-	
+	# Godot preferisce che le collisioni vengano disabilitate in modo "sicuro" con set_deferred
 	collision_shape_2d.set_deferred("disabled", true)
 	area_collision_shape_2d.set_deferred("disabled", true)
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	# 3. Controlliamo che l'animazione finita sia UNA delle DUE morti possibili
-	var anim_name = animated_sprite_2d.animation
-	if anim_name == "death_animation_left" or anim_name == "death_animation_right":
-		
-		# Spawna l'oggetto
+	if animated_sprite_2d.animation == "died":
 		var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
+		loot_drop.inventory_item = item_to_drop
+		loot_drop.stacks = item_to_drop.stacks
 		
-		# Piccolo controllo di sicurezza per non far crashare se dimentichi di mettere l'oggetto
-		if item_to_drop != null:
-			loot_drop.inventory_item = item_to_drop
-			loot_drop.stacks = item_to_drop.stacks
-			
 		get_tree().root.add_child(loot_drop)
 		loot_drop.global_position = position
 		queue_free()
