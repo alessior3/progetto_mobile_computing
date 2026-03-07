@@ -308,8 +308,8 @@ _data = {
 
 [node name="player" type="CharacterBody2D" unique_id=293458414 groups=["player"]]
 y_sort_enabled = true
-collision_layer = 2
-collision_mask = 5
+collision_layer = 3
+collision_mask = 69
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
@@ -336,7 +336,7 @@ libraries/ = SubResource("AnimationLibrary_8erm5")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=877386485]
 y_sort_enabled = true
-collision_mask = 4
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1160132405]
 position = Vector2(0, 8)

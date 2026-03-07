@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://b6nb2wg3umyui"
+TransitionChangeManager="*uid://cdfv6rbg5h5as"
 
 [display]
 
@@ -48,8 +49,11 @@ interact={
 
 [layer_names]
 
+2d_render/layer_7="entrance"
+2d_render/layer_8="merchant"
 2d_physics/layer_1="Objects"
 2d_physics/layer_2="Player"
+2d_physics/layer_7="entrance"
 
 [physics]
 
