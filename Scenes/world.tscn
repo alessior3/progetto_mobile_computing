@@ -1263,7 +1263,6 @@ sources/0 = SubResource("TileSetAtlasSource_axeuq")
 
 [node name="world" type="Node2D" unique_id=2084603517]
 y_sort_enabled = true
-position = Vector2(-3, 5)
 script = ExtResource("1_c5t2i")
 
 [node name="ground" type="TileMapLayer" parent="." unique_id=221056651]
