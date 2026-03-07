@@ -1296,11 +1296,12 @@ position = Vector2(894, 351)
 inside_scene = ExtResource("14_e0ngr")
 
 [node name="pickUpItem" parent="." unique_id=1473875551 instance=ExtResource("15_hgpy0")]
+z_index = -1
 position = Vector2(912, 384)
 inventory_item = ExtResource("16_t2t4p")
 
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
-position = Vector2(952, 248)
+position = Vector2(924, 381)
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
 position = Vector2(-2, -2)
