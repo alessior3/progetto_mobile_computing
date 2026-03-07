@@ -12,3 +12,4 @@
 # File dell'editor e log
 *.log
 .vscode/
+.DS_Store

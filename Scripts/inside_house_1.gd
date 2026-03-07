@@ -16,9 +16,11 @@ func _ready():
 # --- 2. GESTIONE USCITA (Il tuo codice originale) ---
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body.name == "player":
-		# Prima di uscire, resettiamo la posizione globale a zero 
-		# così quando rientri nel mondo non "nasci" dentro la casa
-		Global.player_pos = Vector2.ZERO
+		# Non azzeriamo la posizione qui: vogliamo che il mondo
+		# riposizioni il player al punto da cui è entrato.
+		# `Global.player_pos` è impostato da `Scripts/house_1.gd` al momento
+		# dell'entrata e verrà usato da `Scripts/player.gd` quando il mondo
+		# viene ricaricato.
 		call_deferred("change_scene")
 
 func change_scene():
