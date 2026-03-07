@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_jsdfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
-size = Vector2(72, 30)
+size = Vector2(79, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u85mr"]
 
@@ -18,7 +18,7 @@ texture = ExtResource("1_ekktk")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=678984241]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=540551866]
-position = Vector2(-3, -5)
+position = Vector2(0.5, -3)
 shape = SubResource("RectangleShape2D_o2j0i")
 metadata/_edit_lock_ = true
 

@@ -335,6 +335,7 @@ frame = 4
 libraries/ = SubResource("AnimationLibrary_8erm5")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=877386485]
+y_sort_enabled = true
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1160132405]
