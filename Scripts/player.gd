@@ -3,6 +3,8 @@ class_name Player
 const speed = 100
 var current_dir = "none"
 
+@onready var inventory:Inventory=$Inventory
+
 var house = null:
 	set = set_house
 
@@ -41,6 +43,8 @@ func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
 		Global.player_pos = global_position
 		Global.save_game()
+
+
 
 
 func _physics_process(delta):

@@ -34,3 +34,15 @@ func _ready() -> void:
 	
 func on_popup_menu_item_pressed(id: int):
 	print_debug(id)
+	
+func display_item(item: InventoryItem):
+	if item:
+		# Mostra l'icona e il nome dell'oggetto
+		texture_rect.texture = item.texture
+		name_label.text = item.name
+		is_empty = false
+	else:
+		# Se lo slot deve essere vuoto, pulisci tutto
+		texture_rect.texture = null
+		name_label.text = ""
+		is_empty = true
