@@ -5,6 +5,10 @@ class_name InventorySlot
 var is_empty=true
 var is_selected=false
 
+signal item_clicked(item: InventoryItem) # Nuovo segnale
+
+var current_item: InventoryItem = null # Per ricordarsi l'oggetto
+
 @export var single_button_press=false
 @export var starting_texture: Texture
 @export var start_label: String
@@ -18,6 +22,8 @@ var is_selected=false
 var slot_to_equip="NotEquipable"
 
 func _ready() -> void:
+	# Colleghiamo il tuo bottone on_click_button alla funzione di invio
+	on_click_button.pressed.connect(_on_equip_button_pressed)
 	if starting_texture!=null:
 		texture_rect.texture=starting_texture
 	
@@ -33,16 +39,26 @@ func _ready() -> void:
 	popup_menu.id_pressed.connect(on_popup_menu_item_pressed)
 	
 func on_popup_menu_item_pressed(id: int):
-	print_debug(id)
+	# Supponiamo che l'ID 0 sia "Equip"
+	if id == 0: 
+		if current_item != null and !is_empty:
+			print("DEBUG (Slot): Equipaggiamento richiesto per ", current_item.name)
+			item_clicked.emit(current_item) # Invia l'oggetto all'inventario
+	elif id == 1:
+		print("DEBUG (Slot): Opzione Drop selezionata (da implementare)")
 	
+func _on_equip_button_pressed():
+	if current_item and !is_empty:
+		item_clicked.emit(current_item) # Invia l'oggetto a chi ascolta
+		print("DEBUG (Slot): Invio segnale equip per: ", current_item.name)
+
 func display_item(item: InventoryItem):
+	current_item = item # Salva l'oggetto corrente
 	if item:
-		# Mostra l'icona e il nome dell'oggetto
 		texture_rect.texture = item.texture
 		name_label.text = item.name
-		is_empty = false
+		is_empty = false #
 	else:
-		# Se lo slot deve essere vuoto, pulisci tutto
 		texture_rect.texture = null
 		name_label.text = ""
-		is_empty = true
+		is_empty = true #

@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("1_qwj5t")
+slot_type = "Hand"
 ground_collision_shape = ExtResource("1_nojim")
 name = "Stick"
 texture = ExtResource("3_8fbu1")

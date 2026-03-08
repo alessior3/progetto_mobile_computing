@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c1j8kmasojpti"]
+
+[ext_resource type="Script" uid="uid://da64jqmxlnvyw" path="res://Scripts/on_screen_ui.gd" id="1_ypqlq"]
+[ext_resource type="PackedScene" uid="uid://blggmcaosyqkm" path="res://Scenes/UI/on_screen_equipment_slot.tscn" id="2_yl4ho"]
+
+[node name="OnScreenUi" type="CanvasLayer" unique_id=1509945341]
+script = ExtResource("1_ypqlq")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=719146166]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer" unique_id=1681700667]
+layout_mode = 2
+size_flags_horizontal = 0
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1509604841]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="hand" parent="MarginContainer/HBoxContainer" unique_id=1156229406 instance=ExtResource("2_yl4ho")]
+unique_name_in_owner = true
+layout_mode = 2
+slot_name = "Hand"
+
+[node name="potions" parent="MarginContainer/HBoxContainer" unique_id=130748026 instance=ExtResource("2_yl4ho")]
+unique_name_in_owner = true
+layout_mode = 2
+slot_name = "Potions"
+
+[node name="food" parent="MarginContainer/HBoxContainer" unique_id=122944128 instance=ExtResource("2_yl4ho")]
+unique_name_in_owner = true
+layout_mode = 2
+slot_name = "Food"

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://blggmcaosyqkm"]
+
+[ext_resource type="Script" uid="uid://hj8vkaswqfa1" path="res://Scripts/on_screen_equipment_slot.gd" id="1_x53ij"]
+[ext_resource type="Texture2D" uid="uid://butg5isggw12q" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_0cd4b"]
+
+[node name="onScreenEquipmentSlot" type="VBoxContainer" unique_id=1156229406]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_x53ij")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=489290674]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_0cd4b")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="stacksLael" type="Label" parent="NinePatchRect" unique_id=626101947]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.95000005
+anchor_right = 1.0
+anchor_bottom = 0.95000005
+offset_left = -26.0
+offset_top = -24.000004
+offset_right = -2.0
+offset_bottom = -1.0000038
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect" unique_id=110256218]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 6.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/CenterContainer" unique_id=2073349538]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MenuButton" type="MenuButton" parent="NinePatchRect/CenterContainer" unique_id=1462835850]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+item_count = 1
+popup/item_0/text = "Unequip"
+popup/item_0/id = 0
+
+[node name="slotLabel" type="Label" parent="." unique_id=2083059388]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1

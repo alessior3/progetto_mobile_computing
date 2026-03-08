@@ -8,6 +8,7 @@
 default_font = ExtResource("3_o62ck")
 
 [node name="inventoryUI" type="CanvasLayer" unique_id=1764230181]
+layer = 2
 script = ExtResource("1_p83af")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1561253823]
