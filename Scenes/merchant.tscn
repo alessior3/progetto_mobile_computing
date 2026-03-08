@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cvnbhkvv282mw"]
+
+[ext_resource type="Texture2D" uid="uid://wrwdntpywyp7" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Master/SpriteSheet.png" id="1_5u005"]
+[ext_resource type="Script" uid="uid://c1nrvax4nq5nn" path="res://Scripts/merchant.gd" id="2_s08t2"]
+[ext_resource type="PackedScene" uid="uid://bclvs3krm7k6b" path="res://Scenes/shopping_ui.tscn" id="3_s08t2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_er8uw"]
+radius = 50.0
+
+[sub_resource type="Theme" id="Theme_82brx"]
+
+[node name="Merchant" type="Sprite2D" unique_id=1019879327]
+texture = ExtResource("1_5u005")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+script = ExtResource("2_s08t2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1642393433]
+collision_layer = 128
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1868352720]
+shape = SubResource("CircleShape2D_er8uw")
+
+[node name="Label" type="Label" parent="." unique_id=1485825608]
+offset_left = -60.0
+offset_top = -41.0
+offset_right = 64.0
+offset_bottom = -18.0
+theme = SubResource("Theme_82brx")
+text = "press M to shop"
+horizontal_alignment = 1
+
+[node name="ShoppingUI" parent="." unique_id=869832822 instance=ExtResource("3_s08t2")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

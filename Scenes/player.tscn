@@ -347,5 +347,5 @@ shape = ExtResource("2_fkybt")
 [node name="inventoryUI" parent="." unique_id=1764230181 instance=ExtResource("6_x3wgy")]
 visible = false
 
-[node name="inventory" type="Node" parent="." unique_id=1240474999]
+[node name="Inventory" type="Node" parent="." unique_id=1240474999]
 script = ExtResource("7_3smsa")
