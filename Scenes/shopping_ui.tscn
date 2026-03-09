@@ -36,6 +36,7 @@ alignment = 1
 [node name="MerchantColumn" type="VBoxContainer" parent="MarginContainer/ColorRect/HBoxContainer" unique_id=466593757]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="MarginContainer/ColorRect/HBoxContainer/MerchantColumn" unique_id=1509921851]
 layout_mode = 2
@@ -47,11 +48,14 @@ horizontal_alignment = 1
 [node name="BuyingGridContainer" type="GridContainer" parent="MarginContainer/ColorRect/HBoxContainer/MerchantColumn" unique_id=81139276]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 4
 
 [node name="BuyButton" type="Button" parent="MarginContainer/ColorRect/HBoxContainer/MerchantColumn" unique_id=166670143]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 disabled = true
 text = "buy"
 
@@ -63,6 +67,7 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_xslcv")
 [node name="PlayerColumn" type="VBoxContainer" parent="MarginContainer/ColorRect/HBoxContainer" unique_id=841618666]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="MarginContainer/ColorRect/HBoxContainer/PlayerColumn" unique_id=336045184]
 layout_mode = 2
@@ -74,11 +79,14 @@ horizontal_alignment = 1
 [node name="SellingGridContainer" type="GridContainer" parent="MarginContainer/ColorRect/HBoxContainer/PlayerColumn" unique_id=353753922]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/v_separation = 15
 columns = 4
 
 [node name="SellButton" type="Button" parent="MarginContainer/ColorRect/HBoxContainer/PlayerColumn" unique_id=1012502468]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 disabled = true
 text = "sell"
 

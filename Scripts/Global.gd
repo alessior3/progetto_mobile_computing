@@ -1,4 +1,3 @@
-# Global.gd
 extends Node
 
 var player_pos : Vector2
@@ -7,7 +6,10 @@ var current_username = "Giocatore Sconosciuto"
 var persistent_gold: int = 0
 var persistent_items: Array[InventoryItem] = []
 
-# NUOVE VARIABILI PER GLI SLOT
+# ID degli oggetti già raccolti per non farli riapparire
+var collected_item_ids: Array[String] = [] 
+
+# Slot equipaggiamento persistenti
 var persistent_hand: InventoryItem = null
 var persistent_potions: InventoryItem = null
 var persistent_food: InventoryItem = null
@@ -22,10 +24,10 @@ func save_game():
 			"posizione": player_pos,
 			"oro": persistent_gold,
 			"oggetti": persistent_items,
-			# Salviamo anche gli slot equipaggiati
 			"hand": persistent_hand,
 			"potions": persistent_potions,
-			"food": persistent_food
+			"food": persistent_food,
+			"raccolti": collected_item_ids # Salvataggio lista nera
 		}
 		file.store_var(data)
 		file.close()
@@ -36,14 +38,14 @@ func load_game() -> bool:
 		var data = file.get_var()
 		file.close()
 		
-		current_username = data["nome"]
-		player_pos = data["posizione"]
+		# Usiamo .get() con valori di default per evitare crash se mancano chiavi
+		current_username = data.get("nome", "Giocatore Sconosciuto")
+		player_pos = data.get("posizione", Vector2.ZERO)
 		persistent_gold = data.get("oro", 0)
 		persistent_items = data.get("oggetti", [])
-		
-		# Carichiamo gli slot
 		persistent_hand = data.get("hand", null)
 		persistent_potions = data.get("potions", null)
 		persistent_food = data.get("food", null)
+		collected_item_ids = data.get("raccolti", []) 
 		return true
 	return false

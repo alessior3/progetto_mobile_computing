@@ -39,7 +39,6 @@ func add_item(item: InventoryItem):
 	if item:
 		texture_rect.texture = item.texture
 		name_label.text = item.name
-		# Se l'item ha degli stack, mostriamoli
 		if stacks_label: 
 			stacks_label.text = str(item.stacks) if item.stacks > 1 else ""
 		is_empty = false
@@ -66,8 +65,8 @@ func toggle_button_selected_variation(selected: bool):
 
 func _on_equip_button_pressed():
 	if current_item and !is_empty:
-		slot_clicked.emit() # Emettiamo il segnale per lo Shop
+		slot_clicked.emit(current_item) # <-- Passiamo l'item qui!
 
 func on_popup_menu_item_pressed(id: int):
 	if id == 0 and current_item and !is_empty:
-		slot_clicked.emit()
+		slot_clicked.emit(current_item) # <-- E anche qui!

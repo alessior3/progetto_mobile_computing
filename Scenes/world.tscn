@@ -1971,6 +1971,7 @@ inside_scene = ExtResource("14_e0ngr")
 z_index = -1
 position = Vector2(444.00006, 381)
 rotation = -0.012469577
+item_id = "stick1"
 inventory_item = ExtResource("16_t2t4p")
 
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
@@ -1999,6 +2000,7 @@ position = Vector2(409, 349)
 [node name="goldcoin" parent="." unique_id=322180328 instance=ExtResource("15_hgpy0")]
 z_index = -1
 position = Vector2(394, 381)
+item_id = "30gold"
 inventory_item = ExtResource("18_0pcbe")
 amount = 30
 
@@ -2008,6 +2010,7 @@ amount = 30
 z_index = -1
 position = Vector2(426.00006, 395)
 rotation = -0.012469577
+item_id = "stick2"
 inventory_item = ExtResource("16_t2t4p")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
