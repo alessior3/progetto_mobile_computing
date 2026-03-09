@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cu24c2u5ksem5"]
 
-[ext_resource type="Script" uid="uid://bvnds7myykcau" path="res://Scenes/pick_up_item.gd" id="1_dsyg8"]
+[ext_resource type="Script" uid="uid://bvnds7myykcau" path="res://Scripts/pick_up_item.gd" id="1_dsyg8"]
 [ext_resource type="Shape2D" uid="uid://dxvxl1tepcysi" path="res://Resources/Stick/stick_collision_shape.tres" id="1_mqd2k"]
 
 [node name="PickUpItem" type="Area2D" unique_id=1473875551]

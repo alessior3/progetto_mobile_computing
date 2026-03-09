@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://d2t84sddt58t5"]
 
-[ext_resource type="Script" uid="uid://dw8r2saqj48kb" path="res://spider.gd" id="1_rjben"]
+[ext_resource type="Script" uid="uid://dw8r2saqj48kb" path="res://Scripts/spider.gd" id="1_rjben"]
 [ext_resource type="Texture2D" uid="uid://drc08cq10pqda" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_hit_anim_all_dir_strip_4.png" id="2_iybn8"]
 [ext_resource type="Texture2D" uid="uid://831c8gov2ley" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_idle_anim_all_dir_strip_4.png" id="3_lawas"]
 [ext_resource type="Texture2D" uid="uid://cubrcgy2qohlw" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_run_anim_all_dir_strip_4.png" id="4_bi470"]
 [ext_resource type="Texture2D" uid="uid://b8ioh053en00l" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png" id="5_04w1h"]
 [ext_resource type="Shape2D" uid="uid://cmyjqbdja270k" path="res://enemies/spider_collision_shape.tres" id="6_1uv7t"]
-[ext_resource type="Script" uid="uid://dlklryeavi2wk" path="res://enemies/spider_animated_sprite.gd" id="6_iybn8"]
+[ext_resource type="Script" uid="uid://dlklryeavi2wk" path="res://Scripts/spider_animated_sprite.gd" id="6_iybn8"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="7_pe3gi"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="8_ossid"]
 

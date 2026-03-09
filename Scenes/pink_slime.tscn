@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://bi7i17wp74kna"]
 
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="1_ifgdl"]
-[ext_resource type="Script" uid="uid://ds1yormg1vegu" path="res://enemies/pink_slime.gd" id="1_nrxs7"]
+[ext_resource type="Script" uid="uid://ds1yormg1vegu" path="res://Scripts/pink_slime.gd" id="1_nrxs7"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="2_mg4vu"]
 [ext_resource type="Texture2D" uid="uid://c4f8fg2vubn85" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_death_anim_all_dir_strip_8.png" id="2_yibhk"]
 [ext_resource type="Texture2D" uid="uid://caobnwve7f0x" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_hit_anim_all_dir_strip_4.png" id="3_tfbrm"]
 [ext_resource type="Texture2D" uid="uid://ymqgmcb1bnt5" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_idle_anim_all_dir_strip_6.png" id="4_qoh44"]
 [ext_resource type="Texture2D" uid="uid://bv1mp0axew0cq" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_run_anim_anim_all_dir_strip_6.png" id="5_h1jmd"]
-[ext_resource type="Script" uid="uid://bfgpwcgil4kcl" path="res://enemies/PinkSlime_animated_sprite.gd" id="6_yibhk"]
+[ext_resource type="Script" uid="uid://bfgpwcgil4kcl" path="res://Scripts/PinkSlime_animated_sprite.gd" id="6_yibhk"]
 [ext_resource type="Shape2D" uid="uid://h8wcvr3a03cv" path="res://enemies/PinkSlime_collison_shape.tres" id="7_tfbrm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6qs8f"]

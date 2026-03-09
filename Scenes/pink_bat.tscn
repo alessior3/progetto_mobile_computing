@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c3a61s3pv70p3"]
 
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="1_1mug5"]
-[ext_resource type="Script" uid="uid://v6nixnfccnim" path="res://enemies/pink_bat.gd" id="1_hmjdl"]
+[ext_resource type="Script" uid="uid://v6nixnfccnim" path="res://Scripts/pink_bat.gd" id="1_hmjdl"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="2_bjwxx"]
 [ext_resource type="Texture2D" uid="uid://ba3gf6r1xjf1v" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_left_strip_8.png" id="2_u5ekv"]
 [ext_resource type="Texture2D" uid="uid://dqt0vhis3xltd" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_right_strip_8.png" id="3_kgv6v"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dnsyofy7cjo7u" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_right_anim_strip_5.png" id="7_cf18e"]
 [ext_resource type="Texture2D" uid="uid://bglhaplgq8fjh" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_left_anim_strip_3.png" id="8_545d7"]
 [ext_resource type="Texture2D" uid="uid://c87pewpj5jxh" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png" id="9_7ocyk"]
-[ext_resource type="Script" uid="uid://bx3dgx27wfoq2" path="res://enemies/PinkBat_animated_sprite.gd" id="10_u5ekv"]
+[ext_resource type="Script" uid="uid://bx3dgx27wfoq2" path="res://Scripts/PinkBat_animated_sprite.gd" id="10_u5ekv"]
 [ext_resource type="Shape2D" uid="uid://baqgby1558hei" path="res://enemies/PinkBat_collision_shape.tres" id="10_u086v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_edxga"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dd8eoq471npuk"]
 
 [ext_resource type="Texture2D" uid="uid://dfb1qkiqquvt7" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_left_strip_8.png" id="1_el6uu"]
-[ext_resource type="Script" uid="uid://ckfne2a1l2w5w" path="res://enemies/phantom.gd" id="1_nnk5s"]
+[ext_resource type="Script" uid="uid://ckfne2a1l2w5w" path="res://Scripts/phantom.gd" id="1_nnk5s"]
 [ext_resource type="Texture2D" uid="uid://q8oryvfbgywh" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_right_strip_8.png" id="2_q7et4"]
 [ext_resource type="Texture2D" uid="uid://vx27mnhrxvni" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_left_strip_4.png" id="3_nnk5s"]
 [ext_resource type="Texture2D" uid="uid://dyopceuol8cow" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_right_strip_4.png" id="4_n325r"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://gsq6hoifsnkw" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_run_anim_right_strip_6.png" id="8_bb8ru"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="9_788wi"]
 [ext_resource type="Shape2D" uid="uid://w8agbgi342c1" path="res://enemies/phantom_collision_shape.tres" id="10_n325r"]
-[ext_resource type="Script" uid="uid://dbtojwg53p8jt" path="res://Scenes/phantom_animated_sprite_2d.gd" id="10_uailp"]
+[ext_resource type="Script" uid="uid://dbtojwg53p8jt" path="res://Scripts/phantom_animated_sprite_2d.gd" id="10_uailp"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="12_n325r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gkcu"]
