@@ -19,37 +19,34 @@ func set_house(new_house):
 
 # ECCO LA FUNZIONE FUSA E CORRETTA:
 func _ready():
+
 	if SaveManager.is_loading_game:
-		# Teletrasportiamo il giocatore alle coordinate salvate
+		# posizione dal cloud
 		global_position = SaveManager.loaded_position
-		
-		# Spegniamo l'interruttore per non teletrasportarci più di continuo
 		SaveManager.is_loading_game = false
 		print("Giocatore posizionato con successo alle coordinate caricate!")
+	else:
+		# posizione locale (quando cambi scena tipo entrare/uscire casa)
+		if Global.player_pos != Vector2.ZERO:
+			global_position = Global.player_pos
+
 	$AnimatedSprite2D.play("idle_front")
 	set_house(null)
-	
-	# La parte del nome fusa dentro l'unico _ready()
+
 	if has_node("Label"):
 		$Label.text = Global.current_username
-		
-	# --- NUOVO: CARICAMENTO POSIZIONE ---
-	# Se la posizione in memoria non è vuota (0,0), sposta l'omino lì!
-	if Global.player_pos != Vector2.ZERO:
-		global_position = Global.player_pos
 
 
 func _unhandled_input(event):
 	# Codice originale per entrare in casa
 	if event is InputEventKey and event.is_action_pressed("interact") and house != null:
-		Global.player_pos = global_position
 		house.enter()
 		
 	# --- NUOVO: SALVATAGGIO CON TASTO K ---
 	# Se premi il tasto K sulla tastiera, salva la posizione e il gioco!
 	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
 		Global.player_pos = global_position
-		Global.save_game()
+		SaveManager.save_game()
 
 
 

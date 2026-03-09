@@ -27,7 +27,6 @@ func save_game():
 		print("ERRORE: Giocatore non trovato!")
 		return
 	
-	# Verifichiamo se l'email è stata salvata correttamente nel Global
 	if Global.current_username == "":
 		print("ERRORE: Email utente vuota nel Global!")
 		return
@@ -43,10 +42,11 @@ func save_game():
 	var http = HTTPRequest.new()
 	add_child(http)
 	
-	# --- RIGA DA AGGIUNGERE PER DEBUG ---
+	# 👇 QUI AGGIUNGI IL SEGNALE
+	http.request_completed.connect(_on_save_completed)
+	
 	var url = database_url + "users/" + user_id + ".json"
-	print("DEBUG - Indirizzo finale: ", url) 
-	# ------------------------------------
+	print("DEBUG - Indirizzo finale: ", url)
 
 	var body = JSON.stringify(data)
 	var err = http.request(url, [], HTTPClient.METHOD_PUT, body)
@@ -55,6 +55,9 @@ func save_game():
 		print("ERRORE nell'invio della richiesta HTTP!")
 	else:
 		print("Richiesta inviata correttamente... controlla il database!")
+
+func _on_save_completed(result, response_code, headers, body):
+	print("Salvataggio completato! Codice:", response_code)
 
 # --- CARICAMENTO CLOUD ---
 func load_game():
