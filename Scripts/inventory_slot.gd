@@ -5,8 +5,9 @@ var is_empty = true
 var is_selected = false
 var current_item: InventoryItem = null
 
-# Rinominiamo il segnale per lo Shop
-signal slot_clicked 
+# SEGNALI
+signal slot_clicked(item: InventoryItem) 
+signal item_dropped(item: InventoryItem) # Nuovo segnale per il drop
 
 @export var single_button_press = false
 @export var starting_texture: Texture
@@ -33,7 +34,6 @@ func _ready() -> void:
 	var popup_menu = menu_button.get_popup()
 	popup_menu.id_pressed.connect(on_popup_menu_item_pressed)
 
-# Funzione rinominata da 'display_item' a 'add_item' per lo Shop
 func add_item(item: InventoryItem):
 	current_item = item
 	if item:
@@ -45,28 +45,27 @@ func add_item(item: InventoryItem):
 	else:
 		texture_rect.texture = null
 		name_label.text = ""
-		is_empty = true
+		is_empty = true    
 
-# Funzione mancante richiesta dallo Shop
 func show_price_tag(price: int):
 	if stacks_label:
-		# Ora che sono affiancati, usiamo un formato pulito
 		stacks_label.text = "| " + str(price) + " Gold" 
 		stacks_label.modulate = Color.GOLD
 
-# Funzione mancante per la selezione visiva
 func toggle_button_selected_variation(selected: bool):
 	is_selected = selected
-	# Cambia il colore del testo o del bordo per feedback visivo
 	if selected:
-		modulate = Color(1.5, 1.5, 1.5) # Effetto illuminazione
+		modulate = Color(1.5, 1.5, 1.5)
 	else:
 		modulate = Color.WHITE
 
 func _on_equip_button_pressed():
 	if current_item and !is_empty:
-		slot_clicked.emit(current_item) # <-- Passiamo l'item qui!
+		slot_clicked.emit(current_item)
 
 func on_popup_menu_item_pressed(id: int):
-	if id == 0 and current_item and !is_empty:
-		slot_clicked.emit(current_item) # <-- E anche qui!
+	if current_item and !is_empty:
+		if id == 0:
+			slot_clicked.emit(current_item) # Equipaggia
+		elif id == 1:
+			item_dropped.emit(current_item) # Droppa

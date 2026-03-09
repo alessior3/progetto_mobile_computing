@@ -11,6 +11,9 @@ signal gold_changed(new_amount: int)
 
 @export var on_screen_ui: OnScreenUi 
 
+# PRELOAD DELLA SCENA DA DROPPARE (Verifica che il percorso sia corretto!)
+const PICK_UP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
+
 # VARIABILI DATI
 var items: Array[InventoryItem] = []
 var gold: int = 0
@@ -63,10 +66,29 @@ func add_item(item: InventoryItem, amount: int = 1) -> void:
 	if inventory_ui:
 		inventory_ui.update_slots(items)
 
-# --- LOGICA EQUIPAGGIAMENTO (Equip/Unequip) ---
+# --- LOGICA EQUIPAGGIAMENTO E DROP ---
+
+# --- LOGICA EQUIPAGGIAMENTO E DROP ---
+
+# --- LOGICA EQUIPAGGIAMENTO E DROP ---
 
 func _on_slot_item_clicked(item: InventoryItem):
 	if item == null: return
+	
+	# --- FIX: GESTIONE DELLO SCAMBIO (SWAP) ---
+	var old_item: InventoryItem = null
+	
+	# Controlliamo cosa c'è attualmente equipaggiato in questo specifico slot
+	match item.slot_type:
+		"Hand": old_item = Global.persistent_hand
+		"Potions": old_item = Global.persistent_potions
+		"Food": old_item = Global.persistent_food
+		
+	# Se c'era già un oggetto, lo rimettiamo nello zaino prima di prendere il nuovo
+	if old_item != null:
+		items.append(old_item)
+		print("DEBUG (Inventory): Scambiato ", old_item.name, " con ", item.name)
+	# -----------------------------------------
 	
 	# 1. Aggiorna la UI a schermo e i dati persistenti
 	if on_screen_ui:
@@ -78,12 +100,15 @@ func _on_slot_item_clicked(item: InventoryItem):
 		equipped_sprite.texture = item.texture
 		equipped_sprite.show()
 	
-	# 3. Rimuove dallo zaino persistente
+	# 3. Rimuove il NUOVO oggetto dallo zaino persistente
 	items.erase(item)
 	Global.persistent_items = items
 	
+	# 4. Aggiorna e CHIUDE l'inventario automaticamente
 	if inventory_ui:
 		inventory_ui.update_slots(items)
+		if inventory_ui.visible:
+			inventory_ui.toggle()
 
 func _on_unequip_item(item: InventoryItem):
 	if item == null: return
@@ -102,7 +127,53 @@ func _on_unequip_item(item: InventoryItem):
 	if inventory_ui:
 		inventory_ui.update_slots(items)
 
-# --- FUNZIONI DI SUPPORTO (Sincronizzazione) ---
+# NUOVA FUNZIONE: Droppa l'oggetto a terra con animazione di lancio
+func drop_item(item_to_drop: InventoryItem):
+	if item_to_drop == null: return
+	
+	items.erase(item_to_drop)
+	Global.persistent_items = items
+	
+	# Istanzia l'oggetto
+	var dropped_node = PICK_UP_ITEM_SCENE.instantiate()
+	
+	# --- FIX 1: Y-SORT E Z-INDEX ---
+	dropped_node.z_index = -1
+	dropped_node.y_sort_enabled = true
+	
+	# --- FIX 2: PARENTING PER Y-SORT ---
+	# Lo aggiungiamo allo stesso padre del Player (il livello) per un Y-Sort perfetto
+	var level_node = get_parent().get_parent()
+	level_node.add_child(dropped_node)
+	
+	# Assegna i dati e resetta l'ID
+	dropped_node.inventory_item = item_to_drop
+	dropped_node.item_id = ""
+	
+	# --- FIX 3: CHIUDI L'INVENTARIO ---
+	if inventory_ui and inventory_ui.visible:
+		inventory_ui.toggle()
+	
+	# --- EFFETTO DI LANCIO (TWEEN) ---
+	var start_pos = get_parent().global_position
+	var random_offset = Vector2(randf_range(-35.0, 35.0), randf_range(10.0, 30.0))
+	var end_pos = start_pos + random_offset
+	
+	dropped_node.global_position = start_pos
+	
+	var tween_x = dropped_node.create_tween()
+	tween_x.tween_property(dropped_node, "global_position:x", end_pos.x, 0.4)
+	
+	var tween_y = dropped_node.create_tween()
+	var peak_y = min(start_pos.y, end_pos.y) - 25
+	
+	tween_y.tween_property(dropped_node, "global_position:y", peak_y, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween_y.tween_property(dropped_node, "global_position:y", end_pos.y, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	
+	if inventory_ui:
+		inventory_ui.update_slots(items)
+		
+	print("DEBUG (Inventory): Droppato nel mondo con animazione: ", item_to_drop.name)
 
 func _restore_equipment_ui():
 	# Mappa degli oggetti salvati nel Global
