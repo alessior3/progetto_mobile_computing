@@ -507,7 +507,7 @@ script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=490341889]
 y_sort_enabled = true
-position = Vector2(0, 8)
+position = Vector2(0, 6)
 shape = ExtResource("2_fkybt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1379833046]
@@ -518,6 +518,7 @@ animation = &"attack_shadowIr_left"
 frame_progress = 0.7097166
 
 [node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
+z_index = 5
 position = Vector2(0.5, -19)
 texture = ExtResource("3_vgqql")
 hframes = 5
@@ -532,7 +533,7 @@ y_sort_enabled = true
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1160132405]
-position = Vector2(0, 8)
+position = Vector2(0, 6)
 shape = ExtResource("2_fkybt")
 
 [node name="inventoryUI" parent="." unique_id=1764230181 node_paths=PackedStringArray("inventory") instance=ExtResource("6_x3wgy")]
