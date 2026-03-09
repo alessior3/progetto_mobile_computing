@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://haixkuo8s3vn"]
+
+[ext_resource type="Texture2D" uid="uid://bdq3n06do3cyt" path="res://Assets/Icons/LeftButton.png" id="1_k0vrn"]
+[ext_resource type="Script" uid="uid://p5t7y74xxjxv" path="res://Scenes/canvas_layer.gd" id="1_md083"]
+[ext_resource type="Texture2D" uid="uid://dv7656rff0hvk" path="res://Assets/Icons/press3LL2.png" id="3_md083"]
+[ext_resource type="Texture2D" uid="uid://d25o3yorh7mf2" path="res://Assets/Icons/RightButton.png" id="3_uhutp"]
+[ext_resource type="Texture2D" uid="uid://b8212d8nu1dvd" path="res://Assets/Icons/UpButton.png" id="5_n67iu"]
+[ext_resource type="Texture2D" uid="uid://bw21ixm781gkp" path="res://Assets/Icons/press3RR2.png" id="5_uhutp"]
+[ext_resource type="Texture2D" uid="uid://mi0np1h24v15" path="res://Assets/Icons/pressUPP2.png" id="7_md083"]
+[ext_resource type="Texture2D" uid="uid://q4gowftamoyu" path="res://Assets/Icons/DownButton.png" id="7_q5klo"]
+[ext_resource type="Texture2D" uid="uid://yr400bxrhh2j" path="res://Assets/Icons/pressdd2.png" id="9_md083"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md083"]
+size = Vector2(13, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhutp"]
+size = Vector2(13, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jnog"]
+size = Vector2(13, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n67iu"]
+size = Vector2(13, 15)
+
+[node name="MobileControls" type="Node2D" unique_id=1738634788]
+position = Vector2(1165, 792)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1687308629]
+script = ExtResource("1_md083")
+
+[node name="LeftButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=2063095623]
+position = Vector2(999.00006, 837)
+scale = Vector2(13.692298, 12.533334)
+texture_normal = ExtResource("1_k0vrn")
+texture_pressed = ExtResource("3_md083")
+shape = SubResource("RectangleShape2D_md083")
+passby_press = true
+action = "ui_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=841482299]
+position = Vector2(1369.0001, 838)
+scale = Vector2(13.615387, 12.333333)
+texture_normal = ExtResource("3_uhutp")
+texture_pressed = ExtResource("5_uhutp")
+shape = SubResource("RectangleShape2D_uhutp")
+passby_press = true
+action = "ui_right"
+
+[node name="UpButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=174836046]
+position = Vector2(1186, 646.9999)
+scale = Vector2(13.692312, 12.466666)
+texture_normal = ExtResource("5_n67iu")
+texture_pressed = ExtResource("7_md083")
+shape = SubResource("RectangleShape2D_8jnog")
+passby_press = true
+action = "ui_up"
+
+[node name="DownButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=496426620]
+position = Vector2(1185, 837)
+scale = Vector2(13.769227, 12.4)
+texture_normal = ExtResource("7_q5klo")
+texture_pressed = ExtResource("9_md083")
+shape = SubResource("RectangleShape2D_n67iu")
+passby_press = true
+action = "ui_down"
