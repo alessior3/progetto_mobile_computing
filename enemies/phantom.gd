@@ -42,7 +42,22 @@ func move_along_path(delta: float):
 	var direction = (target_position - global_position).normalized()
 	var distance_to_target = global_position.distance_to(target_position)
 	
-	if distance_to_target > 5.0:
+	# QUESTA RIGA CI DIRÀ TUTTO:
+	print("Vado verso il marker ", current_patrol_target, " - Distanza rimasta: ", distance_to_target)
+	
+	if distance_to_target > 15.0:
+		animated_sprite_2d.play_movement_animation(direction)
+		velocity = direction * speed 
+		move_and_slide()
+	else:
+		animated_sprite_2d.play_idle_animation()
+		velocity = Vector2.ZERO
+		wait_timer += delta
+		if wait_timer >= patrol_wait_time:
+			wait_timer = 0.0
+			current_patrol_target = (current_patrol_target + 1) % patrol_path.size()
+	
+	if distance_to_target > 15.0:
 		animated_sprite_2d.play_movement_animation(direction)
 		velocity = direction * speed 
 		move_and_slide()

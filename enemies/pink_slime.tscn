@@ -220,6 +220,6 @@ shape = ExtResource("7_tfbrm")
 
 [node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("1_ifgdl")]
 
-[node name="ProgressBar" parent="HealthSystem" unique_id=1165259361 instance=ExtResource("2_mg4vu")]
+[node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("2_mg4vu")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

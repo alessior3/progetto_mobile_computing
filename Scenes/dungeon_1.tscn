@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="5_4cykx"]
 [ext_resource type="Texture2D" uid="uid://cc6wff3v1n6hy" path="res://Assets/Environment/Props/Static/Tools.png" id="6_k5eiu"]
 [ext_resource type="Texture2D" uid="uid://bbndauhst8jxg" path="res://Assets/Environment/Props/Static/Resources.png" id="7_w0v3k"]
+[ext_resource type="PackedScene" uid="uid://dd8eoq471npuk" path="res://enemies/phantom.tscn" id="9_86clg"]
+[ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://enemies/spider.tscn" id="10_4cykx"]
+[ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://enemies/pink_bat.tscn" id="11_k5eiu"]
+[ext_resource type="PackedScene" uid="uid://bi7i17wp74kna" path="res://enemies/pink_slime.tscn" id="12_18kt5"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="13_qi8uf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksysw"]
 texture = ExtResource("1_6d3l7")
@@ -2237,3 +2242,54 @@ position = Vector2(917, -256)
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=907469725]
 position = Vector2(-2, -4)
 zoom = Vector2(3, 3)
+
+[node name="phantom" parent="." unique_id=939393485 node_paths=PackedStringArray("patrol_path") instance=ExtResource("9_86clg")]
+position = Vector2(580, -115)
+patrol_path = [NodePath("../MarkerPhantom1"), NodePath("../MarkerPhantom2"), NodePath("../MarkerPhantom3")]
+
+[node name="MarkerPhantom1" type="Marker2D" parent="." unique_id=1626260186]
+position = Vector2(808, -112)
+
+[node name="MarkerPhantom2" type="Marker2D" parent="." unique_id=1130891493]
+position = Vector2(432, -112)
+
+[node name="MarkerPhantom3" type="Marker2D" parent="." unique_id=1037395189]
+position = Vector2(575, -231)
+
+[node name="spider" parent="." unique_id=830393153 node_paths=PackedStringArray("patrol_path") instance=ExtResource("10_4cykx")]
+position = Vector2(131, 106)
+patrol_path = [NodePath("../MarkerSpider1"), NodePath("../MarkerSpider2"), NodePath("../MarkerSpider3")]
+
+[node name="MarkerSpider1" type="Marker2D" parent="." unique_id=539929538]
+position = Vector2(134, 62)
+
+[node name="MarkerSpider2" type="Marker2D" parent="." unique_id=752329270]
+position = Vector2(84, 105)
+
+[node name="MarkerSpider3" type="Marker2D" parent="." unique_id=1472475915]
+position = Vector2(196, 104)
+
+[node name="PinkBat" parent="." unique_id=126545672 node_paths=PackedStringArray("patrol_path") instance=ExtResource("11_k5eiu")]
+position = Vector2(21, -346)
+patrol_path = [NodePath("../MarkerBat1"), NodePath("../MarkerBat2")]
+
+[node name="MarkerBat1" type="Marker2D" parent="." unique_id=451486188]
+position = Vector2(171, -346)
+
+[node name="MarkerBat2" type="Marker2D" parent="." unique_id=584280693]
+position = Vector2(-117, -347)
+
+[node name="PinkSlime" parent="." unique_id=555553155 node_paths=PackedStringArray("patrol_path") instance=ExtResource("12_18kt5")]
+position = Vector2(937, -297)
+patrol_path = [NodePath("../MarkerSlime1"), NodePath("../MarkerSlime2"), NodePath("../MarkerSlime3")]
+
+[node name="MarkerSlime1" type="Marker2D" parent="." unique_id=1434134191]
+position = Vector2(984, -302)
+
+[node name="MarkerSlime2" type="Marker2D" parent="." unique_id=1167460007]
+position = Vector2(906, -320)
+
+[node name="MarkerSlime3" type="Marker2D" parent="." unique_id=1508677349]
+position = Vector2(891, -283)
+
+[node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("13_qi8uf")]
