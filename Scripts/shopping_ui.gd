@@ -49,7 +49,7 @@ func setup_selling_grid():
 	for i in items_to_sell.size():
 		var selling_slot = INVENTORY_SLOT_SCENE.instantiate() as InventorySlot
 		selling_slot.single_button_press = true
-		buying_grid_container.add_child(selling_slot) # NOTA: Stai aggiungendo a buying_grid invece di selling_grid, lascio così com'era nel tuo codice ma controlla!
+		selling_grid_container.add_child(selling_slot) # NOTA: Stai aggiungendo a buying_grid invece di selling_grid, lascio così com'era nel tuo codice ma controlla!
 		selling_slot.add_item(items_to_sell[i])
 		selling_slot.show_price_tag(items_to_sell[i].price * items_to_sell[i].stacks)
 		selling_slot.slot_clicked.connect(on_selling_slot_clicked.bind(i)) # Corretto 'connect'

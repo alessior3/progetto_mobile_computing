@@ -58,9 +58,10 @@ func _input(event: InputEvent) -> void:
 		else:
 			print("ERRORE (Inventory): inventory_ui non trovato nel percorso specificato!")
 
-func add_item(item: InventoryItem) -> void:
+func add_item(item: InventoryItem, amount: int=1) -> void:
 	if item:
+		item.stack=amount
 		items.append(item)
-		print("DEBUG (Inventory): Oggetto aggiunto: ", item.name)
+		print("DEBUG (Inventory): Aggiunto ", item.name, " x", amount)
 		print("DEBUG (Inventory): Totale oggetti nell'array: ", items.size())
 		
