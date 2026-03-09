@@ -68,10 +68,6 @@ func add_item(item: InventoryItem, amount: int = 1) -> void:
 
 # --- LOGICA EQUIPAGGIAMENTO E DROP ---
 
-# --- LOGICA EQUIPAGGIAMENTO E DROP ---
-
-# --- LOGICA EQUIPAGGIAMENTO E DROP ---
-
 func _on_slot_item_clicked(item: InventoryItem):
 	if item == null: return
 	
