@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cu24c2u5ksem5"]
 
-[ext_resource type="Texture2D" uid="uid://dqobhtv4lfxbs" path="res://Resources/Stick/stick_sprite.tres" id="1_8jd25"]
 [ext_resource type="Script" uid="uid://bvnds7myykcau" path="res://Scenes/pick_up_item.gd" id="1_dsyg8"]
 [ext_resource type="Shape2D" uid="uid://dxvxl1tepcysi" path="res://Resources/Stick/stick_collision_shape.tres" id="1_mqd2k"]
 
@@ -16,4 +15,3 @@ shape = ExtResource("1_mqd2k")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=453063927]
 y_sort_enabled = true
-texture = ExtResource("1_8jd25")

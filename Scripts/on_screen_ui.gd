@@ -7,6 +7,7 @@ signal request_unequip(item: InventoryItem)
 @onready var hand: OnScreenEquipmentSlot = %hand
 @onready var potions: OnScreenEquipmentSlot = %potions
 @onready var food: OnScreenEquipmentSlot = %food
+@onready var gold_label: Label=$GoldLabel
 
 @onready var slots_dictionary = {
 	"Hand": hand,
@@ -20,6 +21,14 @@ func _ready() -> void:
 		if slot:
 			# Ascoltiamo il segnale di ogni slot
 			slot.unequip_requested.connect(_on_slot_unequip_requested)
+	var inventory_node = get_parent().get_node_or_null("Inventory")
+	if inventory_node:
+		inventory_node.gold_changed.connect(_on_gold_changed)
+		# Impostiamo il valore iniziale
+		_on_gold_changed(inventory_node.gold)
+
+func _on_gold_changed(new_amount: int):
+	gold_label.text = "Oro: " + str(new_amount)
 
 func _on_slot_unequip_requested(item: InventoryItem):
 	# Inviamo la richiesta verso l'alto (all'Inventory)

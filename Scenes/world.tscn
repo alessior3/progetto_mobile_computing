@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dbuykhqs28qe" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetHouse.png" id="16_hgpy0"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="16_t2t4p"]
 [ext_resource type="Script" uid="uid://civccrbefwtp8" path="res://Scripts/shop_entrance.gd" id="17_t2t4p"]
+[ext_resource type="Resource" uid="uid://dnw04t867ju10" path="res://Resources/GoldCoin/gold_coin.tres" id="18_0pcbe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("1_8j60k")
@@ -1967,10 +1968,11 @@ inside_scene = ExtResource("14_e0ngr")
 [node name="pickUpItem" parent="." unique_id=1473875551 instance=ExtResource("15_hgpy0")]
 z_index = -1
 position = Vector2(912, 384)
+rotation = -0.012469577
 inventory_item = ExtResource("16_t2t4p")
 
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
-position = Vector2(421, 370)
+position = Vector2(416, 371)
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
 position = Vector2(-2, -2)
@@ -1991,5 +1993,11 @@ shape = SubResource("RectangleShape2D_0pcbe")
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=339122936]
 position = Vector2(409, 349)
+
+[node name="PickUpItem" parent="." unique_id=322180328 instance=ExtResource("15_hgpy0")]
+z_index = -1
+position = Vector2(394, 381)
+inventory_item = ExtResource("18_0pcbe")
+amount = 30
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
