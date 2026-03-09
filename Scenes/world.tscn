@@ -18,6 +18,7 @@
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="16_t2t4p"]
 [ext_resource type="Script" uid="uid://civccrbefwtp8" path="res://Scripts/shop_entrance.gd" id="17_t2t4p"]
 [ext_resource type="Resource" uid="uid://dnw04t867ju10" path="res://Resources/GoldCoin/gold_coin.tres" id="18_0pcbe"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="19_axeuq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("1_8j60k")
@@ -1933,6 +1934,7 @@ size = Vector2(16, 17)
 
 [node name="world" type="Node2D" unique_id=2084603517]
 y_sort_enabled = true
+position = Vector2(982, 898)
 script = ExtResource("1_c5t2i")
 
 [node name="ground" type="TileMapLayer" parent="." unique_id=221056651]
@@ -1965,9 +1967,9 @@ y_sort_enabled = true
 position = Vector2(894, 351)
 inside_scene = ExtResource("14_e0ngr")
 
-[node name="pickUpItem" parent="." unique_id=1473875551 instance=ExtResource("15_hgpy0")]
+[node name="stick" parent="." unique_id=1473875551 instance=ExtResource("15_hgpy0")]
 z_index = -1
-position = Vector2(912, 384)
+position = Vector2(444.00006, 381)
 rotation = -0.012469577
 inventory_item = ExtResource("16_t2t4p")
 
@@ -1994,10 +1996,18 @@ shape = SubResource("RectangleShape2D_0pcbe")
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=339122936]
 position = Vector2(409, 349)
 
-[node name="PickUpItem" parent="." unique_id=322180328 instance=ExtResource("15_hgpy0")]
+[node name="goldcoin" parent="." unique_id=322180328 instance=ExtResource("15_hgpy0")]
 z_index = -1
 position = Vector2(394, 381)
 inventory_item = ExtResource("18_0pcbe")
 amount = 30
+
+[node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("19_axeuq")]
+
+[node name="stick2" parent="." unique_id=1033628694 instance=ExtResource("15_hgpy0")]
+z_index = -1
+position = Vector2(426.00006, 395)
+rotation = -0.012469577
+inventory_item = ExtResource("16_t2t4p")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

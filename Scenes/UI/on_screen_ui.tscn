@@ -43,6 +43,7 @@ layout_mode = 2
 slot_name = "Food"
 
 [node name="GoldLabel" type="Label" parent="." unique_id=841840227]
+unique_name_in_owner = true
 anchors_preset = -1
 anchor_left = 0.99100006
 anchor_top = 0.042000003

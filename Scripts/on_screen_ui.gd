@@ -1,47 +1,54 @@
 extends CanvasLayer
 class_name OnScreenUi
 
-# AGGIUNTO: Segnale che avvisa l'inventario che un oggetto deve tornare nello zaino
 signal request_unequip(item: InventoryItem)
 
+# RIFERIMENTI AI NODI
 @onready var hand: OnScreenEquipmentSlot = %hand
 @onready var potions: OnScreenEquipmentSlot = %potions
 @onready var food: OnScreenEquipmentSlot = %food
-@onready var gold_label: Label=$GoldLabel
+@onready var gold_label: Label = %GoldLabel # Assicurati che l'Unique Name sia attivo!
 
-@onready var slots_dictionary = {
-	"Hand": hand,
-	"Potions": potions,
-	"Food": food
-}
+var slots_dictionary: Dictionary = {}
 
 func _ready() -> void:
-	# Colleghiamo tutti gli slot (hand, potions, food) a questa UI
+	_prepare_slots()
+	
+	# Connettiamo gli slot per l'unequip
 	for slot in slots_dictionary.values():
 		if slot:
-			# Ascoltiamo il segnale di ogni slot
 			slot.unequip_requested.connect(_on_slot_unequip_requested)
-	var inventory_node = get_parent().get_node_or_null("Inventory")
-	if inventory_node:
-		inventory_node.gold_changed.connect(_on_gold_changed)
-		# Impostiamo il valore iniziale
-		_on_gold_changed(inventory_node.gold)
+	
+	# CERCHIAMO L'INVENTARIO: Ci colleghiamo al segnale dell'oro
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		var inv = player.get_node_or_null("Inventory")
+		if inv:
+			# Se il segnale non è connesso, lo connettiamo
+			if not inv.gold_changed.is_connected(_on_gold_changed):
+				inv.gold_changed.connect(_on_gold_changed)
+			# Forziamo l'aggiornamento iniziale con i dati del Global
+			_on_gold_changed(Global.persistent_gold)
+
+func _prepare_slots():
+	if slots_dictionary.is_empty():
+		slots_dictionary = {
+			"Hand": hand,
+			"Potions": potions,
+			"Food": food
+		}
 
 func _on_gold_changed(new_amount: int):
-	gold_label.text = "Oro: " + str(new_amount)
+	if gold_label:
+		gold_label.text = "Oro: " + str(new_amount) # Ecco che riappare la scritta!
 
 func _on_slot_unequip_requested(item: InventoryItem):
-	# Inviamo la richiesta verso l'alto (all'Inventory)
 	request_unequip.emit(item)
 
 func equip_item(item: InventoryItem, slot_to_equip: String):
-	if item == null:
-		return
-		
+	if item == null: return
+	_prepare_slots()
 	if slots_dictionary.has(slot_to_equip):
 		var slot_node = slots_dictionary[slot_to_equip]
-		# MODIFICATA: Usiamo set_equipment_item (la nuova funzione dello slot)
-		slot_node.set_equipment_item(item)
-		print("DEBUG: Equipaggiato ", item.name, " nello slot ", slot_to_equip)
-	else:
-		print("ERRORE: Slot '", slot_to_equip, "' non trovato nel dizionario UI!")
+		if slot_node:
+			slot_node.set_equipment_item(item)

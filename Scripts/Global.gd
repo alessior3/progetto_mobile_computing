@@ -1,23 +1,35 @@
+# Global.gd
 extends Node
 
 var player_pos : Vector2
 var current_username = "Giocatore Sconosciuto"
 
-# Diciamo a Godot dove creare il file di salvataggio nel computer
+var persistent_gold: int = 0
+var persistent_items: Array[InventoryItem] = []
+
+# NUOVE VARIABILI PER GLI SLOT
+var persistent_hand: InventoryItem = null
+var persistent_potions: InventoryItem = null
+var persistent_food: InventoryItem = null
+
 var save_path = "user://savegame.save"
 
-# --- 1. FUNZIONE CHE CREIAMO PER SALVARE ---
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	var data = {
-		"nome": current_username,
-		"posizione": player_pos
-	}
-	file.store_var(data)
-	file.close()
-	print("Partita Salvata con successo!")
+	if file:
+		var data = {
+			"nome": current_username,
+			"posizione": player_pos,
+			"oro": persistent_gold,
+			"oggetti": persistent_items,
+			# Salviamo anche gli slot equipaggiati
+			"hand": persistent_hand,
+			"potions": persistent_potions,
+			"food": persistent_food
+		}
+		file.store_var(data)
+		file.close()
 
-# --- 2. FUNZIONE CHE CREIAMO PER CARICARE ---
 func load_game() -> bool:
 	if FileAccess.file_exists(save_path):
 		var file = FileAccess.open(save_path, FileAccess.READ)
@@ -26,8 +38,12 @@ func load_game() -> bool:
 		
 		current_username = data["nome"]
 		player_pos = data["posizione"]
-		print("Partita Caricata! Bentornato ", current_username)
+		persistent_gold = data.get("oro", 0)
+		persistent_items = data.get("oggetti", [])
+		
+		# Carichiamo gli slot
+		persistent_hand = data.get("hand", null)
+		persistent_potions = data.get("potions", null)
+		persistent_food = data.get("food", null)
 		return true
-	else:
-		print("Nessun salvataggio trovato!")
-		return false
+	return false

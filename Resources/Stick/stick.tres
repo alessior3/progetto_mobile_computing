@@ -11,3 +11,4 @@ ground_collision_shape = ExtResource("1_nojim")
 name = "Stick"
 texture = ExtResource("3_8fbu1")
 max_stacks = 1
+price = 40
