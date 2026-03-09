@@ -14,7 +14,12 @@ func toggle_pause() -> void:
 	var new_pause_state = not get_tree().paused
 	get_tree().paused = new_pause_state
 	visible = new_pause_state
-
+	
+func _on_save_button_pressed() -> void:
+	SaveManager.save_game()
+	# Opzionale: puoi aggiungere un messaggino o chiudere il menu
+	toggle_pause()
+	
 func _on_resume_button_pressed() -> void:
 	# Togliamo la pausa simulando la funzione di sopra
 	toggle_pause()

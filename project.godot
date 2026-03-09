@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://b6nb2wg3umyui"
 TransitionChangeManager="*uid://cdfv6rbg5h5as"
+SaveManager="*uid://dvpomgwdpbdgn"
 
 [display]
 

@@ -19,6 +19,13 @@ func set_house(new_house):
 
 # ECCO LA FUNZIONE FUSA E CORRETTA:
 func _ready():
+	if SaveManager.is_loading_game:
+		# Teletrasportiamo il giocatore alle coordinate salvate
+		global_position = SaveManager.loaded_position
+		
+		# Spegniamo l'interruttore per non teletrasportarci più di continuo
+		SaveManager.is_loading_game = false
+		print("Giocatore posizionato con successo alle coordinate caricate!")
 	$AnimatedSprite2D.play("idle_front")
 	set_house(null)
 	

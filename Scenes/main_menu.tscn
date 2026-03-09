@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvknaa1yoy5qb"]
 
-[ext_resource type="Script" uid="uid://dmbc0xc0a4hnr" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" uid="uid://dmbc0xc0a4hnr" path="res://main_menu.gd" id="1_28flt"]
 [ext_resource type="Texture2D" uid="uid://w33e76pdaj38" path="res://Assets/menuStartImage.png" id="2_48xlc"]
 
 [node name="MainMenu" type="Control" unique_id=937286253]

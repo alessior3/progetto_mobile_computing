@@ -23,8 +23,8 @@ func _on_btn_inizia_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 func _on_btn_carica_pressed() -> void:
-	print("Caricamento partita...")
-	# Qui in futuro metteremo il codice per leggere il file di salvataggio
+	print("STO PROVANDO A CARICARE LA PARTITA!") # <-- Aggiungi questo!
+	var success = SaveManager.load_game()
 
 func _on_btn_quit_pressed() -> void:
 	print("Uscita dal gioco...")
