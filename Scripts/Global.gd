@@ -13,7 +13,8 @@ var collected_item_ids: Array[String] = []
 var persistent_hand: InventoryItem = null
 var persistent_potions: InventoryItem = null
 var persistent_food: InventoryItem = null
-
+# La direzione in cui guarderà il player al caricamento della scena
+var player_facing_dir: String = "down"
 var save_path = "user://savegame.save"
 
 func save_game():

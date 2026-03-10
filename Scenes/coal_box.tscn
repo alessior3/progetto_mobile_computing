@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dhltab2n26syc"]
+
+[ext_resource type="Script" uid="uid://e0amwqkxc08x" path="res://coal_box.gd" id="1_bo40d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5r0ub"]
+
+[node name="CoalBox" type="Area2D" unique_id=468030220]
+script = ExtResource("1_bo40d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1664513181]
+shape = SubResource("RectangleShape2D_5r0ub")

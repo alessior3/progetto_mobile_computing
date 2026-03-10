@@ -19,7 +19,6 @@ func set_house(new_house):
 
 # ECCO LA FUNZIONE FUSA E CORRETTA:
 func _ready():
-
 	if SaveManager.is_loading_game:
 		# posizione dal cloud
 		global_position = SaveManager.loaded_position
@@ -30,12 +29,19 @@ func _ready():
 		if Global.player_pos != Vector2.ZERO:
 			global_position = Global.player_pos
 
-	$AnimatedSprite2D.play("idle_front")
+	# --- NUOVO: Impostazione Dinamica della Direzione ---
+	if Global.get("player_facing_dir") != null:
+		current_dir = Global.player_facing_dir
+	else:
+		current_dir = "down" # Direzione di sicurezza
+		
+	# Usa la TUA funzione per avviare l'animazione da fermo (0) nella direzione corretta
+	play_anim(0)
+
 	set_house(null)
 
 	if has_node("Label"):
 		$Label.text = Global.current_username
-
 
 func _unhandled_input(event):
 	# Codice originale per entrare in casa

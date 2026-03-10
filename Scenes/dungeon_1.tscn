@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="13_qi8uf"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="14_wnvaf"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="15_jchmx"]
+[ext_resource type="PackedScene" uid="uid://dhltab2n26syc" path="res://Scenes/coal_box.tscn" id="16_grqd7"]
+[ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksysw"]
 texture = ExtResource("1_6d3l7")
@@ -2225,10 +2227,10 @@ position = Vector2(-1, 0)
 tile_map_data = PackedByteArray("AAAJAPr/AAAMAAUAAAAJAPn/AAAKAAAAAAAKAPn/AAAMAAAAAAAHAPj/AAANAAMAAAANAPj/AAAKAAMAAAAOAPj/AAALAAQAAAAPAPn/AAALAAYAAAAZAPr/AAAKAAQAAAAZAPn/AAALAAYAAAAYAPn/AAAMAAAAAAATAPj/AAAMAAMAAAAVAPn/AAALAAIAAAAWAPn/AAAMAAIAAAAWAPj/AAALAAEAAAA1AOv/BAAuAAYAAAA2APD/AAALAAYAAAA1AOz/BAAuAAcAAAA1AO3/BQADAAcAAGA1APD/AwARAAEAAAA3APD/AAAKAAUAAAA6APD/AAAKAAAAAAA8AOv/AAALAAMAAAA9AO//BgABAAkAAAA9APD/BgABAAoAAAA+AOv/AgAGAAMAAAA/AOv/AgAEAAIAAAA/AO7/BAAGAB8AAAA/AO//BAAGACAAAAA/APD/AAAKAAAAAAA3APH/AAAKAAUAAAA6APH/AAAKAAMAAAA/AO3/BAAGAB4AAAANAAYABQAGAAkAAAATAAoAAgAAAAoAAAASAAoAAgABAAgAAAACAAoABQAJAAgAAAACAAkABQAJAAcAAAADAAoABQAKAAgAAAADAAkABQAKAAcAAAAjAPf/AAANAAIAAAAiAPj/AAAMAAMAAAAkAOr/AAAMAAMAAAAaAAAAAAAKAAAAAAAZAAAAAAANAAAAAAArAPj/AAALAAMAAAAsAPj/AAANAAMAAAAjAPP/AAALAAEAAAAkAO//AAAMAAUAAAAkAPn/AAAKAAAAAAA=")
 tile_set = SubResource("TileSet_yu8li")
 
-[node name="stick1" parent="." unique_id=1473875551 instance=ExtResource("14_wnvaf")]
+[node name="Stick" parent="." unique_id=1473875551 instance=ExtResource("14_wnvaf")]
 z_index = -1
 position = Vector2(868, -328)
-item_id = "stick1_dungeon"
+item_id = "Stick"
 inventory_item = ExtResource("15_jchmx")
 
 [node name="walls" type="TileMapLayer" parent="." unique_id=1049038660]
@@ -2247,7 +2249,7 @@ tile_map_data = PackedByteArray("AAAAAP//AAAAAAoAAAABAP//AAABAAoAAAABAAAAAAABAAs
 tile_set = SubResource("TileSet_dmbys")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("2_ksysw")]
-position = Vector2(917, -256)
+position = Vector2(141, 158)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=907469725]
 position = Vector2(-2, -4)
@@ -2303,3 +2305,7 @@ position = Vector2(906, -320)
 position = Vector2(891, -283)
 
 [node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("13_qi8uf")]
+
+[node name="CoalBox" parent="." unique_id=468030220 instance=ExtResource("16_grqd7")]
+position = Vector2(983, -250)
+torch_item = ExtResource("17_yr1ei")
