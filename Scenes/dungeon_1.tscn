@@ -2211,6 +2211,14 @@ texture = ExtResource("1_6d3l7")
 [sub_resource type="TileSet" id="TileSet_dmbys"]
 sources/0 = SubResource("TileSetAtlasSource_o3xwl")
 
+[sub_resource type="Gradient" id="Gradient_2llei"]
+offsets = PackedFloat32Array(0.85271317, 1)
+colors = PackedColorArray(0.84187406, 0.84187406, 0.84187406, 1, 0.21963824, 0.21963824, 0.21963824, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_grqd7"]
+gradient = SubResource("Gradient_2llei")
+fill = 1
+
 [node name="dungeon1" type="Node2D" unique_id=686333185]
 position = Vector2(-4, 0)
 
@@ -2251,8 +2259,15 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAoAAAABAP//AAABAAoAAAABAAAAAAABAAsAAAABAAEAAAABAAwAAAAAAAAAAAAAAAsAAAAAAAEAAAAAAAwAAAA=")
 tile_set = SubResource("TileSet_dmbys")
 
+[node name="DarkCorridor" type="PointLight2D" parent="." unique_id=793748100]
+position = Vector2(117, -354.5)
+scale = Vector2(22.609377, 1.2968754)
+energy = 0.65
+blend_mode = 1
+texture = SubResource("GradientTexture2D_grqd7")
+
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("2_ksysw")]
-position = Vector2(141, 158)
+position = Vector2(926, -277)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=907469725]
 position = Vector2(-2, -4)

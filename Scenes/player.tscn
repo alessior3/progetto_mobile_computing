@@ -498,6 +498,16 @@ _data = {
 &"RESET": SubResource("Animation_3smsa")
 }
 
+[sub_resource type="Gradient" id="Gradient_f1ek2"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tx1dd"]
+gradient = SubResource("Gradient_f1ek2")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="player" type="CharacterBody2D" unique_id=293458414 groups=["player"]]
 y_sort_enabled = true
 collision_layer = 3
@@ -515,7 +525,8 @@ texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_eow3j")
 animation = &"attack_shadowIr_left"
-frame_progress = 0.7097166
+frame = 2
+frame_progress = 0.83539444
 
 [node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
 z_index = 5
@@ -545,3 +556,8 @@ script = ExtResource("7_3smsa")
 on_screen_ui = NodePath("../OnScreenUi")
 
 [node name="OnScreenUi" parent="." unique_id=1509945341 instance=ExtResource("8_8erm5")]
+
+[node name="TorchLight" type="PointLight2D" parent="." unique_id=1267070933]
+visible = false
+color = Color(0.8804722, 0.8804717, 0, 1)
+texture = SubResource("GradientTexture2D_tx1dd")

@@ -58,6 +58,13 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
+	# --- GESTIONE LUCE TORCIA ---
+	# Controlla se hai un oggetto in mano e se si chiama esattamente "Torch"
+	var hand_item = Global.persistent_hand
+	if has_node("TorchLight"):
+		$TorchLight.visible = (hand_item != null and hand_item.name == "Torch" or hand_item != null and hand_item.name == "Torcia")
+	
+	# ... il tuo codice di movimento esistente ...
 	player_movement(delta)
 
 func player_movement(delta):
