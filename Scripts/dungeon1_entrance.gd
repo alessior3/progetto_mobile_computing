@@ -1,5 +1,4 @@
 extends Area2D
-class_name Dungeon1Entrance
 
 # Puoi cambiare la scena di destinazione comodamente dall'Inspector
 @export var destination_scene: String = "res://Scenes/dungeon_1.tscn"

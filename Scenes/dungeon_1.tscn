@@ -2260,9 +2260,9 @@ tile_map_data = PackedByteArray("AAAAAP//AAAAAAoAAAABAP//AAABAAoAAAABAAAAAAABAAs
 tile_set = SubResource("TileSet_dmbys")
 
 [node name="DarkCorridor" type="PointLight2D" parent="." unique_id=793748100]
-position = Vector2(117, -354.5)
-scale = Vector2(22.609377, 1.2968754)
-energy = 0.65
+position = Vector2(117, -353)
+scale = Vector2(22.609377, 1.3437502)
+energy = 1.46
 blend_mode = 1
 texture = SubResource("GradientTexture2D_grqd7")
 

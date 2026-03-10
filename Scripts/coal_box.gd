@@ -1,5 +1,4 @@
 extends Area2D
-class_name CoalBox
 
 # Trascina qui il tuo nuovo file torch.tres dall'Inspector!
 @export var torch_item: InventoryItem 
