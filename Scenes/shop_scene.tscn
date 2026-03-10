@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://3g31xjlwtxfi"]
 
-[ext_resource type="Texture2D" uid="uid://coh8stswhye3w" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetInterior.png" id="1_35huh"]
+[ext_resource type="Texture2D" uid="uid://b33aonpb1i3te" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetInterior.png" id="1_35huh"]
 [ext_resource type="Script" uid="uid://dxynf7g685dk0" path="res://Scripts/shop_scene.gd" id="1_uxpe5"]
-[ext_resource type="Texture2D" uid="uid://cmgwn73kcr6b2" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetInteriorFloor.png" id="2_njw01"]
-[ext_resource type="Texture2D" uid="uid://cwjgoqiarx5si" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/Elements.png" id="3_jwdga"]
-[ext_resource type="Texture2D" uid="uid://dchwybi3ilkop" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="4_uxpe5"]
+[ext_resource type="Texture2D" uid="uid://cs1j5qtgipiha" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/TilesetInteriorFloor.png" id="2_njw01"]
+[ext_resource type="Texture2D" uid="uid://dlglw7cpvbp1h" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/Elements.png" id="3_jwdga"]
+[ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="4_uxpe5"]
 [ext_resource type="PackedScene" uid="uid://cvnbhkvv282mw" path="res://Scenes/merchant.tscn" id="6_uxpe5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6rmb7"]
@@ -750,7 +750,8 @@ sources/3 = SubResource("TileSetAtlasSource_bf58t")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6w775"]
 size = Vector2(32, 16)
 
-[node name="ShopScene" type="Node" unique_id=640916297]
+[node name="ShopScene" type="Node2D" unique_id=1501344023]
+position = Vector2(1237, 841)
 script = ExtResource("1_uxpe5")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1449909443]
@@ -768,8 +769,8 @@ shape = SubResource("RectangleShape2D_6w775")
 [node name="PlayerSpawnPlace" type="Marker2D" parent="." unique_id=193665193]
 position = Vector2(-32, 96)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=828271364]
-position = Vector2(4, 31)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=563568656]
+position = Vector2(1, 1)
 zoom = Vector2(2, 2)
 
 [connection signal="body_entered" from="exitArea" to="." method="_on_exit_area_body_entered"]

@@ -19,6 +19,7 @@ signal item_dropped(item: InventoryItem) # Nuovo segnale per il drop
 @onready var stacks_label: Label = %stacksLabel
 @onready var on_click_button: Button = %onClickButton
 @onready var menu_button: MenuButton = %MenuButton
+@onready var price_label: Label = %priceLabel
 
 func _ready() -> void:
 	if on_click_button:
@@ -48,10 +49,21 @@ func add_item(item: InventoryItem):
 		is_empty = true    
 
 func show_price_tag(price: int):
-	if stacks_label:
-		stacks_label.text = "| " + str(price) + " Gold" 
-		stacks_label.modulate = Color.GOLD
-
+	if price_label:
+		# Usiamo \n per mandare a capo se vuoi il prezzo sotto il nome
+		# O semplicemente puliamo la stringa
+		price_label.text = str(price) + " Gold"
+		price_label.visible = true
+		
+		# Invece di modulate, usiamo LabelSettings per renderlo "Premium"
+		if not price_label.label_settings:
+			var settings = LabelSettings.new()
+			settings.font_color = Color.GOLD
+			settings.outline_size = 4
+			settings.outline_color = Color.BLACK # Il contorno lo rende leggibile ovunque
+			settings.font_size = 12 # Regola la dimensione come preferisci
+			price_label.label_settings = settings
+			
 func toggle_button_selected_variation(selected: bool):
 	is_selected = selected
 	if selected:
