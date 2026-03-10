@@ -19,25 +19,38 @@ func set_house(new_house):
 
 # ECCO LA FUNZIONE FUSA E CORRETTA:
 func _ready():
+	# Aspettiamo che il TransitionManager e tutti gli altri nodi abbiano finito
+	await get_tree().process_frame
+	
+	# --- 1. PRIORITÀ ASSOLUTA: CARICAMENTO CLOUD ---
 	if SaveManager.is_loading_game:
-		# posizione dal cloud
 		global_position = SaveManager.loaded_position
 		SaveManager.is_loading_game = false
-		print("Giocatore posizionato con successo alle coordinate caricate!")
-	else:
-		# posizione locale (quando cambi scena tipo entrare/uscire casa)
-		if Global.player_pos != Vector2.ZERO:
-			global_position = Global.player_pos
+		Global.player_pos = Vector2.ZERO # Puliamo la memoria locale
+		print("Player: Posizionato dal CLOUD")
+		
+	# --- 2. ENTRATA IN NEGOZIO/CASA (Se NON siamo nel mondo principale) ---
+	# ATTENZIONE: Assicurati che la tua scena principale si chiami esattamente "world"
+	elif get_tree().current_scene.name != "world":
+		var spawn_marker = get_tree().current_scene.find_child("Marker2D", true, false)
+		if spawn_marker:
+			global_position = spawn_marker.global_position
+			print("Player: Posizionato sul Marker del negozio")
+		# NON azzeriamo Global.player_pos qui! Ci servirà intatto per quando usciamo.
 
-	# --- NUOVO: Impostazione Dinamica della Direzione ---
+	# --- 3. RITORNO AL MONDO ESTERNO (Uscita dal negozio) ---
+	elif Global.player_pos != Vector2.ZERO:
+		global_position = Global.player_pos
+		Global.player_pos = Vector2.ZERO # DOPO averlo usato per tornare fuori, lo SVUOTIAMO!
+		print("Player: Posizionato dalla PORTA")
+
+	# --- Impostazione Dinamica della Direzione ---
 	if Global.get("player_facing_dir") != null:
 		current_dir = Global.player_facing_dir
 	else:
 		current_dir = "down" # Direzione di sicurezza
 		
-	# Usa la TUA funzione per avviare l'animazione da fermo (0) nella direzione corretta
 	play_anim(0)
-
 	set_house(null)
 
 	if has_node("Label"):

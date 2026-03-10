@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="14_wnvaf"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="15_jchmx"]
 [ext_resource type="PackedScene" uid="uid://dhltab2n26syc" path="res://Scenes/coal_box.tscn" id="16_grqd7"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="17_grqd7"]
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksysw"]
@@ -2321,3 +2322,5 @@ position = Vector2(906, -320)
 
 [node name="MarkerSlime3" type="Marker2D" parent="." unique_id=1508677349]
 position = Vector2(891, -283)
+
+[node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("17_grqd7")]

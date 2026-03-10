@@ -42,8 +42,6 @@ func move_along_path(delta: float):
 	var direction = (target_position - global_position).normalized()
 	var distance_to_target = global_position.distance_to(target_position)
 	
-	# QUESTA RIGA CI DIRÀ TUTTO:
-	print("Vado verso il marker ", current_patrol_target, " - Distanza rimasta: ", distance_to_target)
 	
 	if distance_to_target > 15.0:
 		animated_sprite_2d.play_movement_animation(direction)
