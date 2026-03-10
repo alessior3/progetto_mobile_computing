@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://2htfoyb0t77"]
+
+[ext_resource type="Script" uid="uid://b8k2mdx8qg2p8" path="res://Scripts/chest.gd" id="1_cjfl1"]
+[ext_resource type="Texture2D" uid="uid://cuepwe3od85lb" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_lyb87"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfl1"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bagqn"]
+size = Vector2(14, 4)
+
+[node name="Chest" type="Area2D" unique_id=716899325]
+script = ExtResource("1_cjfl1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1861635381]
+texture = ExtResource("1_lyb87")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2074264649]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_cjfl1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1435022935]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1069446767]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_bagqn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

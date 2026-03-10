@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://days0hgoudb68" path="res://Scripts/inside_house_1.gd" id="1_5hafv"]
 [ext_resource type="Texture2D" uid="uid://cfcr4rant5obh" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="1_bpctk"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="2_0vnda"]
+[ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="4_1ttny"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("1_bpctk")
@@ -238,5 +239,7 @@ position = Vector2(21.5, -4)
 rotation = -3.1386917
 shape = SubResource("RectangleShape2D_5hafv")
 metadata/_edit_lock_ = true
+
+[node name="Chest" parent="." unique_id=716899325 instance=ExtResource("4_1ttny")]
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

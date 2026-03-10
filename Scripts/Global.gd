@@ -16,6 +16,9 @@ var persistent_food: InventoryItem = null
 # La direzione in cui guarderà il player al caricamento della scena
 var player_facing_dir: String = "down"
 var save_path = "user://savegame.save"
+# Dizionario che ricorderà cosa c'è dentro ogni singola cassa del gioco
+var chests_data: Dictionary = {}
+
 
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)

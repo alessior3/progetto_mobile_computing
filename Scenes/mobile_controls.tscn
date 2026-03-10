@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://haixkuo8s3vn"]
 
-[ext_resource type="Texture2D" uid="uid://bdq3n06do3cyt" path="res://Assets/Icons/LeftButton.png" id="1_k0vrn"]
-[ext_resource type="Script" uid="uid://p5t7y74xxjxv" path="res://Scenes/canvas_layer.gd" id="1_md083"]
+[ext_resource type="Texture2D" uid="uid://w6fqon83ilwv" path="res://Assets/Icons/LeftButton.png" id="1_k0vrn"]
+[ext_resource type="Script" uid="uid://bku40aks5dfax" path="res://Scenes/canvas_layer.gd" id="1_md083"]
 [ext_resource type="Texture2D" uid="uid://dv7656rff0hvk" path="res://Assets/Icons/press3LL2.png" id="3_md083"]
-[ext_resource type="Texture2D" uid="uid://d25o3yorh7mf2" path="res://Assets/Icons/RightButton.png" id="3_uhutp"]
-[ext_resource type="Texture2D" uid="uid://b8212d8nu1dvd" path="res://Assets/Icons/UpButton.png" id="5_n67iu"]
+[ext_resource type="Texture2D" uid="uid://dg74ebws18dkd" path="res://Assets/Icons/RightButton.png" id="3_uhutp"]
+[ext_resource type="Texture2D" uid="uid://b57q2sdmyrags" path="res://Assets/Icons/UpButton.png" id="5_n67iu"]
 [ext_resource type="Texture2D" uid="uid://bw21ixm781gkp" path="res://Assets/Icons/press3RR2.png" id="5_uhutp"]
 [ext_resource type="Texture2D" uid="uid://mi0np1h24v15" path="res://Assets/Icons/pressUPP2.png" id="7_md083"]
-[ext_resource type="Texture2D" uid="uid://q4gowftamoyu" path="res://Assets/Icons/DownButton.png" id="7_q5klo"]
+[ext_resource type="Texture2D" uid="uid://d33jccg3lo0gl" path="res://Assets/Icons/DownButton.png" id="7_q5klo"]
 [ext_resource type="Texture2D" uid="uid://yr400bxrhh2j" path="res://Assets/Icons/pressdd2.png" id="9_md083"]
+[ext_resource type="Texture2D" uid="uid://qwphhmvn11h" path="res://Assets/Icons/attack_normal(1).png" id="10_8jnog"]
+[ext_resource type="Texture2D" uid="uid://mhgsjwgdc8nt" path="res://Assets/Icons/attack_pressed copy.png" id="11_n67iu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md083"]
 size = Vector2(13, 15)
@@ -21,6 +23,9 @@ size = Vector2(13, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n67iu"]
 size = Vector2(13, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i47fd"]
+size = Vector2(380, 400)
 
 [node name="MobileControls" type="Node2D" unique_id=1738634788]
 position = Vector2(1165, 792)
@@ -63,3 +68,11 @@ texture_pressed = ExtResource("9_md083")
 shape = SubResource("RectangleShape2D_n67iu")
 passby_press = true
 action = "ui_down"
+
+[node name="AttackButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1310786920]
+position = Vector2(3010, 728.00006)
+scale = Vector2(0.5, 0.498)
+texture_normal = ExtResource("10_8jnog")
+texture_pressed = ExtResource("11_n67iu")
+shape = SubResource("RectangleShape2D_i47fd")
+action = "attack"
