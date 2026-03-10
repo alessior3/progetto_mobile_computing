@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxnaadjy2w4iy"]
 
-[ext_resource type="Texture2D" uid="uid://dufk8a6wh7vqr" path="res://Top_Down_Adventure_Pack_v.1.0/d1a575ca-b5b2-4303-9e61-3e81fd2ce035.png" id="1_ekktk"]
+[ext_resource type="Texture2D" uid="uid://b71q5jiut65s3" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/d1a575ca-b5b2-4303-9e61-3e81fd2ce035.png" id="1_ekktk"]
 [ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_jsdfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
