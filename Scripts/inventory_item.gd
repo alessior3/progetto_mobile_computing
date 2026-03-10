@@ -13,3 +13,5 @@ var slot_type : String = "NotEquipable"
 @export var side_texture: Texture2D
 @export var max_stacks: int
 @export var price: int
+@export var is_weapon: bool = false
+@export var damage: int = 1

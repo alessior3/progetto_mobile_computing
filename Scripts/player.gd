@@ -2,8 +2,11 @@ extends CharacterBody2D
 class_name Player
 const speed = 100
 var current_dir = "none"
+var is_attacking: bool = false
 
 @onready var inventory:Inventory=$Inventory
+@onready var health_system: HealthSystem = $HealthSystem
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 var house = null:
 	set = set_house
@@ -19,6 +22,21 @@ func set_house(new_house):
 
 # ECCO LA FUNZIONE FUSA E CORRETTA:
 func _ready():
+	# --- INIZIALIZZAZIONE DELLA VITA ---
+	if health_system and progress_bar:
+		health_system.init(health_system.max_health)
+		progress_bar.max_value = health_system.max_health
+		progress_bar.value = health_system.current_health
+		health_system.damage_taken.connect(_on_damage_taken)
+		
+		# -- CAMBIO COLORE BARRA (Verde per il Player) --
+		# 1. Recuperiamo lo stile attuale della barra della vita (il colore "pieno")
+		var style_box = progress_bar.get_theme_stylebox("fill").duplicate()
+		# 2. Cambiamo il colore a verde (R:0, G:1, B:0, Alpha:1)
+		style_box.bg_color = Color(0, 1, 0, 1) 
+		# 3. Riapplichiamo il nuovo stile solo a questa barra specifica
+		progress_bar.add_theme_stylebox_override("fill", style_box)
+		
 	# Aspettiamo che il TransitionManager e tutti gli altri nodi abbiano finito
 	await get_tree().process_frame
 	
@@ -66,6 +84,33 @@ func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
 		Global.player_pos = global_position
 		SaveManager.save_game()
+		
+	# --- NUOVO: ATTACCO CON TASTO L ---
+	if event is InputEventKey and event.pressed and event.keycode == KEY_L and not is_attacking:
+		var hand_item = Global.persistent_hand
+		if hand_item != null and hand_item.get("is_weapon") == true:
+			start_attack()
+
+func start_attack():
+	is_attacking = true
+	velocity = Vector2.ZERO
+	
+	var anim = $AnimatedSprite2D
+	if current_dir == "right":
+		anim.flip_h = false
+		anim.play("attack_shadowIr_Right")
+	elif current_dir == "left":
+		anim.flip_h = false
+		anim.play("attack_shadowIr_left")
+	elif current_dir == "down":
+		anim.flip_h = false
+		anim.play("attack_shadowIr_front")
+	elif current_dir == "up":
+		anim.flip_h = false
+		anim.play("attack_shadowIr_back")
+		
+	await anim.animation_finished
+	is_attacking = false
 
 
 
@@ -78,7 +123,10 @@ func _physics_process(delta):
 		$TorchLight.visible = (hand_item != null and hand_item.name == "Torch" or hand_item != null and hand_item.name == "Torcia")
 	
 	# ... il tuo codice di movimento esistente ...
-	player_movement(delta)
+	if not is_attacking:
+		player_movement(delta)
+	else:
+		move_and_slide()
 
 func player_movement(delta):
 	if Input.is_action_pressed("ui_right"):
@@ -135,3 +183,7 @@ func play_anim(movement):
 			anim.play("walk_back")
 		else:
 			anim.play("idle_back")
+
+func _on_damage_taken(new_health: int):
+	if progress_bar:
+		progress_bar.value = new_health

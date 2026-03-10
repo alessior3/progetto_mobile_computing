@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jelht517jwcq" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Shape2D" uid="uid://btpfdpfo1eps3" path="res://Resources/Player/player_collision_shape.tres" id="2_fkybt"]
+[ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="2_tx1dd"]
 [ext_resource type="Texture2D" uid="uid://dyeamna0prni0" path="res://Assets/Character/character-spritesheet_swordless.png" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://ccutjn2u4kunr" path="res://Assets/Character/character-spritesheet_shadowless.png" id="3_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://cpwhlg157pmpt" path="res://Assets/Icons/Keys.png" id="3_vgqql"]
@@ -9,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bv14rwmcy5lwq" path="res://Scenes/UI/inventory_ui.tscn" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://dhimnvyv0212u" path="res://Scripts/inventory.gd" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://c1j8kmasojpti" path="res://Scenes/UI/on_screen_ui.tscn" id="8_8erm5"]
+[ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="11_gymyn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nv4vc"]
 atlas = ExtResource("3_f1ek2")
@@ -259,7 +261,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xwi16")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_shadowIr_Right",
 "speed": 5.0
 }, {
@@ -282,7 +284,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ax3m3")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_shadowIr_back",
 "speed": 5.0
 }, {
@@ -305,7 +307,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_57lvd")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_shadowIr_front",
 "speed": 5.0
 }, {
@@ -328,7 +330,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6b312")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_shadowIr_left",
 "speed": 5.0
 }, {
@@ -339,7 +341,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6t5aa")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_back",
 "speed": 5.0
 }, {
@@ -350,7 +352,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fkybt")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_front",
 "speed": 5.0
 }, {
@@ -361,7 +363,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yh6i2")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle_side",
 "speed": 5.0
 }, {
@@ -393,7 +395,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7dp3o")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk_back",
 "speed": 5.0
 }, {
@@ -425,7 +427,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bi64h")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk_front",
 "speed": 5.0
 }, {
@@ -457,7 +459,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wohnl")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk_side",
 "speed": 5.0
 }]
@@ -515,6 +517,12 @@ collision_mask = 69
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
+[node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("2_tx1dd")]
+offset_left = -11.0
+offset_top = -33.0
+offset_right = 12.0
+offset_bottom = -29.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=490341889]
 y_sort_enabled = true
 position = Vector2(0, 6)
@@ -548,7 +556,6 @@ position = Vector2(0, 6)
 shape = ExtResource("2_fkybt")
 
 [node name="inventoryUI" parent="." unique_id=1764230181 node_paths=PackedStringArray("inventory") instance=ExtResource("6_x3wgy")]
-visible = false
 inventory = NodePath("../Inventory")
 
 [node name="Inventory" type="Node" parent="." unique_id=1240474999 node_paths=PackedStringArray("on_screen_ui")]
@@ -561,3 +568,6 @@ on_screen_ui = NodePath("../OnScreenUi")
 visible = false
 color = Color(0.8804722, 0.8804717, 0, 1)
 texture = SubResource("GradientTexture2D_tx1dd")
+
+[node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("11_gymyn")]
+max_health = 100
