@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://bdi4n7kevdka6"]
 
 [ext_resource type="Script" uid="uid://bq6oivsv2egpx" path="res://Scripts/inventory_slot.gd" id="1_nxjtc"]
-[ext_resource type="Texture2D" uid="uid://butg5isggw12q" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_tmbq5"]
+[ext_resource type="Texture2D" uid="uid://suyxblxtuln6" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_tmbq5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxjtc"]
+font_color = Color(1, 0.84313726, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="inventorySlot" type="VBoxContainer" unique_id=1444371129]
+custom_minimum_size = Vector2(60, 100)
 offset_right = 40.0
 offset_bottom = 40.0
+alignment = 1
 script = ExtResource("1_nxjtc")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1911698667]
@@ -49,22 +56,34 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="LabelContainer" type="HBoxContainer" parent="NinePatchRect" unique_id=707891028]
+[node name="LabelContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=888755145]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 61.0
-offset_right = 50.0
-offset_bottom = 101.0
-theme_override_constants/separation = 5
+offset_top = 56.0
+offset_right = 40.0
+offset_bottom = 128.0
+theme_override_constants/separation = 0
 alignment = 1
 
 [node name="nameLabel" type="Label" parent="NinePatchRect/LabelContainer" unique_id=937138521]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 16
+text = "
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="stacksLabel" type="Label" parent="NinePatchRect/LabelContainer" unique_id=113966610]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 horizontal_alignment = 2
+
+[node name="priceLabel" type="Label" parent="NinePatchRect/LabelContainer" unique_id=1713841819]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_nxjtc")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://bbck307rsyyoj"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_y0uoc"]
+[ext_resource type="Texture2D" uid="uid://ctvy6dfpx12lb" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_00.png" id="2_q0ils"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bjww"]
+
+[resource]
+script = ExtResource("1_y0uoc")
+ground_collision_shape = SubResource("RectangleShape2D_3bjww")
+name = "Carrot Seed"
+texture = ExtResource("2_q0ils")
+price = 30
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"

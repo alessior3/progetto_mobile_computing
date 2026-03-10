@@ -2,8 +2,31 @@
 
 [ext_resource type="Script" uid="uid://b81toa6xve5kp" path="res://Scripts/shopping_ui.gd" id="1_xslcv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we46v"]
+bg_color = Color(0.101960786, 0.101960786, 0.14117648, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7607843, 0.6, 0.25490198, 1)
+shadow_size = 7
+
+[sub_resource type="SystemFont" id="SystemFont_xsnbe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq12d"]
+bg_color = Color(0.1764706, 0.3529412, 0.15294118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsnbe"]
+bg_color = Color(0.11108018, 0.24093944, 0.09665059, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xslcv"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpd0d"]
+bg_color = Color(0.47843137, 0.1882353, 0.1882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p452k"]
+bg_color = Color(0.33140525, 0.11965815, 0.119924836, 1)
 
 [node name="ShoppingUI" type="CanvasLayer" unique_id=869832822]
 layer = 2
@@ -15,80 +38,88 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=1362426631]
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=183688490]
 layout_mode = 2
-color = Color(0.34117648, 0.5058824, 0.5882353, 0.9607843)
+theme_override_styles/panel = SubResource("StyleBoxFlat_we46v")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ColorRect" unique_id=348692970]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel" unique_id=348692970]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 30
 alignment = 1
 
-[node name="MerchantColumn" type="VBoxContainer" parent="MarginContainer/ColorRect/HBoxContainer" unique_id=466593757]
+[node name="MerchantColumn" type="VBoxContainer" parent="MarginContainer/Panel/HBoxContainer" unique_id=466593757]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/ColorRect/HBoxContainer/MerchantColumn" unique_id=1509921851]
+[node name="Label" type="Label" parent="MarginContainer/Panel/HBoxContainer/MerchantColumn" unique_id=1509921851]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+theme_override_fonts/font = SubResource("SystemFont_xsnbe")
 theme_override_font_sizes/font_size = 24
 text = "Merchant"
 horizontal_alignment = 1
 
-[node name="BuyingGridContainer" type="GridContainer" parent="MarginContainer/ColorRect/HBoxContainer/MerchantColumn" unique_id=81139276]
+[node name="BuyingGridContainer" type="GridContainer" parent="MarginContainer/Panel/HBoxContainer/MerchantColumn" unique_id=81139276]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/v_separation = 15
 columns = 4
 
-[node name="BuyButton" type="Button" parent="MarginContainer/ColorRect/HBoxContainer/MerchantColumn" unique_id=166670143]
+[node name="BuyButton" type="Button" parent="MarginContainer/Panel/HBoxContainer/MerchantColumn" unique_id=166670143]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_pq12d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xsnbe")
 disabled = true
-text = "buy"
+text = "BUY"
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/ColorRect/HBoxContainer" unique_id=872518880]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/Panel/HBoxContainer" unique_id=872518880]
 layout_mode = 2
 theme_override_constants/separation = 1
 theme_override_styles/separator = SubResource("StyleBoxFlat_xslcv")
 
-[node name="PlayerColumn" type="VBoxContainer" parent="MarginContainer/ColorRect/HBoxContainer" unique_id=841618666]
+[node name="PlayerColumn" type="VBoxContainer" parent="MarginContainer/Panel/HBoxContainer" unique_id=841618666]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/ColorRect/HBoxContainer/PlayerColumn" unique_id=336045184]
+[node name="Label" type="Label" parent="MarginContainer/Panel/HBoxContainer/PlayerColumn" unique_id=336045184]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
 theme_override_font_sizes/font_size = 24
 text = "Player"
 horizontal_alignment = 1
 
-[node name="SellingGridContainer" type="GridContainer" parent="MarginContainer/ColorRect/HBoxContainer/PlayerColumn" unique_id=353753922]
+[node name="SellingGridContainer" type="GridContainer" parent="MarginContainer/Panel/HBoxContainer/PlayerColumn" unique_id=353753922]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/v_separation = 15
 columns = 4
 
-[node name="SellButton" type="Button" parent="MarginContainer/ColorRect/HBoxContainer/PlayerColumn" unique_id=1012502468]
+[node name="SellButton" type="Button" parent="MarginContainer/Panel/HBoxContainer/PlayerColumn" unique_id=1012502468]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_bpd0d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p452k")
 disabled = true
-text = "sell"
+text = "SELL"
 
-[connection signal="pressed" from="MarginContainer/ColorRect/HBoxContainer/MerchantColumn/BuyButton" to="." method="_on_buy_button_pressed"]
-[connection signal="pressed" from="MarginContainer/ColorRect/HBoxContainer/PlayerColumn/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/HBoxContainer/MerchantColumn/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/HBoxContainer/PlayerColumn/SellButton" to="." method="_on_sell_button_pressed"]
