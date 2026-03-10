@@ -2490,7 +2490,7 @@ inventory_item = ExtResource("18_0pcbe")
 amount = 30
 
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
-position = Vector2(862, -45)
+position = Vector2(409, 343)
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
 position = Vector2(-2, -2)
