@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://d2t84sddt58t5"]
 
 [ext_resource type="Script" uid="uid://dw8r2saqj48kb" path="res://Scripts/spider.gd" id="1_rjben"]
-[ext_resource type="Texture2D" uid="uid://bxuf3h3koxthu" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png" id="2_iybn8"]
-[ext_resource type="Texture2D" uid="uid://bxuf3h3koxthu" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png" id="3_lawas"]
-[ext_resource type="Texture2D" uid="uid://c01x1qg20ne2r" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_hit_anim_all_dir_strip_4.png" id="4_bi470"]
-[ext_resource type="Texture2D" uid="uid://bxuf3h3koxthu" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png" id="5_04w1h"]
+[ext_resource type="Texture2D" uid="uid://c01x1qg20ne2r" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_hit_anim_all_dir_strip_4.png" id="4_bi470"]
+[ext_resource type="Texture2D" uid="uid://bxuf3h3koxthu" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png" id="5_04w1h"]
 [ext_resource type="Shape2D" uid="uid://cmyjqbdja270k" path="res://enemies/spider_collision_shape.tres" id="6_1uv7t"]
 [ext_resource type="Script" uid="uid://dlklryeavi2wk" path="res://Scripts/spider_animated_sprite.gd" id="6_iybn8"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="7_pe3gi"]
@@ -43,35 +41,35 @@ atlas = ExtResource("5_04w1h")
 region = Rect2(112, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_irqaj"]
-atlas = ExtResource("2_iybn8")
+atlas = ExtResource("5_04w1h")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gsof"]
-atlas = ExtResource("2_iybn8")
+atlas = ExtResource("5_04w1h")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hb8so"]
-atlas = ExtResource("2_iybn8")
+atlas = ExtResource("5_04w1h")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d7h2y"]
-atlas = ExtResource("2_iybn8")
+atlas = ExtResource("5_04w1h")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_efldy"]
-atlas = ExtResource("3_lawas")
+atlas = ExtResource("5_04w1h")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nsw8d"]
-atlas = ExtResource("3_lawas")
+atlas = ExtResource("5_04w1h")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qwv6e"]
-atlas = ExtResource("3_lawas")
+atlas = ExtResource("5_04w1h")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngmxm"]
-atlas = ExtResource("3_lawas")
+atlas = ExtResource("5_04w1h")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_11xf6"]

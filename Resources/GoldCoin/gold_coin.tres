@@ -1,16 +1,18 @@
 [gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://dnw04t867ju10"]
 
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_v7xym"]
-[ext_resource type="Texture2D" uid="uid://cl107qc6i7ghl" path="res://Assets/Ninja Adventure - Asset Pack/Items/Treasure/GoldCoin.png" id="2_dym38"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ieuux"]
 size = Vector2(7, 7)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v7xym"]
+load_path = "res://.godot/imported/GoldCoin.png-70eb1ddbe6df4cb05eff1b475b5aff88.ctex"
 
 [resource]
 script = ExtResource("1_v7xym")
 ground_collision_shape = SubResource("RectangleShape2D_ieuux")
 name = "Gold Coin"
-texture = ExtResource("2_dym38")
+texture = SubResource("CompressedTexture2D_v7xym")
 max_stacks = 999
 price = 1
 metadata/_custom_type_script = "uid://xa2vtw3obwbv"

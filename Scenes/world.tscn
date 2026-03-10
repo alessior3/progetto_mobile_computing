@@ -9,21 +9,20 @@
 [ext_resource type="Texture2D" uid="uid://dgurjcx00nr8f" path="res://Assets/Environment/Props/Static/Trees/Model_01/Size_04.png" id="5_o06y3"]
 [ext_resource type="Texture2D" uid="uid://vbd4f1f32u8j" path="res://Assets/Environment/Structures/Buildings/Walls.png" id="7_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bul46e1ocb1yu" path="res://Assets/Environment/Structures/Buildings/Roofs.png" id="8_5v1tr"]
-[ext_resource type="Texture2D" uid="uid://b67e0u2ehvs0l" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://chc38heu2ftrs" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="10_xbk3s"]
-[ext_resource type="Texture2D" uid="uid://b3xvup7vx71eb" path="res://Assets/Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
+[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="11_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://bxnaadjy2w4iy" path="res://Scenes/House1.tscn" id="12_7yui6"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="12_pyn1s"]
 [ext_resource type="PackedScene" uid="uid://debprstwe8fj2" path="res://Scenes/inside_house_1.tscn" id="14_e0ngr"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="15_hgpy0"]
-[ext_resource type="Texture2D" uid="uid://dbuykhqs28qe" path="res://Assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetHouse.png" id="16_hgpy0"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="16_t2t4p"]
 [ext_resource type="Script" uid="uid://civccrbefwtp8" path="res://Scripts/shop_entrance.gd" id="17_t2t4p"]
 [ext_resource type="Resource" uid="uid://dnw04t867ju10" path="res://Resources/GoldCoin/gold_coin.tres" id="18_0pcbe"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="19_axeuq"]
 [ext_resource type="PackedScene" uid="uid://rolofm5gba8y" path="res://Scenes/dungeon_1_entrance.tscn" id="22_pyn1s"]
-[ext_resource type="Script" uid="uid://dy81u26dbl5g1" path="res://dungeon1_entrance.gd" id="23_no8kt"]
+[ext_resource type="Script" uid="uid://dy81u26dbl5g1" path="res://Scripts/dungeon1_entrance.gd" id="23_no8kt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("1_8j60k")
@@ -1761,8 +1760,11 @@ texture = ExtResource("10_0fj1v")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_axeuq")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_no8kt"]
+load_path = "res://.godot/imported/TilesetHouse.png-20a71b4273e2575235f1ba956c350b9b.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0pcbe"]
-texture = ExtResource("16_hgpy0")
+texture = SubResource("CompressedTexture2D_no8kt")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
