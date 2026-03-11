@@ -10,6 +10,6 @@ slot_type = "Hand"
 ground_collision_shape = ExtResource("1_60ewi")
 name = "seedRadish"
 texture = ExtResource("3_6bir6")
-max_stacks = 999
+max_stacks = 2
 price = 10
 damage = 40

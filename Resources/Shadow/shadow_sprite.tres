@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bpa4ijd6bouh7"]
+
+[ext_resource type="Texture2D" uid="uid://sfwmm7002k4y" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Katana/Sprite.png" id="1_m6fia"]
+
+[resource]
+atlas = ExtResource("1_m6fia")
