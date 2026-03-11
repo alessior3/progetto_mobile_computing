@@ -12,3 +12,4 @@ name = "Stick"
 texture = ExtResource("3_8fbu1")
 price = 40
 is_weapon = true
+damage = 40

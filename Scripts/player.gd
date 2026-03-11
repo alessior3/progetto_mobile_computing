@@ -126,8 +126,8 @@ func apply_attack_damage():
 		attack_damage = 1
 		
 	# Parametri dell'area d'attacco
-	var attack_range: float = 45.0 # Meno del tile, è corpo a corpo
-	var attack_angle_deg: float = 90.0 # Angolo di attacco in gradi con apertura del cono
+	var attack_range: float = 60.0 # Aumentata la grandezza dell'area di impatto
+	var attack_angle_deg: float = 180.0 # Aumentato l'angolo per colpire mezzo cerchio davanti a noi
 	
 	# Determina il vettore di direzione in base a dove guarda il player
 	var attack_dir = Vector2.DOWN
