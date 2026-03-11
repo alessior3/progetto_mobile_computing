@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://hit7s0ssu37x"]
+
+[ext_resource type="Shape2D" uid="uid://coxkg8jgfgsmv" path="res://Resources/seedRadish1/Radish_collision_shape.tres" id="1_60ewi"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_ku5l0"]
+[ext_resource type="Texture2D" uid="uid://bcxlw85n410y7" path="res://Resources/seedRadish1/seedRadish_sprite.tres" id="3_6bir6"]
+
+[resource]
+script = ExtResource("2_ku5l0")
+slot_type = "Hand"
+ground_collision_shape = ExtResource("1_60ewi")
+name = "seedRadish"
+texture = ExtResource("3_6bir6")
+max_stacks = 999
+price = 10
+damage = 40
