@@ -109,9 +109,58 @@ func start_attack():
 		anim.flip_h = false
 		anim.play("attack_shadowIr_back")
 		
+	# Effettuiamo il danno quasi a metà animazione invece che all'inizio per un miglior feeback visivo
+	await get_tree().create_timer(0.15).timeout
+	apply_attack_damage()
+		
 	await anim.animation_finished
 	is_attacking = false
 
+func apply_attack_damage():
+	var hand_item = Global.persistent_hand
+	if hand_item == null or not hand_item.get("is_weapon"):
+		return
+		
+	var attack_damage = hand_item.get("damage")
+	if attack_damage == null:
+		attack_damage = 1
+		
+	# Parametri dell'area d'attacco
+	var attack_range: float = 45.0 # Meno del tile, è corpo a corpo
+	var attack_angle_deg: float = 90.0 # Angolo di attacco in gradi con apertura del cono
+	
+	# Determina il vettore di direzione in base a dove guarda il player
+	var attack_dir = Vector2.DOWN
+	match current_dir:
+		"up": attack_dir = Vector2.UP
+		"down": attack_dir = Vector2.DOWN
+		"left": attack_dir = Vector2.LEFT
+		"right": attack_dir = Vector2.RIGHT
+
+	# Cerca tutti i nodi nel gruppo Enemy (Assumiamo che tu abbia creato il gruppo o i nemici siano CharacterBody2D vicini)
+	# Per una ricerca generica senza gruppi, cerchiamo semplicemente i vicini controllandone la classe base e il metodo
+	var root = get_tree().current_scene
+	var possible_targets = root.find_children("", "CharacterBody2D", true, false)
+	
+	for target in possible_targets:
+		# Ignoriamo noi stessi
+		if target == self:
+			continue
+			
+		# Controlliamo se il bersaglio ha una funzione 'apply_damage'
+		if target.has_method("apply_damage"):
+			# 1. Controllo della distanza (Deve essere nel raggio d'attacco)
+			var distance = global_position.distance_to(target.global_position)
+			if distance <= attack_range:
+				
+				# 2. Controllo dell'angolo (Deve essere di fronte a noi)
+				var dir_to_target = (target.global_position - global_position).normalized()
+				var angle_to_target = rad_to_deg(attack_dir.angle_to(dir_to_target))
+				
+				# Controlliamo l'angolo assoluto tra la nostra visuale e il nemico
+				if abs(angle_to_target) <= (attack_angle_deg / 2.0):
+					print("Player Attacca! Colpito: ", target.name, " Danno: ", attack_damage)
+					target.apply_damage(attack_damage)
 
 
 

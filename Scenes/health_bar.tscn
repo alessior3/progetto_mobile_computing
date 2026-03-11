@@ -14,5 +14,4 @@ offset_bottom = -10.0
 theme_override_styles/background = SubResource("StyleBoxFlat_po0sg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_haro7")
 step = 1.0
-fill_mode = 1
 show_percentage = false

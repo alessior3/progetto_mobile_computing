@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ccutjn2u4kunr" path="res://Assets/Character/character-spritesheet_shadowless.png" id="3_f1ek2"]
 [ext_resource type="Texture2D" uid="uid://cpwhlg157pmpt" path="res://Assets/Icons/Keys.png" id="3_vgqql"]
 [ext_resource type="Texture2D" uid="uid://c217fai78xbhq" path="res://Assets/Icons/Keys copia.png" id="4_fkybt"]
+[ext_resource type="Texture2D" uid="uid://bgydhu0okqjbq" path="res://Assets/Character/attacco.png" id="5_pu2lt"]
 [ext_resource type="PackedScene" uid="uid://bv14rwmcy5lwq" path="res://Scenes/UI/inventory_ui.tscn" id="6_x3wgy"]
 [ext_resource type="Script" uid="uid://dhimnvyv0212u" path="res://Scripts/inventory.gd" id="7_3smsa"]
 [ext_resource type="PackedScene" uid="uid://c1j8kmasojpti" path="res://Scenes/UI/on_screen_ui.tscn" id="8_8erm5"]
@@ -85,28 +86,8 @@ atlas = ExtResource("3_f1ek2")
 region = Rect2(640, 3712, 128, 116)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie7r7"]
-atlas = ExtResource("3_f1ek2")
-region = Rect2(0, 3596, 128, 116)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vq3lt"]
-atlas = ExtResource("3_f1ek2")
-region = Rect2(128, 3596, 128, 116)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pukcj"]
-atlas = ExtResource("3_f1ek2")
-region = Rect2(256, 3596, 128, 116)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1htnp"]
-atlas = ExtResource("3_f1ek2")
-region = Rect2(384, 3596, 128, 116)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m376e"]
-atlas = ExtResource("3_f1ek2")
-region = Rect2(512, 3596, 128, 116)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6b312"]
-atlas = ExtResource("3_f1ek2")
-region = Rect2(640, 3596, 128, 116)
+atlas = ExtResource("5_pu2lt")
+region = Rect2(46, 387, 46, 129)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("3_6t5aa")
@@ -314,21 +295,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ie7r7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vq3lt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pukcj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1htnp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m376e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6b312")
 }],
 "loop": false,
 "name": &"attack_shadowIr_left",
@@ -532,9 +498,7 @@ shape = ExtResource("2_fkybt")
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_eow3j")
-animation = &"attack_shadowIr_left"
-frame = 2
-frame_progress = 0.83539444
+animation = &"idle_front"
 
 [node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
 z_index = 5

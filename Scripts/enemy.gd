@@ -87,6 +87,7 @@ func spawn_bomb_and_destroy():
 # Helper function per subire danno, da chiamare esternamente (es. dal giocatore).
 func apply_damage(damage_amount: int):
 	health_system.apply_damage(damage_amount)
+	progress_bar.value = health_system.current_health
 	
 	# Se vogliamo un feedback visivo di colpo subito (se l'animazione esiste)
 	if health_system.current_health > 0:

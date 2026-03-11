@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 
 func apply_damage(damage: int):
 	health_system.apply_damage(damage)
+	progress_bar.value = health_system.current_health
 
 func move_along_path(delta: float):
 	var target_position = patrol_path[current_patrol_target].global_position
