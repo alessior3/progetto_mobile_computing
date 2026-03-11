@@ -7,8 +7,11 @@ var current_item: InventoryItem = null
 
 # SEGNALI
 signal slot_clicked(item: InventoryItem) 
-signal item_dropped(item: InventoryItem) # Nuovo segnale per il drop
+signal item_dropped(item: InventoryItem)
 signal slot_swapped(source_slot, target_slot)
+signal drag_started # <--- NUOVO
+signal drag_ended   # <--- NUOVO
+
 @export var single_button_press = false
 @export var starting_texture: Texture
 @export var start_label: String
@@ -50,18 +53,15 @@ func add_item(item: InventoryItem):
 
 func show_price_tag(price: int):
 	if price_label:
-		# Usiamo \n per mandare a capo se vuoi il prezzo sotto il nome
-		# O semplicemente puliamo la stringa
 		price_label.text = str(price) + " Gold"
 		price_label.visible = true
 		
-		# Invece di modulate, usiamo LabelSettings per renderlo "Premium"
 		if not price_label.label_settings:
 			var settings = LabelSettings.new()
 			settings.font_color = Color.GOLD
 			settings.outline_size = 4
-			settings.outline_color = Color.BLACK # Il contorno lo rende leggibile ovunque
-			settings.font_size = 12 # Regola la dimensione come preferisci
+			settings.outline_color = Color.BLACK 
+			settings.font_size = 12 
 			price_label.label_settings = settings
 			
 func toggle_button_selected_variation(selected: bool):
@@ -81,55 +81,55 @@ func on_popup_menu_item_pressed(id: int):
 			slot_clicked.emit(current_item) # Equipaggia
 		elif id == 1:
 			item_dropped.emit(current_item) # Droppa
+
 # ==========================================
 # SISTEMA DI TRASCINAMENTO (DRAG & DROP)
 # ==========================================
 
 func _get_drag_data(at_position: Vector2) -> Variant:
-	# Se lo slot è vuoto, non c'è nulla da trascinare
 	if is_empty or current_item == null:
 		return null
 
-	# 1. Creiamo un "pacchetto" con i dati da inviare
 	var data = {
 		"source_slot": self,
 		"item": current_item
 	}
 
-	# 2. Creiamo il "fantasma" visivo che segue il mouse
 	var preview_texture = TextureRect.new()
 	preview_texture.texture = current_item.texture
 	preview_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	preview_texture.custom_minimum_size = Vector2(40, 40) # Dimensione dell'icona volante
-	preview_texture.modulate = Color(1, 1, 1, 0.7) # La facciamo mezza trasparente
+	preview_texture.custom_minimum_size = Vector2(40, 40)
+	preview_texture.modulate = Color(1, 1, 1, 0.7) 
 
 	var preview_control = Control.new()
 	preview_control.add_child(preview_texture)
 	preview_texture.position = -preview_texture.custom_minimum_size / 2
 	set_drag_preview(preview_control)
 
+	# ---> LANCIAMO L'ALLARME DI INIZIO TRASCINAMENTO <---
+	drag_started.emit()
+
 	return data
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	# Accetta il rilascio solo se i dati contengono l'oggetto e lo slot di origine
 	return typeof(data) == TYPE_DICTIONARY and data.has("item") and data.has("source_slot")
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var source_slot = data["source_slot"]
 	
-	# Se rilascio l'oggetto nello stesso identico quadratino da cui l'ho preso, non fare nulla
 	if source_slot == self:
 		return 
 
-	# 3. SCAMBIO DEGLI OGGETTI (La magia di Minecraft!)
 	var my_old_item = current_item
 	var dragged_item = data["item"]
 
-	# Lo slot di origine prende il mio oggetto (anche se è vuoto)
 	source_slot.add_item(my_old_item)
-	# Io (slot di destinazione) prendo l'oggetto trascinato
 	self.add_item(dragged_item)
 
-	# 4. Suoniamo l'allarme che i due slot si sono scambiati i posti
 	source_slot.slot_swapped.emit(source_slot, self)
 	self.slot_swapped.emit(source_slot, self)
+
+# ---> LANCIAMO L'ALLARME QUANDO IL DITO VIENE SOLLEVATO <---
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_END:
+		drag_ended.emit()

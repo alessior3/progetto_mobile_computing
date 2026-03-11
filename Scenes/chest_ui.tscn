@@ -37,10 +37,18 @@ mouse_filter = 2
 columns = 5
 
 [node name="CloseButton" type="Button" parent="." unique_id=2092234924]
-offset_left = 1131.0
-offset_top = 4.0
-offset_right = 1149.0
-offset_bottom = 35.0
+offset_left = 826.0
+offset_top = 41.0
+offset_right = 844.0
+offset_bottom = 72.0
 text = "X"
 
+[node name="InventoryButton" type="Button" parent="." unique_id=1904706416]
+offset_left = 800.0
+offset_top = 442.0
+offset_right = 883.0
+offset_bottom = 473.0
+text = "inventory"
+
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]
