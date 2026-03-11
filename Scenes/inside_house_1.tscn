@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cfcr4rant5obh" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="1_bpctk"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="2_0vnda"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="4_1ttny"]
+[ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="5_nwdop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("1_bpctk")
@@ -241,5 +242,7 @@ shape = SubResource("RectangleShape2D_5hafv")
 metadata/_edit_lock_ = true
 
 [node name="Chest" parent="." unique_id=716899325 instance=ExtResource("4_1ttny")]
+
+[node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("5_nwdop")]
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

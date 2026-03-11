@@ -4,12 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://cuepwe3od85lb" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_lyb87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfl1"]
-size = Vector2(14, 4)
+size = Vector2(16, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bagqn"]
 size = Vector2(14, 4)
 
 [node name="Chest" type="Area2D" unique_id=716899325]
+z_index = 2
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_cjfl1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1861635381]
@@ -18,7 +21,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2074264649]
-position = Vector2(0, 5)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_cjfl1")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1435022935]

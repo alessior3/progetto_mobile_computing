@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bahf3p608nysb"]
+
+[ext_resource type="Script" uid="uid://f2hrasfmgkku" path="res://Scripts/chest_ui.gd" id="1_at1np"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at1np"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.6903189, 0.59383285, 0.25835383, 1)
+
+[node name="ChestUI" type="CanvasLayer" unique_id=1727687350]
+script = ExtResource("1_at1np")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1179432017]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.98039216)
+
+[node name="Background" type="PanelContainer" parent="." unique_id=1997389728]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_at1np")
+
+[node name="Grid" type="GridContainer" parent="Background" unique_id=998452330]
+layout_mode = 2
+mouse_filter = 2
+columns = 5
+
+[node name="CloseButton" type="Button" parent="." unique_id=2092234924]
+offset_left = 1131.0
+offset_top = 4.0
+offset_right = 1149.0
+offset_bottom = 35.0
+text = "X"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

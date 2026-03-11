@@ -14,12 +14,9 @@ var chest_items: Array = []
 @onready var sprite = $Sprite2D
 
 func _ready() -> void:
-
 	print("Chest pronta")
-
 	sprite.region_enabled = true
 	sprite.region_rect = Rect2(x_chiusa, 0, 16, 14)
-
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
@@ -31,53 +28,66 @@ func _ready() -> void:
 		chest_items.fill(null)
 		Global.chests_data[chest_id] = chest_items
 
-
 func _on_body_entered(body: Node2D) -> void:
-
 	print("Qualcosa è entrato nell'area:", body.name)
-
 	if body.is_in_group("player"):
 		print("Player vicino alla cassa")
-
 		player_in_range = true
 		current_player = body
 		
 		if body.has_node("Key"):
 			body.get_node("Key").show()
-
 		if body.has_node("KeyPrompt"):
 			body.get_node("KeyPrompt").play("KeyPrompt")
 
-
 func _on_body_exited(body: Node2D) -> void:
-
 	if body.is_in_group("player"):
-
+		
+		# SICUREZZA: Se ti allontani dalla cassa mentre è aperta, si chiude da sola!
+		if sprite.region_rect.position.x == x_aperta:
+			toggle_chest()
+			
 		player_in_range = false
 		current_player = null
 		
 		if body.has_node("Key"):
 			body.get_node("Key").hide()
-
 		if body.has_node("KeyPrompt"):
 			body.get_node("KeyPrompt").stop()
 
 		# chiude visivamente la cassa
 		sprite.region_rect.position.x = x_chiusa
 
-
 func _input(event: InputEvent) -> void:
-
 	if player_in_range and event.is_action_pressed("interact"):
 		toggle_chest()
 
-
 func toggle_chest():
-
+	# Cerca il nodo ChestUI nella scena
+	var chest_ui = get_tree().current_scene.get_node_or_null("ChestUI") 
+	# Troviamo lo zaino del player!
+	var inv_ui = current_player.get_node_or_null("inventoryUI") if current_player else null
+	
 	if sprite.region_rect.position.x == x_chiusa:
 		sprite.region_rect.position.x = x_aperta
-		print("DEBUG: Cassa aperta!")
-
+		print("Cassa aperta visivamente!")
+		
+		# Apriamo la UI e passiamo anche "self" (la cassa fisica)
+		if chest_ui:
+			chest_ui.open_chest_ui(chest_items, chest_id, self)
+			
+		# ---> MODIFICA FATTA QUI: Lo apriamo in modalità cassa (spostato in basso)
+		if inv_ui and not inv_ui.visible:
+			inv_ui.open_chest_mode()
+			
 	else:
 		sprite.region_rect.position.x = x_chiusa
-		print("DEBUG: Cassa chiusa!")
+		print("Cassa chiusa visivamente!")
+		
+		# Chiudiamo la UI
+		if chest_ui:
+			chest_ui.close_chest_ui()
+			
+		# ---> MODIFICA FATTA QUI: Lo chiudiamo e lo rimettiamo a posto
+		if inv_ui and inv_ui.visible:
+			inv_ui.close_chest_mode()

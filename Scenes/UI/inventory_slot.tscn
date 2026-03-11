@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdi4n7kevdka6"]
 
 [ext_resource type="Script" uid="uid://bq6oivsv2egpx" path="res://Scripts/inventory_slot.gd" id="1_nxjtc"]
-[ext_resource type="Texture2D" uid="uid://suyxblxtuln6" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_tmbq5"]
+[ext_resource type="Texture2D" uid="uid://butg5isggw12q" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_tmbq5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxjtc"]
 font_color = Color(1, 0.84313726, 0, 1)
@@ -28,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 item_count = 2
 popup/item_0/text = "Equip"
 popup/item_0/id = 0
@@ -55,6 +56,7 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+mouse_filter = 1
 
 [node name="LabelContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=888755145]
 layout_mode = 0
