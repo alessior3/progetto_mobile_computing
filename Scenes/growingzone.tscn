@@ -1,13 +1,65 @@
 [gd_scene format=3 uid="uid://bd8vd3bfsxnsh"]
 
 [ext_resource type="Texture2D" uid="uid://b6wcmsixae7qr" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/soil_00.png" id="1_rbnoc"]
-[ext_resource type="Script" uid="uid://cx6r022o42tky" path="res://Scripts/growingzone.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://tfiqf88cbrbn" path="res://Scripts/growingzone.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://br7lyuo4mxoj" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/radish_00.png" id="2_celf2"]
+[ext_resource type="Texture2D" uid="uid://ypcj207gk4sx" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/beetroot_00.png" id="3_hqts8"]
 [ext_resource type="Texture2D" uid="uid://dsssyptg1tdjn" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/radish_01.png" id="3_qc778"]
+[ext_resource type="Texture2D" uid="uid://cn6f6j6dg18c2" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_00.png" id="3_wvf6i"]
 [ext_resource type="Texture2D" uid="uid://d118u1dftgnu3" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/radish_02.png" id="4_i4h5p"]
+[ext_resource type="Texture2D" uid="uid://housqvougw7" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_01.png" id="4_kpqec"]
+[ext_resource type="Texture2D" uid="uid://nwjba4cw6lh5" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/beetroot_01.png" id="4_mme54"]
+[ext_resource type="Texture2D" uid="uid://buy8ce7l0u2dh" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_02.png" id="5_c4e6u"]
+[ext_resource type="Texture2D" uid="uid://d3oi86yuftoid" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/beetroot_02.png" id="5_hx4eq"]
 [ext_resource type="Texture2D" uid="uid://r38hiqjmycci" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/radish_03.png" id="5_u0gi3"]
+[ext_resource type="Texture2D" uid="uid://s5jasmbuxlax" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/beetroot_03.png" id="6_f1jhn"]
 [ext_resource type="Texture2D" uid="uid://b6byjqlp4bvq4" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/radish_04.png" id="6_fjg85"]
+[ext_resource type="Texture2D" uid="uid://tteyigt6jcm8" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_03.png" id="6_pdaok"]
+[ext_resource type="Texture2D" uid="uid://dnymruxrgjdlj" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/beetroot_04.png" id="7_3pe63"]
 [ext_resource type="Texture2D" uid="uid://dwkyeggycyfch" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/radish_05.png" id="7_54k3r"]
+[ext_resource type="Texture2D" uid="uid://br47ynoc6003h" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/carrot_04.png" id="7_h8dnf"]
+[ext_resource type="Texture2D" uid="uid://qixddcyi4msg" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_00.png" id="8_0potp"]
+[ext_resource type="Texture2D" uid="uid://x5egdqxyprto" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_00.png" id="8_prklu"]
+[ext_resource type="Texture2D" uid="uid://ca4tvl5uwcyu3" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_01.png" id="9_227vx"]
+[ext_resource type="Texture2D" uid="uid://d0wplnjrwwwcq" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_01.png" id="9_r5rhb"]
+[ext_resource type="Texture2D" uid="uid://yv1esnaabppw" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_02.png" id="10_dm4m1"]
+[ext_resource type="Texture2D" uid="uid://ciqhvwgr0a02b" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_02.png" id="10_pubwc"]
+[ext_resource type="Texture2D" uid="uid://b8cq67sx4q0gn" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_03.png" id="11_3yihg"]
+[ext_resource type="Texture2D" uid="uid://bv2vvg0g4j8di" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_03.png" id="11_vxokv"]
+[ext_resource type="Texture2D" uid="uid://c27vo1ohlvbg4" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_04.png" id="12_4bckt"]
+[ext_resource type="Texture2D" uid="uid://d0om6wlio8jkn" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_04.png" id="12_8n8nw"]
+[ext_resource type="Texture2D" uid="uid://b42v8scpn2ff3" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_05.png" id="13_s00lp"]
+[ext_resource type="Texture2D" uid="uid://bhqc3tc07an4u" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/kale_00.png" id="14_jnqbh"]
+[ext_resource type="Texture2D" uid="uid://b7x060h5g7lsh" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/kale_01.png" id="15_6vojo"]
+[ext_resource type="Texture2D" uid="uid://bg64b4665pme1" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/kale_02.png" id="16_k8uoh"]
+[ext_resource type="Texture2D" uid="uid://hxcd5tlqqarf" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/kale_03.png" id="17_mlpnk"]
+[ext_resource type="Texture2D" uid="uid://cg48ol48kpqtx" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/kale_04.png" id="18_vv1lj"]
+[ext_resource type="Texture2D" uid="uid://cumh5e4jrsfe5" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/kale_05.png" id="19_smyhn"]
+[ext_resource type="Texture2D" uid="uid://chdn4kya3i4xt" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_00.png" id="20_kw31r"]
+[ext_resource type="Texture2D" uid="uid://coqtsdk1bllwm" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_01.png" id="21_ocjf4"]
+[ext_resource type="Texture2D" uid="uid://c54pqiax0kcts" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_02.png" id="22_line0"]
+[ext_resource type="Texture2D" uid="uid://bpopifeen526d" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_03.png" id="23_js3o0"]
+[ext_resource type="Texture2D" uid="uid://b2tjhyjweh1gm" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/parsnip_04.png" id="24_f5oxm"]
+[ext_resource type="Texture2D" uid="uid://dges5e74hodfs" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/potato_00.png" id="25_c0b1n"]
+[ext_resource type="Texture2D" uid="uid://dnyga8c51e2ih" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/potato_01.png" id="26_bb5xb"]
+[ext_resource type="Texture2D" uid="uid://d34g7uciyaaq7" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/potato_02.png" id="27_4n186"]
+[ext_resource type="Texture2D" uid="uid://byuejm5idiw4h" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/potato_03.png" id="28_hqts8"]
+[ext_resource type="Texture2D" uid="uid://eex72utpnlvq" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/potato_04.png" id="29_mme54"]
+[ext_resource type="Texture2D" uid="uid://ue1ck84s7lwo" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_00.png" id="40_fbeop"]
+[ext_resource type="Texture2D" uid="uid://sbrnaq3liswh" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_01.png" id="41_tgrmj"]
+[ext_resource type="Texture2D" uid="uid://dxa02v8f7kfas" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_02.png" id="42_s1o3v"]
+[ext_resource type="Texture2D" uid="uid://bey72rr70iv7m" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_03.png" id="43_6fjje"]
+[ext_resource type="Texture2D" uid="uid://b6mohuyw7ftw0" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/pumpkin_04.png" id="44_e1a16"]
+[ext_resource type="Texture2D" uid="uid://vubuuxxn3x6n" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/sunflower_00.png" id="51_bswxs"]
+[ext_resource type="Texture2D" uid="uid://bways4tgnflpu" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/sunflower_01.png" id="52_qjvte"]
+[ext_resource type="Texture2D" uid="uid://cjkffukl11sfn" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/sunflower_02.png" id="53_0q1af"]
+[ext_resource type="Texture2D" uid="uid://ldvoq0ccogjv" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/sunflower_03.png" id="54_phs1h"]
+[ext_resource type="Texture2D" uid="uid://dscrhth811h37" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/sunflower_04.png" id="55_0oiqr"]
+[ext_resource type="Texture2D" uid="uid://1o6dms3rb7s0" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/wheat_00.png" id="56_4aue8"]
+[ext_resource type="Texture2D" uid="uid://ck0skcgm6jj8a" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/wheat_01.png" id="57_ms6ed"]
+[ext_resource type="Texture2D" uid="uid://bgey3opx7v2b6" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/wheat_02.png" id="58_idx30"]
+[ext_resource type="Texture2D" uid="uid://rjbuhn5v7owv" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/wheat_03.png" id="59_jvqcn"]
+[ext_resource type="Texture2D" uid="uid://cefvshfq2s1pw" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/wheat_04.png" id="60_llyme"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7thq"]
 atlas = ExtResource("1_rbnoc")
@@ -25,7 +77,175 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hwp8"]
-radius = 7.0
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s455"]
+atlas = ExtResource("3_hqts8")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr1yn"]
+atlas = ExtResource("4_mme54")
+region = Rect2(0, 0, 6, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w18bm"]
+atlas = ExtResource("5_hx4eq")
+region = Rect2(0, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uumxa"]
+atlas = ExtResource("6_f1jhn")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx5ve"]
+atlas = ExtResource("7_3pe63")
+region = Rect2(0, 0, 12, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihbth"]
+atlas = ExtResource("8_0potp")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh1ov"]
+atlas = ExtResource("9_r5rhb")
+region = Rect2(0, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qp7qr"]
+atlas = ExtResource("10_dm4m1")
+region = Rect2(0, 0, 8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41udo"]
+atlas = ExtResource("11_vxokv")
+region = Rect2(0, 0, 12, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pujxq"]
+atlas = ExtResource("12_8n8nw")
+region = Rect2(0, 0, 16, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx4eq"]
+atlas = ExtResource("3_wvf6i")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1jhn"]
+atlas = ExtResource("4_kpqec")
+region = Rect2(0, 0, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pe63"]
+atlas = ExtResource("5_c4e6u")
+region = Rect2(0, 0, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0potp"]
+atlas = ExtResource("6_pdaok")
+region = Rect2(0, 0, 8, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5rhb"]
+atlas = ExtResource("7_h8dnf")
+region = Rect2(0, 0, 10, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm4m1"]
+atlas = ExtResource("8_prklu")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxokv"]
+atlas = ExtResource("9_227vx")
+region = Rect2(0, 0, 6, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n8nw"]
+atlas = ExtResource("10_pubwc")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbeop"]
+atlas = ExtResource("11_3yihg")
+region = Rect2(0, 0, 10, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgrmj"]
+atlas = ExtResource("12_4bckt")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1o3v"]
+atlas = ExtResource("13_s00lp")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fjje"]
+atlas = ExtResource("14_jnqbh")
+region = Rect2(0, 0, 5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1a16"]
+atlas = ExtResource("15_6vojo")
+region = Rect2(0, 0, 4, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bswxs"]
+atlas = ExtResource("16_k8uoh")
+region = Rect2(0, 0, 6, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjvte"]
+atlas = ExtResource("17_mlpnk")
+region = Rect2(0, 0, 10, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q1af"]
+atlas = ExtResource("18_vv1lj")
+region = Rect2(0, 0, 14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phs1h"]
+atlas = ExtResource("19_smyhn")
+region = Rect2(0, 0, 14, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0oiqr"]
+atlas = ExtResource("20_kw31r")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aue8"]
+atlas = ExtResource("21_ocjf4")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ms6ed"]
+atlas = ExtResource("22_line0")
+region = Rect2(0, 0, 8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idx30"]
+atlas = ExtResource("23_js3o0")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvqcn"]
+atlas = ExtResource("24_f5oxm")
+region = Rect2(0, 0, 10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llyme"]
+atlas = ExtResource("25_c0b1n")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vh6t"]
+atlas = ExtResource("26_bb5xb")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igaod"]
+atlas = ExtResource("27_4n186")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5mrg"]
+atlas = ExtResource("28_hqts8")
+region = Rect2(0, 0, 8, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0pnd"]
+atlas = ExtResource("29_mme54")
+region = Rect2(0, 0, 11, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot7d5"]
+atlas = ExtResource("40_fbeop")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2ua1"]
+atlas = ExtResource("41_tgrmj")
+region = Rect2(0, 0, 8, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilm5p"]
+atlas = ExtResource("42_s1o3v")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c58ek"]
+atlas = ExtResource("43_6fjje")
+region = Rect2(0, 0, 12, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n4hs"]
+atlas = ExtResource("44_e1a16")
+region = Rect2(0, 0, 12, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rq1n"]
 atlas = ExtResource("2_celf2")
@@ -51,11 +271,217 @@ region = Rect2(0, 0, 12, 15)
 atlas = ExtResource("7_54k3r")
 region = Rect2(0, 0, 12, 15)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_r60li"]
+atlas = ExtResource("51_bswxs")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8b0i"]
+atlas = ExtResource("52_qjvte")
+region = Rect2(0, 0, 10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewy2a"]
+atlas = ExtResource("53_0q1af")
+region = Rect2(0, 0, 11, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p48u4"]
+atlas = ExtResource("54_phs1h")
+region = Rect2(0, 0, 11, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvctc"]
+atlas = ExtResource("55_0oiqr")
+region = Rect2(0, 0, 13, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar8rf"]
+atlas = ExtResource("56_4aue8")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oim4f"]
+atlas = ExtResource("57_ms6ed")
+region = Rect2(0, 0, 11, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv3co"]
+atlas = ExtResource("58_idx30")
+region = Rect2(0, 0, 11, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64q1g"]
+atlas = ExtResource("59_jvqcn")
+region = Rect2(0, 0, 13, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wumix"]
+atlas = ExtResource("60_llyme")
+region = Rect2(0, 0, 13, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_e2aqa"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s455")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr1yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w18bm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uumxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx5ve")
+}],
+"loop": true,
+"name": &"beetroot_animation",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihbth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh1ov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qp7qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41udo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pujxq")
+}],
+"loop": true,
+"name": &"cabbage_animation",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx4eq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1jhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pe63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0potp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5rhb")
+}],
+"loop": true,
+"name": &"carrotAnimation",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm4m1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxokv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n8nw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbeop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgrmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1o3v")
+}],
+"loop": true,
+"name": &"cauliflowerAnimation",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fjje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1a16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bswxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjvte")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q1af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phs1h")
+}],
+"loop": true,
+"name": &"kaleAnimation",
+"speed": 0.0
+}, {
 "frames": [],
 "loop": true,
 "name": &"none",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0oiqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aue8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ms6ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idx30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvqcn")
+}],
+"loop": true,
+"name": &"parsnip_animation",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llyme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vh6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igaod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5mrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0pnd")
+}],
+"loop": true,
+"name": &"potato_animation",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot7d5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2ua1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilm5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c58ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n4hs")
+}],
+"loop": true,
+"name": &"pumpkin_animation",
 "speed": 0.0
 }, {
 "frames": [{
@@ -80,7 +506,50 @@ animations = [{
 "loop": true,
 "name": &"radishAnimation",
 "speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r60li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8b0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewy2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p48u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvctc")
+}],
+"loop": true,
+"name": &"sunflower_animation",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar8rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oim4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv3co")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64q1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wumix")
+}],
+"loop": true,
+"name": &"wheat_animation",
+"speed": 0.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tich"]
+size = Vector2(11, 10)
 
 [node name="growingzone" type="StaticBody2D" unique_id=823296184]
 script = ExtResource("1_script")
@@ -89,16 +558,23 @@ script = ExtResource("1_script")
 sprite_frames = SubResource("SpriteFrames_g03rn")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2084559321]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1457636908]
-visible = false
 shape = SubResource("CircleShape2D_1hwp8")
 
 [node name="plant" type="AnimatedSprite2D" parent="." unique_id=970864488]
-position = Vector2(0, -1)
+position = Vector2(0, -2)
 scale = Vector2(0.8333333, 0.76666665)
 sprite_frames = SubResource("SpriteFrames_e2aqa")
-animation = &"none"
+animation = &"cabbage_animation"
+frame_progress = 0.7991328
 
 [node name="radishTimer" type="Timer" parent="." unique_id=1328909839]
 wait_time = 5.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=460799685]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=152120311]
+shape = SubResource("RectangleShape2D_1tich")
