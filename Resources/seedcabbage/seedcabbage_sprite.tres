@@ -1,0 +1,11 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://g3xxd3iutvs"]
+
+[ext_resource type="Texture2D" uid="uid://qixddcyi4msg" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cabbage_00.png" id="1_m2on1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihbth"]
+atlas = ExtResource("1_m2on1")
+region = Rect2(0, 0, 5, 5)
+
+[resource]
+atlas = SubResource("AtlasTexture_ihbth")
+region = Rect2(-0.13895416, -0.040855408, 5.1807046, 5.130627)

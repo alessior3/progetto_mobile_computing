@@ -1,0 +1,11 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://crye5l3hdlpel"]
+
+[ext_resource type="Texture2D" uid="uid://1o6dms3rb7s0" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/wheat_00.png" id="1_65lrr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar8rf"]
+atlas = ExtResource("1_65lrr")
+region = Rect2(0, 0, 6, 6)
+
+[resource]
+atlas = SubResource("AtlasTexture_ar8rf")
+region = Rect2(-0.042720795, -0.040855408, 6.013035, 6.018425)

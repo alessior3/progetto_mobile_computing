@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://c8frby27u28kq"]
+
+[ext_resource type="Shape2D" uid="uid://bipe32tjlrl7e" path="res://Resources/fullCarrot/fullCarrot_collision_shape.tres" id="1_7rvgi"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_7yc1p"]
+[ext_resource type="Texture2D" uid="uid://tbiaghowi8s1" path="res://Resources/fullCarrot/fullCarrot_sprite.tres" id="3_jhqxp"]
+
+[resource]
+script = ExtResource("2_7yc1p")
+slot_type = "Hand"
+ground_collision_shape = ExtResource("1_7rvgi")
+name = "fullbeetroot"
+texture = ExtResource("3_jhqxp")
+max_stacks = 999
+price = 40
+damage = 40

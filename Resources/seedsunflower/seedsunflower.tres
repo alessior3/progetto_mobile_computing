@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://dl4wj4cm6mdn8"]
+
+[ext_resource type="Shape2D" uid="uid://bn7n2frpfjhhs" path="res://Resources/seedsunflower/seedsunflower_collision_shape.tres" id="1_ijexi"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_aiahg"]
+[ext_resource type="Texture2D" uid="uid://dmlx41gir3b1i" path="res://Resources/seedsunflower/seedsunflower_sprite.tres" id="3_rjw0v"]
+
+[resource]
+script = ExtResource("2_aiahg")
+slot_type = "Hand"
+ground_collision_shape = ExtResource("1_ijexi")
+name = "seedbeetroot"
+texture = ExtResource("3_rjw0v")
+max_stacks = 999
+price = 40
+damage = 40

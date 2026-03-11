@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://di2ompxbqt7lr"]
+
+[ext_resource type="Shape2D" uid="uid://bg1opi2h5di65" path="res://Resources/fullCauliflower/fullCauliflower_collision_shape.tres" id="1_gye4i"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_uk8au"]
+[ext_resource type="Texture2D" uid="uid://c4nhoav84kx20" path="res://Resources/fullCauliflower/fullCauliflower_sprite.tres" id="3_2f0ik"]
+
+[resource]
+script = ExtResource("2_uk8au")
+slot_type = "Hand"
+ground_collision_shape = ExtResource("1_gye4i")
+name = "fullbeetroot"
+texture = ExtResource("3_2f0ik")
+max_stacks = 999
+price = 40
+damage = 40

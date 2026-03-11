@@ -1,0 +1,11 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://6nq5qbg4gnw"]
+
+[ext_resource type="Texture2D" uid="uid://x5egdqxyprto" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/cauliflower_00.png" id="1_445jr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm4m1"]
+atlas = ExtResource("1_445jr")
+region = Rect2(0, 0, 5, 5)
+
+[resource]
+atlas = SubResource("AtlasTexture_dm4m1")
+region = Rect2(-0.042720795, -0.040855408, 5.0138683, 5.1009827)
