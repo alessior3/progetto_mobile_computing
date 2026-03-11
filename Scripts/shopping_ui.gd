@@ -4,114 +4,123 @@ class_name ShoppingUI
 var items_to_buy: Array[InventoryItem]
 var items_to_sell: Array[InventoryItem]
 
-var selected_sell_item_indexes: Array[int] = []
-var selected_buy_item_indexes: Array[int] = []
+var selected_item: InventoryItem = null
+var current_mode: String = "BUY" # Può essere "BUY" o "SELL"
 
-const INVENTORY_SLOT_SCENE = preload("res://Scenes/UI/inventory_slot.tscn")
+# ATTENZIONE: Controlla che il nome della cartella e del file siano esatti!
+const ROW_SCENE = preload("res://Scenes/UI/shop_item_row.tscn") 
 
-@onready var buying_grid_container: GridContainer = %BuyingGridContainer
-@onready var selling_grid_container: GridContainer = %SellingGridContainer
-@onready var buy_button: Button = %BuyButton
-@onready var sell_button: Button = %SellButton
+# Usiamo i Nomi Unici (%) che hai impostato prima nell'editor
+@onready var items_list: VBoxContainer = %ItemsList
+@onready var big_icon: TextureRect = %BigIcon
+@onready var item_name_label: Label = %ItemName
+@onready var item_desc_label: Label = %ItemDescription
+@onready var action_btn: Button = %ActionBtn
+@onready var shop_gold_label: Label = %ShopGoldLabel
+@onready var tab_buy: Button = %TabBuyButton
+@onready var tab_sell: Button = %TabSellButton
 
-func setup_buying_grid():
-	for child in buying_grid_container.get_children():
+func _ready() -> void:
+	tab_buy.pressed.connect(_on_tab_buy_pressed)
+	tab_sell.pressed.connect(_on_tab_sell_pressed)
+	action_btn.pressed.connect(_on_action_btn_pressed)
+	clear_details_panel()
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		var inv = player.get_node_or_null("Inventory")
+		if inv:
+			# Ci colleghiamo al segnale per aggiornare l'oro in tempo reale
+			inv.gold_changed.connect(_update_shop_gold)
+			# Impostiamo il valore iniziale
+			_update_shop_gold(inv.gold)
+
+# Questa viene chiamata dallo script Merchant.gd quando interagisci
+func setup_buying_grid() -> void: 
+	_on_tab_buy_pressed()
+
+func _on_tab_buy_pressed():
+	current_mode = "BUY"
+	clear_details_panel()
+	populate_list(items_to_buy)
+
+func _on_tab_sell_pressed():
+	current_mode = "SELL"
+	clear_details_panel()
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		# Assicurati che "Inventory" sia il nome corretto del nodo sul player
+		items_to_sell = (player.find_child("Inventory") as Inventory).items
+	populate_list(items_to_sell)
+
+func populate_list(item_array: Array[InventoryItem]):
+	for child in items_list.get_children():
 		child.queue_free()
+		
+	for item in item_array:
+		var row = ROW_SCENE.instantiate() as ShopItemRow
+		items_list.add_child(row)
+		row.setup(item)
+		# Modifica: passiamo anche la 'row' stessa alla funzione di selezione
+		row.item_clicked.connect(func(i): _on_item_selected(i, row))
+		
+		
+func _on_item_selected(item: InventoryItem, selected_row: ShopItemRow):
+	# 1. Spegni l'evidenziazione di TUTTE le righe
+	for row in items_list.get_children():
+		if row is ShopItemRow:
+			row.set_highlight(false)
 	
-	for i in items_to_buy.size():
-		var buying_slot = INVENTORY_SLOT_SCENE.instantiate() as InventorySlot
-		buying_slot.single_button_press = true
-		buying_grid_container.add_child(buying_slot)
-		
-		buying_slot.add_item(items_to_buy[i])
-		buying_slot.show_price_tag(items_to_buy[i].price * items_to_buy[i].stacks)
-		
-		# MODIFICA: Il segnale emette (item), noi leghiamo (i).
-		# La funzione ricevente dovrà accettare entrambi i parametri.
-		buying_slot.slot_clicked.connect(on_buy_slot_clicked.bind(i))
-		
-	selected_buy_item_indexes.clear()
-	buy_button.disabled = true
-
-func setup_selling_grid():
-	for child in selling_grid_container.get_children():
-		child.queue_free()
-	
-	items_to_sell = Global.persistent_items
-	
-	for i in items_to_sell.size():
-		var selling_slot = INVENTORY_SLOT_SCENE.instantiate() as InventorySlot
-		selling_slot.single_button_press = true
-		selling_grid_container.add_child(selling_slot) 
-		
-		selling_slot.add_item(items_to_sell[i])
-		selling_slot.show_price_tag(items_to_sell[i].price * items_to_sell[i].stacks)
-		
-		# MODIFICA: Stessa logica di bind qui.
-		selling_slot.slot_clicked.connect(on_selling_slot_clicked.bind(i))
-		
-	selected_sell_item_indexes.clear()
-	sell_button.disabled = true
-
-# --- LOGICA SELEZIONE ---
-
-# MODIFICA: Ora la funzione accetta l'item emesso (che ignoriamo) e l'indice legato
-func on_buy_slot_clicked(_item: InventoryItem, idx: int):
-	_toggle_selection(idx, selected_buy_item_indexes, buying_grid_container)
-	buy_button.disabled = selected_buy_item_indexes.size() == 0
-
-# MODIFICA: Stessa cosa per la vendita
-func on_selling_slot_clicked(_item: InventoryItem, idx: int):
-	_toggle_selection(idx, selected_sell_item_indexes, selling_grid_container)
-	sell_button.disabled = selected_sell_item_indexes.size() == 0
-
-func _toggle_selection(idx: int, index_array: Array[int], grid: GridContainer):
-	if index_array.has(idx):
-		index_array.erase(idx)
-		grid.get_child(idx).toggle_button_selected_variation(false)
+	# 2. Accendi solo quella cliccata
+	selected_row.set_highlight(true)
+	selected_item = item
+	big_icon.texture = item.texture
+	item_name_label.text = item.name
+	item_desc_label.text = item.get("description") if item.get("description") != null else ""
+	var total_price = item.price * item.stacks
+	if current_mode == "BUY":
+		action_btn.text = "COMPRA - " + str(total_price) + " Gold"
 	else:
-		index_array.append(idx)
-		grid.get_child(idx).toggle_button_selected_variation(true)
+		action_btn.text = "VENDI - " + str(total_price) + " Gold"
+		
+	action_btn.disabled = false
 
-# --- TRANSAZIONI ---
+func clear_details_panel():
+	selected_item = null
+	big_icon.texture = null
+	item_name_label.text = "Seleziona un oggetto"
+	item_desc_label.text = ""
+	action_btn.text = "..."
+	action_btn.disabled = true
 
-func _on_buy_button_pressed() -> void:
+func _on_action_btn_pressed():
+	if not selected_item: return
+	
 	var player = get_tree().get_first_node_in_group("player")
 	if not player: return
 	var inventory = player.get_node("Inventory") as Inventory
+	var cost = selected_item.price * selected_item.stacks
 	
-	for i in selected_buy_item_indexes:
-		var item = items_to_buy[i]
-		var cost = item.price * item.stacks
-		
+	if current_mode == "BUY":
 		if inventory.has_gold(cost):
 			inventory.remove_gold(cost)
-			inventory.add_item(item, item.stacks)
-			# Nota: la rimozione da items_to_buy qui dentro un loop 'for i' può causare
-			# bug se compri oggetti multipli, dato che gli indici slittano.
-			# Per ora lo lasciamo così, ma andrà sistemato se lo shop diventa complesso.
-	
-	setup_buying_grid()
-	setup_selling_grid()
-
-func _on_sell_button_pressed() -> void:
-	var player = get_tree().get_first_node_in_group("player")
-	if not player: return
-	var inventory = player.get_node("Inventory") as Inventory
-	
-	# Usiamo un array temporaneo per evitare errori di indice durante l'erase
-	var items_to_remove = []
-	for i in selected_sell_item_indexes:
-		var item = items_to_sell[i]
-		items_to_remove.append(item)
-		# Aggiungiamo il valore dell'oggetto all'oro (Wallet)
-		# Assicurati che questo percorso corrisponda esattamente al tuo file!
+			inventory.add_item(selected_item, selected_item.stacks)
+			print("Comprato: ", selected_item.name)
+	elif current_mode == "SELL":
+		inventory.items.erase(selected_item)
+		# Assicurati che questo percorso alla moneta sia corretto nel tuo file system!
 		var gold_coin_res = load("res://Resources/GoldCoin/gold_coin.tres")
-		inventory.add_item(gold_coin_res, item.price * item.stacks)
+		inventory.add_item(gold_coin_res, cost)
+		Global.persistent_items = inventory.items
+		print("Venduto: ", selected_item.name)
 		
-	for item in items_to_remove:
-		inventory.items.erase(item)
+	# Aggiorna la vista dopo aver comprato/venduto
+	if current_mode == "BUY":
+		populate_list(items_to_buy)
+	else:
+		_on_tab_sell_pressed() 
+		
+	clear_details_panel()
 	
-	Global.persistent_items = inventory.items # Sincronizzazione persistente
-	setup_buying_grid()
-	setup_selling_grid()
+func _update_shop_gold(amount: int):
+	if shop_gold_label:
+		shop_gold_label.text = "Oro: " + str(amount)

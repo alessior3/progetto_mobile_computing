@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dgk5bn4y3as2i"]
+
+[ext_resource type="Script" uid="uid://buac7f6j2y8aj" path="res://Scripts/shop_item_row.gd" id="1_4t473"]
+
+[node name="ShopItemRow" type="Button" unique_id=270003264]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_4t473")
+
+[node name="SelectionHighlight" type="ColorRect" parent="." unique_id=1133986652]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.84313726, 0, 0.19607843)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=934886733]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 292.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="ItemIcon" type="TextureRect" parent="HBoxContainer" unique_id=539933006]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="HBoxContainer" unique_id=880421548]
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=1359370014]
+layout_mode = 2
+
+[node name="PriceLabel" type="Label" parent="HBoxContainer" unique_id=105519167]
+layout_mode = 2
+vertical_alignment = 1

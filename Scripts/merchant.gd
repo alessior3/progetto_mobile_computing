@@ -29,9 +29,8 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("Merchant") and can_trigger_merchant_ui:
 		shopping_ui.visible = true
+		# Diciamo alla UI di aprirsi direttamente sulla schermata di acquisto
+		shopping_ui.setup_buying_grid()
 		
-		var player = get_tree().get_first_node_in_group("player") as Player
-		shopping_ui.items_to_sell = (player.find_child("Inventory") as Inventory).items
-		shopping_ui.setup_selling_grid()
-	if Input.is_action_just_pressed("ui_cancel") && shopping_ui.visible:
+	if Input.is_action_just_pressed("ui_cancel") and shopping_ui.visible:
 		shopping_ui.visible = false

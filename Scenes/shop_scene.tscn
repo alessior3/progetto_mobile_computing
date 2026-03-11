@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dlglw7cpvbp1h" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Interior/Elements.png" id="3_jwdga"]
 [ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="4_uxpe5"]
 [ext_resource type="PackedScene" uid="uid://cvnbhkvv282mw" path="res://Scenes/merchant.tscn" id="6_uxpe5"]
+[ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="7_nkmxo"]
+[ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="8_bf58t"]
+[ext_resource type="Resource" uid="uid://bbck307rsyyoj" path="res://Resources/CarrotSeed/carrot_seed.tres" id="9_bf58t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6rmb7"]
 texture = ExtResource("1_35huh")
@@ -772,5 +775,35 @@ position = Vector2(-32, 96)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=563568656]
 position = Vector2(1, 1)
 zoom = Vector2(2, 2)
+
+[node name="stick" parent="." unique_id=1473875551 instance=ExtResource("7_nkmxo")]
+position = Vector2(-59, 71)
+item_id = "stick"
+inventory_item = ExtResource("8_bf58t")
+
+[node name="stick2" parent="." unique_id=482925307 instance=ExtResource("7_nkmxo")]
+position = Vector2(-59, 71)
+item_id = "stick2"
+inventory_item = ExtResource("8_bf58t")
+
+[node name="stick3" parent="." unique_id=899640553 instance=ExtResource("7_nkmxo")]
+position = Vector2(-59, 71)
+item_id = "stick3"
+inventory_item = ExtResource("8_bf58t")
+
+[node name="stick4" parent="." unique_id=1859243438 instance=ExtResource("7_nkmxo")]
+position = Vector2(-59, 71)
+item_id = "stick4"
+inventory_item = ExtResource("8_bf58t")
+
+[node name="stick5" parent="." unique_id=1868814072 instance=ExtResource("7_nkmxo")]
+position = Vector2(-59, 71)
+item_id = "stick5"
+inventory_item = ExtResource("8_bf58t")
+
+[node name="PickUpItem" parent="." unique_id=80675961 instance=ExtResource("7_nkmxo")]
+position = Vector2(-22, 83)
+item_id = "cs"
+inventory_item = ExtResource("9_bf58t")
 
 [connection signal="body_entered" from="exitArea" to="." method="_on_exit_area_body_entered"]
