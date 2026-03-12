@@ -1,27 +1,45 @@
 extends StaticBody2D
 
 const PICK_UP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
-const RADISH_ITEM = preload("res://Resources/fullRadish/fullRadish.tres")
+
+# 1. IL NOSTRO DATABASE DELLE PIANTE
+# Qui puoi aggiungere tutte le piante del gioco. 
+# La chiave (es. "seedRadish") DEVE essere identica al nome (item.name) dell'oggetto seme nel tuo inventario.
+var crop_database = {
+	"Radish Seed": {
+		"grown_item": preload("res://Resources/fullRadish/fullRadish.tres"),
+		"animation": "radishAnimation",
+		"max_stages": 5
+	},
+	"Carrot Seed": { 
+		# Sostituisci il percorso qui sotto con quello reale della tua carota cresciuta!
+		"grown_item": preload("res://Resources/fullCarrot/fullCarrot.tres"), 
+		"animation": "carrotAnimation",
+		"max_stages": 4 # Magari la carota cresce in meno stadi
+	}
+}
 
 @onready var plant = $plant
-@onready var radish_timer = $radishTimer
+@onready var growth_timer = $GrowthTimer # Ricordati di rinominare il nodo!
 @onready var area_2d = $Area2D
 
 var player_in_zone = false
 var current_player: Node2D = null
 var is_planted = false
 var current_growth_stage = 0
-const MAX_GROWTH_STAGE = 5
+
+# Variabili dinamiche che cambiano in base a cosa piantiamo
+var current_crop_info: Dictionary = {}
+var max_growth_stage: int = 0
 
 func _ready():
-	# Assicurati che non ci sia nulla piantato all'inizio
 	plant.animation = "none"
 	is_planted = false
 	current_growth_stage = 0
 	
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
 	area_2d.body_exited.connect(_on_area_2d_body_exited)
-	radish_timer.timeout.connect(_on_radish_timer_timeout)
+	growth_timer.timeout.connect(_on_growth_timer_timeout)
 
 func _on_area_2d_body_entered(body):
 	if body.name == "player" or body is Player:
@@ -42,8 +60,8 @@ func _update_key_prompt():
 	if not player_in_zone or current_player == null:
 		return
 		
-	# Mostra il prompt solo se la zona è vuota O se la pianta è pronta per essere raccolta
-	var should_show = not is_planted or (is_planted and current_growth_stage == MAX_GROWTH_STAGE)
+	# Usiamo la variabile dinamica max_growth_stage
+	var should_show = not is_planted or (is_planted and current_growth_stage == max_growth_stage)
 	
 	if should_show:
 		if current_player.has_node("Key"):
@@ -58,12 +76,30 @@ func _update_key_prompt():
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.is_action_pressed("interact") and player_in_zone:
-		# Se non c'è già una pianta, proviamo a piantare
 		if not is_planted:
 			_try_plant_seed()
-		# Se c'è una pianta completamente cresciuta (Opzionale: raccolta)
-		elif is_planted and current_growth_stage == MAX_GROWTH_STAGE:
+		elif is_planted and current_growth_stage == max_growth_stage:
 			_harvest_plant()
+
+func _try_plant_seed():
+	var hand_item = Global.persistent_hand
+	
+	# Controlliamo se ha qualcosa in mano E se quel qualcosa è nel nostro database
+	if hand_item != null and crop_database.has(hand_item.name):
+		# Carichiamo i dati specifici di questa pianta
+		current_crop_info = crop_database[hand_item.name]
+		max_growth_stage = current_crop_info["max_stages"]
+		
+		is_planted = true
+		current_growth_stage = 0
+		plant.animation = current_crop_info["animation"]
+		plant.frame = current_growth_stage
+		
+		growth_timer.start()
+		print("Piantato: ", hand_item.name)
+		
+		_update_key_prompt()
+		consume_seed(hand_item)
 
 func _harvest_plant():
 	is_planted = false
@@ -72,20 +108,17 @@ func _harvest_plant():
 	_update_key_prompt()
 	
 	var dropped_node = PICK_UP_ITEM_SCENE.instantiate()
-	
 	dropped_node.z_index = -1
 	dropped_node.y_sort_enabled = true
 	
-	# Usiamo il parent per far apparire l'oggetto nello stesso livello del terreno
 	var level_node = get_parent()
 	level_node.add_child(dropped_node)
 	
-	dropped_node.inventory_item = RADISH_ITEM
-	dropped_node.item_id = "" # un id vuoto fa sì che l'oggetto non sia persistente
+	# Assegniamo l'oggetto corretto preso dal database!
+	dropped_node.inventory_item = current_crop_info["grown_item"]
+	dropped_node.item_id = "" 
 	
-	# Facciamo "saltare fuori" l'oggetto
 	var start_pos = global_position
-	# offset casuale
 	var random_offset = Vector2(randf_range(-15.0, 15.0), randf_range(10.0, 20.0))
 	var end_pos = start_pos + random_offset
 	
@@ -99,67 +132,40 @@ func _harvest_plant():
 	tween_y.tween_property(dropped_node, "global_position:y", peak_y, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween_y.tween_property(dropped_node, "global_position:y", end_pos.y, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
-	print("Ravanello raccolto!")
-
-func _try_plant_seed():
-	var hand_item = Global.persistent_hand
+	print("Raccolto: ", current_crop_info["grown_item"].name)
 	
-	if hand_item != null and hand_item.name == "seedRadish":
-		# Il giocatore ha il seme equipaggiato.
-		
-		# Iniziamo la semina
-		is_planted = true
-		current_growth_stage = 0
-		plant.animation = "radishAnimation"
-		plant.frame = current_growth_stage
-		
-		radish_timer.start()
-		print("Seme piantato!")
-		
-		# Nasconde il prompt visto che ora c'è la semina in corso
-		_update_key_prompt()
-		
-		# Rimuoviamo 1 seme dall'inventario
-		consume_seed(hand_item)
+	# Puliamo la memoria del terreno
+	current_crop_info = {}
 
 func consume_seed(seed_item: InventoryItem):
+	# (Questa funzione rimane identica a prima)
 	seed_item.stacks -= 1
 	var root = get_tree().current_scene
 	var player = root.find_child("player", true, false)
 	
 	if seed_item.stacks <= 0:
-		# Se le quantità sono 0, l'oggetto è finito
 		Global.persistent_hand = null
-		
 		if player and player.has_node("Inventory"):
 			var inventory = player.get_node("Inventory")
-			
-			# Aggiorniamo la UI rimuovendo l'oggetto
 			if inventory.on_screen_ui:
 				inventory.on_screen_ui.equip_item(null, "Hand")
 			if inventory.equipped_sprite:
 				inventory.equipped_sprite.hide()
-			
-			# Fallback se non c'è l'on_screen_ui ma l'UI dell'inventario principale ha bisogno di aggiornarsi
 			if inventory.inventory_ui:
 				inventory.inventory_ui.update_slots(inventory.items)
 	else:
-		# L'oggetto ha ancora quantità
 		if player and player.has_node("Inventory"):
 			var inventory = player.get_node("Inventory")
-			# Ricarichiamo l'oggetto nella UI che aggiornerà il testo della quantità!
 			if inventory.on_screen_ui:
 				inventory.on_screen_ui.equip_item(seed_item, "Hand")
 			if inventory.inventory_ui:
 				inventory.inventory_ui.update_slots(inventory.items)
 
-func _on_radish_timer_timeout():
-	if is_planted and current_growth_stage < MAX_GROWTH_STAGE:
+func _on_growth_timer_timeout():
+	if is_planted and current_growth_stage < max_growth_stage:
 		current_growth_stage += 1
 		plant.frame = current_growth_stage
-		print("La pianta è cresciuta allo stadio ", current_growth_stage)
 		
-		if current_growth_stage == MAX_GROWTH_STAGE:
-			radish_timer.stop()
-			print("La pianta è completamente cresciuta!")
+		if current_growth_stage == max_growth_stage:
+			growth_timer.stop()
 			_update_key_prompt()

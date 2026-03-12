@@ -563,7 +563,7 @@ shape = SubResource("CircleShape2D_1hwp8")
 position = Vector2(0, -2)
 scale = Vector2(0.8333333, 0.76666665)
 sprite_frames = SubResource("SpriteFrames_e2aqa")
-animation = &"sunflower_animation"
+animation = &"carrotAnimation"
 
-[node name="radishTimer" type="Timer" parent="." unique_id=1328909839]
+[node name="GrowthTimer" type="Timer" parent="." unique_id=1328909839]
 wait_time = 5.0

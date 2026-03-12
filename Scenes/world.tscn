@@ -2528,13 +2528,13 @@ script = ExtResource("23_no8kt")
 z_index = -1
 y_sort_enabled = false
 position = Vector2(367, 359)
-item_id = "seedRadish"
+item_id = "radishSeed"
 inventory_item = ExtResource("24_xbk3s")
 
 [node name="fullRadish" parent="." unique_id=1692436771 instance=ExtResource("15_hgpy0")]
 inventory_item = ExtResource("26_pt3ps")
 
 [node name="beast" parent="." unique_id=349992580 instance=ExtResource("27_hmc15")]
-position = Vector2(5378, -3923)
+position = Vector2(956, 361)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -8,7 +8,7 @@
 script = ExtResource("2_ku5l0")
 slot_type = "Hand"
 ground_collision_shape = ExtResource("1_60ewi")
-name = "seedRadish"
+name = "Radish Seed"
 texture = ExtResource("3_6bir6")
 max_stacks = 2
 price = 10
