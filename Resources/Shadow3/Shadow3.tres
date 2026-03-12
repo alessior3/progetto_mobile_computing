@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://bn6pupdgf3sed"]
+
+[ext_resource type="Shape2D" uid="uid://dtwtftf34x1ye" path="res://Resources/Shadow3/Shadow3_collision_shape.tres" id="1_nordc"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_4p6aq"]
+[ext_resource type="Texture2D" uid="uid://dbb7s6grv4083" path="res://Resources/Shadow3/Shadow3_sprite.tres" id="3_hsyh1"]
+
+[resource]
+script = ExtResource("2_4p6aq")
+slot_type = "Hand"
+ground_collision_shape = ExtResource("1_nordc")
+name = "Shadow3"
+texture = ExtResource("3_hsyh1")
+price = 40
+is_weapon = true
+damage = 40
