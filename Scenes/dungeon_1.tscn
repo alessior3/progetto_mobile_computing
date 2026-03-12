@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="17_grqd7"]
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 [ext_resource type="Resource" uid="uid://bn6pupdgf3sed" path="res://Resources/Shadow3/Shadow3.tres" id="19_xeqhr"]
+[ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="20_natbj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xeqhr"]
 texture = ExtResource("1_yr1ei")
@@ -2697,3 +2698,6 @@ position = Vector2(891, -283)
 position = Vector2(867, -273)
 item_id = "Shadow3"
 inventory_item = ExtResource("19_xeqhr")
+
+[node name="beast" parent="." unique_id=349992580 instance=ExtResource("20_natbj")]
+position = Vector2(140, -108)

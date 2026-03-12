@@ -19,7 +19,6 @@ var save_path = "user://savegame.save"
 # Dizionario che ricorderà cosa c'è dentro ogni singola cassa del gioco
 var chests_data: Dictionary = {}
 
-
 func save_game():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	if file:
@@ -53,3 +52,12 @@ func load_game() -> bool:
 		collected_item_ids = data.get("raccolti", []) 
 		return true
 	return false
+
+# --- NUOVA FUNZIONE PER QUANDO IL PLAYER MUORE ---
+func reset_inventory_and_gold():
+	persistent_gold = 0
+	persistent_items.clear()
+	persistent_hand = null
+	persistent_potions = null
+	persistent_food = null
+	# Non svuotiamo collected_item_ids, altrimenti gli oggetti nel mondo respawnano!

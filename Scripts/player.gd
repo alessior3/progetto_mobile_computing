@@ -7,6 +7,7 @@ var current_speed: int = 100
 
 var current_dir = "none"
 var is_attacking: bool = false
+var is_dead: bool = false
 
 @onready var inventory: Inventory = $Inventory
 @onready var health_system: HealthSystem = $HealthSystem
@@ -54,6 +55,22 @@ func _ready():
 		Global.player_pos = Vector2.ZERO 
 		print("Player: Posizionato dalla PORTA")
 
+	# --- IL TRUCCO DEL BIGLIETTINO: APPLICAZIONE PENALITÀ ---
+	# Appena nasciamo, controlliamo se siamo appena morti nella "vita precedente"
+	if Global.has_meta("has_died") and Global.get_meta("has_died") == true:
+		print("Penalità di Morte: Svuotamento tasche in corso...")
+		Global.reset_inventory_and_gold()
+		if inventory:
+			for i in range(inventory.items.size()):
+				inventory.items[i] = null # Svuota visivamente lo zaino
+		
+		Global.set_meta("has_died", false) # Strappiamo il bigliettino
+		
+		# ORA salviamo sul cloud. Visto che siamo appena spawnati nel punto giusto (l'ultimo salvataggio), 
+		# sovrascriveremo le tasche vuote al Cloud, mantenendo la posizione X, Y e la Scena intatte!
+		SaveManager.save_game()
+	# --------------------------------------------------------
+
 	if Global.get("player_facing_dir") != null:
 		current_dir = Global.player_facing_dir
 	else:
@@ -66,6 +83,8 @@ func _ready():
 		$Label.text = Global.current_username
 
 func _unhandled_input(event):
+	if is_dead: return
+	
 	if event is InputEventKey and event.is_action_pressed("interact") and house != null:
 		house.enter()
 		
@@ -140,6 +159,8 @@ func apply_attack_damage():
 					target.apply_damage(attack_damage)
 
 func _physics_process(delta):
+	if is_dead: return
+	
 	var hand_item = Global.persistent_hand
 	if has_node("TorchLight"):
 		$TorchLight.visible = (hand_item != null and hand_item.name == "Torch" or hand_item != null and hand_item.name == "Torcia")
@@ -149,7 +170,6 @@ func _physics_process(delta):
 	else:
 		move_and_slide()
 
-# ---> AGGIUNTO L'UNDERSCORE A _delta PER RISOLVERE L'ERRORE GIALLO
 func player_movement(_delta):
 	var anim_state = 1 
 	
@@ -233,7 +253,6 @@ func _on_damage_taken(new_health: int):
 	if progress_bar:
 		progress_bar.value = new_health
 		
-	# --- SE LA VITA È 0 O MENO, IL PLAYER MUORE ---
 	if new_health <= 0:
 		die()
 
@@ -241,16 +260,36 @@ func _on_damage_taken(new_health: int):
 # GESTIONE MORTE DEL PLAYER
 # ==========================================
 func die():
-	print("Il Player è morto!")
-	get_tree().reload_current_scene() # Riavvia la scena
+	if is_dead: return 
+	is_dead = true
+	
+	print("Il Player è morto! Caricamento ultimo salvataggio dal Cloud...")
+	
+	# Congeliamo il player
+	visible = false
+	velocity = Vector2.ZERO
+	$CollisionShape2D.set_deferred("disabled", true) 
+	
+	# 1. Lasciamo un bigliettino a Godot: "Al prossimo respawn scarica l'inventario"
+	Global.set_meta("has_died", true)
+	
+	# 2. NON salviamo qui. Carichiamo e basta per ottenere la posizione giusta
+	var cloud_load_started = SaveManager.load_game() 
+	
+	# Sicurezza per test locale (se premi play senza loggarti)
+	if not cloud_load_started:
+		print("Test Locale: Riavvio della scena in corso...")
+		await get_tree().create_timer(1.0).timeout 
+		get_tree().reload_current_scene()
 
 func apply_damage(amount: int):
+	if is_dead: return 
+	
 	print("Il Player ha subito ", amount, " danni!")
 	
 	if health_system and health_system.has_method("take_damage"):
 		health_system.take_damage(amount)
 		
-	# ---> FIX CRASH: Facciamo il flash rosso SOLO se siamo sopravvissuti!
 	if health_system.current_health > 0 and get_tree() != null:
 		modulate = Color(1, 0, 0)
 		await get_tree().create_timer(0.2).timeout
