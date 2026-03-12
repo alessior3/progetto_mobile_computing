@@ -82,12 +82,13 @@ func _unhandled_input(event):
 			_harvest_plant()
 
 func _try_plant_seed():
-	var hand_item = Global.persistent_hand
+	# 1. Ora guardiamo cosa c'è nello slot del cibo!
+	var food_item = Global.persistent_food 
 	
-	# Controlliamo se ha qualcosa in mano E se quel qualcosa è nel nostro database
-	if hand_item != null and crop_database.has(hand_item.name):
-		# Carichiamo i dati specifici di questa pianta
-		current_crop_info = crop_database[hand_item.name]
+	# 2. Controlliamo la variabile food_item al posto di hand_item
+	if food_item != null and crop_database.has(food_item.name):
+		
+		current_crop_info = crop_database[food_item.name]
 		max_growth_stage = current_crop_info["max_stages"]
 		
 		is_planted = true
@@ -96,11 +97,10 @@ func _try_plant_seed():
 		plant.frame = current_growth_stage
 		
 		growth_timer.start()
-		print("Piantato: ", hand_item.name)
+		print("Piantato seme con ID: ", food_item.name)
 		
 		_update_key_prompt()
-		consume_seed(hand_item)
-
+		consume_seed(food_item) # Passiamo l'oggetto cibo alla funzione
 func _harvest_plant():
 	is_planted = false
 	current_growth_stage = 0
@@ -138,26 +138,32 @@ func _harvest_plant():
 	current_crop_info = {}
 
 func consume_seed(seed_item: InventoryItem):
-	# (Questa funzione rimane identica a prima)
 	seed_item.stacks -= 1
 	var root = get_tree().current_scene
 	var player = root.find_child("player", true, false)
 	
 	if seed_item.stacks <= 0:
-		Global.persistent_hand = null
+		Global.persistent_food = null
+		
 		if player and player.has_node("Inventory"):
 			var inventory = player.get_node("Inventory")
+			
+			# MAGIA CORRETTA: Cerchiamo per NOME
+			for i in range(inventory.items.size()):
+				if inventory.items[i] != null and inventory.items[i].name == seed_item.name:
+					inventory.items[i] = null
+					break # Trovato e distrutto!
+			
 			if inventory.on_screen_ui:
-				inventory.on_screen_ui.equip_item(null, "Hand")
-			if inventory.equipped_sprite:
-				inventory.equipped_sprite.hide()
+				inventory.on_screen_ui.equip_item(null, "Food")
+			
 			if inventory.inventory_ui:
 				inventory.inventory_ui.update_slots(inventory.items)
 	else:
 		if player and player.has_node("Inventory"):
 			var inventory = player.get_node("Inventory")
 			if inventory.on_screen_ui:
-				inventory.on_screen_ui.equip_item(seed_item, "Hand")
+				inventory.on_screen_ui.equip_item(seed_item, "Food")
 			if inventory.inventory_ui:
 				inventory.inventory_ui.update_slots(inventory.items)
 

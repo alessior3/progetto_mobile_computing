@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name OnScreenUi
 
 signal request_unequip(item: InventoryItem)
+signal eat_requested(item: InventoryItem)
 
 # RIFERIMENTI AI NODI
 @onready var hand: OnScreenEquipmentSlot = %hand
@@ -18,6 +19,7 @@ func _ready() -> void:
 	for slot in slots_dictionary.values():
 		if slot:
 			slot.unequip_requested.connect(_on_slot_unequip_requested)
+			slot.eat_requested.connect(func(item): eat_requested.emit(item))
 	
 	# CERCHIAMO L'INVENTARIO: Ci colleghiamo al segnale dell'oro
 	var player = get_tree().get_first_node_in_group("player")
@@ -46,7 +48,7 @@ func _on_slot_unequip_requested(item: InventoryItem):
 	request_unequip.emit(item)
 
 func equip_item(item: InventoryItem, slot_to_equip: String):
-	if item == null: return
+	#if item == null: return
 	_prepare_slots()
 	if slots_dictionary.has(slot_to_equip):
 		var slot_node = slots_dictionary[slot_to_equip]

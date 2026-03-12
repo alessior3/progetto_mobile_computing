@@ -56,18 +56,14 @@ func _ready():
 		print("Player: Posizionato dalla PORTA")
 
 	# --- IL TRUCCO DEL BIGLIETTINO: APPLICAZIONE PENALITÀ ---
-	# Appena nasciamo, controlliamo se siamo appena morti nella "vita precedente"
 	if Global.has_meta("has_died") and Global.get_meta("has_died") == true:
 		print("Penalità di Morte: Svuotamento tasche in corso...")
 		Global.reset_inventory_and_gold()
 		if inventory:
 			for i in range(inventory.items.size()):
-				inventory.items[i] = null # Svuota visivamente lo zaino
+				inventory.items[i] = null 
 		
-		Global.set_meta("has_died", false) # Strappiamo il bigliettino
-		
-		# ORA salviamo sul cloud. Visto che siamo appena spawnati nel punto giusto (l'ultimo salvataggio), 
-		# sovrascriveremo le tasche vuote al Cloud, mantenendo la posizione X, Y e la Scena intatte!
+		Global.set_meta("has_died", false) 
 		SaveManager.save_game()
 	# --------------------------------------------------------
 
@@ -81,6 +77,10 @@ func _ready():
 
 	if has_node("Label"):
 		$Label.text = Global.current_username
+	
+	# Connessione del segnale per il cibo dalla UI su schermo
+	if has_node("OnScreenUi"):
+		$OnScreenUi.eat_requested.connect(_on_eat_requested)
 
 func _unhandled_input(event):
 	if is_dead: return
@@ -265,18 +265,14 @@ func die():
 	
 	print("Il Player è morto! Caricamento ultimo salvataggio dal Cloud...")
 	
-	# Congeliamo il player
 	visible = false
 	velocity = Vector2.ZERO
 	$CollisionShape2D.set_deferred("disabled", true) 
 	
-	# 1. Lasciamo un bigliettino a Godot: "Al prossimo respawn scarica l'inventario"
 	Global.set_meta("has_died", true)
 	
-	# 2. NON salviamo qui. Carichiamo e basta per ottenere la posizione giusta
 	var cloud_load_started = SaveManager.load_game() 
 	
-	# Sicurezza per test locale (se premi play senza loggarti)
 	if not cloud_load_started:
 		print("Test Locale: Riavvio della scena in corso...")
 		await get_tree().create_timer(1.0).timeout 
@@ -295,3 +291,55 @@ func apply_damage(amount: int):
 		await get_tree().create_timer(0.2).timeout
 		if get_tree() != null:
 			modulate = Color(1, 1, 1)
+
+# ==========================================
+# GESTIONE CIBO E BUFF
+# ==========================================
+func _on_eat_requested(item: InventoryItem):
+	eat_equipped_food()
+
+func eat_equipped_food():
+	var food = Global.persistent_food
+	
+	if food != null and food.get("is_consumable") == true:
+		
+		# 1. CURA IL PLAYER
+		if food.get("heal_amount") > 0:
+			if health_system and health_system.has_method("heal"):
+				health_system.heal(food.heal_amount)
+				print("Mangiato ", food.name, "! Curato di ", food.heal_amount, " HP.")
+			else:
+				health_system.current_health += food.heal_amount
+				if health_system.current_health > health_system.max_health:
+					health_system.current_health = health_system.max_health
+				_on_damage_taken(health_system.current_health) 
+				print("Mangiato ", food.name, "! Curato di ", food.heal_amount, " HP.")
+				
+		# 2. PREDISPOSIZIONE BUFF
+		if food.get("buff_type") != "nessuno" and food.get("buff_type") != "":
+			print("Ottenuto buff: ", food.buff_type, " +", food.buff_value, " per ", food.buff_duration, " secondi!")
+			
+		# 3. CONSUMA L'OGGETTO
+		consume_food_item(food)
+
+func consume_food_item(food: InventoryItem):
+	food.stacks -= 1
+	
+	if food.stacks <= 0:
+		Global.persistent_food = null
+		
+		if inventory:
+			# MAGIA CORRETTA: Cerchiamo per NOME anziché per istanza
+			for i in range(inventory.items.size()):
+				if inventory.items[i] != null and inventory.items[i].name == food.name:
+					inventory.items[i] = null
+					break # Trovato e distrutto, fermiamo il ciclo!
+				
+			if inventory.on_screen_ui:
+				inventory.on_screen_ui.equip_item(null, "Food")
+	else:
+		if inventory and inventory.on_screen_ui:
+			inventory.on_screen_ui.equip_item(food, "Food")
+			
+	if inventory and inventory.inventory_ui:
+		inventory.inventory_ui.update_slots(inventory.items)

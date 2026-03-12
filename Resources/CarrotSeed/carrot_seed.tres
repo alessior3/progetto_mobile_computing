@@ -7,6 +7,7 @@
 
 [resource]
 script = ExtResource("1_y0uoc")
+slot_type = "Hand"
 ground_collision_shape = SubResource("RectangleShape2D_3bjww")
 name = "Carrot Seed"
 texture = ExtResource("2_q0ils")

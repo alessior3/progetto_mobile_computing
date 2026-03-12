@@ -6,10 +6,13 @@
 
 [resource]
 script = ExtResource("2_cfvx3")
-slot_type = "Hand"
+item_id = "radish"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_sunaq")
-name = "fullRadish"
+name = "Radish"
 texture = ExtResource("3_nalpq")
-max_stacks = 999
+max_stacks = 1
 price = 40
 damage = 40
+is_consumable = true
+heal_amount = 10

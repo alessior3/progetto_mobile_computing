@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://blggmcaosyqkm"]
 
 [ext_resource type="Script" uid="uid://hj8vkaswqfa1" path="res://Scripts/on_screen_equipment_slot.gd" id="1_x53ij"]
-[ext_resource type="Texture2D" uid="uid://butg5isggw12q" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_0cd4b"]
+[ext_resource type="Texture2D" uid="uid://suyxblxtuln6" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_0cd4b"]
 
 [node name="onScreenEquipmentSlot" type="VBoxContainer" unique_id=1156229406]
 offset_right = 40.0

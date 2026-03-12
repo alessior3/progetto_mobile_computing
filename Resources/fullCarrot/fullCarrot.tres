@@ -8,7 +8,7 @@
 script = ExtResource("2_7yc1p")
 slot_type = "Hand"
 ground_collision_shape = ExtResource("1_7rvgi")
-name = "fullbeetroot"
+name = "Carrot"
 texture = ExtResource("3_jhqxp")
 max_stacks = 999
 price = 40

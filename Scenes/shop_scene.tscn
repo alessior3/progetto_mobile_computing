@@ -801,7 +801,7 @@ position = Vector2(-59, 71)
 item_id = "stick5"
 inventory_item = ExtResource("8_bf58t")
 
-[node name="PickUpItem" parent="." unique_id=80675961 instance=ExtResource("7_nkmxo")]
+[node name="carrotSeed" parent="." unique_id=80675961 instance=ExtResource("7_nkmxo")]
 position = Vector2(-22, 83)
 item_id = "cs"
 inventory_item = ExtResource("9_bf58t")

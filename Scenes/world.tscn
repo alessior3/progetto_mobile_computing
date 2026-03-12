@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://rolofm5gba8y" path="res://Scenes/dungeon_1_entrance.tscn" id="22_pyn1s"]
 [ext_resource type="Script" uid="uid://dy81u26dbl5g1" path="res://Scripts/dungeon1_entrance.gd" id="23_no8kt"]
 [ext_resource type="Resource" uid="uid://hit7s0ssu37x" path="res://Resources/seedRadish1/Radish.tres" id="24_xbk3s"]
-[ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="26_pt3ps"]
+[ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="27_dt0r1"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="27_hmc15"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
@@ -2494,6 +2494,7 @@ inventory_item = ExtResource("18_0pcbe")
 amount = 30
 
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
+z_index = 1
 position = Vector2(409, 343)
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
@@ -2524,17 +2525,19 @@ position = Vector2(856, -90)
 collision_mask = 3
 script = ExtResource("23_no8kt")
 
-[node name="radish" parent="." unique_id=2055966257 instance=ExtResource("15_hgpy0")]
+[node name="radishSeed" parent="." unique_id=2055966257 instance=ExtResource("15_hgpy0")]
 z_index = -1
 y_sort_enabled = false
 position = Vector2(367, 359)
 item_id = "radishSeed"
 inventory_item = ExtResource("24_xbk3s")
 
-[node name="fullRadish" parent="." unique_id=1692436771 instance=ExtResource("15_hgpy0")]
-inventory_item = ExtResource("26_pt3ps")
-
 [node name="beast" parent="." unique_id=349992580 instance=ExtResource("27_hmc15")]
-position = Vector2(956, 361)
+position = Vector2(359, 350)
+
+[node name="radish" parent="." unique_id=1506209311 instance=ExtResource("15_hgpy0")]
+position = Vector2(454, 354)
+item_id = "radish"
+inventory_item = ExtResource("27_dt0r1")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

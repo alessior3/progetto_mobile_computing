@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource("2_ku5l0")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_60ewi")
 name = "Radish Seed"
 texture = ExtResource("3_6bir6")
-max_stacks = 2
+max_stacks = 1
 price = 10
 damage = 40
