@@ -558,7 +558,6 @@ script = ExtResource("1_script")
 sprite_frames = SubResource("SpriteFrames_g03rn")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2084559321]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1457636908]
 shape = SubResource("CircleShape2D_1hwp8")
@@ -573,7 +572,6 @@ animation = &"sunflower_animation"
 wait_time = 5.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=460799685]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=152120311]
 shape = SubResource("RectangleShape2D_1tich")
