@@ -28,14 +28,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_we46v")
 
+[node name="ShopGoldLabel" type="Label" parent="Panel" unique_id=1841405187]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 910.0
+offset_top = 7.0
+offset_right = 977.0
+offset_bottom = 35.0
+theme_override_font_sizes/font_size = 20
+
 [node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1654132012]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = -2.0
+offset_right = 62.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
+theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
@@ -100,11 +113,3 @@ size_flags_vertical = 3
 [node name="ActionBtn" type="Button" parent="Panel/MarginContainer/MainVBox/ContentSplit/DetailsPanel" unique_id=1209678262]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="ShopGoldLabel" type="Label" parent="Panel" unique_id=1841405187]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 1109.0
-offset_top = 4.0
-offset_right = 1149.0
-offset_bottom = 27.0

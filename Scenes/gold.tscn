@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://i1eli4r6ix58"]
+
+[ext_resource type="Texture2D" uid="uid://caqfkcoghbkya" path="res://Assets/Gold/Gold_1.png" id="1_mkt3x"]
+[ext_resource type="Texture2D" uid="uid://dgvjn72257oau" path="res://Assets/Gold/Gold_2.png" id="2_dp635"]
+[ext_resource type="Texture2D" uid="uid://dualeys4vap1v" path="res://Assets/Gold/Gold_3.png" id="3_jb3km"]
+[ext_resource type="Texture2D" uid="uid://cx5vycreyd1k6" path="res://Assets/Gold/Gold_4.png" id="4_sr2vs"]
+[ext_resource type="Texture2D" uid="uid://dxij8a3cw3obm" path="res://Assets/Gold/Gold_5.png" id="5_iveyg"]
+[ext_resource type="Texture2D" uid="uid://kmkxejvc4cbu" path="res://Assets/Gold/Gold_6.png" id="6_dr07c"]
+[ext_resource type="Texture2D" uid="uid://c22s323jmilc3" path="res://Assets/Gold/Gold_7.png" id="7_hrpw0"]
+[ext_resource type="Texture2D" uid="uid://c0u16l40qtd5j" path="res://Assets/Gold/Gold_8.png" id="8_wnygk"]
+[ext_resource type="Texture2D" uid="uid://bpvrhhvqs7xqy" path="res://Assets/Gold/Gold_9.png" id="9_edaqx"]
+[ext_resource type="Texture2D" uid="uid://r1lqiv3jn8hv" path="res://Assets/Gold/Gold_10.png" id="10_77mqq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbk5p"]
+atlas = ExtResource("1_mkt3x")
+region = Rect2(0, 0, 563, 564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv4if"]
+atlas = ExtResource("2_dp635")
+region = Rect2(0, 0, 559, 564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqxex"]
+atlas = ExtResource("3_jb3km")
+region = Rect2(0, 0, 504, 564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtl5d"]
+atlas = ExtResource("4_sr2vs")
+region = Rect2(0, 0, 428, 565)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wii7"]
+atlas = ExtResource("5_iveyg")
+region = Rect2(0, 0, 262, 564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81xrx"]
+atlas = ExtResource("6_dr07c")
+region = Rect2(0, 0, 108, 564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euji8"]
+atlas = ExtResource("7_hrpw0")
+region = Rect2(0, 0, 262, 564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naj3n"]
+atlas = ExtResource("8_wnygk")
+region = Rect2(0, 0, 428, 565)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1388h"]
+atlas = ExtResource("9_edaqx")
+region = Rect2(0, 0, 503, 564)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3j7b"]
+atlas = ExtResource("10_77mqq")
+region = Rect2(0, 0, 559, 564)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqqkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbk5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv4if")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqxex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtl5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wii7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81xrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euji8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naj3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1388h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3j7b")
+}],
+"loop": true,
+"name": &"gold_animation",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stl8m"]
+radius = 276.06522
+
+[node name="Gold" type="StaticBody2D" unique_id=1159244200]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1120755719]
+position = Vector2(-1.9073486e-06, -9.536743e-07)
+scale = Vector2(0.1411002, 0.11968085)
+sprite_frames = SubResource("SpriteFrames_qqqkt")
+animation = &"gold_animation"
+frame = 1
+frame_progress = 0.10855454
+
+[node name="Area2D" type="Area2D" parent="." unique_id=60244853]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1925215906]
+visible = false
+shape = SubResource("CircleShape2D_stl8m")
