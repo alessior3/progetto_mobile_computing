@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://dy81u26dbl5g1" path="res://Scripts/dungeon1_entrance.gd" id="23_no8kt"]
 [ext_resource type="Resource" uid="uid://hit7s0ssu37x" path="res://Resources/seedRadish1/Radish.tres" id="24_xbk3s"]
 [ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="26_pt3ps"]
+[ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="27_hmc15"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("1_8j60k")
@@ -2529,5 +2530,8 @@ inventory_item = ExtResource("24_xbk3s")
 
 [node name="fullRadish" parent="." unique_id=1692436771 instance=ExtResource("15_hgpy0")]
 inventory_item = ExtResource("26_pt3ps")
+
+[node name="beast" parent="." unique_id=349992580 instance=ExtResource("27_hmc15")]
+position = Vector2(285, 424)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

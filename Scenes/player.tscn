@@ -762,15 +762,7 @@ collision_mask = 69
 motion_mode = 1
 script = ExtResource("1_cvnsp")
 
-[node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("2_tx1dd")]
-visible = false
-offset_left = -11.0
-offset_top = -33.0
-offset_right = 12.0
-offset_bottom = -29.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=490341889]
-visible = false
 y_sort_enabled = true
 position = Vector2(0, 6)
 shape = ExtResource("2_fkybt")
@@ -782,7 +774,6 @@ sprite_frames = SubResource("SpriteFrames_eow3j")
 animation = &"attack_shadowIr_front"
 
 [node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
-visible = false
 z_index = 5
 position = Vector2(0.5, -19)
 texture = ExtResource("3_vgqql")
@@ -794,7 +785,6 @@ frame = 4
 libraries/ = SubResource("AnimationLibrary_8erm5")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=877386485]
-visible = false
 y_sort_enabled = true
 collision_mask = 5
 
@@ -803,7 +793,6 @@ position = Vector2(0, 6)
 shape = ExtResource("2_fkybt")
 
 [node name="inventoryUI" parent="." unique_id=1764230181 node_paths=PackedStringArray("inventory") instance=ExtResource("6_x3wgy")]
-visible = false
 inventory = NodePath("../Inventory")
 
 [node name="Inventory" type="Node" parent="." unique_id=1240474999 node_paths=PackedStringArray("on_screen_ui")]
@@ -811,7 +800,12 @@ script = ExtResource("7_3smsa")
 on_screen_ui = NodePath("../OnScreenUi")
 
 [node name="OnScreenUi" parent="." unique_id=1509945341 instance=ExtResource("8_8erm5")]
-visible = false
+
+[node name="ProgressBar" parent="OnScreenUi" unique_id=1165259361 instance=ExtResource("2_tx1dd")]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 139.0
+offset_bottom = 61.0
 
 [node name="TorchLight" type="PointLight2D" parent="." unique_id=1267070933]
 visible = false
