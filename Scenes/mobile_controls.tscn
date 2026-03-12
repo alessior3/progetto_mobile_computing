@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://yr400bxrhh2j" path="res://Assets/Icons/pressdd2.png" id="9_md083"]
 [ext_resource type="Texture2D" uid="uid://bjfeeodpk8shd" path="res://Assets/Icons/attack_normal32.png" id="10_8jnog"]
 [ext_resource type="Texture2D" uid="uid://cio4pclrfc0w1" path="res://Assets/Icons/Gemini_Generated_Image_d48l0ed48l0ed48l(2).png" id="11_8jnog"]
+[ext_resource type="Texture2D" uid="uid://bibjqsgvi1dpw" path="res://Assets/Icons/corsa.png" id="12_i47fd"]
+[ext_resource type="Texture2D" uid="uid://choqi2cd2g7r2" path="res://Assets/Icons/corsa32 copia.png" id="13_i47fd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md083"]
 size = Vector2(13, 15)
@@ -25,6 +27,9 @@ size = Vector2(13, 15)
 size = Vector2(13, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i47fd"]
+size = Vector2(315, 340)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y3to"]
 size = Vector2(315, 340)
 
 [node name="MobileControls" type="Node2D" unique_id=1738634788]
@@ -70,9 +75,16 @@ passby_press = true
 action = "ui_down"
 
 [node name="AttackButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1310786920]
-position = Vector2(384.9997, 218.00018)
-scale = Vector2(0.55279505, 0.5519287)
+position = Vector2(382, 218.00018)
+scale = Vector2(0.56211084, 0.56083035)
 texture_normal = ExtResource("10_8jnog")
 texture_pressed = ExtResource("11_8jnog")
 shape = SubResource("RectangleShape2D_i47fd")
 action = "attack"
+
+[node name="Corsa" type="TouchScreenButton" parent="CanvasLayer" unique_id=274158880]
+position = Vector2(570, 218)
+scale = Vector2(0.5593749, 0.56119406)
+texture_normal = ExtResource("12_i47fd")
+texture_pressed = ExtResource("13_i47fd")
+shape = SubResource("RectangleShape2D_0y3to")
