@@ -37,13 +37,13 @@ size = Vector2(315, 340)
 size = Vector2(315, 340)
 
 [node name="MobileControls" type="Node2D" unique_id=1738634788]
-position = Vector2(198.99985, 180.0002)
+position = Vector2(-147.00012, 189.0002)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1687308629]
 script = ExtResource("1_md083")
 
 [node name="LeftButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=2063095623]
-position = Vector2(32.99997, 225.0002)
+position = Vector2(-312.99997, 234.0002)
 scale = Vector2(13.692298, 12.533334)
 texture_normal = ExtResource("1_k0vrn")
 texture_pressed = ExtResource("3_md083")
@@ -52,7 +52,7 @@ passby_press = true
 action = "ui_left"
 
 [node name="RightButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=841482299]
-position = Vector2(402.99997, 226.0002)
+position = Vector2(57, 235.0002)
 scale = Vector2(13.615387, 12.333333)
 texture_normal = ExtResource("3_uhutp")
 texture_pressed = ExtResource("5_uhutp")
@@ -61,7 +61,7 @@ passby_press = true
 action = "ui_right"
 
 [node name="UpButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=174836046]
-position = Vector2(219.9997, 35)
+position = Vector2(-126.000305, 44)
 scale = Vector2(13.692312, 12.466666)
 texture_normal = ExtResource("5_n67iu")
 texture_pressed = ExtResource("7_md083")
@@ -70,7 +70,7 @@ passby_press = true
 action = "ui_up"
 
 [node name="DownButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=496426620]
-position = Vector2(218.99985, 225.0002)
+position = Vector2(-127.00012, 234.0002)
 scale = Vector2(13.769227, 12.4)
 texture_normal = ExtResource("7_q5klo")
 texture_pressed = ExtResource("9_md083")
@@ -79,7 +79,7 @@ passby_press = true
 action = "ui_down"
 
 [node name="AttackButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1310786920]
-position = Vector2(600, 222.00018)
+position = Vector2(254.00006, 231.00018)
 scale = Vector2(0.56211084, 0.56083035)
 texture_normal = ExtResource("10_8jnog")
 texture_pressed = ExtResource("11_i47fd")
@@ -88,7 +88,7 @@ passby_press = true
 action = "attack"
 
 [node name="Corsa" type="TouchScreenButton" parent="CanvasLayer" unique_id=274158880]
-position = Vector2(788.00006, 222)
+position = Vector2(442.0001, 231)
 scale = Vector2(0.5593749, 0.56119406)
 texture_normal = ExtResource("12_i47fd")
 texture_pressed = ExtResource("13_i47fd")
@@ -96,7 +96,7 @@ shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
 
 [node name="interazione" type="TouchScreenButton" parent="CanvasLayer" unique_id=1281332741]
-position = Vector2(784.00006, 22.999954)
+position = Vector2(438.0001, 31.999954)
 scale = Vector2(0.5593749, 0.56119406)
 texture_normal = ExtResource("14_ryli0")
 texture_pressed = ExtResource("15_tkpwc")
@@ -104,7 +104,7 @@ shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
 
 [node name="inventario" type="TouchScreenButton" parent="CanvasLayer" unique_id=1929019868]
-position = Vector2(598, 22)
+position = Vector2(252.00003, 31)
 scale = Vector2(0.5593749, 0.56119406)
 texture_normal = ExtResource("16_kaa57")
 texture_pressed = ExtResource("17_ryli0")
