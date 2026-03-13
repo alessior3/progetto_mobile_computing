@@ -1,15 +1,88 @@
 [gd_scene format=3 uid="uid://bv14rwmcy5lwq"]
 
 [ext_resource type="Script" uid="uid://cp6sgt34pvl17" path="res://Scripts/inventory_ui.gd" id="1_p83af"]
-[ext_resource type="Texture2D" uid="uid://b1rubpseql5hd" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_hcmni"]
-[ext_resource type="FontFile" uid="uid://dn1m4eo0b8lyw" path="res://Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf" id="3_o62ck"]
+[ext_resource type="Texture2D" uid="uid://raek28dai3g6" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_hcmni"]
+[ext_resource type="FontFile" uid="uid://faj66ehtrp1t" path="res://Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf" id="3_o62ck"]
 
 [sub_resource type="Theme" id="Theme_sfqc8"]
 default_font = ExtResource("3_o62ck")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o62ck"]
+bg_color = Color(0.3647059, 0.2509804, 0.21568628, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfqc8"]
+bg_color = Color(0.5529412, 0.43137255, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpv37"]
+bg_color = Color(0.5529412, 0.43137255, 0.3882353, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyjlm"]
+bg_color = Color(0.27058825, 0.3529412, 0.39215687, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxwjb"]
+bg_color = Color(0.3764706, 0.49019608, 0.54509807, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2v6ut"]
+bg_color = Color(0.3764706, 0.49019608, 0.54509807, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="inventoryUI" type="CanvasLayer" unique_id=1764230181]
 layer = 2
 script = ExtResource("1_p83af")
+size = 25
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1561253823]
 anchors_preset = 15
@@ -25,15 +98,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 64
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 60
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=1060352028]
 layout_mode = 2
 texture = ExtResource("2_hcmni")
 region_rect = Rect2(0, 0, 314.14465, 58)
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect" unique_id=470227411]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.5
+offset_right = 65.5
+offset_bottom = 33.0
+grow_horizontal = 2
+theme = SubResource("Theme_sfqc8")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect" unique_id=550409985]
 layout_mode = 1
@@ -43,28 +132,77 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
+theme_override_constants/margin_top = 26
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer" unique_id=1128677467]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer" unique_id=1844605657]
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=470227411]
-layout_mode = 2
-theme = SubResource("Theme_sfqc8")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 64
-text = "Inventory"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=2063908519]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer" unique_id=2063908519]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
+
+[node name="PennelloDestro" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer" unique_id=474802814]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="Control" type="Control" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/PennelloDestro" unique_id=1863685497]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ItemIcon" type="TextureRect" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/PennelloDestro" unique_id=791825446]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ItemNameLabel" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/PennelloDestro" unique_id=789325590]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DetailsLabel" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/PennelloDestro" unique_id=710391707]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/PennelloDestro" unique_id=925593845]
+layout_mode = 2
+
+[node name="EquipButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/PennelloDestro/HBoxContainer" unique_id=627979375]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_o62ck")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sfqc8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dpv37")
+text = "EQUIPAGGIA"
+
+[node name="DropButton" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/HBoxContainer/PennelloDestro/HBoxContainer" unique_id=1473457081]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_kyjlm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sxwjb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2v6ut")
+text = "LASCIA"
 
 [node name="CloseButton" type="Button" parent="." unique_id=1810667477]
 offset_left = 812.0

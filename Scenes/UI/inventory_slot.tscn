@@ -3,13 +3,8 @@
 [ext_resource type="Script" uid="uid://bq6oivsv2egpx" path="res://Scripts/inventory_slot.gd" id="1_nxjtc"]
 [ext_resource type="Texture2D" uid="uid://suyxblxtuln6" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/FacesetBox.png" id="2_tmbq5"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_nxjtc"]
-font_color = Color(1, 0.84313726, 0, 1)
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
-
 [node name="inventorySlot" type="VBoxContainer" unique_id=1444371129]
-custom_minimum_size = Vector2(60, 100)
+custom_minimum_size = Vector2(60, 60)
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
@@ -21,7 +16,20 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 texture = ExtResource("2_tmbq5")
 
-[node name="MenuButton" type="MenuButton" parent="NinePatchRect" unique_id=1045701122]
+[node name="SelectionHighlight" type="ColorRect" parent="NinePatchRect" unique_id=976458929]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+color = Color(1, 0.84313726, 0, 0.40784314)
+
+[node name="SlotButton" type="Button" parent="NinePatchRect" unique_id=1034282396]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -30,13 +38,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-item_count = 2
-popup/item_0/text = "Equip"
-popup/item_0/id = 0
-popup/item_1/text = "Drop"
-popup/item_1/id = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect/MenuButton" unique_id=1012739605]
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect/SlotButton" unique_id=1012739605]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,20 +47,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MenuButton/CenterContainer" unique_id=1584801310]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/SlotButton/CenterContainer" unique_id=1584801310]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 5
-
-[node name="onClickButton" type="Button" parent="NinePatchRect" unique_id=1726988271]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-mouse_filter = 1
 
 [node name="LabelContainer" type="VBoxContainer" parent="NinePatchRect" unique_id=888755145]
 layout_mode = 0
@@ -66,21 +61,6 @@ offset_right = 40.0
 offset_bottom = 128.0
 theme_override_constants/separation = -2
 alignment = 1
-
-[node name="nameLabel" type="Label" parent="NinePatchRect/LabelContainer" unique_id=937138521]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 16
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="priceLabel" type="Label" parent="NinePatchRect/LabelContainer" unique_id=1713841819]
-unique_name_in_owner = true
-layout_mode = 2
-label_settings = SubResource("LabelSettings_nxjtc")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="stacksLabel" type="Label" parent="NinePatchRect/LabelContainer" unique_id=113966610]
 unique_name_in_owner = true

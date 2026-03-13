@@ -12,4 +12,5 @@ ground_collision_shape = SubResource("RectangleShape2D_3bjww")
 name = "Carrot Seed"
 texture = ExtResource("2_q0ils")
 price = 30
+description = "\"Un seme minuscolo da cui nascerà una radice brillante. I vecchi esploratori giurano di non poterne fare a meno.\""
 metadata/_custom_type_script = "uid://xa2vtw3obwbv"

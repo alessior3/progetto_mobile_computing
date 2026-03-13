@@ -9,10 +9,12 @@ script = ExtResource("2_cfvx3")
 item_id = "radish"
 slot_type = "Food"
 ground_collision_shape = ExtResource("1_sunaq")
-name = "Radish"
+name = "Ravanello"
 texture = ExtResource("3_nalpq")
 max_stacks = 1
 price = 40
+description = "\"Un sapore così piccante e pungente che ti fa letteralmente scattare in piedi come una molla!
+Effetto: Velocità di scatto raddoppiata per 4 secondi. Ottimo per le fughe!\""
 damage = 40
 is_consumable = true
 heal_amount = 10

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="7_nkmxo"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="8_bf58t"]
 [ext_resource type="Resource" uid="uid://bbck307rsyyoj" path="res://Resources/CarrotSeed/carrot_seed.tres" id="9_bf58t"]
+[ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="11_jynki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6rmb7"]
 texture = ExtResource("1_35huh")
@@ -805,5 +806,10 @@ inventory_item = ExtResource("8_bf58t")
 position = Vector2(-22, 83)
 item_id = "cs"
 inventory_item = ExtResource("9_bf58t")
+
+[node name="radish" parent="." unique_id=1147312371 instance=ExtResource("7_nkmxo")]
+position = Vector2(-73, 35)
+item_id = "radish"
+inventory_item = ExtResource("11_jynki")
 
 [connection signal="body_entered" from="exitArea" to="." method="_on_exit_area_body_entered"]

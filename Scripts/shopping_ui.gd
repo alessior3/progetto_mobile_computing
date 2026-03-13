@@ -19,6 +19,7 @@ const ROW_SCENE = preload("res://Scenes/UI/shop_item_row.tscn")
 @onready var tab_sell: Button = %TabSellButton
 
 func _ready() -> void:
+	print("SHOP - Size: ", $Panel.size, " | Scale: ", $Panel.scale)
 	tab_buy.pressed.connect(_on_tab_buy_pressed)
 	tab_sell.pressed.connect(_on_tab_sell_pressed)
 	action_btn.pressed.connect(_on_action_btn_pressed)
