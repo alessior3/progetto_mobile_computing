@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://dw1c1khbbs08p"]
+
+[ext_resource type="Texture2D" uid="uid://djerivn23kvpw" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/Elements/Crops/milk.png" id="1_6i8dj"]
+
+[resource]
+atlas = ExtResource("1_6i8dj")
+region = Rect2(-0.000869751, -0.04847431, 10.066757, 12.115227)

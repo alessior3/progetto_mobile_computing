@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://ckfn4nt2nifcx"]
+
+[ext_resource type="Shape2D" uid="uid://ddbplxniwoht5" path="res://Resources/Milk/fullbeetroot_collision_shape.tres" id="1_vo77e"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_nb4b4"]
+[ext_resource type="Texture2D" uid="uid://dw1c1khbbs08p" path="res://Resources/Milk/fullbeetroot_sprite.tres" id="3_rmxlh"]
+
+[resource]
+script = ExtResource("2_nb4b4")
+slot_type = "Food"
+ground_collision_shape = ExtResource("1_vo77e")
+name = "Milk"
+texture = ExtResource("3_rmxlh")
+max_stacks = 999
+price = 40
+damage = 40

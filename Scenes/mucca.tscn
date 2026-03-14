@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cdlf5smyggxpb" path="res://Scenes/mucca.gd" id="1_j4mha"]
 [ext_resource type="Texture2D" uid="uid://b0jps36bjmw2h" path="res://Assets/Farm Animals/Male Cow Brown.png" id="2_j4mha"]
 [ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_5lxts"]
-[ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="4_fjs63"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="5_8w0u8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qk3ra"]
@@ -116,7 +115,7 @@ script = ExtResource("1_j4mha")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 sprite_frames = SubResource("SpriteFrames_iccxi")
-animation = &"back_walking"
+animation = &"front_walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454772329]
 position = Vector2(0, 1.75)
@@ -127,6 +126,10 @@ shape = ExtResource("3_5lxts")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1178060263]
 shape = SubResource("RectangleShape2D_n2oh3")
 
-[node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("4_fjs63")]
-
 [node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("5_8w0u8")]
+
+[node name="TimerL" type="Timer" parent="." unique_id=1116866422]
+wait_time = 10.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_interaction_area_body_exited"]

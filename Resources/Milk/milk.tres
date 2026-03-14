@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://c7m5p2y1j4n8k"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_v7xym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_milk"]
+size = Vector2(8, 10)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_milk"]
+load_path = "res://.godot/imported/milk.png-1ed4c112ff9b87daf5a12ace13aa291a.ctex"
+
+[resource]
+script = ExtResource("1_v7xym")
+ground_collision_shape = SubResource("RectangleShape2D_milk")
+name = "Milk"
+texture = SubResource("CompressedTexture2D_milk")
+max_stacks = 99
+price = 5
+description = "Fresh milk from the cow."
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"
