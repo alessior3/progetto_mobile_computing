@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://b0t111d1yp5xh"]
+
+[ext_resource type="Shape2D" uid="uid://di5fsdokpw2kn" path="res://Resources/Egg/egg_collision_shape.tres" id="1_15ali"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_23d0r"]
+[ext_resource type="Texture2D" uid="uid://d3erkm2lfo405" path="res://Resources/Egg/egg_sprite.tres" id="3_cx56g"]
+
+[resource]
+script = ExtResource("2_23d0r")
+slot_type = "Food"
+ground_collision_shape = ExtResource("1_15ali")
+item_id = ""
+name = "Egg"
+texture = ExtResource("3_cx56g")
+max_stacks = 99
+price = 10
+description = "A fresh egg from the chicken."
+is_weapon = false
+damage = 1
+is_consumable = true
+heal_amount = 15
+buff_type = "nessuno"
+buff_value = 0
+buff_duration = 0.0
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"

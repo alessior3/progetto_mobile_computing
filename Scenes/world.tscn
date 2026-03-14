@@ -27,6 +27,7 @@
 [ext_resource type="Resource" uid="uid://hit7s0ssu37x" path="res://Resources/seedRadish1/Radish.tres" id="24_xbk3s"]
 [ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="27_dt0r1"]
 [ext_resource type="PackedScene" uid="uid://bysbvk5dibwog" path="res://Scenes/mucca.tscn" id="28_dt0r1"]
+[ext_resource type="PackedScene" uid="uid://hx7d6jpgj3ms" path="res://Scenes/gallina.tscn" id="29_o2rbt"]
 [ext_resource type="Resource" uid="uid://54ofoq403c3v" path="res://Resources/seedwheat/seedwheat.tres" id="29_qebug"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
@@ -2539,11 +2540,14 @@ item_id = "radish"
 inventory_item = ExtResource("27_dt0r1")
 
 [node name="mucca" parent="." unique_id=534143819 instance=ExtResource("28_dt0r1")]
-position = Vector2(266, 150)
+position = Vector2(274, 314)
 
 [node name="seedwheat" parent="." unique_id=1336086392 instance=ExtResource("15_hgpy0")]
 position = Vector2(313, 366)
 item_id = "seedwheat"
 inventory_item = ExtResource("29_qebug")
+
+[node name="gallina" parent="." unique_id=349992580 instance=ExtResource("29_o2rbt")]
+position = Vector2(311, 325)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
