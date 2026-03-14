@@ -14,12 +14,14 @@ extends CharacterBody2D
 @onready var timer_l = $TimerL # Timer per il latte
 @onready var milk_resource = preload("res://Resources/Milk/milk.tres")
 
-enum State { IDLE, WANDER }
+enum State { IDLE, WANDER, FOLLOW }
 var current_state = State.IDLE
 var move_direction = Vector2.ZERO
 var player_in_range: bool = false
 var milk_ready: bool = false
 var state_timer: float = 0.0
+
+@export var follow_distance: float = 45.0 # Circa un "blocco"
 
 func _ready():
 	# Impostazioni fisiche per top-down
@@ -51,22 +53,66 @@ func _process(delta):
 	elif milk_ready:
 		progress_bar.value = milk_production_time
 	
-	# Gestione timer degli stati
-	if state_timer > 0:
-		state_timer -= delta
-		if state_timer <= 0:
+	# Controllo per il Segui (Grano)
+	_check_for_follow()
+	
+	# Gestione timer degli stati (solo se non sta seguendo)
+	if current_state != State.FOLLOW:
+		if state_timer > 0:
+			state_timer -= delta
+			if state_timer <= 0:
+				_pick_new_state()
+
+func _check_for_follow():
+	var player = get_tree().get_first_node_in_group("player")
+	if not player: return
+	
+	var holding_wheat = false
+	var item_hand = Global.persistent_hand
+	var item_food = Global.persistent_food
+	
+	if (item_hand and item_hand.name == "Wheat") or (item_food and item_food.name == "Wheat"):
+		holding_wheat = true
+		
+	if holding_wheat:
+		var dist = global_position.distance_to(player.global_position)
+		if dist < 200.0: # Distanza massima per iniziare a seguire
+			if current_state != State.FOLLOW:
+				current_state = State.FOLLOW
+				print("La Mucca ha visto il grano!")
+	else:
+		if current_state == State.FOLLOW:
+			current_state = State.IDLE
 			_pick_new_state()
 
 func _physics_process(_delta):
-	if current_state == State.WANDER:
-		velocity = move_direction * speed
-		if move_and_slide():
-			# Se urta qualcosa (mura o player), torna idle
-			_on_collision_detected()
-	else:
-		velocity = Vector2.ZERO
-		# Rimosso move_and_slide() in IDLE per evitare di essere trascinata dal player
+	var effective_velocity = Vector2.ZERO
 	
+	if current_state == State.FOLLOW:
+		var player = get_tree().get_first_node_in_group("player")
+		if player:
+			var dist = global_position.distance_to(player.global_position)
+			# Se il player si muove e siamo lontani, seguiamo
+			if dist > follow_distance:
+				# Segui solo se il player si sta muovendo o se siamo troppo lontani
+				# In realtà il requisito dice "quando il player sta fermo sta ferma"
+				if player.velocity.length() > 0.1 or dist > follow_distance + 20.0:
+					var dir = (player.global_position - global_position).normalized()
+					effective_velocity = dir * speed
+			
+	elif current_state == State.WANDER:
+		effective_velocity = move_direction * speed
+	
+	velocity = effective_velocity
+	
+	if velocity.length() > 0:
+		if move_and_slide():
+			if current_state == State.WANDER:
+				_on_collision_detected()
+	else:
+		# Se ferma (IDLE o FOLLOW vicino), non chiamiamo move_and_slide()
+		pass
+		
 	update_animation(velocity)
 
 func update_animation(vel: Vector2):
@@ -87,6 +133,8 @@ func update_animation(vel: Vector2):
 			anim.play("back_walking")
 
 func _pick_new_state():
+	if current_state == State.FOLLOW: return # Non cambiare stato se stiamo seguendo
+	
 	if current_state == State.IDLE:
 		current_state = State.WANDER
 		# Movimento random NON diagonale

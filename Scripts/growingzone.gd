@@ -16,6 +16,11 @@ var crop_database = {
 		"grown_item": preload("res://Resources/fullCarrot/fullCarrot.tres"), 
 		"animation": "carrotAnimation",
 		"max_stages": 4 # Magari la carota cresce in meno stadi
+	},
+	"Wheat Seed": {
+		"grown_item": preload("res://Resources/fullWheat/fullWheat.tres"),
+		"animation": "wheat_animation",
+		"max_stages": 4
 	}
 }
 

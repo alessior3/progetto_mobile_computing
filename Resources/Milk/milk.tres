@@ -10,10 +10,13 @@ load_path = "res://.godot/imported/milk.png-1ed4c112ff9b87daf5a12ace13aa291a.cte
 
 [resource]
 script = ExtResource("1_v7xym")
+slot_type = "Food"
 ground_collision_shape = SubResource("RectangleShape2D_milk")
 name = "Milk"
 texture = SubResource("CompressedTexture2D_milk")
 max_stacks = 99
 price = 5
 description = "Fresh milk from the cow."
+is_consumable = true
+heal_amount = 20
 metadata/_custom_type_script = "uid://xa2vtw3obwbv"

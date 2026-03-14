@@ -6,9 +6,9 @@
 
 [resource]
 script = ExtResource("2_10746")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_goop8")
-name = "seedbeetroot"
+name = "Wheat Seed"
 texture = ExtResource("3_y3cpe")
 max_stacks = 999
 price = 40
