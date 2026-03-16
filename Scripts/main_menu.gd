@@ -1,12 +1,12 @@
 extends Control
 
-# --- RIFERIMENTI UI (Corretti in base al tuo Scene Tree) ---
+# --- RIFERIMENTI UI ---
 @onready var feedback_label = $VBoxContainer/FeedbackLabel
 @onready var email_input = $VBoxContainer/EmailInput
 @onready var password_input = $VBoxContainer/PasswordInput
 @onready var btn_login = $VBoxContainer/btnlogin
 @onready var btn_registrati = $VBoxContainer/btnRegistrati
-@onready var btn_google = $VBoxContainer/btnGoogle # Assicurati di averlo creato così
+@onready var btn_google = $VBoxContainer/btnGoogle
 @onready var btn_inizia = $VBoxContainer/btnInizia
 @onready var btn_carica = $VBoxContainer/btnCarica
 @onready var btn_quit = $VBoxContainer/btnQuit
@@ -60,14 +60,19 @@ func _on_auth_failed(error_message) -> void:
 # --- GOOGLE SIGN-IN ---
 
 func _on_btn_google_pressed():
-	if google_sign_in_plugin:
-		feedback_label.text = "Apertura Google..."
-		google_sign_in_plugin.signIn(Global.google_web_client_id)
+	feedback_label.text = "Controllo plugin..."
+	
+	# TEST SPIA: Verifichiamo forzatamente se Godot ha impacchettato il plugin nell'APK
+	if Engine.has_singleton("GodotGoogleSignIn"):
+		feedback_label.text = "Plugin TROVATO! Chiamo Google..."
+		# Se lo trova, tenta di lanciare la finestra di login
+		var plugin = Engine.get_singleton("GodotGoogleSignIn")
+		plugin.signIn(Global.google_web_client_id)
 	else:
-		feedback_label.text = "Usa il telefono per il login Google!"
+		feedback_label.text = "ERRORE CRITICO: Plugin ASSENTE nell'APK!"
 
 func _on_google_token_received(google_id_token: String):
-	feedback_label.text = "Verifica Google..."
+	feedback_label.text = "Verifica Google in corso..."
 	Auth.login_with_google(google_id_token)
 
 func _on_google_login_success(google_email: String) -> void:

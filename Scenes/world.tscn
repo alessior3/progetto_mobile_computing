@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://bysbvk5dibwog" path="res://Scenes/mucca.tscn" id="28_dt0r1"]
 [ext_resource type="PackedScene" uid="uid://hx7d6jpgj3ms" path="res://Scenes/gallina.tscn" id="29_o2rbt"]
 [ext_resource type="Resource" uid="uid://54ofoq403c3v" path="res://Resources/seedwheat/seedwheat.tres" id="29_qebug"]
-[ext_resource type="Resource" uid="uid://bin8x578827bo" path="res://Resources/fullPumpkin/fullPumpkin.tres" id="30_1vso6"]
+[ext_resource type="Resource" uid="uid://c8w0kqncfsxrs" path="res://Resources/fullPotato/fullPotato.tres" id="30_1vso6"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="31_3ua1v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]

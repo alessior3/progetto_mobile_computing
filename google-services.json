@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "779309651323",
+    "firebase_url": "https://mobile-computing-607d7-default-rtdb.firebaseio.com",
+    "project_id": "mobile-computing-607d7",
+    "storage_bucket": "mobile-computing-607d7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779309651323:android:ad15b5d2e3f2e4522d59de",
+        "android_client_info": {
+          "package_name": "com.lucalma.evergrove"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779309651323-0b3ptkeu07p622q1q25lmrai4oilv9r6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lucalma.evergrove",
+            "certificate_hash": "eca99e33487c8b33aa03e3610679632e6814c86c"
+          }
+        },
+        {
+          "client_id": "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8H4JnxJEkjZbOtGITVrDmgXm7QWssLZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779309651323-m5ff194t6fmoi327re8bq5gc2qh4p9f3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "779309651323-opsi8muk9p1s5roqqstk78kvn113l9p0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lucalma.evergrove"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
