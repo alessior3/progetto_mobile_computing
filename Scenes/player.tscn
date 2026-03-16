@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d1fl62cmo4dsd" path="res://Assets/Character/run.png" id="7_ukyrk"]
 [ext_resource type="PackedScene" uid="uid://c1j8kmasojpti" path="res://Scenes/UI/on_screen_ui.tscn" id="8_8erm5"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="11_gymyn"]
+[ext_resource type="PackedScene" uid="uid://haixkuo8s3vn" path="res://Scenes/mobile_controls.tscn" id="12_ukyrk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie7r7"]
 atlas = ExtResource("5_pu2lt")
@@ -807,6 +808,8 @@ offset_left = 50.0
 offset_top = 50.0
 offset_right = 139.0
 offset_bottom = 61.0
+
+[node name="MobileControls" parent="OnScreenUi" unique_id=1738634788 instance=ExtResource("12_ukyrk")]
 
 [node name="TorchLight" type="PointLight2D" parent="." unique_id=1267070933]
 visible = false
