@@ -467,7 +467,7 @@ sources/0 = SubResource("TileSetAtlasSource_hbrki")
 sources/1 = SubResource("TileSetAtlasSource_h67tc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hafv"]
-size = Vector2(63, 24)
+size = Vector2(47.999832, 11.072483)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdeo4"]
 texture = ExtResource("3_rvn8i")
@@ -2178,8 +2178,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" unique_id=2086617004]
-position = Vector2(21.5, -4)
+position = Vector2(20.98413, -5.533409)
 rotation = -3.1386917
+scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_5hafv")
 metadata/_edit_lock_ = true
 
@@ -2198,5 +2199,13 @@ tile_set = SubResource("TileSet_tqxsn")
 [node name="tv" type="TileMapLayer" parent="." unique_id=561241756]
 tile_map_data = PackedByteArray("AAD8/wAAAAAIAAMAAAA=")
 tile_set = SubResource("TileSet_nf6n5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1329355822]
+position = Vector2(-124, -36)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1601191433]
+position = Vector2(-1.9073486e-06, -60.287506)
+scale = Vector2(0.99999994, 1.8281251)
+polygon = PackedVector2Array(33, 69.62735, 44, 70.17436, 76, 70.17436, 76, 61.422226, 173, 61.422226, 173, 69.62735, 177, 70.721375, 187, 70.721375, 188, 78.9265, 172, 78.9265, 172, 91.50769, 188, 91.50769, 188, 135.81538, 141, 135.81538, 140, 135.81538, 140, 140.19145, 92, 140.19145, 92, 135.81538, 44, 135.81538, 44, 127.06325, 76, 127.06325, 76, 118.31111, 68, 118.31111, 68, 113.93504, 52, 113.93504, 52, 118.31111, 44, 118.31111, 44, 71.26838, 17, 82.755554, 20, 154.41367, 114, 157.14871, 246.00002, 142.9265, 234.00002, 52.123077, 130, 26.960693, 2, 35.71283)
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

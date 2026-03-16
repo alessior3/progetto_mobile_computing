@@ -467,7 +467,7 @@ sources/0 = SubResource("TileSetAtlasSource_hbrki")
 sources/1 = SubResource("TileSetAtlasSource_h67tc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hafv"]
-size = Vector2(63, 24)
+size = Vector2(47.999817, 16.068157)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdeo4"]
 texture = ExtResource("3_bffew")
@@ -2167,6 +2167,7 @@ tile_set = SubResource("TileSet_28awh")
 position = Vector2(-9, 115)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_3j1db")]
+z_index = 1
 position = Vector2(-8, 113)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1223337844]
@@ -2178,8 +2179,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" unique_id=2086617004]
-position = Vector2(21.5, -4)
+position = Vector2(20.976898, -0.03557968)
 rotation = -3.1386917
+scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_5hafv")
 metadata/_edit_lock_ = true
 
@@ -2198,5 +2200,25 @@ tile_set = SubResource("TileSet_u4j1y")
 [node name="tv" type="TileMapLayer" parent="." unique_id=561241756]
 tile_map_data = PackedByteArray("AAD8//7/AAAJAAMAAAD8////AAAJAAQAAAD9//7/AAAKAAMAAAD9////AAAKAAQAAAD9/wAAAAAEAAMAAAA=")
 tile_set = SubResource("TileSet_nf6n5")
+
+[node name="muri" type="StaticBody2D" parent="." unique_id=1827357304]
+position = Vector2(-240, -63)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="muri" unique_id=88111741]
+polygon = PackedVector2Array(160, 65, 192, 65, 192, 79, 208, 79, 208, 63, 240, 63, 240, 71, 304, 71, 304, 215, 255, 215, 256, 222, 207, 222, 207, 215, 160, 215, 160, 72, 194, 71, 129, 67, 113, 238, 388, 257, 364, -7, 118, 4, 159, 64)
+
+[node name="scatola" type="StaticBody2D" parent="." unique_id=1749217388]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="scatola" unique_id=1482025671]
+polygon = PackedVector2Array(16, 104, 16, 88, 24, 88, 24, 80, 40, 80, 40, 88, 48, 88, 48, 104)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="scatola" unique_id=1544387614]
+polygon = PackedVector2Array(16, 136, 16, 120, 24, 120, 24, 112, 40, 112, 40, 120, 48, 120, 48, 136)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="scatola" unique_id=987867949]
+polygon = PackedVector2Array(-48, 56, -48, 72, -16, 72, -16, 56, -24, 56, -24, 48, -40, 48, -40, 56)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="scatola" unique_id=1563646789]
+polygon = PackedVector2Array(-79, 87, -48, 87, -48, 72, -56, 72, -56, 64, -72, 64, -72, 72, -80, 72)
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

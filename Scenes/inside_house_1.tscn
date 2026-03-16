@@ -469,7 +469,7 @@ sources/0 = SubResource("TileSetAtlasSource_hbrki")
 sources/1 = SubResource("TileSetAtlasSource_h67tc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hafv"]
-size = Vector2(63, 24)
+size = Vector2(48.002716, 9.072493)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdeo4"]
 texture = ExtResource("3_2i5oy")
@@ -2180,8 +2180,9 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit" unique_id=2086617004]
-position = Vector2(21.5, -4)
+position = Vector2(20.985596, -4.5334015)
 rotation = -3.1386917
+scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_5hafv")
 metadata/_edit_lock_ = true
 
@@ -2205,5 +2206,26 @@ tile_set = SubResource("TileSet_u4j1y")
 [node name="tv" type="TileMapLayer" parent="." unique_id=561241756]
 tile_map_data = PackedByteArray("AAD8/wIAAAAIAAMAAAA=")
 tile_set = SubResource("TileSet_nf6n5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1166424412]
+position = Vector2(-101, -39)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1801127650]
+polygon = PackedVector2Array(21, 55, 37, 55, 37, 39, 133, 39, 133, 47, 165, 47, 165, 168, 149, 168, 149, 183, 165, 183, 165, 191, 117, 191, 117, 199, 69, 199, 69, 191, 21, 191, 21, 58, -24, 147, 13, 250, 253, 216, 221, 4, 44, -10, -33, 45)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1896105227]
+polygon = PackedVector2Array(37, 97, 37, 127, 39, 127, 39, 135, 51, 135, 51, 127, 53, 127, 53, 96, 37, 96)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1580814946]
+polygon = PackedVector2Array(37, 95, 53, 95, 53, 87, 52, 87, 52, 74, 38, 74, 38, 87, 37, 87)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1958871650]
+polygon = PackedVector2Array(55, 107, 55, 119, 68, 119, 68, 103, 64, 103, 64, 107)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1918336164]
+polygon = PackedVector2Array(133, 103, 149, 103, 149, 127, 133, 127)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1672438435]
+polygon = PackedVector2Array(151, 107, 152, 119, 162, 119, 163, 107, 152, 107)
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
