@@ -40,7 +40,13 @@ func set_house(new_house):
 
 func _ready():
 	if health_system and progress_bar:
+		# 1. Inizializziamo PRIMA la vita massima corretta (100)
 		health_system.init(health_system.max_health)
+		
+		# 2. POI carichiamo la vita attuale dal Global
+		if "persistent_health" in Global:
+			health_system.current_health = Global.persistent_health
+			
 		progress_bar.max_value = health_system.max_health
 		progress_bar.value = health_system.current_health
 		health_system.damage_taken.connect(_on_damage_taken)
@@ -50,6 +56,7 @@ func _ready():
 		progress_bar.add_theme_stylebox_override("fill", style_box)
 		
 	await get_tree().process_frame
+	# ... (il resto del tuo _ready rimane identico)
 	
 	if SaveManager.is_loading_game:
 		global_position = SaveManager.loaded_position
@@ -270,6 +277,10 @@ func play_anim(movement_state):
 
 func _on_damage_taken(new_health: int):
 	print("DEBUG PLAYER: Ricevuto segnale danno! Nuova vita: ", new_health)
+	
+	# Aggiorniamo la memoria globale
+	Global.persistent_health = new_health
+	
 	if progress_bar:
 		progress_bar.value = new_health
 		
@@ -282,6 +293,10 @@ func _on_damage_taken(new_health: int):
 func die():
 	if is_dead: return 
 	is_dead = true
+	
+	# --- RESET DELLA VITA ALLA MORTE ---
+	Global.persistent_health = 100
+	# -----------------------------------
 	
 	print("Il Player è morto! Caricamento ultimo salvataggio dal Cloud...")
 	
