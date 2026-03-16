@@ -23,5 +23,5 @@ var slot_type : String = "NotEquipable"
 @export var is_consumable: bool = false
 @export var heal_amount: int = 0
 @export var buff_type: String = "nessuno"
-@export var buff_value: int = 0
+@export var buff_value: float = 0
 @export var buff_duration: float = 0.0

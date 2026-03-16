@@ -4,6 +4,10 @@ class_name Player
 @export var walk_speed: int = 100
 @export var run_speed: int = 150
 var current_speed: int = 100
+var speed_buff_multiplier: float = 1.0
+# LIGHT BUFF VARIABLES
+var original_torch_scale: float = 1.0
+var is_light_buff_active: bool = false
 
 var current_dir = "none"
 var is_attacking: bool = false
@@ -81,6 +85,9 @@ func _ready():
 	# Connessione del segnale per il cibo dalla UI su schermo
 	if has_node("OnScreenUi"):
 		$OnScreenUi.eat_requested.connect(_on_eat_requested)
+		
+	if has_node("TorchLight"):
+		original_torch_scale = $TorchLight.texture_scale
 
 func _unhandled_input(event):
 	if is_dead: return
@@ -174,10 +181,10 @@ func player_movement(_delta):
 	var anim_state = 1 
 	
 	if Input.is_action_pressed("run"):
-		current_speed = run_speed
+		current_speed = run_speed*speed_buff_multiplier
 		anim_state = 2 
 	else:
-		current_speed = walk_speed
+		current_speed = walk_speed*speed_buff_multiplier
 		anim_state = 1 
 
 	if Input.is_action_pressed("ui_right"):
@@ -303,23 +310,24 @@ func eat_equipped_food():
 	
 	if food != null and food.get("is_consumable") == true:
 		
-		# 1. CURA IL PLAYER
+		# 1. HEAL THE PLAYER
 		if food.get("heal_amount") > 0:
 			if health_system and health_system.has_method("heal"):
 				health_system.heal(food.heal_amount)
-				print("Mangiato ", food.name, "! Curato di ", food.heal_amount, " HP.")
+				print("Ate ", food.name, "! Healed for ", food.heal_amount, " HP.")
 			else:
 				health_system.current_health += food.heal_amount
 				if health_system.current_health > health_system.max_health:
 					health_system.current_health = health_system.max_health
 				_on_damage_taken(health_system.current_health) 
-				print("Mangiato ", food.name, "! Curato di ", food.heal_amount, " HP.")
+				print("Ate ", food.name, "! Healed for ", food.heal_amount, " HP.")
 				
-		# 2. PREDISPOSIZIONE BUFF
+		# 2. PREPARE THE BUFF
 		if food.get("buff_type") != "nessuno" and food.get("buff_type") != "":
-			print("Ottenuto buff: ", food.buff_type, " +", food.buff_value, " per ", food.buff_duration, " secondi!")
+			print("Obtained buff: ", food.buff_type, " +", food.buff_value, " for ", food.buff_duration, " seconds!")
+			apply_buff(food.get("buff_type"), food.get("buff_value"), food.get("buff_duration"))
 			
-		# 3. CONSUMA L'OGGETTO
+		# 3. CONSUME THE ITEM
 		consume_food_item(food)
 
 func consume_food_item(food: InventoryItem):
@@ -343,3 +351,42 @@ func consume_food_item(food: InventoryItem):
 			
 	if inventory and inventory.inventory_ui:
 		inventory.inventory_ui.update_slots(inventory.items)
+
+
+
+# ==========================================
+# BUFF MANAGER
+# ==========================================
+func apply_buff(type: String, value: float, duration: float):
+	match type:
+		"speed":
+			print("RADISH POWER! Sprint doubled!")
+			# Convert int (e.g., 2) to float (2.0)
+			speed_buff_multiplier = float(value)
+			
+			# The timer automatically waits for the seconds specified in the .tres file
+			await get_tree().create_timer(duration).timeout
+			
+			# Once the effect ends, return to normal speed
+			speed_buff_multiplier = 1.0
+			print("Speed buff faded.")
+			
+		"light":
+			print("CARROT POWER! Torch light expanded!")
+			if has_node("TorchLight") and not is_light_buff_active:
+				is_light_buff_active = true
+				
+				# Multiply the torch radius by the buff value (e.g., x2.0)
+				$TorchLight.texture_scale = original_torch_scale * value
+				
+				# Wait for 2 minutes (120 seconds)
+				await get_tree().create_timer(duration).timeout
+				
+				# Revert to normal
+				$TorchLight.texture_scale = original_torch_scale
+				is_light_buff_active = false
+				print("Light buff faded.")
+		# Future buffs will be added here:
+		# "defense": 
+		# "light":
+		# "damage":

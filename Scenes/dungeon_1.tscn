@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 [ext_resource type="Resource" uid="uid://bn6pupdgf3sed" path="res://Resources/Shadow3/Shadow3.tres" id="19_xeqhr"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="20_natbj"]
+[ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="21_g3xq8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xeqhr"]
 texture = ExtResource("1_yr1ei")
@@ -2701,3 +2702,8 @@ inventory_item = ExtResource("19_xeqhr")
 
 [node name="beast" parent="." unique_id=349992580 instance=ExtResource("20_natbj")]
 position = Vector2(140, -108)
+
+[node name="carrot" parent="." unique_id=1832595935 instance=ExtResource("14_wnvaf")]
+position = Vector2(909, -217)
+item_id = "carrot"
+inventory_item = ExtResource("21_g3xq8")

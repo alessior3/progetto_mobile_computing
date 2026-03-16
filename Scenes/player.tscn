@@ -793,6 +793,7 @@ position = Vector2(0, 6)
 shape = ExtResource("2_fkybt")
 
 [node name="inventoryUI" parent="." unique_id=1764230181 node_paths=PackedStringArray("inventory") instance=ExtResource("6_x3wgy")]
+visible = false
 inventory = NodePath("../Inventory")
 
 [node name="Inventory" type="Node" parent="." unique_id=1240474999 node_paths=PackedStringArray("on_screen_ui")]

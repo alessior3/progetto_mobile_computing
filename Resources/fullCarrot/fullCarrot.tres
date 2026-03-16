@@ -6,12 +6,17 @@
 
 [resource]
 script = ExtResource("2_7yc1p")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_7rvgi")
-name = "Carrot"
+name = "Carota"
 texture = ExtResource("3_jhqxp")
-max_stacks = 999
+max_stacks = 1
 price = 40
 description = "\"Ricchissima di betacarotene. La tua vista si acuisce e l'oscurità dei dungeon fa improvvisamente meno paura.
 Effetto: Espande notevolmente il raggio di luce della torcia per 2 minuti.\""
 damage = 40
+is_consumable = true
+heal_amount = 5
+buff_type = "light"
+buff_value = 2.0
+buff_duration = 20.0
