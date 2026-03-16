@@ -6,10 +6,17 @@
 
 [resource]
 script = ExtResource("2_uk8au")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_gye4i")
-name = "fullbeetroot"
+name = "Cavolfiore"
 texture = ExtResource("3_2f0ik")
-max_stacks = 999
+max_stacks = 1
 price = 40
+description = "\"Un concentrato di fosforo per la mente. Ti senti incredibilmente scaltro e pronto a contrattare su qualsiasi prezzo.
+Effetto: Ottieni il 20% di sconto su tutti gli acquisti dal mercante per 60 secondi.\""
 damage = 40
+is_consumable = true
+heal_amount = 5
+buff_type = "discount"
+buff_value = 20.0
+buff_duration = 1.0

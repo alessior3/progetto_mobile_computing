@@ -8,6 +8,15 @@ var speed_buff_multiplier: float = 1.0
 # LIGHT BUFF VARIABLES
 var original_torch_scale: float = 1.0
 var is_light_buff_active: bool = false
+# MAX HEALTH BUFF VARIABLES
+var is_max_health_buff_active: bool = false
+# DISCOUNT BUFF VARIABLES
+var discount_percentage: float = 0.0
+var discount_charges: int = 0
+# DAMAGE BUFF VARIABLES
+var bonus_attack_damage: int = 0
+# DEFENSE BUFF VARIABLES
+var damage_reduction_multiplier: float = 0.0
 
 var current_dir = "none"
 var is_attacking: bool = false
@@ -136,6 +145,10 @@ func apply_attack_damage():
 	var attack_damage = hand_item.get("damage")
 	if attack_damage == null:
 		attack_damage = 1
+		
+	# --- LA RIGA MANCANTE: SOMMIAMO I DANNI EXTRA DELLA PATATA ---
+	attack_damage += bonus_attack_damage
+	# -------------------------------------------------------------
 		
 	var attack_range: float = 60.0 
 	var attack_angle_deg: float = 180.0 
@@ -288,6 +301,16 @@ func die():
 func apply_damage(amount: int):
 	if is_dead: return 
 	
+	# --- DEFENSE BUFF APPLICATION ---
+	if damage_reduction_multiplier > 0.0:
+		var reduction = float(amount) * damage_reduction_multiplier
+		amount -= int(reduction)
+		
+		# Ensure the player takes at least 1 damage
+		if amount <= 0:
+			amount = 1 
+	# --------------------------------
+	
 	print("Il Player ha subito ", amount, " danni!")
 	
 	if health_system and health_system.has_method("take_damage"):
@@ -298,7 +321,6 @@ func apply_damage(amount: int):
 		await get_tree().create_timer(0.2).timeout
 		if get_tree() != null:
 			modulate = Color(1, 1, 1)
-
 # ==========================================
 # GESTIONE CIBO E BUFF
 # ==========================================
@@ -386,6 +408,101 @@ func apply_buff(type: String, value: float, duration: float):
 				$TorchLight.texture_scale = original_torch_scale
 				is_light_buff_active = false
 				print("Light buff faded.")
+				
+		"max_health":
+			if not is_max_health_buff_active and health_system and progress_bar:
+				is_max_health_buff_active = true
+				print("KALE POWER! Max HP increased by ", value)
+				
+				var extra_hp = int(value)
+				
+				# 1. Increase the maximum limit
+				health_system.max_health += extra_hp
+				progress_bar.max_value = health_system.max_health
+				health_system.current_health += extra_hp
+				
+				# --- NOVITÀ: CAMBIAMO IL COLORE IN ORO ---
+				var style_box = progress_bar.get_theme_stylebox("fill")
+				if style_box:
+					style_box.bg_color = Color(1.0, 0.8, 0.0) # Giallo Oro
+				# -----------------------------------------
+				
+				_on_damage_taken(health_system.current_health) 
+
+				# 3. Wait for the effect to finish
+				await get_tree().create_timer(duration).timeout
+				
+				# 4. Remove the extra maximum limit
+				health_system.max_health -= extra_hp
+				progress_bar.max_value = health_system.max_health
+				
+				if health_system.current_health > health_system.max_health:
+					health_system.current_health = health_system.max_health
+					
+				# --- NOVITÀ: TORNIAMO AL VERDE NORMALE ---
+				if style_box:
+					style_box.bg_color = Color(0.0, 1.0, 0.0) # Verde classico
+				# -----------------------------------------
+					
+				_on_damage_taken(health_system.current_health)
+				is_max_health_buff_active = false
+				print("Max HP buff faded.")
+				
+		"discount":
+			# We use 'duration' as the number of charges (purchases)
+			print("CAULIFLOWER POWER! ", value, "% discount for the next ", int(duration), " purchases!")
+			
+			discount_percentage = value
+			discount_charges += int(duration)
+			
+		"damage":
+			print("POTATO POWER! Attack damage increased by +", int(value))
+			bonus_attack_damage = int(value)
+			
+			await get_tree().create_timer(duration).timeout
+			
+			bonus_attack_damage = 0
+			print("Damage buff faded.")
+		
+		"regen":
+			print("CABBAGE POWER! Regenerating ", int(value), " HP per second for ", int(duration), " seconds!")
+			
+			var ticks = int(duration)
+			var heal_per_tick = int(value)
+			
+			for i in range(ticks):
+				# Wait for exactly 1 second
+				await get_tree().create_timer(1.0).timeout
+				
+				# Stop the regeneration if the player dies during the effect
+				if is_dead:
+					break 
+				
+				# Apply the healing logic only if health is not full
+				if health_system.current_health < health_system.max_health:
+					if health_system.has_method("heal"):
+						health_system.heal(heal_per_tick)
+					else:
+						health_system.current_health += heal_per_tick
+						if health_system.current_health > health_system.max_health:
+							health_system.current_health = health_system.max_health
+					
+					# Update the UI progress bar
+					_on_damage_taken(health_system.current_health)
+					print("Regen tick: +", heal_per_tick, " HP (Current: ", health_system.current_health, ")")
+					
+			print("Regen buff faded.")
+			
+		
+		"defense":
+			print("PUMPKIN POWER! Damage taken reduced by ", value, "%")
+			# Convert percentage (e.g., 30.0) to 0.30
+			damage_reduction_multiplier = value / 100.0
+			
+			await get_tree().create_timer(duration).timeout
+			
+			damage_reduction_multiplier = 0.0
+			print("Defense buff faded.")
 		# Future buffs will be added here:
 		# "defense": 
 		# "light":

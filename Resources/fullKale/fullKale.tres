@@ -6,10 +6,18 @@
 
 [resource]
 script = ExtResource("2_nfeh8")
-slot_type = "Hand"
+item_id = "kale"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_ltl5l")
-name = "fullbeetroot"
+name = "Cavolo Riccio"
 texture = ExtResource("3_rl6h5")
-max_stacks = 999
+max_stacks = 1
 price = 40
+description = "\"Un vero 'superfood' pesante e compatto. Senti i muscoli e le ossa indurirsi a ogni morso.
+Effetto: Aumenta temporaneamente la Salute Massima di 20 HP.\""
 damage = 40
+is_consumable = true
+heal_amount = 15
+buff_type = "max_health"
+buff_value = 20.0
+buff_duration = 30.0

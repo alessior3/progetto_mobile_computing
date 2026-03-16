@@ -14,10 +14,10 @@ texture = ExtResource("3_nalpq")
 max_stacks = 1
 price = 40
 description = "\"Un sapore così piccante e pungente che ti fa letteralmente scattare in piedi come una molla!
-Effetto: Velocità di scatto raddoppiata per 4 secondi. Ottimo per le fughe!\""
+Effetto: Velocità di scatto notevolmente aumentata per pochi secondi. Ottimo per le fughe!\""
 damage = 40
 is_consumable = true
 heal_amount = 3
 buff_type = "speed"
-buff_value = 1.5
-buff_duration = 4.0
+buff_value = 1.7
+buff_duration = 8.0

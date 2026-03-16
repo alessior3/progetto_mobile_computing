@@ -6,10 +6,17 @@
 
 [resource]
 script = ExtResource("2_8se1o")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_c5ec3")
-name = "Beetroot"
+name = "Barbabietola"
 texture = ExtResource("3_wxpmi")
-max_stacks = 999
+max_stacks = 1
 price = 40
+description = " \"Il suo succo denso e dolciastro migliora l'ossigenazione del sangue, rendendoti instancabile.
+Effetto: Aumenta leggermente la velocità di movimento per un tempo considerevole\""
 damage = 40
+is_consumable = true
+heal_amount = 8
+buff_type = "speed"
+buff_value = 1.2
+buff_duration = 30.0

@@ -202,3 +202,31 @@ func remove_gold(amount: int) -> void:
 	gold -= amount
 	Global.persistent_gold = gold
 	gold_changed.emit(gold)
+	
+# ==========================================
+# RACCOLTA INTELLIGENTE (SLOT SEPARATI)
+# ==========================================
+func smart_add_pickup(item: InventoryItem, amount: int):
+	# Controlliamo PRIMA se possiamo equipaggiarlo subito nella UI a schermo
+	if on_screen_ui != null:
+		
+		# Se è un'arma e abbiamo le mani libere
+		if item.get("is_weapon") == true and Global.persistent_hand == null:
+			item.stacks = amount # Impostiamo la quantità raccolta
+			on_screen_ui.equip_item(item, "Hand")
+			Global.persistent_hand = item
+			print("Auto-equipaggiato in mano (non nello zaino): ", item.name)
+			return # <-- FONDAMENTALE: Ferma la funzione qui!
+
+		# Se è cibo/consumabile e non abbiamo niente nello slot Food
+		elif item.get("is_consumable") == true and Global.persistent_food == null:
+			item.stacks = amount # Impostiamo la quantità raccolta
+			on_screen_ui.equip_item(item, "Food")
+			Global.persistent_food = item
+			print("Auto-equipaggiato nel cibo (non nello zaino): ", item.name)
+			return # <-- FONDAMENTALE: Ferma la funzione qui!
+
+	# Se arriviamo a questo punto, significa che gli slot rapidi erano pieni 
+	# oppure l'oggetto non era né un'arma né cibo (es. semi, legno, ecc.).
+	# Solo ora lo aggiungiamo fisicamente allo zaino:
+	add_item(item, amount)

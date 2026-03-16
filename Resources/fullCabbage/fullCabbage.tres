@@ -6,10 +6,18 @@
 
 [resource]
 script = ExtResource("2_onwqq")
-slot_type = "Hand"
+item_id = "cabbage"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_yq30s")
-name = "fullbeetroot"
+name = "Cavolo"
 texture = ExtResource("3_bt1x7")
-max_stacks = 999
+max_stacks = 1
 price = 40
+description = "\"Foglie fresche e croccanti dalle potenti proprietà antinfiammatorie. Il corpo ringrazia.
+Effetto: Rigenera 1 HP al secondo per 10 secondi.\""
 damage = 40
+is_consumable = true
+heal_amount = 5
+buff_type = "regen"
+buff_value = 1.0
+buff_duration = 10.0

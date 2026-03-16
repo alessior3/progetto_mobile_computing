@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dx3sc23nslh1o"]
 
-[ext_resource type="Texture2D" uid="uid://cqpnh1gcf5gk6" path="res://Ninja Adventure - Asset Pack/Actor/Monsters/Beast/Beast.png" id="1_3d5ct"]
-[ext_resource type="Script" uid="uid://bbqmc2l7mkpvw" path="res://Scripts/beast.gd" id="1_n2oh3"]
+[ext_resource type="Texture2D" uid="uid://dd80oixnvombf" path="res://Ninja Adventure - Asset Pack/Actor/Monsters/Beast/Beast.png" id="1_3d5ct"]
+[ext_resource type="Script" path="res://Scripts/beast.gd" id="1_n2oh3"]
 [ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="2_n2oh3"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="2_wiudq"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="3_n2oh3"]
@@ -162,5 +162,6 @@ shape = ExtResource("2_n2oh3")
 shape = SubResource("RectangleShape2D_n2oh3")
 
 [node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("2_wiudq")]
+max_health = 100
 
 [node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("3_n2oh3")]

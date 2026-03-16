@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://bin8x578827bo"]
+
+[ext_resource type="Shape2D" uid="uid://7o0kmdwy3xtv" path="res://Resources/fullPumpkin/fullPumpkin_collision_shape.tres" id="1_2r5fu"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_tpdi1"]
+[ext_resource type="Texture2D" uid="uid://b0xi1bdaym8me" path="res://Resources/fullPumpkin/fullPumpkin_sprite.tres" id="3_jra0k"]
+
+[resource]
+script = ExtResource("2_tpdi1")
+item_id = "pumpkin"
+slot_type = "Food"
+ground_collision_shape = ExtResource("1_2r5fu")
+name = "Zucca"
+texture = ExtResource("3_jra0k")
+max_stacks = 1
+price = 40
+description = "\"Ha una scorza così dura e resistente che, mangiandola, sembra quasi di farsi crescere una corazza sulla pelle.
+Effetto: Riduci tutti i danni subiti del 30% per 45 secondi.\"
+"
+damage = 40
+is_consumable = true
+heal_amount = 10
+buff_type = "defense"
+buff_value = 30.0
+buff_duration = 30.0

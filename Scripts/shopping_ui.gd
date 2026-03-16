@@ -92,11 +92,21 @@ func _on_item_selected(item: InventoryItem, selected_row: ShopItemRow):
 	big_icon.texture = item.texture
 	item_name_label.text = item.name
 	item_desc_label.text = item.get("description") if item.get("description") != null else ""
+	
 	var total_price = item.price * item.stacks
+	var player = get_tree().get_first_node_in_group("player")
+	
 	if current_mode == "BUY":
-		action_btn.text = "COMPRA - " + str(total_price) + " Gold"
+		# --- DISCOUNT LOGIC FOR UI ---
+		# Se il player esiste e ha cariche di sconto, modifichiamo il prezzo sul bottone
+		if player and player.get("discount_charges") != null and player.discount_charges > 0:
+			var discount_amount = total_price * (player.discount_percentage / 100.0)
+			total_price -= int(discount_amount)
+			action_btn.text = "BUY - " + str(total_price) + " Gold (DISCOUNT!)"
+		else:
+			action_btn.text = "BUY - " + str(total_price) + " Gold"
 	else:
-		action_btn.text = "VENDI - " + str(total_price) + " Gold"
+		action_btn.text = "SELL - " + str(total_price) + " Gold"
 		
 	action_btn.disabled = false
 
@@ -117,16 +127,30 @@ func _on_action_btn_pressed():
 	var cost = selected_item.price * selected_item.stacks
 	
 	if current_mode == "BUY":
+		# --- DISCOUNT LOGIC FOR PURCHASE ---
+		if "discount_charges" in player and player.discount_charges > 0:
+			var discount_amount = cost * (player.discount_percentage / 100.0)
+			cost -= int(discount_amount)
+			print("Discount applied! Final cost: ", cost)
+			
+			# Consume one charge
+			player.discount_charges -= 1
+			if player.discount_charges <= 0:
+				player.discount_percentage = 0.0
+				print("Discount buff empty.")
+		# -----------------------------------
+		
 		if inventory.has_gold(cost):
 			inventory.remove_gold(cost)
 			inventory.add_item(selected_item, selected_item.stacks)
-			print("Comprato: ", selected_item.name)
+			print("Bought: ", selected_item.name)
+			
 	elif current_mode == "SELL":
 		inventory.items.erase(selected_item)
 		var gold_coin_res = load("res://Resources/GoldCoin/gold_coin.tres")
 		inventory.add_item(gold_coin_res, cost)
 		Global.persistent_items = inventory.items
-		print("Venduto: ", selected_item.name)
+		print("Sold: ", selected_item.name)
 		
 	if current_mode == "BUY":
 		populate_list(items_to_buy)
@@ -134,3 +158,10 @@ func _on_action_btn_pressed():
 		_on_tab_sell_pressed() 
 		
 	clear_details_panel()
+	
+# Funzione di supporto per ritrovare la riga e aggiornare la grafica post-acquisto
+func _find_row_for_item(item: InventoryItem) -> ShopItemRow:
+	for child in items_list.get_children():
+		if child is ShopItemRow and child.item == item:
+			return child
+	return null

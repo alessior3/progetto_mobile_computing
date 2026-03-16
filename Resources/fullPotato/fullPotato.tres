@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://c8w0kqncfsxrs"]
+
+[ext_resource type="Shape2D" uid="uid://ch0wrq5qyftn4" path="res://Resources/fullPotato/fullPotato_collision_shape.tres" id="1_ubjg0"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_0nu6a"]
+[ext_resource type="Texture2D" uid="uid://cs2pu2ryuplqs" path="res://Resources/fullPotato/fullPotato_sprite.tres" id="3_b8xnq"]
+
+[resource]
+script = ExtResource("2_0nu6a")
+slot_type = "Food"
+ground_collision_shape = ExtResource("1_ubjg0")
+name = "Patata"
+texture = ExtResource("3_b8xnq")
+max_stacks = 1
+price = 40
+description = "\"Carboidrati puri. Una fonte di energia grezza ed esplosiva pronta a scorrere nelle tue braccia.
+Effetto: Aumenta i danni inflitti dai tuoi attacchi di 5 per 30 secondi."
+damage = 40
+is_consumable = true
+heal_amount = 10
+buff_type = "damage"
+buff_value = 5.0
+buff_duration = 30.0

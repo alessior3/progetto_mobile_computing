@@ -74,7 +74,12 @@ func collect() -> void:
 	if current_player and inventory_item:
 		var player_inv = current_player.get_node_or_null("Inventory")
 		if player_inv:
-			player_inv.add_item(inventory_item, amount)
+			# --- LA MODIFICA È QUI: Usiamo smart_add_pickup invece di add_item ---
+			if player_inv.has_method("smart_add_pickup"):
+				player_inv.smart_add_pickup(inventory_item, amount)
+			else:
+				player_inv.add_item(inventory_item, amount) # Fallback di sicurezza
+			# ----------------------------------------------------------------------
 			
 			# Registriamo l'ID nella lista globale prima di sparire
 			if item_id != "":
