@@ -24,7 +24,7 @@ show_percentage = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1509604841]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 size_flags_vertical = 8
 
 [node name="hand" parent="MarginContainer/HBoxContainer" unique_id=1156229406 instance=ExtResource("2_yl4ho")]

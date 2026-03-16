@@ -18,16 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bpru1h2sxht2l" path="res://Assets/Icons/in.png" id="16_kaa57"]
 [ext_resource type="Texture2D" uid="uid://caueh8bk4ny01" path="res://Assets/Icons/inPress.png" id="17_ryli0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_md083"]
-size = Vector2(13, 15)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhutp"]
-size = Vector2(13, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jnog"]
-size = Vector2(13, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n67iu"]
 size = Vector2(13, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i47fd"]
@@ -36,51 +27,34 @@ size = Vector2(315, 340)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y3to"]
 size = Vector2(315, 340)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n67iu"]
+size = Vector2(13, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_md083"]
+size = Vector2(13, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jnog"]
+size = Vector2(13, 15)
+
 [node name="MobileControls" type="Node2D" unique_id=1738634788]
-position = Vector2(-147.00012, 189.0002)
+position = Vector2(66.99986, 429)
+scale = Vector2(5, 5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1687308629]
 script = ExtResource("1_md083")
 
-[node name="LeftButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=2063095623]
-position = Vector2(-312.99997, 234.0002)
-scale = Vector2(13.692298, 12.533334)
-texture_normal = ExtResource("1_k0vrn")
-texture_pressed = ExtResource("3_md083")
-shape = SubResource("RectangleShape2D_md083")
-passby_press = true
-action = "ui_left"
-
 [node name="RightButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=841482299]
-position = Vector2(57, 235.0002)
-scale = Vector2(13.615387, 12.333333)
+position = Vector2(188, 437.99997)
+scale = Vector2(5.3, 5.366668)
 texture_normal = ExtResource("3_uhutp")
 texture_pressed = ExtResource("5_uhutp")
 shape = SubResource("RectangleShape2D_uhutp")
 passby_press = true
 action = "ui_right"
 
-[node name="UpButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=174836046]
-position = Vector2(-126.000305, 44)
-scale = Vector2(13.692312, 12.466666)
-texture_normal = ExtResource("5_n67iu")
-texture_pressed = ExtResource("7_md083")
-shape = SubResource("RectangleShape2D_8jnog")
-passby_press = true
-action = "ui_up"
-
-[node name="DownButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=496426620]
-position = Vector2(-127.00012, 234.0002)
-scale = Vector2(13.769227, 12.4)
-texture_normal = ExtResource("7_q5klo")
-texture_pressed = ExtResource("9_md083")
-shape = SubResource("RectangleShape2D_n67iu")
-passby_press = true
-action = "ui_down"
-
 [node name="AttackButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=1310786920]
-position = Vector2(254.00006, 231.00018)
-scale = Vector2(0.56211084, 0.56083035)
+position = Vector2(764, 438.00003)
+scale = Vector2(0.21118005, 0.23738852)
 texture_normal = ExtResource("10_8jnog")
 texture_pressed = ExtResource("11_i47fd")
 shape = SubResource("RectangleShape2D_i47fd")
@@ -88,25 +62,52 @@ passby_press = true
 action = "attack"
 
 [node name="Corsa" type="TouchScreenButton" parent="CanvasLayer" unique_id=274158880]
-position = Vector2(442.0001, 231)
-scale = Vector2(0.5593749, 0.56119406)
+position = Vector2(844, 438)
+scale = Vector2(0.21118006, 0.23738852)
 texture_normal = ExtResource("12_i47fd")
 texture_pressed = ExtResource("13_i47fd")
 shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
 
 [node name="interazione" type="TouchScreenButton" parent="CanvasLayer" unique_id=1281332741]
-position = Vector2(438.0001, 31.999954)
-scale = Vector2(0.5593749, 0.56119406)
+position = Vector2(844, 349)
+scale = Vector2(0.21118021, 0.23738874)
 texture_normal = ExtResource("14_ryli0")
 texture_pressed = ExtResource("15_tkpwc")
 shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
 
 [node name="inventario" type="TouchScreenButton" parent="CanvasLayer" unique_id=1929019868]
-position = Vector2(252.00003, 31)
-scale = Vector2(0.5593749, 0.56119406)
+position = Vector2(763, 348.99997)
+scale = Vector2(0.21428564, 0.23738869)
 texture_normal = ExtResource("16_kaa57")
 texture_pressed = ExtResource("17_ryli0")
 shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
+
+[node name="DownButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=496426620]
+position = Vector2(118.00001, 438)
+scale = Vector2(5.3, 5.369)
+texture_normal = ExtResource("7_q5klo")
+texture_pressed = ExtResource("9_md083")
+shape = SubResource("RectangleShape2D_n67iu")
+passby_press = true
+action = "ui_down"
+
+[node name="LeftButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=2063095623]
+position = Vector2(48, 438)
+scale = Vector2(5.307691, 5.366668)
+texture_normal = ExtResource("1_k0vrn")
+texture_pressed = ExtResource("3_md083")
+shape = SubResource("RectangleShape2D_md083")
+passby_press = true
+action = "ui_left"
+
+[node name="UpButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=174836046]
+position = Vector2(118.00001, 356.00003)
+scale = Vector2(5.3, 5.369)
+texture_normal = ExtResource("5_n67iu")
+texture_pressed = ExtResource("7_md083")
+shape = SubResource("RectangleShape2D_8jnog")
+passby_press = true
+action = "ui_up"
