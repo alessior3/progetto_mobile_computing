@@ -2585,6 +2585,9 @@ fill = 1
 fill_from = Vector2(0, 0.5)
 fill_to = Vector2(1, 0.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3xq8"]
+size = Vector2(29, 35)
+
 [node name="dungeon1" type="Node2D" unique_id=686333185]
 position = Vector2(1923, 866)
 
@@ -2638,7 +2641,7 @@ blend_mode = 1
 texture = SubResource("GradientTexture2D_grqd7")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("2_ksysw")]
-position = Vector2(926, -277)
+position = Vector2(16, 45)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=907469725]
 position = Vector2(-2, -4)
@@ -2707,3 +2710,19 @@ position = Vector2(140, -108)
 position = Vector2(909, -217)
 item_id = "carrot"
 inventory_item = ExtResource("21_g3xq8")
+
+[node name="exit" type="Area2D" parent="." unique_id=363302866]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="exit" unique_id=1221873514]
+position = Vector2(15.5, 19.5)
+shape = SubResource("RectangleShape2D_g3xq8")
+
+[node name="muro" type="StaticBody2D" parent="." unique_id=2142582537]
+position = Vector2(-102, -88)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="muro" unique_id=843542953]
+polygon = PackedVector2Array(102, 118, 102, 264, 144, 264, 133, 247, 133, 241, 165, 241, 165, 263, 422, 264, 422, 153, 261, 153, 262, -9, 501, -8, 502, 103, 534, 103, 534, -8, 1046, -8, 1046, -152, 1126, -152, 1125, -247, 950, -248, 950, -152, 981, -152, 982, -39, 693, -40, 693, -264, -490, -263, -490, -248, 662, -248, 662, -40, 214, -40, 214, 153, 133, 153, 133, 118, 119, 94, 99, 113, 69, 38, -532, -157, -548, -497, 855, -460, 1425, -328, 1330, 226, 530, 411, -83, 326, -61, 108)
+
+[connection signal="body_entered" from="exit" to="player" method="_on_exit_body_entered"]

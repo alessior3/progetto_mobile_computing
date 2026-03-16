@@ -507,3 +507,19 @@ func apply_buff(type: String, value: float, duration: float):
 		# "defense": 
 		# "light":
 		# "damage":
+
+
+func _on_exit_body_entered(body: Node2D) -> void:
+	if body == self:
+		print("DEBUG (Player): Uscita dal Dungeon riscontrata.")
+		# Posizioniamo il player nel mondo vicino all'entrata del dungeon
+		# Coordinate globali calcolate: World(982, 898) + Entrance(856, -90) = (1838, 808)
+		# Usiamo (1838, 830) per spawnare leggermente sotto l'entrata
+		Global.player_pos = Vector2(1838, 830) 
+		Global.player_facing_dir = "down"
+		
+		print("DEBUG (Player): Salvataggio prima di uscire...")
+		Global.save_game()
+		
+		print("DEBUG (Player): Ritorno al mondo...")
+		TransitionChangeManager.change_scene("res://Scenes/world.tscn")
