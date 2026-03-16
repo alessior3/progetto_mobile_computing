@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 Global="*uid://b6nb2wg3umyui"
 TransitionChangeManager="*uid://cdfv6rbg5h5as"
 SaveManager="*uid://dvpomgwdpbdgn"
+Auth="*uid://ciyyyvsrjlx3w"
 
 [display]
 
@@ -32,6 +33,10 @@ window/stretch/scale=1.1800000000000002
 [dotnet]
 
 project/assembly_name="mobile_alpha"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GodotGoogleSignIn/plugin.cfg")
 
 [input]
 
@@ -118,4 +123,6 @@ pointing/emulate_touch_from_mouse=true
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

@@ -1,72 +1,54 @@
 extends Control
 
-# --- RIFERIMENTI AI NODI DELLA SCENA ---
-# Assicurati che questi nomi siano identici a quelli nell'albero a sinistra!
-@onready var email_input = $VBoxContainer/EmailInput 
+# --- RIFERIMENTI UI (Corretti in base al tuo Scene Tree) ---
+@onready var feedback_label = $VBoxContainer/FeedbackLabel
+@onready var email_input = $VBoxContainer/EmailInput
 @onready var password_input = $VBoxContainer/PasswordInput
-@onready var feedback_label = $VBoxContainer/FeedbackLabel 
-
-@onready var btn_inizia = $VBoxContainer/btnInizia
-@onready var btn_carica = $VBoxContainer/btnCarica
 @onready var btn_login = $VBoxContainer/btnlogin
 @onready var btn_registrati = $VBoxContainer/btnRegistrati
+@onready var btn_google = $VBoxContainer/btnGoogle # Assicurati di averlo creato così
+@onready var btn_inizia = $VBoxContainer/btnInizia
+@onready var btn_carica = $VBoxContainer/btnCarica
+@onready var btn_quit = $VBoxContainer/btnQuit
 
-# Il nodo auth che abbiamo creato nella scena
-@onready var auth = $auth 
+# Variabile per il plugin nativo Android
+var google_sign_in_plugin
 
-func _ready() -> void:
-	# All'inizio nascondiamo i bottoni di gioco e puliamo la scritta
-	btn_inizia.visible = false
-	btn_carica.visible = false
-	feedback_label.text = "Benvenuto! Accedi o Registrati."
+func _ready():
+	# Colleghiamo i segnali di Auth (Autoload)
+	Auth.register_succeeded.connect(_on_register_success)
+	Auth.register_failed.connect(_on_auth_failed)
+	Auth.login_failed.connect(_on_auth_failed)
+	Auth.login_succeeded.connect(_on_manual_login_success) # Login email standard
 	
-	# --- COLLEGHIAMO I SEGNALI DEL NODO AUTH ---
-	auth.login_succeeded.connect(_on_login_success)
-	auth.login_failed.connect(_on_auth_failed)
-	auth.register_succeeded.connect(_on_register_success)
-	auth.register_failed.connect(_on_auth_failed)
+	# Login Google
+	Auth.google_login_succeeded.connect(_on_google_login_success)
+	
+	# Cerchiamo il plugin di Android
+	if Engine.has_singleton("GodotGoogleSignIn"):
+		google_sign_in_plugin = Engine.get_singleton("GodotGoogleSignIn")
+		google_sign_in_plugin.user_authenticated.connect(_on_google_token_received)
+	else:
+		print("Plugin Google non caricato. Normale se sei su PC.")
 
-# --- FUNZIONI DEI BOTTONI ---
-
-func _on_btn_login_pressed() -> void:
+# --- LOGIN EMAIL STANDARD ---
+func _on_btnlogin_pressed():
 	var email = email_input.text
 	var password = password_input.text
-	
 	if email == "" or password == "":
-		feedback_label.text = "Inserisci Email e Password!"
+		feedback_label.text = "Inserisci email e password!"
 		return
-		
-	feedback_label.text = "Accesso in corso..."
-	auth.login_user(email, password)
+	Auth.login_user(email, password)
 
-func _on_btn_registrati_pressed() -> void:
-	var email = email_input.text
-	var password = password_input.text
-	
-	if email == "" or password == "":
-		feedback_label.text = "Inserisci Email e Password!"
-		return
-		
-	feedback_label.text = "Creazione account in corso..."
-	auth.register_user(email, password)
-
-# --- RISPOSTE DA FIREBASE ---
-
-func _on_login_success(_local_id, _id_token) -> void:
-	feedback_label.text = "Login effettuato con successo!"
-	
-	# Nascondiamo i campi di testo e i bottoni di login
-	email_input.visible = false
-	password_input.visible = false
-	btn_login.visible = false
-	btn_registrati.visible = false
-	
-	# Facciamo apparire i bottoni per giocare!
-	btn_inizia.visible = true
-	btn_carica.visible = true
-	
-	# Salviamo l'email nel Global per usarla nel salvataggio Cloud
+func _on_manual_login_success(local_id, id_token):
 	Global.current_username = email_input.text
+	_mostra_menu_gioco("Login effettuato!")
+
+# --- REGISTRAZIONE ---
+func _on_btn_registrati_pressed():
+	var email = email_input.text
+	var password = password_input.text
+	Auth.register_user(email, password)
 
 func _on_register_success(_local_id) -> void:
 	feedback_label.text = "Account creato! Ora premi Login."
@@ -75,16 +57,43 @@ func _on_register_success(_local_id) -> void:
 func _on_auth_failed(error_message) -> void:
 	feedback_label.text = error_message
 
-# --- BOTTONI DI GIOCO ---
+# --- GOOGLE SIGN-IN ---
 
+func _on_btn_google_pressed():
+	if google_sign_in_plugin:
+		feedback_label.text = "Apertura Google..."
+		google_sign_in_plugin.signIn(Global.google_web_client_id)
+	else:
+		feedback_label.text = "Usa il telefono per il login Google!"
+
+func _on_google_token_received(google_id_token: String):
+	feedback_label.text = "Verifica Google..."
+	Auth.login_with_google(google_id_token)
+
+func _on_google_login_success(google_email: String) -> void:
+	Global.current_username = google_email
+	_mostra_menu_gioco("Google Login OK!")
+
+# --- FUNZIONE DI SERVIZIO PER PULIRE L'INTERFACCIA ---
+func _mostra_menu_gioco(messaggio: String):
+	feedback_label.text = messaggio
+	email_input.visible = false
+	password_input.visible = false
+	btn_login.visible = false
+	btn_registrati.visible = false
+	btn_google.visible = false
+	
+	btn_inizia.visible = true
+	btn_carica.visible = true
+
+# --- BOTTONI DI GIOCO ---
 func _on_btn_inizia_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/world.tscn")
 
 func _on_btn_carica_pressed() -> void:
-	print("=== BOTTONE CARICA CLICCATO! ===")
 	var success = SaveManager.load_game()
 	if not success:
-		feedback_label.text = "Nessun salvataggio trovato!"
+		feedback_label.text = "Nessun dato nel Cloud!"
 
 func _on_btn_quit_pressed() -> void:
 	get_tree().quit()

@@ -1,16 +1,18 @@
 extends Node
 
-# Segnali che useremo per dire al Menu se l'operazione è andata a buon fine
+# --- SEGNALI ---
 signal login_succeeded(local_id, id_token)
 signal login_failed(error_message)
 signal register_succeeded(local_id)
 signal register_failed(error_message)
 
+# NUOVO SEGNALE PER GOOGLE
+signal google_login_succeeded(email)
+
 var api_key : String = ""
 var config_file_path = "res://secret.cfg"
 
 func _ready():
-	# Appena il gioco si avvia, carica la chiave segreta
 	load_api_key()
 
 func load_api_key():
@@ -22,7 +24,7 @@ func load_api_key():
 	else:
 		print("ERRORE: Impossibile trovare il file secret.cfg")
 
-# --- FUNZIONE REGISTRAZIONE ---
+# --- FUNZIONE REGISTRAZIONE CLASSICA ---
 func register_user(email, password):
 	var http = HTTPRequest.new()
 	add_child(http)
@@ -35,7 +37,7 @@ func register_user(email, password):
 	http.request(url, headers, HTTPClient.METHOD_POST, body)
 
 func _on_register_request_completed(result, response_code, headers, body, http_node):
-	http_node.queue_free() # Eliminiamo il nodo HTTP per non sporcare la scena
+	http_node.queue_free()
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	
 	if response_code == 200:
@@ -44,7 +46,7 @@ func _on_register_request_completed(result, response_code, headers, body, http_n
 		var error_msg = _translate_error(json)
 		emit_signal("register_failed", error_msg)
 
-# --- FUNZIONE LOGIN ---
+# --- FUNZIONE LOGIN CLASSICO ---
 func login_user(email, password):
 	var http = HTTPRequest.new()
 	add_child(http)
@@ -66,10 +68,40 @@ func _on_login_request_completed(result, response_code, headers, body, http_node
 		var error_msg = _translate_error(json)
 		emit_signal("login_failed", error_msg)
 
+# --- NUOVA FUNZIONE: LOGIN CON GOOGLE (NATIVO ANDROID) ---
+func login_with_google(google_id_token: String):
+	var http = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(_on_google_firebase_completed.bind(http))
+	
+	var url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=" + api_key
+	var headers = ["Content-Type: application/json"]
+	
+	# Formattazione speciale richiesta da Firebase per accettare credenziali esterne
+	var post_body = "id_token=" + google_id_token + "&providerId=google.com"
+	var body_data = {
+		"postBody": post_body,
+		"requestUri": "http://localhost",
+		"returnIdpCredential": true,
+		"returnSecureToken": true
+	}
+	
+	http.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(body_data))
+
+func _on_google_firebase_completed(result, response_code, headers, body, http_node):
+	http_node.queue_free()
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	
+	if response_code == 200:
+		var google_email = json.get("email", "GiocatoreGoogle")
+		emit_signal("google_login_succeeded", google_email)
+	else:
+		var error_msg = _translate_error(json)
+		emit_signal("login_failed", "Errore Google-Firebase: " + error_msg)
+
 # --- FUNZIONE ESCI ---
 func logout():
 	print("Utente disconnesso.")
-	# Qui in futuro potremo cancellare i dati salvati locali, se necessario.
 
 # --- TRADUTTORE DI ERRORI ---
 func _translate_error(json) -> String:
