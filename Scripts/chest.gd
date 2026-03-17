@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var chest_id: String = "cassa_casa_1"
-@export var chest_size: int = 12
+@export var chest_size: int = 15
 
 # Coordinate spritesheet
 @export var x_chiusa: float = 0.0
@@ -23,6 +23,15 @@ func _ready() -> void:
 	# Inizializzazione inventario cassa
 	if Global.chests_data.has(chest_id):
 		chest_items = Global.chests_data[chest_id]
+		
+		# --- NOVITÀ: AGGIORNAMENTO AUTOMATICO ---
+		# Se nel frattempo abbiamo ingrandito la cassa nell'editor, aggiungiamo gli slot mancanti
+		if chest_items.size() < chest_size:
+			var slot_mancanti = chest_size - chest_items.size()
+			for i in range(slot_mancanti):
+				chest_items.append(null)
+		# ----------------------------------------
+		
 	else:
 		chest_items.resize(chest_size)
 		chest_items.fill(null)
@@ -63,14 +72,17 @@ func _input(event: InputEvent) -> void:
 		toggle_chest()
 
 func toggle_chest():
-	# Cerca il nodo ChestUI nella scena
 	var chest_ui = get_tree().current_scene.get_node_or_null("ChestUI") 
-	# Troviamo lo zaino del player per poterlo chiudere in automatico alla fine
 	var inv_ui = current_player.get_node_or_null("inventoryUI") if current_player else null
 	
 	if sprite.region_rect.position.x == x_chiusa:
 		sprite.region_rect.position.x = x_aperta
 		print("Cassa aperta visivamente!")
+		
+		# --- LA MODIFICA CHIAVE: Rinfresca la memoria prima di aprire! ---
+		if Global.chests_data.has(chest_id):
+			chest_items = Global.chests_data[chest_id]
+		# -----------------------------------------------------------------
 		
 		# Apriamo la UI e passiamo gli oggetti, l'id e se stessa
 		if chest_ui:

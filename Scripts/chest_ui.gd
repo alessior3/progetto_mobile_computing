@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var grid = $Background/Grid
+@onready var grid = $ChestContainer/MainBody/Grid
 
 # Il percorso della scena del tuo quadratino dell'inventario
 var slot_scene = preload("res://Scenes/UI/inventory_slot.tscn")
@@ -49,6 +49,7 @@ func close_chest_ui():
 	linked_chest = null
 
 # Salva i dati quando sposti qualcosa
+# Salva i dati quando sposti qualcosa
 func _on_chest_slot_swapped(source_slot, target_slot):
 	var updated_items: Array = []
 	var slots = grid.get_children()
@@ -57,7 +58,14 @@ func _on_chest_slot_swapped(source_slot, target_slot):
 		updated_items.append(slot.current_item)
 		
 	if current_chest_id != "":
+		# Aggiorna il salvataggio globale
 		Global.chests_data[current_chest_id] = updated_items
+		
+		# --- LA MODIFICA CHIAVE: Aggiorna la cassa fisica! ---
+		if linked_chest:
+			linked_chest.chest_items = updated_items
+		# -----------------------------------------------------
+		
 		print("DEBUG: Memoria della Cassa (", current_chest_id, ") salvata con successo!")
 
 # Bottone X della Cassa

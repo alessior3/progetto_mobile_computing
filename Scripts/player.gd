@@ -107,6 +107,22 @@ func _ready():
 func _unhandled_input(event):
 	if is_dead: return
 	
+	# 1. Controlliamo l'azione e che non sia un "echo" (tasto tenuto premuto)
+	if event.is_action_pressed("toggle_inventory") and not event.is_echo():
+		
+		# 2. TRUCCO PER LAPTOP: Se l'evento mouse è generato dal tocco, lo scartiamo
+		# perché il segnale "Touch" vero lo ha già processato o lo processerà.
+		if event is InputEventMouseButton and event.is_from_touch():
+			return
+
+		var inv_ui = get_node_or_null("InventoryUI")
+		if inv_ui:
+			inv_ui.toggle()
+			print("DEBUG: Toggle eseguito con successo! Visibile: ", inv_ui.visible)
+			
+			# 3. Diciamo a Godot che abbiamo finito, così non invia altri segnali
+			get_viewport().set_input_as_handled()
+	
 	if event is InputEventKey and event.is_action_pressed("interact") and house != null:
 		house.enter()
 		

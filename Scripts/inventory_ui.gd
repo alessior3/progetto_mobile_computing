@@ -38,20 +38,21 @@ func _ready() -> void:
 
 func toggle():
 	visible = !visible
-	if visible and inventory:
-		# Resetta l'interfaccia quando la apri
-		if details_label:
-			details_label.text = "Seleziona un oggetto"
-		selected_item = null
+	if visible:
+		# Reset visivo immediato
+		item_icon.hide()
+		if item_name_label: item_name_label.text = ""
+		if details_label: details_label.text = "Seleziona un oggetto"
 		_nascondi_bottoni()
+		selected_item = null
 		
-		update_slots(inventory.items)
-		if main_panel:
-			main_panel.position.y = posizione_centrale_y
-		
-		if not visible and current_active_slot:
+		# Se c'era uno slot illuminato, spegnilo
+		if current_active_slot:
 			current_active_slot.set_highlight(false)
 			current_active_slot = null
+			
+		if inventory:
+			update_slots(inventory.items)
 
 func update_slots(items_list: Array[InventoryItem]):
 	var slots = grid_container.get_children()
@@ -77,7 +78,7 @@ func update_slots(items_list: Array[InventoryItem]):
 # LOGICA DEI BOTTONI
 # ==========================================
 func _on_slot_focused(slot: InventorySlot):
-	# 1. Gestione highlight (come prima)
+	# 1. Gestione highlight (questo va bene)
 	if current_active_slot != null:
 		current_active_slot.set_highlight(false)
 	
@@ -91,19 +92,20 @@ func _on_slot_focused(slot: InventorySlot):
 	if item:
 		item_icon.texture = item.texture
 		item_icon.show()
-		
-		# 1. Mettiamo il nome nella Label grande
 		if item_name_label:
 			item_name_label.text = item.name
-			
-		# 2. Mettiamo la descrizione nella Label piccola
 		if details_label:
 			var desc = item.get("description")
-			if desc == null or desc == "":
-				desc = "Nessuna descrizione disponibile."
-			details_label.text = desc
-			
+			details_label.text = desc if desc else "Nessuna descrizione."
 		_mostra_bottoni()
+	else:
+		# --- LA PULIZIA: AGGIUNGI QUESTO BLOCCO ---
+		item_icon.hide()            # Nasconde l'immagine del ravanello
+		if item_name_label:
+			item_name_label.text = "" # Svuota il nome
+		if details_label:
+			details_label.text = "Seleziona un oggetto"
+		_nascondi_bottoni()         # Nasconde Equip e Drop
 
 func _on_equip_pressed():
 	if selected_item != null and inventory:
@@ -136,10 +138,21 @@ func _mostra_bottoni():
 func _on_slot_swapped(source_slot, target_slot):
 	if inventory:
 		var slots = grid_container.get_children()
+		# Creiamo un nuovo array temporaneo tipizzato correttamente
+		var nuovi_oggetti: Array[InventoryItem] = []
+		
 		for i in range(slots.size()):
-			if i < inventory.items.size():
-				inventory.items[i] = slots[i].current_item
-
+			nuovi_oggetti.append(slots[i].current_item)
+		
+		# 1. Aggiorniamo la risorsa locale
+		inventory.items = nuovi_oggetti
+		
+		# 2. AGGIORNIAMO IL GLOBAL (Fondamentale!)
+		# Assicurati che il nome della variabile nel Global sia corretto (es. persistent_inventory)
+		if "persistent_inventory" in Global:
+			Global.persistent_inventory = nuovi_oggetti
+			
+		print("Sincronizzazione completata: ", nuovi_oggetti.size(), " slot salvati.")
 func _on_drag_started():
 	var chest_ui = get_tree().current_scene.get_node_or_null("ChestUI")
 	if chest_ui and chest_ui.visible: hide() 
