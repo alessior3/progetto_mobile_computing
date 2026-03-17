@@ -78,6 +78,7 @@ layout_mode = 2
 [node name="auth" type="Node" parent="." unique_id=2113222670]
 script = ExtResource("3_1ehe0")
 
+[connection signal="pressed" from="VBoxContainer/btnlogin" to="." method="_on_btnlogin_pressed"]
 [connection signal="pressed" from="VBoxContainer/btnlogin" to="." method="_on_btn_login_pressed"]
 [connection signal="pressed" from="VBoxContainer/btnRegistrati" to="." method="_on_btn_registrati_pressed"]
 [connection signal="pressed" from="VBoxContainer/btnGoogle" to="." method="_on_btn_google_pressed"]

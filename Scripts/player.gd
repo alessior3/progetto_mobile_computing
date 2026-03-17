@@ -56,7 +56,6 @@ func _ready():
 		progress_bar.add_theme_stylebox_override("fill", style_box)
 		
 	await get_tree().process_frame
-	# ... (il resto del tuo _ready rimane identico)
 	
 	if SaveManager.is_loading_game:
 		global_position = SaveManager.loaded_position
@@ -298,20 +297,30 @@ func die():
 	Global.persistent_health = 100
 	# -----------------------------------
 	
-	print("Il Player è morto! Caricamento ultimo salvataggio dal Cloud...")
+	print("Il Player è morto! Cerco l'ultimo salvataggio nel Cloud...")
 	
+	# Rendiamo il player invisibile e fermo durante il caricamento
 	visible = false
 	velocity = Vector2.ZERO
 	$CollisionShape2D.set_deferred("disabled", true) 
 	
+	# Impostiamo il bigliettino per fargli svuotare le tasche al risveglio
 	Global.set_meta("has_died", true)
 	
-	var cloud_load_started = SaveManager.load_game() 
+	# 1. Chiamiamo Firebase
+	SaveManager.load_game() 
 	
-	if not cloud_load_started:
-		print("Test Locale: Riavvio della scena in corso...")
-		await get_tree().create_timer(1.0).timeout 
-		get_tree().reload_current_scene()
+	# 2. ASPETTIAMO CHE FIREBASE RISPONDA (Magia di Godot 4!)
+	var risultato = await SaveManager.load_response
+	var salvataggio_trovato = risultato[0] # È il valore "success" (true o false)
+	
+	if not salvataggio_trovato:
+		print("Nessun salvataggio trovato (o errore)! Riavvio il mondo da zero...")
+		await get_tree().create_timer(1.0).timeout # Piccola pausa drammatica di 1 secondo
+		get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	else:
+		print("Salvataggio Cloud trovato! Il SaveManager ti sta per riportare in vita...")
+		# Non serve fare nulla qui: il SaveManager ricarica la scena e la posizione da solo!
 
 func apply_damage(amount: int):
 	if is_dead: return 
@@ -336,6 +345,7 @@ func apply_damage(amount: int):
 		await get_tree().create_timer(0.2).timeout
 		if get_tree() != null:
 			modulate = Color(1, 1, 1)
+
 # ==========================================
 # GESTIONE CIBO E BUFF
 # ==========================================
@@ -389,8 +399,6 @@ func consume_food_item(food: InventoryItem):
 	if inventory and inventory.inventory_ui:
 		inventory.inventory_ui.update_slots(inventory.items)
 
-
-
 # ==========================================
 # BUFF MANAGER
 # ==========================================
@@ -398,13 +406,8 @@ func apply_buff(type: String, value: float, duration: float):
 	match type:
 		"speed":
 			print("RADISH POWER! Sprint doubled!")
-			# Convert int (e.g., 2) to float (2.0)
 			speed_buff_multiplier = float(value)
-			
-			# The timer automatically waits for the seconds specified in the .tres file
 			await get_tree().create_timer(duration).timeout
-			
-			# Once the effect ends, return to normal speed
 			speed_buff_multiplier = 1.0
 			print("Speed buff faded.")
 			
@@ -412,14 +415,8 @@ func apply_buff(type: String, value: float, duration: float):
 			print("CARROT POWER! Torch light expanded!")
 			if has_node("TorchLight") and not is_light_buff_active:
 				is_light_buff_active = true
-				
-				# Multiply the torch radius by the buff value (e.g., x2.0)
 				$TorchLight.texture_scale = original_torch_scale * value
-				
-				# Wait for 2 minutes (120 seconds)
 				await get_tree().create_timer(duration).timeout
-				
-				# Revert to normal
 				$TorchLight.texture_scale = original_torch_scale
 				is_light_buff_active = false
 				print("Light buff faded.")
@@ -430,8 +427,6 @@ func apply_buff(type: String, value: float, duration: float):
 				print("KALE POWER! Max HP increased by ", value)
 				
 				var extra_hp = int(value)
-				
-				# 1. Increase the maximum limit
 				health_system.max_health += extra_hp
 				progress_bar.max_value = health_system.max_health
 				health_system.current_health += extra_hp
@@ -444,10 +439,8 @@ func apply_buff(type: String, value: float, duration: float):
 				
 				_on_damage_taken(health_system.current_health) 
 
-				# 3. Wait for the effect to finish
 				await get_tree().create_timer(duration).timeout
 				
-				# 4. Remove the extra maximum limit
 				health_system.max_health -= extra_hp
 				progress_bar.max_value = health_system.max_health
 				
@@ -464,18 +457,14 @@ func apply_buff(type: String, value: float, duration: float):
 				print("Max HP buff faded.")
 				
 		"discount":
-			# We use 'duration' as the number of charges (purchases)
 			print("CAULIFLOWER POWER! ", value, "% discount for the next ", int(duration), " purchases!")
-			
 			discount_percentage = value
 			discount_charges += int(duration)
 			
 		"damage":
 			print("POTATO POWER! Attack damage increased by +", int(value))
 			bonus_attack_damage = int(value)
-			
 			await get_tree().create_timer(duration).timeout
-			
 			bonus_attack_damage = 0
 			print("Damage buff faded.")
 		
@@ -486,14 +475,11 @@ func apply_buff(type: String, value: float, duration: float):
 			var heal_per_tick = int(value)
 			
 			for i in range(ticks):
-				# Wait for exactly 1 second
 				await get_tree().create_timer(1.0).timeout
 				
-				# Stop the regeneration if the player dies during the effect
 				if is_dead:
 					break 
 				
-				# Apply the healing logic only if health is not full
 				if health_system.current_health < health_system.max_health:
 					if health_system.has_method("heal"):
 						health_system.heal(heal_per_tick)
@@ -502,34 +488,21 @@ func apply_buff(type: String, value: float, duration: float):
 						if health_system.current_health > health_system.max_health:
 							health_system.current_health = health_system.max_health
 					
-					# Update the UI progress bar
 					_on_damage_taken(health_system.current_health)
 					print("Regen tick: +", heal_per_tick, " HP (Current: ", health_system.current_health, ")")
 					
 			print("Regen buff faded.")
 			
-		
 		"defense":
 			print("PUMPKIN POWER! Damage taken reduced by ", value, "%")
-			# Convert percentage (e.g., 30.0) to 0.30
 			damage_reduction_multiplier = value / 100.0
-			
 			await get_tree().create_timer(duration).timeout
-			
 			damage_reduction_multiplier = 0.0
 			print("Defense buff faded.")
-		# Future buffs will be added here:
-		# "defense": 
-		# "light":
-		# "damage":
-
 
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body == self:
 		print("DEBUG (Player): Uscita dal Dungeon riscontrata.")
-		# Posizioniamo il player nel mondo vicino all'entrata del dungeon
-		# Coordinate globali calcolate: World(982, 898) + Entrance(856, -90) = (1838, 808)
-		# Usiamo (1838, 830) per spawnare leggermente sotto l'entrata
 		Global.player_pos = Vector2(1838, 830) 
 		Global.player_facing_dir = "down"
 		

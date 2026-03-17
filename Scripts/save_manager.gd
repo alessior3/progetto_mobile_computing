@@ -1,5 +1,8 @@
 extends Node
 
+# Segnale per avvisare il menu di come è andato il caricamento
+signal load_response(success, message)
+
 var api_key : String = ""
 var database_url : String = ""
 var config_file_path = "res://secret.cfg"
@@ -15,14 +18,18 @@ func load_config():
 	var config = ConfigFile.new()
 	var err = config.load(config_file_path)
 	if err == OK:
-		api_key = config.get_value("firebase", "api_key", "")
-		database_url = config.get_value("firebase", "database_url", "")
+		# Rimuoviamo gli spazi invisibili per evitare crash su Android
+		api_key = config.get_value("firebase", "api_key", "").strip_edges()
+		database_url = config.get_value("firebase", "database_url", "").strip_edges()
+		
+		# Sicurezza extra: l'URL deve finire sempre con la barra "/"
+		if database_url != "" and not database_url.ends_with("/"):
+			database_url += "/"
 	else:
 		print("Errore caricamento secret.cfg")
 
 # --- FUNZIONI DI TRADUZIONE INVENTARIO ---
 
-# Converte le Resource in percorsi testuali per Firebase
 func serialize_inventory(items: Array[InventoryItem]) -> Array:
 	var serialized = []
 	for item in items:
@@ -30,7 +37,6 @@ func serialize_inventory(items: Array[InventoryItem]) -> Array:
 			serialized.append(item.resource_path)
 	return serialized
 
-# Converte i percorsi testuali da Firebase di nuovo in Resource
 func deserialize_inventory(paths: Array) -> Array[InventoryItem]:
 	var deserialized: Array[InventoryItem] = []
 	for path in paths:
@@ -40,7 +46,6 @@ func deserialize_inventory(paths: Array) -> Array[InventoryItem]:
 				deserialized.append(item)
 	return deserialized
 
-# Converte un singolo oggetto equipaggiato
 func serialize_item(item: InventoryItem) -> String:
 	return item.resource_path if item else ""
 
@@ -62,7 +67,6 @@ func save_game():
 
 	var user_id = Global.current_username.replace(".", "_")
 	
-	# Pacchetto dati completo da spedire a Firebase
 	var data = {
 		"player_x": player.global_position.x,
 		"player_y": player.global_position.y,
@@ -77,18 +81,22 @@ func save_game():
 	
 	var http = HTTPRequest.new()
 	add_child(http)
-	http.request_completed.connect(_on_save_completed)
+	# Leghiamo il nodo HTTP alla funzione per poterlo eliminare dopo
+	http.request_completed.connect(_on_save_completed.bind(http))
 	
 	var url = database_url + "users/" + user_id + ".json"
 	var body = JSON.stringify(data)
-	var err = http.request(url, [], HTTPClient.METHOD_PUT, body)
+	
+	# Usiamo PackedStringArray, richiesto da Android
+	var headers = PackedStringArray(["Content-Type: application/json"])
+	var err = http.request(url, headers, HTTPClient.METHOD_PUT, body)
 	
 	if err != OK:
 		print("ERRORE nell'invio della richiesta HTTP!")
-	else:
-		print("Invio dati salvataggio in corso...")
+		http.queue_free()
 
-func _on_save_completed(result, response_code, headers, body):
+func _on_save_completed(result, response_code, headers, body, http_node):
+	http_node.queue_free() # Eliminiamo il nodo fantasma per non intasare la memoria
 	print("Salvataggio completato! Codice:", response_code)
 
 # --- CARICAMENTO CLOUD ---
@@ -96,48 +104,57 @@ func load_game():
 	print("--- Inizio recupero dati dal Cloud ---")
 	
 	if Global.current_username == "":
-		print("ERRORE: Non sei loggato!")
+		emit_signal("load_response", false, "ERRORE: Non sei loggato!")
 		return false
 
 	var user_id = Global.current_username.replace(".", "_")
 	var http = HTTPRequest.new()
 	add_child(http)
-	http.request_completed.connect(_on_load_request_completed)
+	
+	http.request_completed.connect(_on_load_request_completed.bind(http))
 	
 	var url = database_url + "users/" + user_id + ".json"
-	http.request(url, [], HTTPClient.METHOD_GET)
+	var headers = PackedStringArray()
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+	
+	if err != OK:
+		emit_signal("load_response", false, "ERRORE di connessione HTTP!")
+		http.queue_free()
+		return false
+		
 	return true    
 
-func _on_load_request_completed(result, response_code, headers, body):
-	var json = JSON.parse_string(body.get_string_from_utf8())
+func _on_load_request_completed(result, response_code, headers, body, http_node):
+	http_node.queue_free() # Pulizia!
 	
-	if json is Dictionary and json.has("player_x") and json.has("player_y"):
-		# 1. Ripristino Posizione
+	var body_string = body.get_string_from_utf8()
+	
+	# Se l'utente non ha mai salvato, Firebase restituisce "null"
+	if body_string == "" or body_string == "null":
+		emit_signal("load_response", false, "Nessun salvataggio trovato!")
+		return
+		
+	var json = JSON.parse_string(body_string)
+	
+	if typeof(json) == TYPE_DICTIONARY and json.has("player_x") and json.has("player_y"):
 		loaded_position = Vector2(json["player_x"], json["player_y"])
 		is_loading_game = true
-		
-		# 2. Ripristino Oro
 		Global.persistent_gold = json.get("oro", 0)
 		
-		# 3. Ripristino Inventario (Zaino)
 		var oggetti_zaino_paths = json.get("oggetti_zaino", [])
 		Global.persistent_items = deserialize_inventory(oggetti_zaino_paths)
 		
-		# 4. Ripristino Equipaggiamento
 		Global.persistent_hand = deserialize_item(json.get("mano", ""))
 		Global.persistent_potions = deserialize_item(json.get("pozioni", ""))
 		Global.persistent_food = deserialize_item(json.get("cibo", ""))
 		
-		
-		# 5. Ripristino Oggetti raccolti (per non farli ricomparire)
 		var raccolti_temporanei = json.get("raccolti", [])
-		Global.collected_item_ids.clear() # Svuotiamo quello vecchio
+		Global.collected_item_ids.clear() 
 		for id_raccolto in raccolti_temporanei:
-			Global.collected_item_ids.append(str(id_raccolto)) # Lo forziamo a essere una Stringa
+			Global.collected_item_ids.append(str(id_raccolto)) 
 		
-		# 6. Caricamento Scena
 		if json.has("saved_scene"):
+			emit_signal("load_response", true, "Dati caricati! Avvio in corso...")
 			get_tree().change_scene_to_file(json["saved_scene"])
-			print("Dati Cloud scaricati e ripristinati con successo!")
 	else:
-		print("ATTENZIONE: Nessun dato trovato per questo utente.")
+		emit_signal("load_response", false, "I dati salvati sono corrotti!")

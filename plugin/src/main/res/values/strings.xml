@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="google_sign_in_plugin_name">GodotGoogleSignIn</string>
+	<string name="google_sign_in_plugin_name">GodotGoogleSignIn</string>
+	<string name="google_web_client_id">779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com</string>
 </resources>
