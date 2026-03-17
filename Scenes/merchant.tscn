@@ -31,7 +31,7 @@ offset_top = -41.0
 offset_right = 64.0
 offset_bottom = -18.0
 theme = SubResource("Theme_82brx")
-text = "press M to shop"
+text = "press E to shop"
 horizontal_alignment = 1
 
 [node name="ShoppingUI" parent="." unique_id=869832822 instance=ExtResource("3_s08t2")]

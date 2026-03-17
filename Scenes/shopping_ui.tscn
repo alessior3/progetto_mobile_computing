@@ -17,6 +17,7 @@ outline_size = 4
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ShoppingUI" type="CanvasLayer" unique_id=869832822]
+visible = false
 layer = 2
 script = ExtResource("1_xslcv")
 

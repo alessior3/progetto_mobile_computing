@@ -68,6 +68,7 @@ texture_normal = ExtResource("12_i47fd")
 texture_pressed = ExtResource("13_i47fd")
 shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
+action = "run"
 
 [node name="interazione" type="TouchScreenButton" parent="CanvasLayer" unique_id=1281332741]
 position = Vector2(844, 349)
@@ -76,6 +77,7 @@ texture_normal = ExtResource("14_ryli0")
 texture_pressed = ExtResource("15_tkpwc")
 shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
+action = "interact"
 
 [node name="inventario" type="TouchScreenButton" parent="CanvasLayer" unique_id=1929019868]
 position = Vector2(763, 348.99997)
@@ -84,6 +86,7 @@ texture_normal = ExtResource("16_kaa57")
 texture_pressed = ExtResource("17_ryli0")
 shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
+action = "toggle_inventory"
 
 [node name="DownButton" type="TouchScreenButton" parent="CanvasLayer" unique_id=496426620]
 position = Vector2(118.00001, 438)

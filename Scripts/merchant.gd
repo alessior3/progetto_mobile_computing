@@ -10,27 +10,31 @@ var can_trigger_merchant_ui = false
 
 func _ready() -> void:
 	shopping_ui.items_to_buy = items_to_buy
-	shopping_ui.setup_buying_grid()
+	shopping_ui.visible = false
+	if label:
+		label.visible = false
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	can_trigger_merchant_ui = true
-	label.visible = true
-	
-
+	if body is Player:
+		can_trigger_merchant_ui = true
+		if label:
+			label.visible = true
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	can_trigger_merchant_ui = false
-	label.visible = false
-	shopping_ui.visible = false
+	if body is Player:
+		can_trigger_merchant_ui = false
+		if label:
+			label.visible = false
+		if shopping_ui:
+			shopping_ui.visible = false
 	
 	
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("Merchant") and can_trigger_merchant_ui:
+	if event.is_action_pressed("interact") and can_trigger_merchant_ui:
 		shopping_ui.visible = true
-		# Diciamo alla UI di aprirsi direttamente sulla schermata di acquisto
 		shopping_ui.setup_buying_grid()
 		
-	if Input.is_action_just_pressed("ui_cancel") and shopping_ui.visible:
+	if event.is_action_pressed("ui_cancel") and shopping_ui.visible:
 		shopping_ui.visible = false

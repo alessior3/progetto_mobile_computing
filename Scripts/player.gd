@@ -114,7 +114,7 @@ func _unhandled_input(event):
 		Global.player_pos = global_position
 		SaveManager.save_game()
 		
-	if event is InputEventKey and event.pressed and event.keycode == KEY_L and not is_attacking:
+	if event.is_action_pressed("attack") and not is_attacking:
 		var hand_item = Global.persistent_hand
 		if hand_item != null and hand_item.get("is_weapon") == true:
 			start_attack()

@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://ojldqjjpigb0"]
+
+[ext_resource type="Script" uid="uid://bj7v2edodcdua" path="res://Scenes/merchant_2.gd" id="1_4jb8k"]
+[ext_resource type="Texture2D" uid="uid://dtjrp0ns3620e" path="res://Assets/Modern tiles_Free/Characters_free/Alex_idle_anim_16x16.png" id="2_4jl3x"]
+[ext_resource type="Texture2D" uid="uid://bg5yw87ndpatt" path="res://Assets/Icons/mano.png" id="3_m5kn6"]
+[ext_resource type="PackedScene" uid="uid://bclvs3krm7k6b" path="res://Scenes/shopping_ui.tscn" id="5_smeti"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uomo"]
+atlas = ExtResource("2_4jl3x")
+region = Rect2(288, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibl3d"]
+atlas = ExtResource("2_4jl3x")
+region = Rect2(304, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qe0hr"]
+atlas = ExtResource("2_4jl3x")
+region = Rect2(320, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smeti"]
+atlas = ExtResource("2_4jl3x")
+region = Rect2(336, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqvu1"]
+atlas = ExtResource("2_4jl3x")
+region = Rect2(352, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_187we"]
+atlas = ExtResource("2_4jl3x")
+region = Rect2(368, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iccxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uomo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibl3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qe0hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smeti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqvu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_187we")
+}],
+"loop": true,
+"name": &"front_animation",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_es8lo"]
+radius = 39.0
+
+[node name="merchant2" type="CharacterBody2D" unique_id=349992580]
+script = ExtResource("1_4jb8k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_iccxi")
+animation = &"front_animation"
+frame_progress = 0.6760777
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1903976365]
+position = Vector2(0, -35)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("3_m5kn6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454772329]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1642393433]
+collision_layer = 128
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1868352720]
+shape = SubResource("CircleShape2D_es8lo")
+
+[node name="ShoppingUI" parent="." unique_id=869832822 instance=ExtResource("5_smeti")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
