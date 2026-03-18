@@ -393,7 +393,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_shadowIr_Right",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -416,7 +416,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_shadowIr_back",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -439,7 +439,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_shadowIr_front",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -462,7 +462,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_shadowIr_left",
-"speed": 5.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -772,7 +772,7 @@ shape = ExtResource("2_fkybt")
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_eow3j")
-animation = &"attack_shadowIr_front"
+animation = &"attack_shadowIr_Right"
 
 [node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
 z_index = 5
