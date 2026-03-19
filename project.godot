@@ -28,6 +28,8 @@ Auth="*uid://ciyyyvsrjlx3w"
 
 [display]
 
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/stretch/scale=1.1800000000000002
 
 [dotnet]
