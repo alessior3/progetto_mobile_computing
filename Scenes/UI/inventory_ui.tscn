@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bv14rwmcy5lwq"]
 
 [ext_resource type="Script" uid="uid://cp6sgt34pvl17" path="res://Scripts/inventory_ui.gd" id="1_p83af"]
-[ext_resource type="Texture2D" uid="uid://raek28dai3g6" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_hcmni"]
-[ext_resource type="FontFile" uid="uid://faj66ehtrp1t" path="res://Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf" id="3_o62ck"]
+[ext_resource type="Texture2D" uid="uid://b1rubpseql5hd" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_hcmni"]
+[ext_resource type="FontFile" uid="uid://dn1m4eo0b8lyw" path="res://Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf" id="3_o62ck"]
+[ext_resource type="Texture2D" uid="uid://hyx8lflxb7jl" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/cancel.png" id="4_sfqc8"]
 
 [sub_resource type="Theme" id="Theme_sfqc8"]
 default_font = ExtResource("3_o62ck")
@@ -205,11 +206,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_sxwjb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_2v6ut")
 text = "LASCIA"
 
-[node name="CloseButton" type="Button" parent="." unique_id=1810667477]
-offset_left = 812.0
-offset_top = 144.0
-offset_right = 860.0
-offset_bottom = 175.0
-text = "close"
+[node name="CloseButton" type="TextureButton" parent="." unique_id=1309719536]
+offset_left = 795.0
+offset_top = 142.0
+offset_right = 823.0
+offset_bottom = 168.0
+texture_normal = ExtResource("4_sfqc8")
+stretch_mode = 0
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
