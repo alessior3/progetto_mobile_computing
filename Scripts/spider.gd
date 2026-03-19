@@ -33,8 +33,8 @@ func _physics_process(delta: float) -> void:
 	if patrol_path.size() > 1:
 		move_along_path(delta)
 
-func apply_damage(damage: int):
-ll	health_system.apply_damage(damage)
+func apply_damage(damage_amount: int):
+	health_system.take_damage(damage_amount)
 	progress_bar.value = health_system.current_health
 
 func move_along_path(delta: float):

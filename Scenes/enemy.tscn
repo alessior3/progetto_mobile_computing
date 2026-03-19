@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://vkfccv6imaj6"]
 
 [ext_resource type="Script" uid="uid://phe673jy0dk" path="res://Scripts/enemy.gd" id="1_8uf12"]
-[ext_resource type="Texture2D" uid="uid://dhr4m83fyi1xi" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_attack_anim_all_dir_strip_10.png" id="2_po0sg"]
-[ext_resource type="Texture2D" uid="uid://jgccygfd0lc4" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_idle_anim_all_dir_strip_5.png" id="3_haro7"]
-[ext_resource type="Texture2D" uid="uid://hst8364knvu1" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_death_anim_all_dir_strip_8.png" id="4_56vhr"]
-[ext_resource type="Texture2D" uid="uid://c5w8ikkqdyfwy" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_explosion_anim_strip_8.png" id="5_ta2yt"]
-[ext_resource type="Texture2D" uid="uid://c40tkocx3rhr0" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_down_anim_strip_4.png" id="6_m4x7e"]
-[ext_resource type="Texture2D" uid="uid://x3vj0ty5hlln" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_up_anim_strip_4.png" id="7_vt4ob"]
-[ext_resource type="Texture2D" uid="uid://b14ga24141pvq" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_hit_anim_all_dir_strip_4.png" id="8_hgeoe"]
+[ext_resource type="Texture2D" uid="uid://clwbv4bjmjnxf" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_attack_anim_all_dir_strip_10.png" id="2_po0sg"]
+[ext_resource type="Texture2D" uid="uid://c17j4lvfirmfs" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_idle_anim_all_dir_strip_5.png" id="3_haro7"]
+[ext_resource type="Texture2D" uid="uid://x4gwjomt6bmx" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_death_anim_all_dir_strip_8.png" id="4_56vhr"]
+[ext_resource type="Texture2D" uid="uid://cc2yljoomjswc" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_explosion_anim_strip_8.png" id="5_ta2yt"]
+[ext_resource type="Texture2D" uid="uid://dhj30gpwwigv0" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_down_anim_strip_4.png" id="6_m4x7e"]
+[ext_resource type="Texture2D" uid="uid://3iyujjtvlq5g" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomb_going_up_anim_strip_4.png" id="7_vt4ob"]
+[ext_resource type="Texture2D" uid="uid://dnmbhogiant2a" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Bomberplant_Sprites/bomberplant_hit_anim_all_dir_strip_4.png" id="8_hgeoe"]
 [ext_resource type="Script" uid="uid://cr7uekf4jiaus" path="res://Scripts/PlantAnimatedSprite.gd" id="9_56vhr"]
 [ext_resource type="Shape2D" uid="uid://dxew5axtupgcb" path="res://enemies/bombplant_collision_shape.tres" id="9_tk7xo"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="10_po0sg"]
@@ -267,7 +267,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8ej4m")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_animation",
 "speed": 10.0
 }, {
@@ -296,9 +296,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jx5vc")
 }],
-"loop": true,
+"loop": false,
 "name": &"explosion_animation",
-"speed": 7.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -313,9 +313,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ebugx")
 }],
-"loop": true,
+"loop": false,
 "name": &"going_down_animation",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -330,9 +330,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rcolj")
 }],
-"loop": true,
+"loop": false,
 "name": &"going_up_animation",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -357,9 +357,7 @@ script = ExtResource("1_8uf12")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=393941556]
 sprite_frames = SubResource("SpriteFrames_fv6oi")
-animation = &"hit_animation"
-frame = 3
-frame_progress = 0.64136297
+animation = &"going_up_animation"
 script = ExtResource("9_56vhr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2027029511]

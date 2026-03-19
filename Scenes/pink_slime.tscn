@@ -133,7 +133,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4bgqn")
 }],
-"loop": true,
+"loop": false,
 "name": &"died",
 "speed": 7.0
 }, {
@@ -206,8 +206,7 @@ script = ExtResource("1_nrxs7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=598516194]
 sprite_frames = SubResource("SpriteFrames_j8ye0")
-animation = &"run"
-frame_progress = 0.15740357
+animation = &"died"
 script = ExtResource("6_yibhk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=540223191]

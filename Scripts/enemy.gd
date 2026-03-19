@@ -1,95 +1,87 @@
-extends Node2D # La pianta è ferma, Node2D è sufficiente.
-
-# Manteniamo il nome della classe che hai già digitato.
+extends CharacterBody2D
 class_name ExplosivePlant
 
-# --- VARIABILI ESPORTATE (Configurabili dall'Inspector) ---
-@export var max_health: int = 30
-@export var damage_to_player: int = 10 # Danno che potrebbe fare al contatto?
-
-# Questa è la variabile CRUCIALE per rilasciare la bomba.
-# Qui devi trascinare dall'Inspector il file .tscn della tua Bomba.
-@export var bomb_scene: PackedScene 
+# --- VARIABILI ESPORTATE ---
+@export var max_health: int = 100 
+@export var explosion_damage: int = 50 # <-- Alzato a 50! Fa malissimo!
+@export var explosion_radius: float = 150.0
 
 # --- RIFERIMENTI AI NODI INTERNI ---
-# Usiamo i nomi esatti che vedo nel pannello Scene di image_8.png.
 @onready var health_system: HealthSystem = $HealthSystem
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D # Lo Sprite animato generico
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var progress_bar: ProgressBar = $ProgressBar
-
-# Otteniamo i riferimenti alle collisioni per disabilitarle alla morte.
-# Basandomi sulla gerarchia di image_8.png:
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var area_collision: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var area_collision = $Area2D/CollisionShape2D if has_node("Area2D/CollisionShape2D") else null
 
-# Dichiarazione della variabile tipizzata per l'animated sprite custom (verrà settata in _ready)
-var plant_anim: PlantAnimatedSprite
+# Variabile per evitare che prenda colpi mentre sta già esplodendo
+var is_dead: bool = false
 
 func _ready():
-	# 1. Configurazione Iniziale Salute
 	health_system.init(max_health)
-	
-	# Configurazione Progress Bar
 	progress_bar.max_value = max_health
 	progress_bar.value = max_health
 	
-	# 2. Otteniamo il riferimento tipizzato per usare le nostre funzioni helper custom
-	plant_anim = anim as PlantAnimatedSprite
+	if health_system.has_signal("died"):
+		health_system.died.connect(_on_plant_died)
+		
+	anim.animation_finished.connect(_on_animated_sprite_finished)
 	
-	# 3. Connettiamo il segnale di morte del HealthSystem
-	health_system.died.connect(_on_plant_died)
-	
-	# 4. Facciamo partire l'animazione Idle iniziale tramite helper custom
-	plant_anim.play_idle()
+	if anim.sprite_frames.has_animation("bomber_idle"):
+		anim.play("bomber_idle")
 
-# Questa funzione gestisce la sequenza di morte:
-# ferma l'idle -> fa partire l'animazione di morte -> aspetta che finisca.
+# SEQUENZA DI MORTE / INNESCO BOMBA
 func _on_plant_died():
-	# A. Disabilitiamo le collisioni in modo sicuro (deferred) affinché non interagisca più.
-	collision_shape.set_deferred("disabled", true)
-	area_collision.set_deferred("disabled", true)
+	if is_dead: return 
+	is_dead = true
 	
-	# B. Nascondiamo la barra della salute (o la lasciamo scendere a zero prima).
+	collision_shape.set_deferred("disabled", true)
+	if area_collision:
+		area_collision.set_deferred("disabled", true)
+	
 	progress_bar.visible = false
 	
-	# C. Facciamo partire l'animazione di morte tramite helper custom.
-	# Ora dobbiamo attendere che questa animazione finisca prima di spawnare la bomba.
-	plant_anim.play_death()
+	# PASSO 1: La bomba va SU!
+	anim.play("going_up_animation") 
 
-# --- GESTIONE DEI SEGNALI DALL'EDITOR (Cruciale collegarli!) ---
-
-# Devi andare nel pannello 'Node' del tuo AnimatedSprite2D e collegare il segnale
-# 'animation_finished()' a QUESTA funzione nello script.
-func _on_animated_sprite_2d_animation_finished():
-	# Controlliamo che l'animazione finita sia proprio 'death_animation'.
-	if anim.animation == "death_animation":
-		spawn_bomb_and_destroy()
-
-# Questa funzione esegue l'azione speciale della pianta.
-func spawn_bomb_and_destroy():
-	# Verifichiamo di aver assegnato la scena della bomba nell'Inspector.
-	if bomb_scene != null:
-		# 1. Istanziamo la copia della bomba.
-		var bomb_instance = bomb_scene.instantiate()
+# LA REAZIONE A CATENA DELLE ANIMAZIONI
+func _on_animated_sprite_finished():
+	
+	# PASSO 2: È andata su? Ora va GIÙ!
+	if anim.animation == "going_up_animation":
+		anim.play("going_down_animation")
 		
-		# 2. La posizioniamo esattamente dove si trova la pianta.
-		bomb_instance.global_position = global_position
+	# PASSO 3: È andata giù? Ora inizia l'esplosione visiva, ma il DANNO È IMMEDIATO!
+	elif anim.animation == "going_down_animation":
+		anim.play("explosion_animation")
+		apply_explosion_damage() # BOOM! Il colpo arriva adesso!
 		
-		# 3. La aggiungiamo al mondo di gioco (il nodo padre della pianta, es. il mondo dungeon).
-		get_parent().add_child(bomb_instance)
+	# PASSO 4: Il fumo si dirada? La pianta sparisce
+	elif anim.animation == "explosion_animation":
+		queue_free()
 		
-	else:
-		printerr("Attenzione: Non hai assegnato la scena 'bomb_scene' nell'Inspector di ExplosivePlant!")
+	# Se era solo un danno normale, torna a respirare (idle)
+	elif anim.animation == "hit_animation" and not is_dead:
+		if health_system.current_health > 0:
+			anim.play("bomber_idle")
 
-	# 4. Infine, cancelliamo la pianta dal mondo.
-	queue_free()
+# L'ESPLOSIONE VERA E PROPRIA
+func apply_explosion_damage():
+	var player = get_tree().get_first_node_in_group("player")
+	
+	if player:
+		var distance = global_position.distance_to(player.global_position)
+		if distance <= explosion_radius:
+			print("BOOM! Danno istantaneo applicato: ", explosion_damage)
+			if player.has_method("apply_damage"):
+				player.apply_damage(explosion_damage)
 
-# Helper function per subire danno, da chiamare esternamente (es. dal giocatore).
+# HELPER PER SUBIRE DANNO DAL PLAYER
 func apply_damage(damage_amount: int):
-	health_system.apply_damage(damage_amount)
+	# Se sta già saltando in aria, è invincibile!
+	if is_dead: return 
+	
+	health_system.take_damage(damage_amount)
 	progress_bar.value = health_system.current_health
 	
-	# Se vogliamo un feedback visivo di colpo subito (se l'animazione esiste)
 	if health_system.current_health > 0:
-		# plant_anim.play_hit() # Abilita se hai fatto la helper play_hit e l'animazione
-		pass
+		anim.play("hit_animation")

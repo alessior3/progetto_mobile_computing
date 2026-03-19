@@ -31,6 +31,7 @@
 [ext_resource type="Resource" uid="uid://54ofoq403c3v" path="res://Resources/seedwheat/seedwheat.tres" id="29_qebug"]
 [ext_resource type="Resource" uid="uid://bin8x578827bo" path="res://Resources/fullPumpkin/fullPumpkin.tres" id="30_1vso6"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="31_3ua1v"]
+[ext_resource type="PackedScene" uid="uid://vkfccv6imaj6" path="res://Scenes/enemy.tscn" id="32_3ua1v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("1_8j60k")
@@ -2500,8 +2501,6 @@ amount = 30
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
 z_index = 1
 position = Vector2(409, 343)
-walk_speed = null
-run_speed = null
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
 position = Vector2(-2, -2)
@@ -2561,5 +2560,8 @@ inventory_item = ExtResource("30_1vso6")
 
 [node name="beast" parent="." unique_id=444734141 instance=ExtResource("31_3ua1v")]
 position = Vector2(414, 430)
+
+[node name="BombPlant" parent="." unique_id=79269094 instance=ExtResource("32_3ua1v")]
+position = Vector2(295, 414)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

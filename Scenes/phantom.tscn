@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dd8eoq471npuk"]
 
-[ext_resource type="Texture2D" uid="uid://dfb1qkiqquvt7" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_left_strip_8.png" id="1_el6uu"]
+[ext_resource type="Texture2D" uid="uid://d3m6lfe6ojkq" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_left_strip_8.png" id="1_el6uu"]
 [ext_resource type="Script" uid="uid://ckfne2a1l2w5w" path="res://Scripts/phantom.gd" id="1_nnk5s"]
-[ext_resource type="Texture2D" uid="uid://q8oryvfbgywh" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_right_strip_8.png" id="2_q7et4"]
-[ext_resource type="Texture2D" uid="uid://vx27mnhrxvni" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_left_strip_4.png" id="3_nnk5s"]
-[ext_resource type="Texture2D" uid="uid://dyopceuol8cow" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_right_strip_4.png" id="4_n325r"]
-[ext_resource type="Texture2D" uid="uid://biajdofpxccw0" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_idle_anim_left_strip_4.png" id="5_uailp"]
-[ext_resource type="Texture2D" uid="uid://d00vuc6qdiip0" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_idle_anim_right_strip_4.png" id="6_ly0s6"]
-[ext_resource type="Texture2D" uid="uid://d0pm8e1binvu" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_run_anim_left_strip_6.png" id="7_anpqt"]
-[ext_resource type="Texture2D" uid="uid://gsq6hoifsnkw" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_run_anim_right_strip_6.png" id="8_bb8ru"]
+[ext_resource type="Texture2D" uid="uid://7w5xrqig63vd" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_death_anim_right_strip_8.png" id="2_q7et4"]
+[ext_resource type="Texture2D" uid="uid://cpq3agmw7nsha" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_left_strip_4.png" id="3_nnk5s"]
+[ext_resource type="Texture2D" uid="uid://cqqe8nsludycu" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_hit_anim_right_strip_4.png" id="4_n325r"]
+[ext_resource type="Texture2D" uid="uid://12l50buvr751" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_idle_anim_left_strip_4.png" id="5_uailp"]
+[ext_resource type="Texture2D" uid="uid://yflqyxqvg3ke" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_idle_anim_right_strip_4.png" id="6_ly0s6"]
+[ext_resource type="Texture2D" uid="uid://c3blbdl7iqpd6" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_run_anim_left_strip_6.png" id="7_anpqt"]
+[ext_resource type="Texture2D" uid="uid://dx4fyqu6m5vq5" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Phantom_Sprites/phantom_run_anim_right_strip_6.png" id="8_bb8ru"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="9_788wi"]
 [ext_resource type="Shape2D" uid="uid://w8agbgi342c1" path="res://enemies/phantom_collision_shape.tres" id="10_n325r"]
 [ext_resource type="Script" uid="uid://dbtojwg53p8jt" path="res://Scripts/phantom_animated_sprite_2d.gd" id="10_uailp"]
@@ -217,7 +217,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yo2bk")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_animation_left",
 "speed": 7.0
 }, {
@@ -246,7 +246,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ubsom")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_animation_right",
 "speed": 7.0
 }, {
@@ -370,7 +370,7 @@ script = ExtResource("1_nnk5s")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1769780789]
 sprite_frames = SubResource("SpriteFrames_ux3y3")
-animation = &"run_animation_right"
+animation = &"death_animation_right"
 script = ExtResource("10_uailp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=945494440]

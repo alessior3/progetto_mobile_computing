@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="1_1mug5"]
 [ext_resource type="Script" uid="uid://v6nixnfccnim" path="res://Scripts/pink_bat.gd" id="1_hmjdl"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="2_bjwxx"]
-[ext_resource type="Texture2D" uid="uid://ba3gf6r1xjf1v" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_left_strip_8.png" id="2_u5ekv"]
-[ext_resource type="Texture2D" uid="uid://dqt0vhis3xltd" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_right_strip_8.png" id="3_kgv6v"]
-[ext_resource type="Texture2D" uid="uid://ctw6tpnqoriih" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_left_anim_strip_4.png" id="4_x48f6"]
-[ext_resource type="Texture2D" uid="uid://e0xhy7k7mih" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_right_anim_strip_4.png" id="5_tdkcq"]
-[ext_resource type="Texture2D" uid="uid://k54ib373wji5" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_left_anim_strip_5.png" id="6_iovnw"]
-[ext_resource type="Texture2D" uid="uid://dnsyofy7cjo7u" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_right_anim_strip_5.png" id="7_cf18e"]
-[ext_resource type="Texture2D" uid="uid://bglhaplgq8fjh" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_left_anim_strip_3.png" id="8_545d7"]
-[ext_resource type="Texture2D" uid="uid://c87pewpj5jxh" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png" id="9_7ocyk"]
+[ext_resource type="Texture2D" uid="uid://dw2h6um4hxx84" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_left_strip_8.png" id="2_u5ekv"]
+[ext_resource type="Texture2D" uid="uid://dhh1d6viyjedq" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_right_strip_8.png" id="3_kgv6v"]
+[ext_resource type="Texture2D" uid="uid://cdjsspmxp0d85" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_left_anim_strip_4.png" id="4_x48f6"]
+[ext_resource type="Texture2D" uid="uid://bfkhnvm7byhf4" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_right_anim_strip_4.png" id="5_tdkcq"]
+[ext_resource type="Texture2D" uid="uid://718j7dywjn30" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_left_anim_strip_5.png" id="6_iovnw"]
+[ext_resource type="Texture2D" uid="uid://bx8hcd3x6l82u" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_right_anim_strip_5.png" id="7_cf18e"]
+[ext_resource type="Texture2D" uid="uid://fmareaf6806u" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_left_anim_strip_3.png" id="8_545d7"]
+[ext_resource type="Texture2D" uid="uid://ddwlfc5x6rm3f" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png" id="9_7ocyk"]
 [ext_resource type="Script" uid="uid://bx3dgx27wfoq2" path="res://Scripts/PinkBat_animated_sprite.gd" id="10_u5ekv"]
 [ext_resource type="Shape2D" uid="uid://baqgby1558hei" path="res://enemies/PinkBat_collision_shape.tres" id="10_u086v"]
 
@@ -201,7 +201,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y5eix")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_animation_left",
 "speed": 7.0
 }, {
@@ -230,7 +230,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kqk0y")
 }],
-"loop": true,
+"loop": false,
 "name": &"death_animation_right",
 "speed": 7.0
 }, {
@@ -342,9 +342,7 @@ script = ExtResource("1_hmjdl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1150912937]
 sprite_frames = SubResource("SpriteFrames_v24nu")
-animation = &"run_animation_right"
-frame = 2
-frame_progress = 0.8967006
+animation = &"death_animation_right"
 script = ExtResource("10_u5ekv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=961746243]

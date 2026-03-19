@@ -81,6 +81,19 @@ func _ready():
 		if inventory:
 			for i in range(inventory.items.size()):
 				inventory.items[i] = null 
+				
+		# Azzeriamo la memoria delle mani
+		Global.persistent_hand = null
+		Global.persistent_potions = null
+		Global.persistent_food = null
+		
+		# --- IL COLPO DI GRAZIA AL FANTASMA ---
+		# Forziamo l'interfaccia ad aggiornarsi ORA, cancellando le vecchie icone!
+		if has_node("OnScreenUi"):
+			$OnScreenUi.equip_item(null, "Hand")
+			$OnScreenUi.equip_item(null, "Potions")
+			$OnScreenUi.equip_item(null, "Food")
+		# --------------------------------------
 		
 		Global.set_meta("has_died", false) 
 		SaveManager.save_game()
