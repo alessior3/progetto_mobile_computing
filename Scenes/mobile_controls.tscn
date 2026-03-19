@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://haixkuo8s3vn"]
 
 [ext_resource type="Texture2D" uid="uid://w6fqon83ilwv" path="res://Assets/Icons/LeftButton.png" id="1_k0vrn"]
-[ext_resource type="Script" uid="uid://bku40aks5dfax" path="res://Scenes/canvas_layer.gd" id="1_md083"]
 [ext_resource type="Texture2D" uid="uid://dv7656rff0hvk" path="res://Assets/Icons/press3LL2.png" id="3_md083"]
 [ext_resource type="Texture2D" uid="uid://dg74ebws18dkd" path="res://Assets/Icons/RightButton.png" id="3_uhutp"]
 [ext_resource type="Texture2D" uid="uid://b57q2sdmyrags" path="res://Assets/Icons/UpButton.png" id="5_n67iu"]
@@ -17,6 +16,32 @@
 [ext_resource type="Texture2D" uid="uid://b6dfcv38eg3ul" path="res://Assets/Icons/manoPress.png" id="15_tkpwc"]
 [ext_resource type="Texture2D" uid="uid://bkd8d1m8kxit6" path="res://Assets/Icons/in.png" id="16_kaa57"]
 [ext_resource type="Texture2D" uid="uid://dauw7wxwvut12" path="res://Assets/Icons/inPress.png" id="17_ryli0"]
+[ext_resource type="Texture2D" uid="uid://d4e5v2kh7ywoc" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonY/ButtonY.png" id="18_h5qkv"]
+[ext_resource type="Texture2D" uid="uid://bshpy27r0e100" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonY/Pressed.png" id="19_0wd8i"]
+[ext_resource type="Texture2D" uid="uid://bg781884jqavs" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonY/Hovered.png" id="20_1dd02"]
+[ext_resource type="Texture2D" uid="uid://bel5gh1aaeaka" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonY/Disabled.png" id="21_l7bs7"]
+
+[sub_resource type="GDScript" id="GDScript_7fp4u"]
+script/source = "extends CanvasLayer
+
+func _ready():
+	pass
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_menu_button_pressed() -> void:
+	# Creiamo un finto evento della tastiera
+	var fake_esc = InputEventAction.new()
+	
+	# Metti qui il nome esatto che hai trovato nella Input Map (es. \"ui_cancel\" o \"pause\")
+	fake_esc.action = \"pause\" 
+	fake_esc.pressed = true
+	
+	# Inviamo il comando al gioco!
+	Input.parse_input_event(fake_esc)# Replace with function body.
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md083"]
 size = Vector2(13, 15)
@@ -41,7 +66,7 @@ position = Vector2(66.99986, 429)
 scale = Vector2(5, 5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1687308629]
-script = ExtResource("1_md083")
+script = SubResource("GDScript_7fp4u")
 
 [node name="AncoraSinistra" type="Control" parent="CanvasLayer" unique_id=1551183005]
 layout_mode = 3
@@ -51,6 +76,7 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="LeftButton" type="TouchScreenButton" parent="CanvasLayer/AncoraSinistra" unique_id=2063095623]
 position = Vector2(48, -170)
@@ -99,6 +125,7 @@ offset_left = -40.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="inventario" type="TouchScreenButton" parent="CanvasLayer/AncoraDestra" unique_id=1929019868]
 position = Vector2(-349, -259.00003)
@@ -135,3 +162,14 @@ texture_pressed = ExtResource("13_i47fd")
 shape = SubResource("RectangleShape2D_0y3to")
 passby_press = true
 action = "run"
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer" unique_id=793224339]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("18_h5qkv")
+texture_pressed = ExtResource("19_0wd8i")
+texture_hover = ExtResource("20_1dd02")
+texture_disabled = ExtResource("21_l7bs7")
+stretch_mode = 0
+
+[connection signal="pressed" from="CanvasLayer/MenuButton" to="CanvasLayer" method="_on_menu_button_pressed"]

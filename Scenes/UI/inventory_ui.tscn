@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://cp6sgt34pvl17" path="res://Scripts/inventory_ui.gd" id="1_p83af"]
 [ext_resource type="Texture2D" uid="uid://b1rubpseql5hd" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png" id="2_hcmni"]
 [ext_resource type="FontFile" uid="uid://dn1m4eo0b8lyw" path="res://Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf" id="3_o62ck"]
-[ext_resource type="Texture2D" uid="uid://hyx8lflxb7jl" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/cancel.png" id="4_sfqc8"]
+[ext_resource type="Texture2D" uid="uid://ct32lqdrcw56d" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonX/Idle.png" id="4_dpv37"]
+[ext_resource type="Texture2D" uid="uid://cu487271tndh1" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonX/Pressed.png" id="5_2v6ut"]
+[ext_resource type="Texture2D" uid="uid://b8j5r0rost5da" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonX/Hovered.png" id="6_mejda"]
+[ext_resource type="Texture2D" uid="uid://dqs6vwhdejls8" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonX/Disabled.png" id="7_jueid"]
 
 [sub_resource type="Theme" id="Theme_sfqc8"]
 default_font = ExtResource("3_o62ck")
@@ -209,9 +212,12 @@ text = "LASCIA"
 [node name="CloseButton" type="TextureButton" parent="." unique_id=1309719536]
 offset_left = 795.0
 offset_top = 142.0
-offset_right = 823.0
-offset_bottom = 168.0
-texture_normal = ExtResource("4_sfqc8")
+offset_right = 827.0
+offset_bottom = 171.0
+texture_normal = ExtResource("4_dpv37")
+texture_pressed = ExtResource("5_2v6ut")
+texture_hover = ExtResource("6_mejda")
+texture_disabled = ExtResource("7_jueid")
 stretch_mode = 0
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
