@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dchwybi3ilkop" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="6_qmr4a"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="7_lhkjd"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_s08nh"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="10_s08nh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("1_bpctk")
@@ -2228,5 +2229,7 @@ polygon = PackedVector2Array(133, 103, 149, 103, 149, 127, 133, 127)
 
 [node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1672438435]
 polygon = PackedVector2Array(151, 107, 152, 119, 162, 119, 163, 107, 152, 107)
+
+[node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("10_s08nh")]
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

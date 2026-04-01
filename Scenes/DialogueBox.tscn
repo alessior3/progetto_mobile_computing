@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://056pskqfn4h0"]
+
+[ext_resource type="Script" uid="uid://digytdnfjevcn" path="res://Scripts/dialogue_box.gd" id="1_sh7kx"]
+[ext_resource type="Texture2D" uid="uid://2rt8060jq1up" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBox.png" id="2_mjj0w"]
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=1418267364]
+layer = 100
+script = ExtResource("1_sh7kx")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=63848934]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_mjj0w")
+
+[node name="Panel" type="Panel" parent="TextureRect" unique_id=1460530412]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -44.0
+offset_right = -21.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="TextureRect/Panel" unique_id=1566826962]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -37.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

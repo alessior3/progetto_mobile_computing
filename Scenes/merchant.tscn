@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cvnbhkvv282mw"]
 
-[ext_resource type="Texture2D" uid="uid://dj010p8lew7c1" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Master/SpriteSheet.png" id="1_5u005"]
+[ext_resource type="Texture2D" uid="uid://wrwdntpywyp7" path="res://Ninja Adventure - Asset Pack/Actor/Characters/Master/SpriteSheet.png" id="1_5u005"]
 [ext_resource type="Script" uid="uid://c1nrvax4nq5nn" path="res://Scripts/merchant.gd" id="2_s08t2"]
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="3_82brx"]
 [ext_resource type="PackedScene" uid="uid://bclvs3krm7k6b" path="res://Scenes/shopping_ui.tscn" id="3_s08t2"]

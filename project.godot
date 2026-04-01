@@ -25,6 +25,7 @@ Global="*uid://b6nb2wg3umyui"
 TransitionChangeManager="*uid://cdfv6rbg5h5as"
 SaveManager="*uid://dvpomgwdpbdgn"
 Auth="*uid://ciyyyvsrjlx3w"
+DialogueManager="*uid://056pskqfn4h0"
 
 [display]
 

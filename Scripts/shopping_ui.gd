@@ -19,12 +19,10 @@ const ROW_SCENE = preload("res://Scenes/UI/shop_item_row.tscn")
 @onready var tab_sell: Button = %TabSellButton
 
 func _ready() -> void:
-	print("SHOP - Size: ", $Panel.size, " | Scale: ", $Panel.scale)
 	tab_buy.pressed.connect(_on_tab_buy_pressed)
 	tab_sell.pressed.connect(_on_tab_sell_pressed)
 	action_btn.pressed.connect(_on_action_btn_pressed)
 	clear_details_panel()
-	# Ho rimosso la ricerca del player da qui, la facciamo solo quando apriamo lo shop!
 
 func setup_buying_grid() -> void: 
 	current_mode = "BUY"
@@ -47,17 +45,9 @@ func setup_buying_grid() -> void:
 		
 	populate_list(items_to_buy)
 
-# --- LA FUNZIONE RIVELATRICE ---
 func _update_shop_gold(new_amount: int):
-	print("--- TEST ORO ---")
-	print("Valore da mostrare: ", new_amount)
-	
 	if shop_gold_label:
 		shop_gold_label.text = "Oro: " + str(new_amount)
-		print("Label trovata e testo aggiornato!")
-	else:
-		print("ERRORE GRAVE: shop_gold_label è NULL! Manca il % o il nome è sbagliato.")
-	print("----------------")
 
 func _on_tab_buy_pressed():
 	current_mode = "BUY"
@@ -97,8 +87,6 @@ func _on_item_selected(item: InventoryItem, selected_row: ShopItemRow):
 	var player = get_tree().get_first_node_in_group("player")
 	
 	if current_mode == "BUY":
-		# --- DISCOUNT LOGIC FOR UI ---
-		# Se il player esiste e ha cariche di sconto, modifichiamo il prezzo sul bottone
 		if player and player.get("discount_charges") != null and player.discount_charges > 0:
 			var discount_amount = total_price * (player.discount_percentage / 100.0)
 			total_price -= int(discount_amount)
@@ -127,30 +115,22 @@ func _on_action_btn_pressed():
 	var cost = selected_item.price * selected_item.stacks
 	
 	if current_mode == "BUY":
-		# --- DISCOUNT LOGIC FOR PURCHASE ---
 		if "discount_charges" in player and player.discount_charges > 0:
 			var discount_amount = cost * (player.discount_percentage / 100.0)
 			cost -= int(discount_amount)
-			print("Discount applied! Final cost: ", cost)
-			
-			# Consume one charge
 			player.discount_charges -= 1
 			if player.discount_charges <= 0:
 				player.discount_percentage = 0.0
-				print("Discount buff empty.")
-		# -----------------------------------
 		
 		if inventory.has_gold(cost):
 			inventory.remove_gold(cost)
 			inventory.add_item(selected_item, selected_item.stacks)
-			print("Bought: ", selected_item.name)
 			
 	elif current_mode == "SELL":
 		inventory.items.erase(selected_item)
 		var gold_coin_res = load("res://Resources/GoldCoin/gold_coin.tres")
 		inventory.add_item(gold_coin_res, cost)
 		Global.persistent_items = inventory.items
-		print("Sold: ", selected_item.name)
 		
 	if current_mode == "BUY":
 		populate_list(items_to_buy)
@@ -159,9 +139,11 @@ func _on_action_btn_pressed():
 		
 	clear_details_panel()
 	
-# Funzione di supporto per ritrovare la riga e aggiornare la grafica post-acquisto
 func _find_row_for_item(item: InventoryItem) -> ShopItemRow:
 	for child in items_list.get_children():
 		if child is ShopItemRow and child.item == item:
 			return child
 	return null
+
+func _on_close_button_pressed() -> void:
+	pass
