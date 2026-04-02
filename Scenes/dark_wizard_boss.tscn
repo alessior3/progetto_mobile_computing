@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://by5mdifypb0rr"]
+
+[ext_resource type="Script" uid="uid://ba487471l8qr8" path="res://Scripts/dark_wizard_boss.gd" id="1_25bi7"]
+[ext_resource type="Texture2D" uid="uid://prjriefi0xj8" path="res://wizard_boss/boss-cloak.png" id="1_k4ld3"]
+
+[sub_resource type="Gradient" id="Gradient_25bi7"]
+offsets = PackedFloat32Array(0, 0.6415663)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0.972549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ghsn"]
+gradient = SubResource("Gradient_25bi7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqwoi"]
+size = Vector2(36, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utun1"]
+size = Vector2(28, 37)
+
+[sub_resource type="Animation" id="Animation_k4ld3"]
+resource_name = "Idle"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloakSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -15), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_25bi7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloakSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloakSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloakSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8ghsn"]
+resource_name = "appear"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloakSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloakSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_utun1"]
+resource_name = "cast_spell"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloakSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.2, 3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -15), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloakSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.015686275, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloakSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 2, 2.2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 0, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_lqwoi"]
+resource_name = "disappear"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloakSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 15), Vector2(0, -50)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloakSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ghsn"]
+_data = {
+&"Idle": SubResource("Animation_k4ld3"),
+&"RESET": SubResource("Animation_25bi7"),
+&"appear": SubResource("Animation_8ghsn"),
+&"cast_spell": SubResource("Animation_utun1"),
+&"disappear": SubResource("Animation_lqwoi")
+}
+
+[sub_resource type="Gradient" id="Gradient_5cdjl"]
+offsets = PackedFloat32Array(0, 0.9518072, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.6265635, 0.078192286, 0.13979569, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k4ld3"]
+gradient = SubResource("Gradient_5cdjl")
+width = 32
+height = 32
+
+[node name="DarkWizardBoss" type="Node2D" unique_id=156015731]
+y_sort_enabled = true
+script = ExtResource("1_25bi7")
+
+[node name="BossNode" type="Node2D" parent="." unique_id=66844398]
+
+[node name="ShadowSprite" type="Sprite2D" parent="BossNode" unique_id=1348461005]
+
+[node name="CloakSprite" type="Sprite2D" parent="BossNode" unique_id=447232911]
+texture = ExtResource("1_k4ld3")
+hframes = 9
+
+[node name="PointLight2D" type="PointLight2D" parent="BossNode" unique_id=2004703216]
+texture = SubResource("GradientTexture2D_8ghsn")
+
+[node name="Hurtbox" type="Area2D" parent="BossNode" unique_id=441327455]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/Hurtbox" unique_id=1135298011]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_lqwoi")
+
+[node name="Hitbox" type="Area2D" parent="BossNode" unique_id=778636662]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/Hitbox" unique_id=1011048997]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_utun1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BossNode" unique_id=843004386]
+libraries/ = SubResource("AnimationLibrary_8ghsn")
+
+[node name="AnimationPlayer_Damaged" type="AnimationPlayer" parent="BossNode" unique_id=1091505139]
+
+[node name="BeamAttacks" type="Node2D" parent="." unique_id=290927046]
+
+[node name="PositionTargets" type="Node2D" parent="." unique_id=992897993]
+position = Vector2(-1, 4)
+
+[node name="Top" type="Sprite2D" parent="PositionTargets" unique_id=533383907]
+position = Vector2(558, 20)
+texture = SubResource("GradientTexture2D_k4ld3")
+
+[node name="Right" type="Sprite2D" parent="PositionTargets" unique_id=1748313511]
+position = Vector2(1129, 317)
+texture = SubResource("GradientTexture2D_k4ld3")
+
+[node name="Bottom" type="Sprite2D" parent="PositionTargets" unique_id=1207374404]
+position = Vector2(569, 615)
+texture = SubResource("GradientTexture2D_k4ld3")
+
+[node name="Left" type="Sprite2D" parent="PositionTargets" unique_id=1158820567]
+position = Vector2(28, 326)
+texture = SubResource("GradientTexture2D_k4ld3")

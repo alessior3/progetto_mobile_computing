@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c42yia7gmi2ua"]
+
+[ext_resource type="Texture2D" uid="uid://33o4dii6qfte" path="res://wizard_boss/energy-beam.png" id="1_1b0hw"]
+[ext_resource type="Script" uid="uid://c7mxt6hrtu14h" path="res://Scripts/boss_orb.gd" id="1_fp55n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fp55n"]
+radius = 1.0
+
+[node name="BossOrb" type="Area2D" unique_id=585336665]
+script = ExtResource("1_fp55n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1415318555]
+texture = ExtResource("1_1b0hw")
+hframes = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=300070377]
+shape = SubResource("CircleShape2D_fp55n")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
