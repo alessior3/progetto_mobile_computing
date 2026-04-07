@@ -10,10 +10,11 @@ radius = 1.0
 script = ExtResource("1_fp55n")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1415318555]
+rotation = 1.5707964
 texture = ExtResource("1_1b0hw")
 hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=300070377]
 shape = SubResource("CircleShape2D_fp55n")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

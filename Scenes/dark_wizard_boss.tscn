@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ba487471l8qr8" path="res://Scripts/dark_wizard_boss.gd" id="1_25bi7"]
 [ext_resource type="Texture2D" uid="uid://prjriefi0xj8" path="res://wizard_boss/boss-cloak.png" id="1_k4ld3"]
+[ext_resource type="PackedScene" uid="uid://cq5hmv2wpyo0a" path="res://Scenes/energy_beam.tscn" id="3_8ghsn"]
 
 [sub_resource type="Gradient" id="Gradient_25bi7"]
 offsets = PackedFloat32Array(0, 0.6415663)
@@ -212,7 +213,7 @@ shape = SubResource("RectangleShape2D_lqwoi")
 [node name="Hitbox" type="Area2D" parent="BossNode" unique_id=778636662]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/Hitbox" unique_id=1011048997]
-position = Vector2(0, 9.5)
+position = Vector2(6, 24)
 shape = SubResource("RectangleShape2D_utun1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BossNode" unique_id=843004386]
@@ -221,9 +222,28 @@ libraries/ = SubResource("AnimationLibrary_8ghsn")
 [node name="AnimationPlayer_Damaged" type="AnimationPlayer" parent="BossNode" unique_id=1091505139]
 
 [node name="BeamAttacks" type="Node2D" parent="." unique_id=290927046]
+position = Vector2(25, 2)
+
+[node name="EnergyBeam" parent="BeamAttacks" unique_id=1636049935 instance=ExtResource("3_8ghsn")]
+position = Vector2(416, 40)
+
+[node name="EnergyBeam2" parent="BeamAttacks" unique_id=1180888783 instance=ExtResource("3_8ghsn")]
+position = Vector2(260, 251)
+
+[node name="EnergyBeam3" parent="BeamAttacks" unique_id=1415135680 instance=ExtResource("3_8ghsn")]
+position = Vector2(277, 112)
+
+[node name="EnergyBeam4" parent="BeamAttacks" unique_id=1940500903 instance=ExtResource("3_8ghsn")]
+position = Vector2(585, 110)
+
+[node name="EnergyBeam5" parent="BeamAttacks" unique_id=1849251988 instance=ExtResource("3_8ghsn")]
+position = Vector2(435, 354)
+
+[node name="EnergyBeam6" parent="BeamAttacks" unique_id=1806795865 instance=ExtResource("3_8ghsn")]
+position = Vector2(536, 201)
 
 [node name="PositionTargets" type="Node2D" parent="." unique_id=992897993]
-position = Vector2(-1, 4)
+position = Vector2(242, 72)
 
 [node name="Top" type="Sprite2D" parent="PositionTargets" unique_id=533383907]
 position = Vector2(558, 20)
@@ -240,3 +260,9 @@ texture = SubResource("GradientTexture2D_k4ld3")
 [node name="Left" type="Sprite2D" parent="PositionTargets" unique_id=1158820567]
 position = Vector2(28, 326)
 texture = SubResource("GradientTexture2D_k4ld3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1318999079]
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=2129790795]
+offset_right = 40.0
+offset_bottom = 40.0

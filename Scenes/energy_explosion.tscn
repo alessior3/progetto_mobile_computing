@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bprexcr20g3qx"]
+
+[ext_resource type="Script" uid="uid://donk0wuerw8bx" path="res://Scripts/energy_explosion.gd" id="1_aw38q"]
+[ext_resource type="Texture2D" uid="uid://c56hh2vlb1erc" path="res://wizard_boss/energy-explosion.png" id="2_vw4qd"]
+
+[sub_resource type="Animation" id="Animation_dptco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dqx71"]
+resource_name = "default"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xq1yx"]
+_data = {
+&"RESET": SubResource("Animation_dptco"),
+&"default": SubResource("Animation_dqx71")
+}
+
+[node name="EnergyExplosion" type="Node2D" unique_id=947172330]
+script = ExtResource("1_aw38q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=875512630]
+texture = ExtResource("2_vw4qd")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=212683301]
+libraries/ = SubResource("AnimationLibrary_xq1yx")
+autoplay = &"default"

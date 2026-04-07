@@ -1,6 +1,6 @@
 extends Node2D
 class_name DarkWizardBoss
-
+const EXPLOSION_SCENE = preload("res://Scenes/energy_explosion.tscn")
 # --- VARIABILI DELLA SALUTE ---
 @export var max_hp: int = 5
 var hp: int = 5
@@ -109,16 +109,34 @@ func idle():
 		
 	teleport(next_pos) # Ricomincia il ciclo!
 
+# --- FUNZIONE DI SCONFITTA ---
 func defeat():
-	enable_hitboxes(false)
+	enable_hitboxes(false) # Il boss non può più farti danno
 	
-	# Se per caso non abbiamo creato un'animazione "destroy", lo fa svanire in automatico
-	if anim_player.has_animation("destroy"):
-		anim_player.play("destroy")
-		await anim_player.animation_finished
-	else:
-		var tween = create_tween()
-		tween.tween_property(boss_node, "modulate:a", 0.0, 1.0)
-		await tween.finished
-		
-	queue_free() # Elimina il boss dalla scena
+	# Serie di esplosioni fighe concatenate
+	explosion(Vector2(0, -30)) # Esplosione in alto
+	await get_tree().create_timer(0.2).timeout
+	
+	explosion(Vector2(20, -10)) # Esplosione a destra
+	await get_tree().create_timer(0.2).timeout
+	
+	explosion(Vector2(-20, -10)) # Esplosione a sinistra
+	await get_tree().create_timer(0.2).timeout
+	
+	explosion(Vector2(0, 10)) # Esplosione in basso
+	
+	# Fa svanire il boss diventando trasparente in 1 secondo
+	var tween = create_tween()
+	tween.tween_property(boss_node, "modulate:a", 0.0, 1.0)
+	await tween.finished
+	
+	# Distrugge definitivamente il boss
+	queue_free()
+
+# --- FUNZIONE ESPLOSIONE ---
+func explosion(offset: Vector2 = Vector2.ZERO):
+	if EXPLOSION_SCENE:
+		var e = EXPLOSION_SCENE.instantiate()
+		# La posiziona addosso al boss, più l'offset che scegliamo noi
+		e.global_position = boss_node.global_position + offset
+		get_parent().add_child.call_deferred(e)
