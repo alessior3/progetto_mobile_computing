@@ -146,4 +146,8 @@ func _find_row_for_item(item: InventoryItem) -> ShopItemRow:
 	return null
 
 func _on_close_button_pressed() -> void:
-	pass
+	hide() # Nasconde l'intera interfaccia del negozio
+	print("DEBUG: Shopping UI chiusa correttamente")
+	
+	# Se il tuo gioco non riprende il movimento da solo, 
+	# potresti dover dire al player che può tornare a muoversi qui.
