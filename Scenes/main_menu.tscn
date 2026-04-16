@@ -3,29 +3,28 @@
 [ext_resource type="Script" uid="uid://cd8hbkdfubkdr" path="res://Scripts/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://d4ld6wxwoq02t" path="res://Assets/Evergrove at sunset.png" id="2_1ehe0"]
 [ext_resource type="Script" uid="uid://ciyyyvsrjlx3w" path="res://Scripts/auth.gd" id="3_1ehe0"]
-[ext_resource type="Texture2D" uid="uid://b53supuj6ey26" path="res://Assets/BoxN.png" id="4_trj04"]
+[ext_resource type="Texture2D" uid="uid://cvbueuabiduaq" path="res://Assets/EmailN.png" id="4_16hvj"]
 [ext_resource type="Texture2D" uid="uid://cy2f6d6vltcnj" path="res://Assets/PressedB.png" id="5_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://bw7sflnoi13h0" path="res://Assets/PassN.png" id="6_16hvj"]
 [ext_resource type="Texture2D" uid="uid://iyisd1o3lto7" path="res://Assets/LoginN1.png" id="6_trj04"]
 [ext_resource type="Texture2D" uid="uid://dccmu2pi5aiq7" path="res://Assets/CreaN1.png" id="7_16hvj"]
 [ext_resource type="Texture2D" uid="uid://c8pptfj7f5u2x" path="res://Assets/GoogleN1.png" id="8_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://dtdbu7qnt776b" path="res://Assets/EscN1.png" id="9_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://vgc7qjhoj6cb" path="res://Assets/NuovaPartitaN.png" id="11_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://cu1i3sglidc6l" path="res://Assets/CaricaPartitaN(1).png" id="12_5egv6"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opfnp"]
-texture = ExtResource("4_trj04")
-texture_margin_left = 84.0
-texture_margin_top = 166.0
-texture_margin_right = 50.0
-texture_margin_bottom = 65.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vr1f0"]
+texture = ExtResource("4_16hvj")
+texture_margin_top = 70.0
+texture_margin_bottom = 70.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yhxw7"]
 texture = ExtResource("5_yhxw7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cp0ys"]
-texture = ExtResource("4_trj04")
-texture_margin_left = 302.0
-texture_margin_top = 125.0
-texture_margin_right = 50.0
-texture_margin_bottom = 65.0
+texture = ExtResource("6_16hvj")
+texture_margin_top = 60.0
+texture_margin_bottom = 60.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trj04"]
 texture = ExtResource("5_yhxw7")
@@ -56,10 +55,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -68.0
-offset_top = -120.5
-offset_right = 79.0
-offset_bottom = 120.5
+offset_left = 389.0
+offset_top = -95.0
+offset_right = 536.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -112,19 +111,19 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0020001
 anchor_bottom = 0.98100007
-offset_left = 262.0
-offset_top = 217.0
-offset_right = 27.695923
-offset_bottom = 1174.312
-scale = Vector2(0.24334432, 0.2339437)
+offset_left = 472.0
+offset_top = 228.99997
+offset_right = 237.69592
+offset_bottom = 1186.312
+scale = Vector2(0.211118, 0.23418999)
 
 [node name="EmailInput" type="LineEdit" parent="VBoxContainer2" unique_id=1015790433]
 layout_mode = 2
 theme_override_colors/font_placeholder_color = Color(0.972549, 0.70980394, 0, 1)
+theme_override_constants/minimum_character_width = 15
 theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxTexture_opfnp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vr1f0")
 theme_override_styles/focus = SubResource("StyleBoxTexture_yhxw7")
-placeholder_text = "Email"
 alignment = 1
 
 [node name="PasswordInput" type="LineEdit" parent="VBoxContainer2" unique_id=600082396]
@@ -133,7 +132,7 @@ theme_override_colors/font_placeholder_color = Color(0.972549, 0.70980394, 0, 1)
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxTexture_cp0ys")
 theme_override_styles/focus = SubResource("StyleBoxTexture_trj04")
-placeholder_text = "Password"
+alignment = 1
 
 [node name="login" type="TextureButton" parent="VBoxContainer2" unique_id=471756564]
 custom_minimum_size = Vector2(200, 240)
@@ -156,6 +155,16 @@ texture_normal = ExtResource("8_vr1f0")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="NuovaPartita" type="TextureButton" parent="VBoxContainer2" unique_id=1370023863]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("11_t1dhk")
+
+[node name="CaricaPartita" type="TextureButton" parent="VBoxContainer2" unique_id=1563316014]
+visible = false
+layout_mode = 2
+texture_normal = ExtResource("12_5egv6")
+
 [node name="Esc" type="TextureButton" parent="VBoxContainer2" unique_id=147951953]
 custom_minimum_size = Vector2(200, 240)
 layout_mode = 2
@@ -163,10 +172,10 @@ texture_normal = ExtResource("9_t1dhk")
 ignore_texture_size = true
 stretch_mode = 0
 
-[connection signal="pressed" from="VBoxContainer/btnlogin" to="." method="_on_btn_login_pressed"]
-[connection signal="pressed" from="VBoxContainer/btnlogin" to="." method="_on_btnlogin_pressed"]
-[connection signal="pressed" from="VBoxContainer/btnRegistrati" to="." method="_on_btn_registrati_pressed"]
-[connection signal="pressed" from="VBoxContainer/btnGoogle" to="." method="_on_btn_google_pressed"]
-[connection signal="pressed" from="VBoxContainer/btnInizia" to="." method="_on_btn_inizia_pressed"]
-[connection signal="pressed" from="VBoxContainer/btnCarica" to="." method="_on_btn_carica_pressed"]
-[connection signal="pressed" from="VBoxContainer/btnQuit" to="." method="_on_btn_quit_pressed"]
+[connection signal="pressed" from="VBoxContainer2/login" to="." method="_on_btnlogin_pressed"]
+[connection signal="pressed" from="VBoxContainer2/login" to="." method="_on_btn_login_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Reg" to="." method="_on_btn_registrati_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Google" to="." method="_on_btn_google_pressed"]
+[connection signal="pressed" from="VBoxContainer2/NuovaPartita" to="." method="_on_btn_inizia_pressed"]
+[connection signal="pressed" from="VBoxContainer2/CaricaPartita" to="." method="_on_btn_carica_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Esc" to="." method="_on_btn_quit_pressed"]

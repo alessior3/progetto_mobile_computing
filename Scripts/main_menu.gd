@@ -2,14 +2,14 @@ extends Control
 
 # --- RIFERIMENTI UI ---
 @onready var feedback_label = $VBoxContainer/FeedbackLabel
-@onready var email_input = $VBoxContainer/EmailInput
-@onready var password_input = $VBoxContainer/PasswordInput
-@onready var btn_login = $VBoxContainer/btnlogin
-@onready var btn_registrati = $VBoxContainer/btnRegistrati
-@onready var btn_google = $VBoxContainer/btnGoogle
-@onready var btn_inizia = $VBoxContainer/btnInizia
-@onready var btn_carica = $VBoxContainer/btnCarica
-@onready var btn_quit = $VBoxContainer/btnQuit
+@onready var email_input = $VBoxContainer2/EmailInput
+@onready var password_input = $VBoxContainer2/PasswordInput
+@onready var btn_login = $VBoxContainer2/login
+@onready var btn_registrati = $VBoxContainer2/Reg
+@onready var btn_google = $VBoxContainer2/Google
+@onready var btn_inizia = $VBoxContainer2/NuovaPartita
+@onready var btn_carica = $VBoxContainer2/CaricaPartita
+@onready var btn_quit = $VBoxContainer2/Esc
 
 # Variabile per il plugin nativo Android
 var google_sign_in_plugin
