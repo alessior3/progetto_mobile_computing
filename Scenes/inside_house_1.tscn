@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://2ljlawj1a7bd" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_ALL_By_AxulArt.png" id="3_2i5oy"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="4_1ttny"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="5_nwdop"]
-[ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="6_qmr4a"]
+[ext_resource type="Texture2D" uid="uid://dchwybi3ilkop" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="6_qmr4a"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="7_lhkjd"]
 [ext_resource type="Resource" uid="uid://cgbg5yin57x30" path="res://Resources/fullCabbage/fullCabbage.tres" id="8_tqxsn"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_s08nh"]

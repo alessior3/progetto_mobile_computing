@@ -34,7 +34,11 @@ func attack():
 
 
 func _on_body_entered(body):
-	# Controlliamo il gruppo invece del nome!
 	if body.is_in_group("Player") or body.is_in_group("player"):
 		print("ZAP! Ora ti faccio danno per davvero!")
-		# body.take_damage(1) # Quando avrai la funzione, togli l'hashtag!
+		
+		# Calcoliamo la vita rimanente: vita attuale meno 1
+		var vita_rimanente = Global.persistent_health - 30
+		
+		# Chiamiamo la funzione del player passandogli il nuovo valore
+		body._on_damage_taken(vita_rimanente)

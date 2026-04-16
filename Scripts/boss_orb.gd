@@ -26,17 +26,12 @@ func _on_body_entered(body):
 	if (body.is_in_group("Player") or body.is_in_group("player")) and not is_exploding:
 		is_exploding = true
 		
-		# Riproduci il suono di impatto se l'hai messo
-		# $HitSound.play()
+		var vita_rimanente = Global.persistent_health - 50
+		body._on_damage_taken(vita_rimanente)
+		$HitSound.play()
 		
 		if anim_player:
 			anim_player.play("explode")
 			await anim_player.animation_finished 
 		
 		queue_free()
-
-
-# Questa funzione forza Godot a disegnare grafica pura
-func _draw():
-	# Disegna un cerchio rosso acceso (posizione centrale, raggio 15, colore rosso)
-	draw_circle(Vector2.ZERO, 15.0, Color.RED)
