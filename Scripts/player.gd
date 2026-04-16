@@ -540,3 +540,4 @@ func _on_exit_body_entered(body: Node2D) -> void:
 		
 		print("DEBUG (Player): Ritorno al mondo...")
 		TransitionChangeManager.change_scene("res://Scenes/world.tscn")
+		

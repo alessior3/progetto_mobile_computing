@@ -147,30 +147,32 @@ func energy_beam_attack():
 
 
 func shoot_orb():
-	var target = get_node_or_null("../player") 
-	if target == null:
-		target = get_node_or_null("../Player")
+	# 1. Cerchiamo il giocatore
+	var target_node = get_node_or_null("../player") 
+	if target_node == null:
+		target_node = get_node_or_null("../Player")
 		
-	if BOSS_ORB == null or target == null:
-		print("ERRORE: O manca la sfera, o il bersaglio non esiste in questa scena!")
+	if BOSS_ORB == null or target_node == null:
+		print("ERRORE: O manca la sfera, o il bersaglio non esiste!")
 		return
 		
-	print("SPARO LA SFERA!")
-	
-	# 1. CREIAMO LA SFERA
+	# 2. Creiamo la sfera
 	var orb = BOSS_ORB.instantiate()
 	
-	# 2. LE DIAMO LA POSIZIONE
+	# 3. LE DIAMO IL BERSAGLIO (Il "Cervello")
+	orb.target = target_node
+	
+	# 4. Posizione iniziale e direzione
 	orb.global_position = boss_node.global_position
+	orb.direction = (target_node.global_position - boss_node.global_position).normalized()
 	
-	# 3. ORA POSSIAMO STAMPARE LA POSIZIONE (perché ora esiste!)
-	print("Sfera generata alle coordinate: ", orb.global_position)
-	
-	# 4. CALCOLIAMO LA DIREZIONE E LA AGGIUNGIAMO AL GIOCO
-	orb.direction = (target.global_position - boss_node.global_position).normalized()
+	# 5. Aggiungiamo al gioco
 	get_parent().add_child(orb)
 	
-	# $FireballSound.play()
+	# Suono e Debug
+	if has_node("FireballSound"):
+		$FireballSound.play()
+	print("SPARO LA SFERA A RICERCA CONTRO: ", target_node.name)
 
 
 # --- SCONFITTA ED ESPLOSIONE ---
@@ -202,7 +204,6 @@ func explosion(offset: Vector2 = Vector2.ZERO):
 		get_parent().add_child.call_deferred(e)
 
 
-# --- TRUCCO PER TESTARE IL DANNO SENZA GIOCATORE ---
 func _input(event):
 	# Se premiamo SPAZIO (o Invio) sulla tastiera
 	if event.is_action_pressed("ui_accept"):
