@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://dp5dgmdrcshxq"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_os1xv"]
+[ext_resource type="Texture2D" uid="uid://hv7dtlybmd77" path="res://Ninja Adventure - Asset Pack/Items/Resource/GemPurple.png" id="2_mr0kj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mr0kj"]
+
+[resource]
+script = ExtResource("1_os1xv")
+item_id = "pink_slime_ball"
+slot_type = "Hand"
+ground_collision_shape = SubResource("RectangleShape2D_mr0kj")
+name = "Pink slime ball"
+texture = ExtResource("2_mr0kj")
+max_stacks = 1
+price = 40
+description = "puoi ficcartela nel sedere"
+ground_visual_scale = Vector2(0.5, 0.5)
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"

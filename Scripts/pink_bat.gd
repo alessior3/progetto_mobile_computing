@@ -5,8 +5,12 @@ class_name PinkBat
 
 @export var speed: float = 100
 @export var patrol_path: Array[Marker2D] = []
-@export var patrol_wait_time = 1.0
-@export var damage_to_player = 10
+
+# --- FIX 1: TIPIZZAZIONE FLOAT ---
+@export var patrol_wait_time: float = 1.0
+# ---------------------------------
+
+@export var damage_to_player: int = 10
 
 @export var health: int = 50
 @export var item_to_drop: InventoryItem
@@ -29,13 +33,16 @@ func _ready() -> void:
 	if patrol_path.size() > 0:
 		position = patrol_path[0].position
 	health_system.died.connect(on_died)
+	$Area2D.body_entered.connect(_on_area_2d_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if patrol_path.size() > 1:
 		move_along_path(delta)
 
 func apply_damage(damage: int):
-	health_system.apply_damage(damage)
+	# --- FIX 2: NOME FUNZIONE AGGIORNATO ---
+	health_system.take_damage(damage)
+	# ---------------------------------------
 	progress_bar.value = health_system.current_health
 
 func move_along_path(delta: float):
@@ -70,14 +77,24 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	var anim_name = animated_sprite_2d.animation
 	if anim_name == "death_animation_left" or anim_name == "death_animation_right":
 		
-		# Spawna l'oggetto
-		var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
-		
+		# --- FIX 3: BLOCCO COMPLETO DEL DROP ---
 		# Piccolo controllo di sicurezza per non far crashare se dimentichi di mettere l'oggetto
 		if item_to_drop != null:
+			# Spawna l'oggetto SOLO se esiste
+			var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
 			loot_drop.inventory_item = item_to_drop
 			loot_drop.stacks = item_to_drop.stacks
 			
-		get_tree().root.add_child(loot_drop)
-		loot_drop.global_position = position
+			get_tree().root.add_child(loot_drop)
+			loot_drop.global_position = position
+		# ---------------------------------------
+		
+		# Il mostro viene rimosso indipendentemente dal drop
 		queue_free()
+		
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	# Usiamo "is Player" che è il metodo più pulito
+	if body is Player:
+		print(name, " ha colpito il giocatore!")
+		# Chiamiamo la funzione ufficiale del Player
+		body.apply_damage(damage_to_player)

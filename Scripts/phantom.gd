@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
-# 1. ERRORE ROSSO RISOLTO: Cambiato nome alla classe!
 class_name PhantomEnemy
 
 @export var speed: float = 100
 @export var patrol_path: Array[Marker2D] = []
-@export var patrol_wait_time = 1.0
-@export var damage_to_player = 10
+
+# --- FIX 1: TIPIZZAZIONE FLOAT ---
+@export var patrol_wait_time: float = 1.0
+# ---------------------------------
+
+@export var damage_to_player: int = 10
 
 @export var health: int = 50
 @export var item_to_drop: InventoryItem
@@ -29,13 +32,16 @@ func _ready() -> void:
 	if patrol_path.size() > 0:
 		position = patrol_path[0].position
 	health_system.died.connect(on_died)
+	$Area2D.body_entered.connect(_on_area_2d_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if patrol_path.size() > 1:
 		move_along_path(delta)
 
 func apply_damage(damage: int):
-	health_system.apply_damage(damage)
+	# --- FIX 2: NOME FUNZIONE AGGIORNATO ---
+	health_system.take_damage(damage)
+	# ---------------------------------------
 	progress_bar.value = health_system.current_health
 
 func move_along_path(delta: float):
@@ -43,19 +49,7 @@ func move_along_path(delta: float):
 	var direction = (target_position - global_position).normalized()
 	var distance_to_target = global_position.distance_to(target_position)
 	
-	
-	if distance_to_target > 15.0:
-		animated_sprite_2d.play_movement_animation(direction)
-		velocity = direction * speed 
-		move_and_slide()
-	else:
-		animated_sprite_2d.play_idle_animation()
-		velocity = Vector2.ZERO
-		wait_timer += delta
-		if wait_timer >= patrol_wait_time:
-			wait_timer = 0.0
-			current_patrol_target = (current_patrol_target + 1) % patrol_path.size()
-	
+	# --- PULIZIA: Ho rimosso il blocco if/else duplicato qui ---
 	if distance_to_target > 15.0:
 		animated_sprite_2d.play_movement_animation(direction)
 		velocity = direction * speed 
@@ -71,26 +65,30 @@ func move_along_path(delta: float):
 func on_died():
 	set_physics_process(false)
 	
-	# 2. MODIFICA MORTE: Diciamo allo sprite di gestirsi la morte a destra/sinistra
 	animated_sprite_2d.play_death_animation()
 	
 	collision_shape_2d.set_deferred("disabled", true)
 	area_collision_shape_2d.set_deferred("disabled", true)
 
-
 func _on_animated_sprite_2d_animation_finished() -> void:
-	# 3. Controlliamo che l'animazione finita sia UNA delle DUE morti possibili
 	var anim_name = animated_sprite_2d.animation
 	if anim_name == "death_animation_left" or anim_name == "death_animation_right":
 		
-		# Spawna l'oggetto
-		var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
-		
-		# Piccolo controllo di sicurezza per non far crashare se dimentichi di mettere l'oggetto
+		# --- FIX 3: BLOCCO DEL DROP E ISTANZIAZIONE SICURA ---
 		if item_to_drop != null:
+			var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
 			loot_drop.inventory_item = item_to_drop
 			loot_drop.stacks = item_to_drop.stacks
 			
-		get_tree().root.add_child(loot_drop)
-		loot_drop.global_position = position
+			get_tree().root.add_child(loot_drop)
+			loot_drop.global_position = position
+		# -----------------------------------------------------
+		
 		queue_free()
+		
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	# Usiamo "is Player" che è il metodo più pulito
+	if body is Player:
+		print(name, " ha colpito il giocatore!")
+		# Chiamiamo la funzione ufficiale del Player
+		body.apply_damage(damage_to_player)

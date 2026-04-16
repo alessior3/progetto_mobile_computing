@@ -2,11 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="1_ifgdl"]
 [ext_resource type="Script" uid="uid://ds1yormg1vegu" path="res://Scripts/pink_slime.gd" id="1_nrxs7"]
+[ext_resource type="Resource" uid="uid://dp5dgmdrcshxq" path="res://Resources/pinkSlimeBall/pink_slime_ball.tres" id="2_5gdiu"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="2_mg4vu"]
-[ext_resource type="Texture2D" uid="uid://cohk4l4lif38q" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_death_anim_all_dir_strip_8.png" id="2_yibhk"]
-[ext_resource type="Texture2D" uid="uid://b8oavg70q2sxp" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_hit_anim_all_dir_strip_4.png" id="3_tfbrm"]
-[ext_resource type="Texture2D" uid="uid://d2vxbtnl0wqxw" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_idle_anim_all_dir_strip_6.png" id="4_qoh44"]
-[ext_resource type="Texture2D" uid="uid://jy753wbq5fui" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_run_anim_anim_all_dir_strip_6.png" id="5_h1jmd"]
+[ext_resource type="Texture2D" uid="uid://bop48xok1jbf5" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_death_anim_all_dir_strip_8.png" id="2_yibhk"]
+[ext_resource type="Texture2D" uid="uid://bfxx75fhcv34p" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_hit_anim_all_dir_strip_4.png" id="3_tfbrm"]
+[ext_resource type="Texture2D" uid="uid://b0oc5bxd65oxt" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_idle_anim_all_dir_strip_6.png" id="4_qoh44"]
+[ext_resource type="Texture2D" uid="uid://gk8asm7n42pd" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkslime_Sprites/pinkslime_run_anim_anim_all_dir_strip_6.png" id="5_h1jmd"]
 [ext_resource type="Script" uid="uid://bfgpwcgil4kcl" path="res://Scripts/PinkSlime_animated_sprite.gd" id="6_yibhk"]
 [ext_resource type="Shape2D" uid="uid://h8wcvr3a03cv" path="res://enemies/PinkSlime_collison_shape.tres" id="7_tfbrm"]
 
@@ -201,8 +202,17 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2il6c"]
+radius = 6.0
+
 [node name="PinkSlime" type="CharacterBody2D" unique_id=555553155]
+collision_mask = 7
 script = ExtResource("1_nrxs7")
+speed = null
+patrol_wait_time = null
+damage_to_player = null
+health = null
+item_to_drop = ExtResource("2_5gdiu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=598516194]
 sprite_frames = SubResource("SpriteFrames_j8ye0")
@@ -213,9 +223,11 @@ script = ExtResource("6_yibhk")
 shape = ExtResource("7_tfbrm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1679860041]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1171630489]
-shape = ExtResource("7_tfbrm")
+shape = SubResource("CircleShape2D_2il6c")
 
 [node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("1_ifgdl")]
 

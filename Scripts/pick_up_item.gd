@@ -31,15 +31,18 @@ func _ready() -> void:
 	
 	_update_visuals()
 
+# In PickUpItem.gd
+
 func _update_visuals() -> void:
 	if not is_inside_tree(): return
 	
 	var s2d = sprite_2d if sprite_2d else get_node_or_null("Sprite2D")
-	var c2d = collision_shape_2d if collision_shape_2d else get_node_or_null("CollisionShape2D")
 	
 	if inventory_item:
-		if s2d: s2d.texture = inventory_item.texture
-		if c2d: c2d.shape = inventory_item.ground_collision_shape
+		if s2d: 
+			s2d.texture = inventory_item.texture
+		# --- APPLICHIAMO LA SCALA DELLA RISORSA ---
+		self.scale = inventory_item.ground_visual_scale
 	else:
 		if s2d: s2d.texture = null
 

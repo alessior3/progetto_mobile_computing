@@ -3,13 +3,16 @@ extends CharacterBody2D
 class_name Spider
 @export var speed: float = 100
 @export var patrol_path: Array[Marker2D] = []
-@export var patrol_wait_time = 1.0
-@export var damage_to_player = 10
+
+# --- FIX 1: TIPIZZAZIONE FLOAT ---
+@export var patrol_wait_time: float = 1.0
+# ---------------------------------
+
+@export var damage_to_player: int = 10
 
 @export var health: int = 50
 @export var item_to_drop: InventoryItem
 
-# MODIFICA IMPORTANTE: Ora accetta qualsiasi AnimatedSprite2D (Fantasma, Ragno, ecc.)
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var health_system: HealthSystem = $HealthSystem
 @onready var progress_bar: ProgressBar = $ProgressBar
@@ -28,6 +31,7 @@ func _ready() -> void:
 	if patrol_path.size() > 0:
 		position = patrol_path[0].position
 	health_system.died.connect(on_died)
+	$Area2D.body_entered.connect(_on_area_2d_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if patrol_path.size() > 1:
@@ -55,21 +59,29 @@ func move_along_path(delta: float):
 			current_patrol_target = (current_patrol_target + 1) % patrol_path.size()
 
 func on_died():
-	# Fermiamo la fisica e facciamo partire l'animazione (che deve chiamarsi "died")
 	set_physics_process(false)
 	animated_sprite_2d.play("died")
 	
-	# Godot preferisce che le collisioni vengano disabilitate in modo "sicuro" con set_deferred
 	collision_shape_2d.set_deferred("disabled", true)
 	area_collision_shape_2d.set_deferred("disabled", true)
 
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "died":
-		var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
-		loot_drop.inventory_item = item_to_drop
-		loot_drop.stacks = item_to_drop.stacks
+		# --- FIX 2: BLOCCO DEL DROP E ISTANZIAZIONE SICURA ---
+		if item_to_drop != null:
+			var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
+			loot_drop.inventory_item = item_to_drop
+			loot_drop.stacks = item_to_drop.stacks
+			
+			get_tree().root.add_child(loot_drop)
+			loot_drop.global_position = position
+		# -----------------------------------------------------
 		
-		get_tree().root.add_child(loot_drop)
-		loot_drop.global_position = position
 		queue_free()
+		
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	# Usiamo "is Player" che è il metodo più pulito
+	if body is Player:
+		print(name, " ha colpito il giocatore!")
+		# Chiamiamo la funzione ufficiale del Player
+		body.apply_damage(damage_to_player)

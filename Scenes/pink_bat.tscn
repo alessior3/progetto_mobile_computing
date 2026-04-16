@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="1_1mug5"]
 [ext_resource type="Script" uid="uid://v6nixnfccnim" path="res://Scripts/pink_bat.gd" id="1_hmjdl"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="2_bjwxx"]
-[ext_resource type="Texture2D" uid="uid://dw2h6um4hxx84" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_left_strip_8.png" id="2_u5ekv"]
-[ext_resource type="Texture2D" uid="uid://dhh1d6viyjedq" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_right_strip_8.png" id="3_kgv6v"]
-[ext_resource type="Texture2D" uid="uid://cdjsspmxp0d85" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_left_anim_strip_4.png" id="4_x48f6"]
-[ext_resource type="Texture2D" uid="uid://bfkhnvm7byhf4" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_right_anim_strip_4.png" id="5_tdkcq"]
-[ext_resource type="Texture2D" uid="uid://718j7dywjn30" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_left_anim_strip_5.png" id="6_iovnw"]
-[ext_resource type="Texture2D" uid="uid://bx8hcd3x6l82u" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_right_anim_strip_5.png" id="7_cf18e"]
-[ext_resource type="Texture2D" uid="uid://fmareaf6806u" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_left_anim_strip_3.png" id="8_545d7"]
-[ext_resource type="Texture2D" uid="uid://ddwlfc5x6rm3f" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png" id="9_7ocyk"]
+[ext_resource type="Texture2D" uid="uid://c347qh5q240dh" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_left_strip_8.png" id="2_u5ekv"]
+[ext_resource type="Texture2D" uid="uid://bg3v2qh5aw4yq" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_death_anim_right_strip_8.png" id="3_kgv6v"]
+[ext_resource type="Texture2D" uid="uid://ouf4mvsjaa7e" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_left_anim_strip_4.png" id="4_x48f6"]
+[ext_resource type="Texture2D" uid="uid://dqh3oajuimy84" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_hit_right_anim_strip_4.png" id="5_tdkcq"]
+[ext_resource type="Texture2D" uid="uid://e5yys2rj7t0j" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_left_anim_strip_5.png" id="6_iovnw"]
+[ext_resource type="Texture2D" uid="uid://26k7qy3ol6nk" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_idle_right_anim_strip_5.png" id="7_cf18e"]
+[ext_resource type="Texture2D" uid="uid://bxfllcl0141yw" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_left_anim_strip_3.png" id="8_545d7"]
+[ext_resource type="Texture2D" uid="uid://dpyvgqp71axw8" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png" id="9_7ocyk"]
 [ext_resource type="Script" uid="uid://bx3dgx27wfoq2" path="res://Scripts/PinkBat_animated_sprite.gd" id="10_u5ekv"]
 [ext_resource type="Shape2D" uid="uid://baqgby1558hei" path="res://enemies/PinkBat_collision_shape.tres" id="10_u086v"]
 
@@ -337,6 +337,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n13uq"]
+size = Vector2(12, 7.5)
+
 [node name="PinkBat" type="CharacterBody2D" unique_id=126545672]
 script = ExtResource("1_hmjdl")
 
@@ -350,10 +353,12 @@ position = Vector2(1, -1)
 shape = ExtResource("10_u086v")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1972308455]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=513933806]
-position = Vector2(1, -1)
-shape = ExtResource("10_u086v")
+position = Vector2(0, -0.75)
+shape = SubResource("RectangleShape2D_n13uq")
 
 [node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("1_1mug5")]
 

@@ -14,6 +14,7 @@ var slot_type : String = "NotEquipable"
 @export var max_stacks: int
 @export var price: int
 @export_multiline var description: String = ""
+@export var ground_visual_scale: Vector2 = Vector2(1.0, 1.0)
 
 @export_group("Combattimento")
 @export var is_weapon: bool = false

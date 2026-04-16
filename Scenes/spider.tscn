@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d2t84sddt58t5"]
 
 [ext_resource type="Script" uid="uid://dw8r2saqj48kb" path="res://Scripts/spider.gd" id="1_rjben"]
-[ext_resource type="Texture2D" uid="uid://c01x1qg20ne2r" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_hit_anim_all_dir_strip_4.png" id="4_bi470"]
-[ext_resource type="Texture2D" uid="uid://bxuf3h3koxthu" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png" id="5_04w1h"]
+[ext_resource type="Texture2D" uid="uid://du5nguh83164d" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_hit_anim_all_dir_strip_4.png" id="4_bi470"]
+[ext_resource type="Texture2D" uid="uid://8dmcuueuti2l" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Spider_Sprites/spider_death_anim_all_dir_strip_8.png" id="5_04w1h"]
 [ext_resource type="Shape2D" uid="uid://cmyjqbdja270k" path="res://enemies/spider_collision_shape.tres" id="6_1uv7t"]
 [ext_resource type="Script" uid="uid://dlklryeavi2wk" path="res://Scripts/spider_animated_sprite.gd" id="6_iybn8"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="7_pe3gi"]
@@ -171,6 +171,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rp6o3"]
+size = Vector2(12, 10)
+
 [node name="spider" type="CharacterBody2D" unique_id=830393153]
 script = ExtResource("1_rjben")
 
@@ -179,13 +182,15 @@ sprite_frames = SubResource("SpriteFrames_emw3k")
 animation = &"died"
 script = ExtResource("6_iybn8")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=698615938]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=163160341]
-shape = ExtResource("6_1uv7t")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=50356532]
 shape = ExtResource("6_1uv7t")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=698615938]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=163160341]
+shape = SubResource("RectangleShape2D_rp6o3")
 
 [node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("7_pe3gi")]
 
