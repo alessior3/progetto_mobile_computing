@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="5_nwdop"]
 [ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="6_qmr4a"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="7_lhkjd"]
+[ext_resource type="Resource" uid="uid://cgbg5yin57x30" path="res://Resources/fullCabbage/fullCabbage.tres" id="8_tqxsn"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_s08nh"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="10_s08nh"]
 
@@ -468,9 +469,6 @@ texture = ExtResource("3_2i5oy")
 [sub_resource type="TileSet" id="TileSet_28awh"]
 sources/0 = SubResource("TileSetAtlasSource_hbrki")
 sources/1 = SubResource("TileSetAtlasSource_h67tc")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hafv"]
-size = Vector2(48.002716, 9.072493)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xdeo4"]
 texture = ExtResource("3_2i5oy")
@@ -1644,6 +1642,9 @@ sources/1 = SubResource("TileSetAtlasSource_s08nh")
 sources/2 = SubResource("TileSetAtlasSource_yv1jj")
 sources/3 = SubResource("TileSetAtlasSource_7dp5a")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hafv"]
+size = Vector2(48.002716, 9.072493)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7naer"]
 texture = ExtResource("3_2i5oy")
 0:0/0 = 0
@@ -2169,6 +2170,19 @@ tile_set = SubResource("TileSet_28awh")
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=2067504141]
 position = Vector2(-9, 115)
 
+[node name="walls" type="TileMapLayer" parent="." unique_id=1681752945]
+tile_map_data = PackedByteArray("AAD7////AAAHAAgAAAD8////AAAHAAgAAAD9////AAAHAAgAAAD+////AAAHAAgAAAD/////AAAHAAgAAAAAAP//AAAHAAgAAAABAP//AAAHAAgAAAACAP//AAAHAAgAAAADAP//AAAHAAgAAAD7//7/AAAGAAcAAAD8//7/AAAGAAcAAAD9//7/AAAGAAcAAAD+//7/AAAGAAcAAAD///7/AAAGAAcAAAAAAP7/AAAGAAcAAAABAP7/AAAGAAcAAAACAP7/AAAGAAcAAAADAP7/AAAGAAcAAAD7/wkAAAAHAAcAAAD8/wkAAAAHAAcAAAD9/wkAAAAHAAcAAAABAAkAAAAHAAcAAAACAAkAAAAHAAcAAAADAAkAAAAHAAcAAAA=")
+tile_set = SubResource("TileSet_c378k")
+
+[node name="oggetti" type="TileMapLayer" parent="." unique_id=588808052]
+tile_map_data = PackedByteArray("AAD9////AgABAAcAAAADAP//AgAEAAEAAAADAAAAAgAEAAIAAAACAP//AgADAAEAAAACAAAAAgADAAIAAAD8/wMAAgAAAAAAAAD8/wQAAgAAAAEAAAD8/wUAAgAAAAUAAAD7////AgAHAAQAAAD7/wAAAgAHAAUAAAACAAQAAgAHAAEAAAACAAUAAgAHAAIAAAD/////AgALAAUAAAADAAQAAgADAAMAAAADAAgAAgAHAAMAAAA=")
+tile_set = SubResource("TileSet_tqxsn")
+
+[node name="Chest" parent="." unique_id=716899325 instance=ExtResource("4_1ttny")]
+z_index = 0
+position = Vector2(-9, 0)
+oggetto_iniziale = ExtResource("8_tqxsn")
+
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("2_0vnda")]
 position = Vector2(-8, 113)
 
@@ -2187,18 +2201,7 @@ scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_5hafv")
 metadata/_edit_lock_ = true
 
-[node name="Chest" parent="." unique_id=716899325 instance=ExtResource("4_1ttny")]
-position = Vector2(-10, 22)
-
 [node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("5_nwdop")]
-
-[node name="walls" type="TileMapLayer" parent="." unique_id=1681752945]
-tile_map_data = PackedByteArray("AAD7////AAAHAAgAAAD8////AAAHAAgAAAD9////AAAHAAgAAAD+////AAAHAAgAAAD/////AAAHAAgAAAAAAP//AAAHAAgAAAABAP//AAAHAAgAAAACAP//AAAHAAgAAAADAP//AAAHAAgAAAD7//7/AAAGAAcAAAD8//7/AAAGAAcAAAD9//7/AAAGAAcAAAD+//7/AAAGAAcAAAD///7/AAAGAAcAAAAAAP7/AAAGAAcAAAABAP7/AAAGAAcAAAACAP7/AAAGAAcAAAADAP7/AAAGAAcAAAD7/wkAAAAHAAcAAAD8/wkAAAAHAAcAAAD9/wkAAAAHAAcAAAABAAkAAAAHAAcAAAACAAkAAAAHAAcAAAADAAkAAAAHAAcAAAA=")
-tile_set = SubResource("TileSet_c378k")
-
-[node name="oggetti" type="TileMapLayer" parent="." unique_id=588808052]
-tile_map_data = PackedByteArray("AAD9////AgABAAcAAAADAP//AgAEAAEAAAADAAAAAgAEAAIAAAACAP//AgADAAEAAAACAAAAAgADAAIAAAD8/wMAAgAAAAAAAAD8/wQAAgAAAAEAAAD8/wUAAgAAAAUAAAD7////AgAHAAQAAAD7/wAAAgAHAAUAAAACAAQAAgAHAAEAAAACAAUAAgAHAAIAAAD/////AgALAAUAAAADAAQAAgADAAMAAAADAAgAAgAHAAMAAAA=")
-tile_set = SubResource("TileSet_tqxsn")
 
 [node name="chairs" type="TileMapLayer" parent="." unique_id=978179353]
 tile_map_data = PackedByteArray("AAD9/wQAAAADAAQAAAD8/wUAAAAEAAUAAAD8/wMAAAADAAIAAAA=")

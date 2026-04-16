@@ -60,19 +60,22 @@ func update_slots(items_list: Array[InventoryItem]):
 	for i in range(slots.size()):
 		var slot = slots[i]
 		
+		# 1. Carica l'immagine (Pieno o Vuoto)
 		if i < items_list.size():
 			slot.add_item(items_list[i])
-			
-			if not slot.slot_swapped.is_connected(_on_slot_swapped):
-				slot.slot_swapped.connect(_on_slot_swapped)
-			if not slot.drag_started.is_connected(_on_drag_started):
-				slot.drag_started.connect(_on_drag_started)
-			if not slot.drag_ended.is_connected(_on_drag_ended):
-				slot.drag_ended.connect(_on_drag_ended)
-			if not slot.slot_focused.is_connected(_on_slot_focused):
-				slot.slot_focused.connect(_on_slot_focused)
 		else:
 			slot.add_item(null)
+			
+		# 2. --- IL FIX: I COLLEGAMENTI VANNO FATTI SEMPRE! ---
+		# Fuori dall'if/else, così anche gli slot vuoti sanno salvare!
+		if not slot.slot_swapped.is_connected(_on_slot_swapped):
+			slot.slot_swapped.connect(_on_slot_swapped)
+		if not slot.drag_started.is_connected(_on_drag_started):
+			slot.drag_started.connect(_on_drag_started)
+		if not slot.drag_ended.is_connected(_on_drag_ended):
+			slot.drag_ended.connect(_on_drag_ended)
+		if not slot.slot_focused.is_connected(_on_slot_focused):
+			slot.slot_focused.connect(_on_slot_focused)
 
 # ==========================================
 # LOGICA DEI BOTTONI
@@ -149,8 +152,10 @@ func _on_slot_swapped(source_slot, target_slot):
 		
 		# 2. AGGIORNIAMO IL GLOBAL (Fondamentale!)
 		# Assicurati che il nome della variabile nel Global sia corretto (es. persistent_inventory)
-		if "persistent_inventory" in Global:
-			Global.persistent_inventory = nuovi_oggetti
+		# 2. AGGIORNIAMO IL GLOBAL (Fondamentale!)
+		if "persistent_items" in Global:
+			Global.persistent_items = nuovi_oggetti
+			print("Sincronizzazione completata: ", nuovi_oggetti.size(), " slot salvati.")
 			
 		print("Sincronizzazione completata: ", nuovi_oggetti.size(), " slot salvati.")
 func _on_drag_started():

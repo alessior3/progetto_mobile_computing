@@ -78,3 +78,4 @@ func _notification(what: int) -> void:
 func set_highlight(active: bool):
 	if selection_highlight:
 		selection_highlight.visible = active
+		

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://dt7fktfvrfnsb"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_jsjey"]
+[ext_resource type="Texture2D" uid="uid://twum5c2u04hn" path="res://Resources/DungeonKey/SilverKey.png" id="2_h7vyg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3uje"]
+
+[resource]
+script = ExtResource("1_jsjey")
+item_id = "dungeon_key"
+slot_type = "Hand"
+ground_collision_shape = SubResource("RectangleShape2D_u3uje")
+name = "Dungeon Key"
+texture = ExtResource("2_h7vyg")
+max_stacks = 1
+description = "Utilizzabile per aprire una porta del dungeon"
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"

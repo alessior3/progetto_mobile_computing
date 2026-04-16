@@ -2,6 +2,7 @@ extends Area2D
 
 @export var chest_id: String = "cassa_casa_1"
 @export var chest_size: int = 15
+@export var oggetto_iniziale: Resource = null
 
 # Coordinate spritesheet
 @export var x_chiusa: float = 0.0
@@ -35,6 +36,9 @@ func _ready() -> void:
 	else:
 		chest_items.resize(chest_size)
 		chest_items.fill(null)
+		if oggetto_iniziale != null:
+			# Mettiamo l'oggetto nel primo slot (posizione 0)
+			chest_items[0] = oggetto_iniziale
 		Global.chests_data[chest_id] = chest_items
 
 func _on_body_entered(body: Node2D) -> void:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2htfoyb0t77"]
 
 [ext_resource type="Script" uid="uid://b8k2mdx8qg2p8" path="res://Scripts/chest.gd" id="1_cjfl1"]
-[ext_resource type="Texture2D" uid="uid://cuepwe3od85lb" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_lyb87"]
+[ext_resource type="Texture2D" uid="uid://vo8ol2skhrfn" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_lyb87"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfl1"]
 size = Vector2(16, 12)
@@ -11,9 +11,14 @@ size = Vector2(14, 4)
 
 [node name="Chest" type="Area2D" unique_id=716899325]
 z_index = 2
+y_sort_enabled = true
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_cjfl1")
+chest_id = null
+chest_size = null
+x_chiusa = null
+x_aperta = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1861635381]
 texture = ExtResource("1_lyb87")

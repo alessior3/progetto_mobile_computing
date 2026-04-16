@@ -23,9 +23,12 @@
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="17_grqd7"]
 [ext_resource type="Texture2D" uid="uid://b2tsohr1yffhf" path="res://RF_Catacombs_v1/torch_3.png" id="17_w2mga"]
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
+[ext_resource type="Resource" uid="uid://dt7fktfvrfnsb" path="res://Resources/DungeonKey/dungeon_key.tres" id="19_jp8yi"]
 [ext_resource type="Resource" uid="uid://bn6pupdgf3sed" path="res://Resources/Shadow3/Shadow3.tres" id="19_xeqhr"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="20_natbj"]
 [ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="21_g3xq8"]
+[ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="27_h1hro"]
+[ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="28_gau0i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xeqhr"]
 texture = ExtResource("1_yr1ei")
@@ -2662,24 +2665,32 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAEAAMAAAAGAAEAAAAEAAIAAAAGAAAAAAAMAAIAAAAGAAAAAAAMAAMAAAAGAAEAAAASAAMAAAAGAAEAAAASAAIAAAAGAAAAAAAIAPb/AAAGAAAAAAARAPb/AAAGAAAAAAAXAPb/AAAGAAAAAAAfAPb/AAAGAAAAAAAIAPf/AAAGAAEAAAARAPf/AAAGAAEAAAAXAPf/AAAGAAEAAAAfAPf/AAAGAAEAAAA=")
 tile_set = SubResource("TileSet_k5eiu")
 
+[node name="Chest" parent="." unique_id=716899325 instance=ExtResource("27_h1hro")]
+z_index = 0
+position = Vector2(1103, -817)
+oggetto_iniziale = ExtResource("19_jp8yi")
+
 [node name="doors" type="TileMapLayer" parent="." unique_id=755468669]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAoAAAABAP//AAABAAoAAAABAAAAAAABAAsAAAABAAEAAAABAAwAAAAAAAAAAAAAAAsAAAAAAAEAAAAAAAwAAAA=")
 tile_set = SubResource("TileSet_dmbys")
 
 [node name="DarkCorridor" type="PointLight2D" parent="." unique_id=793748100]
-position = Vector2(242.53748, -792)
+visible = false
+position = Vector2(236.99988, -784.00006)
 scale = Vector2(19.949247, 14.71875)
 energy = 1.15
 blend_mode = 1
 texture = SubResource("GradientTexture2D_grqd7")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("2_ksysw")]
-position = Vector2(566, -943)
+position = Vector2(1047, -781)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=907469725]
 position = Vector2(-2, -4)
 zoom = Vector2(3, 3)
+
+[node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("28_gau0i")]
 
 [node name="phantom" parent="." unique_id=939393485 node_paths=PackedStringArray("patrol_path") instance=ExtResource("9_86clg")]
 position = Vector2(580, -115)
