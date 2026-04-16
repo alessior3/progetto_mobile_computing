@@ -31,7 +31,6 @@ DialogueManager="*uid://056pskqfn4h0"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/stretch/scale=1.1800000000000002
 
 [dotnet]
 
