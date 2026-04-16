@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dgurjcx00nr8f" path="res://Assets/Environment/Props/Static/Trees/Model_01/Size_04.png" id="5_o06y3"]
 [ext_resource type="Texture2D" uid="uid://vbd4f1f32u8j" path="res://Assets/Environment/Structures/Buildings/Walls.png" id="7_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bul46e1ocb1yu" path="res://Assets/Environment/Structures/Buildings/Roofs.png" id="8_5v1tr"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://chc38heu2ftrs" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="10_xbk3s"]
-[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
+[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="11_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://bxnaadjy2w4iy" path="res://Scenes/House1.tscn" id="12_7yui6"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="12_pyn1s"]
@@ -33,6 +33,7 @@
 [ext_resource type="Resource" uid="uid://bin8x578827bo" path="res://Resources/fullPumpkin/fullPumpkin.tres" id="30_1vso6"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="31_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://vkfccv6imaj6" path="res://Scenes/enemy.tscn" id="32_3ua1v"]
+[ext_resource type="PackedScene" uid="uid://by5mdifypb0rr" path="res://Scenes/dark_wizard_boss.tscn" id="34_opbav"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7acu"]
 texture = ExtResource("1_8j60k")
@@ -2715,9 +2716,12 @@ item_id = "pumpkin1"
 inventory_item = ExtResource("30_1vso6")
 
 [node name="beast" parent="." unique_id=444734141 instance=ExtResource("31_3ua1v")]
-position = Vector2(414, 430)
+position = Vector2(113, 33)
 
 [node name="BombPlant" parent="." unique_id=79269094 instance=ExtResource("32_3ua1v")]
 position = Vector2(295, 414)
+
+[node name="DarkWizardBoss" parent="." unique_id=156015731 instance=ExtResource("34_opbav")]
+position = Vector2(322, 541)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

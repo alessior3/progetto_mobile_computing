@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c4cduy7v24wts" path="res://Scripts/energy_beam.gd" id="1_8xoax"]
 [ext_resource type="Texture2D" uid="uid://b0nfsrycb12tj" path="res://wizard_boss/energy-beam-large.png" id="2_rd5yn"]
+[ext_resource type="AudioStream" uid="uid://dki4m222lm4w0" path="res://wizard_boss/boss_beam.wav" id="3_rd5yn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhh4e"]
-size = Vector2(16, 21)
+size = Vector2(16, 1350)
 
 [sub_resource type="Animation" id="Animation_bpp3v"]
 length = 0.001
@@ -69,6 +70,8 @@ _data = {
 
 [node name="EnergyBeam" type="Area2D" unique_id=1636049935]
 z_index = 5
+collision_layer = 5
+collision_mask = 69
 script = ExtResource("1_8xoax")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1967242904]
@@ -77,8 +80,14 @@ texture = ExtResource("2_rd5yn")
 hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=198264724]
-position = Vector2(0, 1.5)
+position = Vector2(0, 75)
 shape = SubResource("RectangleShape2D_nhh4e")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=29219938]
 libraries/ = SubResource("AnimationLibrary_gsh0r")
+
+[node name="BeamSound" type="AudioStreamPlayer2D" parent="." unique_id=1503984179]
+stream = ExtResource("3_rd5yn")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

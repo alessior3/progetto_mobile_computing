@@ -13,7 +13,7 @@ func attack():
 	show()
 	sprite.show()
 	sprite.modulate = Color.WHITE 
-	
+	$BeamSound.play()
 	# 2. Li allunghiamo per farli diventare raggi letali (puoi cambiare il 15)
 	scale = Vector2(1, 15) 
 	z_index = 50 
@@ -31,3 +31,10 @@ func attack():
 	# 6. Fine dell'attacco: il laser si spegne e smette di fare danno
 	hide()
 	monitoring = false
+
+
+func _on_body_entered(body):
+	# Controlliamo il gruppo invece del nome!
+	if body.is_in_group("Player") or body.is_in_group("player"):
+		print("ZAP! Ora ti faccio danno per davvero!")
+		# body.take_damage(1) # Quando avrai la funzione, togli l'hashtag!

@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://ba487471l8qr8" path="res://Scripts/dark_wizard_boss.gd" id="1_25bi7"]
 [ext_resource type="Texture2D" uid="uid://prjriefi0xj8" path="res://wizard_boss/boss-cloak.png" id="1_k4ld3"]
 [ext_resource type="PackedScene" uid="uid://cq5hmv2wpyo0a" path="res://Scenes/energy_beam.tscn" id="3_8ghsn"]
+[ext_resource type="AudioStream" uid="uid://fl2g4i7p1yke" path="res://wizard_boss/boss_hurt.wav" id="4_lqwoi"]
+[ext_resource type="AudioStream" uid="uid://cc5viajq3l7gl" path="res://wizard_boss/boss_destroy.wav" id="5_utun1"]
+[ext_resource type="AudioStream" uid="uid://bsitante2qiej" path="res://wizard_boss/boss_fireball.wav" id="6_cljaj"]
 
 [sub_resource type="Gradient" id="Gradient_25bi7"]
 offsets = PackedFloat32Array(0, 0.6415663)
@@ -331,3 +334,12 @@ theme_override_styles/background = SubResource("StyleBoxFlat_8ghsn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_lqwoi")
 max_value = 5.0
 show_percentage = false
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1847478058]
+stream = ExtResource("4_lqwoi")
+
+[node name="DestroySound" type="AudioStreamPlayer2D" parent="." unique_id=2031616783]
+stream = ExtResource("5_utun1")
+
+[node name="FireBallSound" type="AudioStreamPlayer2D" parent="." unique_id=1043792100]
+stream = ExtResource("6_cljaj")

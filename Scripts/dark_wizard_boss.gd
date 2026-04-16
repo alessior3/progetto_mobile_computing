@@ -2,9 +2,10 @@ extends Node2D
 class_name DarkWizardBoss
 
 const EXPLOSION_SCENE = preload("res://Scenes/energy_explosion.tscn")
-
+const BOSS_ORB = preload("res://Scenes/boss_orb.tscn")
 # --- VARIABILI DELLA SALUTE ---
 @export var max_hp: int = 5
+@onready var player = get_tree().get_first_node_in_group("player")
 var hp: int = 5
 var damage_count: int = 0
 
@@ -61,6 +62,7 @@ func _on_damage_taken(attack_hitbox):
 		
 	# 3. Prende il danno vero
 	hp -= attack_hitbox.damage
+	$HurtSound.play()
 	damage_count += 1
 	
 	boss_health_bar.value = hp
@@ -105,9 +107,10 @@ func idle():
 	enable_hitboxes(true) 
 	
 	if randf() > 0.5:
-		anim_player.play("idle")
-		await get_tree().create_timer(1.0).timeout # Aspetta senza bloccarsi
-		if hp <= 0: return 
+		anim_player.play("cast_spell") 
+		shoot_orb() 
+		await get_tree().create_timer(1.0).timeout
+		if hp <= 0: return
 		
 	if damage_count < 1: 
 		energy_beam_attack() 
@@ -143,11 +146,38 @@ func energy_beam_attack():
 		beam_attacks[b].attack()
 
 
+func shoot_orb():
+	var target = get_node_or_null("../player") 
+	if target == null:
+		target = get_node_or_null("../Player")
+		
+	if BOSS_ORB == null or target == null:
+		print("ERRORE: O manca la sfera, o il bersaglio non esiste in questa scena!")
+		return
+		
+	print("SPARO LA SFERA!")
+	
+	# 1. CREIAMO LA SFERA
+	var orb = BOSS_ORB.instantiate()
+	
+	# 2. LE DIAMO LA POSIZIONE
+	orb.global_position = boss_node.global_position
+	
+	# 3. ORA POSSIAMO STAMPARE LA POSIZIONE (perché ora esiste!)
+	print("Sfera generata alle coordinate: ", orb.global_position)
+	
+	# 4. CALCOLIAMO LA DIREZIONE E LA AGGIUNGIAMO AL GIOCO
+	orb.direction = (target.global_position - boss_node.global_position).normalized()
+	get_parent().add_child(orb)
+	
+	# $FireballSound.play()
+
+
 # --- SCONFITTA ED ESPLOSIONE ---
 func defeat():
 	enable_hitboxes(false) 
 	boss_health_bar.visible = false # Nasconde la barra della vita
-	
+	$DestroySound.play()
 	explosion(Vector2(0, -30)) 
 	await get_tree().create_timer(0.2).timeout
 	
