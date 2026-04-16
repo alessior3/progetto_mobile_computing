@@ -34,7 +34,6 @@ func _physics_process(delta):
 	# Invece di aspettare il segnale, controlliamo chi c'è dentro ad ogni frame
 	for body in get_overlapping_bodies():
 		if body.is_in_group("player") or body.is_in_group("Player"):
-			print("PRESO! Metodo Bestia ha funzionato!")
 			
 			# Danno
 			if body.has_method("_on_damage_taken"):
