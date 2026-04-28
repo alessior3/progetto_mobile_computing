@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://b3ri8q8pkxt65"]
+
+[ext_resource type="Texture2D" uid="uid://d1xqfuv6w3tmk" path="res://Assets/Modern tiles_Free/Characters_free/Adam_idle_anim_16x16.png" id="1_tmyhj"]
+[ext_resource type="Script" uid="uid://dnmkghaphpad3" path="res://Scripts/npc_1.gd" id="2_script"]
+[ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_rl6og"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vldg5"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(288, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfk0d"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(304, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0fvp"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(320, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rl6og"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(336, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhfqq"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(352, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygy5m"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(368, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iccxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vldg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfk0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0fvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rl6og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhfqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygy5m")
+}],
+"loop": true,
+"name": &"idle_an",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2oh3"]
+size = Vector2(27, 24.5)
+
+[node name="Npc1" type="CharacterBody2D" unique_id=349992580]
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
+sprite_frames = SubResource("SpriteFrames_iccxi")
+animation = &"idle_an"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454772329]
+position = Vector2(0, 5.25)
+shape = ExtResource("3_rl6og")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1940184636]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1178060263]
+position = Vector2(-0.5, 3.75)
+shape = SubResource("RectangleShape2D_n2oh3")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_interaction_area_body_exited"]
