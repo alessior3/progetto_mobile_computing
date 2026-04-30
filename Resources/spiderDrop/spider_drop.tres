@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="InventoryItem" format=3]
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://i8mk1uf1jxht"]
 
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_os1xv"]
-[ext_resource type="Texture2D" uid="uid://bxybtipn7j4y6" path="res://Ninja Adventure - Asset Pack/Items/Food/SeedLargeWhite.png" id="2_spider_drop"]
+[ext_resource type="Texture2D" uid="uid://bkf0l5lucyy54" path="res://Ninja Adventure - Asset Pack/Items/Food/SeedLargeWhite.png" id="2_spider_drop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spider"]
 size = Vector2(16, 16)

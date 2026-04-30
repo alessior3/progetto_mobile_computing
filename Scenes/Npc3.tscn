@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bifi6l5gbmxju" path="res://Scenes/npc_3.gd" id="1_uqobo"]
 [ext_resource type="Texture2D" uid="uid://c3pttfn7xb3la" path="res://Assets/Modern tiles_Free/Characters_free/Bob_idle_anim_16x16.png" id="2_uqobo"]
 [ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_kqm0n"]
+[ext_resource type="Texture2D" uid="uid://68bnnb3yewwj" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_alerted.png" id="4_t2c2o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2c2o"]
 atlas = ExtResource("2_uqobo")
@@ -54,8 +55,8 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2oh3"]
-size = Vector2(27, 24.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqm0n"]
+size = Vector2(193, 197)
 
 [node name="Npc3" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_uqobo")
@@ -68,11 +69,17 @@ animation = &"idle_an"
 position = Vector2(0, 5.25)
 shape = ExtResource("3_kqm0n")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1940184636]
+[node name="VisionArea" type="Area2D" parent="." unique_id=148756299]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1178060263]
-position = Vector2(-0.5, 3.75)
-shape = SubResource("RectangleShape2D_n2oh3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" unique_id=317106674]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_kqm0n")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_interaction_area_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_interaction_area_body_exited"]
+[node name="ExclamationMark" type="Sprite2D" parent="." unique_id=1712770201]
+process_mode = 1
+z_index = 100
+position = Vector2(0, -12)
+texture = ExtResource("4_t2c2o")
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]

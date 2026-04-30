@@ -40,16 +40,31 @@ func _physics_process(delta):
 # --- L'AVVISTAMENTO (!) ---
 # Assicurati di collegare il segnale "body_entered" della tua VisionArea a questa funzione!
 func _on_vision_area_body_entered(body):
-	# QUESTA RIGA CI DIRÀ LA VERITÀ:
 	print("L'NPC ha appena visto entrare nella sua area: ", body.name)
 	
-	# Controlliamo tutte le combinazioni di maiuscole/minuscole
 	if body.name == "Player" or body.name == "player" or body.is_in_group("Player") or body.is_in_group("player"):
 		if not has_spotted_player:
 			print("IL GIOCATORE È STATO AVVISTATO!")
 			has_spotted_player = true
 			player_target = body
-			# ... resto del codice (velocity = Vector2.ZERO, ecc.)
+			
+			# 1. Ferma l'NPC
+			velocity = Vector2.ZERO
+			anim.stop()
+			
+			# 2. Mostra il punto esclamativo
+			if exclamation_mark:
+				exclamation_mark.visible = true
+				
+			# 3. Pausa drammatica
+			set_physics_process(false)
+			await get_tree().create_timer(1.0).timeout
+			
+			# 4. Nasconde il punto esclamativo e inizia a correre verso di te
+			if exclamation_mark:
+				exclamation_mark.visible = false
+				
+			set_physics_process(true)
 
 
 func inizia_dialogo():
@@ -57,14 +72,14 @@ func inizia_dialogo():
 	velocity = Vector2.ZERO
 	anim.stop()
 	
+	# BLOCCIAMO IL PLAYER!
+	if player_target != null:
+		player_target.can_move = false
+	
 	print("NPC ha raggiunto il player, inizia il dialogo!")
 	
-	# Usiamo il tuo stesso DialogueManager per fargli dire la frase!
 	if has_node("/root/DialogueManager"):
 		DialogueManager.show_message(storia_npc)
-		
-		# (Opzionale): Se il tuo DialogueManager blocca il gioco (pause mode),
-		# l'NPC aspetterà in automatico che tu chiuda il dialogo.
 
 func update_animation(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):
