@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dpyvgqp71axw8" path="res://Top_Down_Adventure_Pack_v.1.0/Enemies_Sprites/Pinkbat_Sprites/pinkbat_run_attack_right_anim_strip_3.png" id="9_7ocyk"]
 [ext_resource type="Script" uid="uid://bx3dgx27wfoq2" path="res://Scripts/PinkBat_animated_sprite.gd" id="10_u5ekv"]
 [ext_resource type="Shape2D" uid="uid://baqgby1558hei" path="res://enemies/PinkBat_collision_shape.tres" id="10_u086v"]
+[ext_resource type="Resource" path="res://Resources/pinkBatWing/pink_bat_wing.tres" id="11_wing"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_edxga"]
 atlas = ExtResource("2_u5ekv")
@@ -342,6 +343,7 @@ size = Vector2(12, 7.5)
 
 [node name="PinkBat" type="CharacterBody2D" unique_id=126545672]
 script = ExtResource("1_hmjdl")
+item_to_drop = ExtResource("11_wing")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1150912937]
 sprite_frames = SubResource("SpriteFrames_v24nu")

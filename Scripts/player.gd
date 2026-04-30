@@ -21,6 +21,11 @@ var damage_reduction_multiplier: float = 0.0
 var current_dir = "none"
 var is_attacking: bool = false
 var is_dead: bool = false
+var is_in_slime: bool = false
+
+func set_in_slime(val: bool):
+	is_in_slime = val
+
 
 @onready var inventory: Inventory = $Inventory
 @onready var health_system: HealthSystem = $HealthSystem
@@ -144,6 +149,9 @@ func _unhandled_input(event):
 		SaveManager.save_game()
 		
 	if event.is_action_pressed("attack") and not is_attacking:
+		if is_in_slime:
+			print("Sei nella melma, non puoi attaccare!")
+			return
 		var hand_item = Global.persistent_hand
 		if hand_item != null and hand_item.get("is_weapon") == true:
 			start_attack()
@@ -234,6 +242,9 @@ func player_movement(_delta):
 	else:
 		current_speed = walk_speed*speed_buff_multiplier
 		anim_state = 1 
+		
+	if is_in_slime:
+		current_speed *= 0.4
 
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"

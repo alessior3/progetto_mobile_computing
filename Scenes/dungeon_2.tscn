@@ -1397,7 +1397,7 @@ tile_set = SubResource("TileSet_kpojm")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_k2pb7")]
 z_index = 1
-position = Vector2(241, 231)
+position = Vector2(356, 376)
 metadata/_edit_group_ = true
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=1214216010]
@@ -1409,9 +1409,12 @@ tile_map_data = PackedByteArray("AAAHAOr/AQAeAAwAAAAbAOr/AQAeAAwAAAAbAPT/AQAeAAw
 tile_set = SubResource("TileSet_rdt70")
 
 [node name="phantom" parent="." unique_id=939393485 instance=ExtResource("5_k2pb7")]
-position = Vector2(302, 201)
+position = Vector2(301, -217)
 chases_player = true
 
 [node name="PinkSlime" parent="." unique_id=555553155 instance=ExtResource("6_axtet")]
+visible = false
 
 [node name="PinkBat" parent="." unique_id=126545672 instance=ExtResource("7_hjqul")]
+position = Vector2(332, 264)
+chases_player = true

@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dlklryeavi2wk" path="res://Scripts/spider_animated_sprite.gd" id="6_iybn8"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="7_pe3gi"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="8_ossid"]
+[ext_resource type="Resource" path="res://Resources/spiderDrop/spider_drop.tres" id="10_spiderdrop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h2s58"]
 atlas = ExtResource("5_04w1h")
@@ -176,6 +177,7 @@ size = Vector2(12, 10)
 
 [node name="spider" type="CharacterBody2D" unique_id=830393153]
 script = ExtResource("1_rjben")
+item_to_drop = ExtResource("10_spiderdrop")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1113736397]
 sprite_frames = SubResource("SpriteFrames_emw3k")

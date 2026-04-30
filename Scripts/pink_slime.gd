@@ -25,6 +25,10 @@ var current_patrol_target = 0
 var wait_timer = 0.0
 var player: Node2D = null
 var can_attack: bool = true
+var is_in_slime: bool = false
+
+func set_in_slime(val: bool):
+	is_in_slime = val
 
 func _ready() -> void:
 	health_system.init(health)
@@ -78,9 +82,11 @@ func chase_target_player(delta: float):
 	var direction = (player.global_position - global_position).normalized()
 	var distance_to_target = global_position.distance_to(player.global_position)
 	
+	var effective_speed = speed * (2.0 if is_in_slime else 1.0)
+	
 	if distance_to_target > 5.0:
 		animated_sprite_2d.play_movement_animation(direction)
-		velocity = direction * speed 
+		velocity = direction * effective_speed 
 		move_and_slide()
 	else:
 		animated_sprite_2d.play_idle_animation()
@@ -95,9 +101,11 @@ func move_along_path(delta: float):
 	var direction = (target_position - global_position).normalized()
 	var distance_to_target = global_position.distance_to(target_position)
 	
+	var effective_speed = speed * (2.0 if is_in_slime else 1.0)
+	
 	if distance_to_target > 5.0:
 		animated_sprite_2d.play_movement_animation(direction)
-		velocity = direction * speed 
+		velocity = direction * effective_speed 
 		move_and_slide()
 	else:
 		animated_sprite_2d.play_idle_animation()
@@ -140,27 +148,37 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			var start_pos = global_position
 			loot_drop.global_position = start_pos
 			
-			# 5. Calcolo traiettoria (Offset casuale)
-			var random_offset = Vector2(randf_range(-35.0, 35.0), randf_range(10.0, 30.0))
+			# 5. Calcolo traiettoria (Offset casuale ridotto)
+			var random_offset = Vector2(randf_range(-20.0, 20.0), randf_range(5.0, 15.0))
 			var end_pos = start_pos + random_offset
 			
-			# --- ANIMAZIONE A PARABOLA (DUE TWEEN) ---
+			# --- FIX: EVITARE CHE L'OGGETTO FINISCA NEI MURI ---
+			var space_state = get_world_2d().direct_space_state
+			var query = PhysicsRayQueryParameters2D.create(start_pos, end_pos)
+			query.collision_mask = 1 # Livello 1 = Muri/Ostacoli fisici
+			var result = space_state.intersect_ray(query)
+			if result:
+				end_pos = result.position - (random_offset.normalized() * 5.0)
+			# ---------------------------------------------------
 			
-			# Tween per l'asse X (Movimento orizzontale costante)
+			# --- ANIMAZIONE A PARABOLA PIÙ "CUTE" ---
+			
+			# Tween per l'asse X (Movimento orizzontale)
 			var tween_x = loot_drop.create_tween()
-			tween_x.tween_property(loot_drop, "global_position:x", end_pos.x, 0.4)
-			
-			# Tween per l'asse Y (Salita e Discesa)
-			var tween_y = loot_drop.create_tween()
-			var peak_y = min(start_pos.y, end_pos.y) - 25 # Punto più alto del salto
-			
-			# Fase 1: Salita (QUAD_OUT per rallentare verso l'alto)
-			tween_y.tween_property(loot_drop, "global_position:y", peak_y, 0.2)\
+			tween_x.tween_property(loot_drop, "global_position:x", end_pos.x, 0.35)\
 				.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			
-			# Fase 2: Discesa (QUAD_IN per accelerare verso il basso)
-			tween_y.tween_property(loot_drop, "global_position:y", end_pos.y, 0.2)\
-				.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+			# Tween per l'asse Y (Salitina e rimbalzo)
+			var tween_y = loot_drop.create_tween()
+			var peak_y = min(start_pos.y, end_pos.y) - 12.0 # Salto più basso
+			
+			# Fase 1: Salita
+			tween_y.tween_property(loot_drop, "global_position:y", peak_y, 0.15)\
+				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			
+			# Fase 2: Discesa con rimbalzo
+			tween_y.tween_property(loot_drop, "global_position:y", end_pos.y, 0.20)\
+				.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 			# ------------------------------------------
 			
 			print("DEBUG (Enemy Loot): Lanciato con parabola: ", item_to_drop.name)

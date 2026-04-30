@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://cx5n5baxqnsc5"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_os1xv"]
+[ext_resource type="Texture2D" uid="uid://bhgfhoh1y0jhb" path="res://Ninja Adventure - Asset Pack/Items/Resource/feather.png" id="2_feather"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feather"]
+size = Vector2(16, 16)
+
+[resource]
+script = ExtResource("1_os1xv")
+item_id = "pink_bat_wing"
+ground_collision_shape = SubResource("RectangleShape2D_feather")
+name = "Ala di Pipistrello Rosa"
+texture = ExtResource("2_feather")
+max_stacks = 99
+price = 25
+description = "Un'ala membranosa strappata a un pipistrello rosa. Sembra quasi una piuma. Il mercante la pagherà molto bene!"
+ground_visual_scale = Vector2(0.5, 0.5)
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"

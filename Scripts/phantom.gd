@@ -129,14 +129,58 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	var anim_name = animated_sprite_2d.animation
 	if anim_name == "death_animation_left" or anim_name == "death_animation_right":
 		
-		# --- FIX 3: BLOCCO DEL DROP E ISTANZIAZIONE SICURA ---
+		# --- LOGICA DEL DROP CON PARABOLA (STILE PINK SLIME) ---
 		if item_to_drop != null:
 			var loot_drop = PICKUP_ITEM_SCENE.instantiate() as PickUpItem
-			loot_drop.inventory_item = item_to_drop
-			loot_drop.stacks = item_to_drop.stacks
 			
-			get_tree().root.add_child(loot_drop)
-			loot_drop.global_position = position
+			# 1. Configurazione dati
+			loot_drop.inventory_item = item_to_drop
+			loot_drop.amount = item_to_drop.stacks if item_to_drop.stacks > 0 else 1
+			loot_drop.item_id = "" # Importante per i nemici
+			
+			# 2. Fix visivi
+			loot_drop.z_index = -1
+			loot_drop.y_sort_enabled = true
+			
+			# 3. Parenting
+			get_parent().add_child(loot_drop)
+			
+			# 4. Posizionamento iniziale
+			var start_pos = global_position
+			loot_drop.global_position = start_pos
+			
+			# 5. Calcolo traiettoria (Offset casuale ridotto)
+			var random_offset = Vector2(randf_range(-20.0, 20.0), randf_range(5.0, 15.0))
+			var end_pos = start_pos + random_offset
+			
+			# --- FIX: EVITARE CHE L'OGGETTO FINISCA NEI MURI ---
+			var space_state = get_world_2d().direct_space_state
+			var query = PhysicsRayQueryParameters2D.create(start_pos, end_pos)
+			query.collision_mask = 1 # Livello 1 = Muri/Ostacoli fisici
+			var result = space_state.intersect_ray(query)
+			if result:
+				end_pos = result.position - (random_offset.normalized() * 5.0)
+			# ---------------------------------------------------
+			
+			# --- ANIMAZIONE A PARABOLA PIÙ "CUTE" ---
+			# Tween per l'asse X (Movimento orizzontale)
+			var tween_x = loot_drop.create_tween()
+			tween_x.tween_property(loot_drop, "global_position:x", end_pos.x, 0.35)\
+				.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			
+			# Tween per l'asse Y (Salitina e rimbalzo)
+			var tween_y = loot_drop.create_tween()
+			var peak_y = min(start_pos.y, end_pos.y) - 12.0 # Salto più basso
+			
+			# Fase 1: Salita
+			tween_y.tween_property(loot_drop, "global_position:y", peak_y, 0.15)\
+				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+			
+			# Fase 2: Discesa con rimbalzo
+			tween_y.tween_property(loot_drop, "global_position:y", end_pos.y, 0.20)\
+				.set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+			
+			print("DEBUG (Enemy Loot): Lanciato con parabola: ", item_to_drop.name)
 		# -----------------------------------------------------
 		
 		queue_free()

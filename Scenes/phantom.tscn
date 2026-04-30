@@ -13,6 +13,7 @@
 [ext_resource type="Shape2D" uid="uid://w8agbgi342c1" path="res://enemies/phantom_collision_shape.tres" id="10_n325r"]
 [ext_resource type="Script" uid="uid://dbtojwg53p8jt" path="res://Scripts/phantom_animated_sprite_2d.gd" id="10_uailp"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="12_n325r"]
+[ext_resource type="Resource" path="res://Resources/phantomDrop/phantom_drop.tres" id="13_phantomdrop"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gkcu"]
 atlas = ExtResource("1_el6uu")
@@ -371,6 +372,7 @@ height = 12.0
 
 [node name="phantom" type="CharacterBody2D" unique_id=939393485]
 script = ExtResource("1_nnk5s")
+item_to_drop = ExtResource("13_phantomdrop")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1769780789]
 sprite_frames = SubResource("SpriteFrames_ux3y3")

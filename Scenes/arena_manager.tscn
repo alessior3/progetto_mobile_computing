@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Scripts/arena_manager.gd" id="1_arena"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(64, 64)
+
+[node name="ArenaManager" type="Node2D"]
+script = ExtResource("1_arena")
+
+[node name="TriggerArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
+shape = SubResource("RectangleShape2D_trigger")
