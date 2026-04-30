@@ -10,13 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://dgurjcx00nr8f" path="res://Assets/Environment/Props/Static/Trees/Model_01/Size_04.png" id="5_o06y3"]
 [ext_resource type="Texture2D" uid="uid://vbd4f1f32u8j" path="res://Assets/Environment/Structures/Buildings/Walls.png" id="7_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bul46e1ocb1yu" path="res://Assets/Environment/Structures/Buildings/Roofs.png" id="8_5v1tr"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://chc38heu2ftrs" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="10_xbk3s"]
-[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
+[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="11_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://bxnaadjy2w4iy" path="res://Scenes/House1.tscn" id="12_7yui6"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="12_pyn1s"]
-[ext_resource type="Texture2D" uid="uid://wsaxp4joskvh" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetHouse.png" id="12_r0ikl"]
+[ext_resource type="Texture2D" uid="uid://dbuykhqs28qe" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetHouse.png" id="12_r0ikl"]
 [ext_resource type="PackedScene" uid="uid://debprstwe8fj2" path="res://Scenes/inside_house_1.tscn" id="14_e0ngr"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="15_hgpy0"]
 [ext_resource type="Texture2D" uid="uid://tmv2uqlwbhx" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Black Buildings/Barracks.png" id="16_p5wkl"]
@@ -40,8 +40,6 @@
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="31_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://vkfccv6imaj6" path="res://Scenes/enemy.tscn" id="32_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://b3ri8q8pkxt65" path="res://Scenes/Npc1.tscn" id="41_atqvy"]
-[ext_resource type="PackedScene" uid="uid://bhjy0vvi17756" path="res://Scenes/Npc3.tscn" id="42_jwdyn"]
-[ext_resource type="PackedScene" uid="uid://dxvknorvwacsx" path="res://Scenes/Npc2.tscn" id="43_t6yt7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5wkl"]
 texture = ExtResource("16_p5wkl")
@@ -2786,13 +2784,7 @@ inventory_item = ExtResource("24_xbk3s")
 [node name="BombPlant" parent="." unique_id=79269094 instance=ExtResource("32_3ua1v")]
 position = Vector2(295, 414)
 
-[node name="Npc3" parent="." unique_id=453483176 instance=ExtResource("42_jwdyn")]
-position = Vector2(168, 387)
-
 [node name="Npc1" parent="." unique_id=988991927 instance=ExtResource("41_atqvy")]
-position = Vector2(207, 386)
-
-[node name="Npc2" parent="." unique_id=1475634599 instance=ExtResource("43_t6yt7")]
-position = Vector2(237, 386)
+position = Vector2(256, 179)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

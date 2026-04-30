@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 # --- IMPOSTAZIONI DEL NEMICO ---
 @export var speed: float = 50.0
-@export var chase_distance: float = 200.0
 @export var attack_damage: int = 15
 @export var attack_cooldown: float = 1.0
 
