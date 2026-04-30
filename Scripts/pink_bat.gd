@@ -10,7 +10,11 @@ class_name PinkBat
 @export var patrol_wait_time: float = 1.0
 # ---------------------------------
 
+@export var chases_player: bool = false
+@export var chase_distance: float = 200.0
+
 @export var damage_to_player: int = 10
+@export var attack_cooldown: float = 1.0
 
 @export var health: int = 50
 @export var item_to_drop: InventoryItem
@@ -24,6 +28,8 @@ class_name PinkBat
 const PICKUP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
 var current_patrol_target = 0
 var wait_timer = 0.0
+var player: Node2D = null
+var can_attack: bool = true
 
 func _ready() -> void:
 	health_system.init(health)
@@ -33,11 +39,56 @@ func _ready() -> void:
 	if patrol_path.size() > 0:
 		position = patrol_path[0].position
 	health_system.died.connect(on_died)
-	$Area2D.body_entered.connect(_on_area_2d_body_entered)
+	
+	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
+	# --- ATTACCO AL PLAYER (STILE UNIFICATO) ---
+	if can_attack and $Area2D:
+		var targets = $Area2D.get_overlapping_bodies() + $Area2D.get_overlapping_areas()
+		for target in targets:
+			if target.is_in_group("player"):
+				var actual_player = target if target is Player else target.get_parent()
+				if actual_player and actual_player.has_method("apply_damage"):
+					hit_player(actual_player)
+					break
+
+	if chases_player and player:
+		var distance = global_position.distance_to(player.global_position)
+		if distance < chase_distance:
+			chase_target_player(delta)
+			return
+
 	if patrol_path.size() > 1:
 		move_along_path(delta)
+	else:
+		animated_sprite_2d.play_idle_animation()
+
+func hit_player(target):
+	if target.has_method("apply_damage"):
+		can_attack = false
+		
+		var knockback_dir = (global_position - target.global_position).normalized()
+		global_position += knockback_dir * 15.0
+		
+		print(name, " ha colpito il giocatore!")
+		target.apply_damage(damage_to_player)
+		
+		if get_tree() == null: return
+		await get_tree().create_timer(attack_cooldown).timeout
+		if get_tree() != null:
+			can_attack = true
+
+func chase_target_player(delta: float):
+	var direction = (player.global_position - global_position).normalized()
+	var distance_to_target = global_position.distance_to(player.global_position)
+	
+	if distance_to_target > 5.0:
+		animated_sprite_2d.play_movement_animation(direction)
+		velocity = direction * speed 
+		move_and_slide()
+	else:
+		animated_sprite_2d.play_idle_animation()
 
 func apply_damage(damage: int):
 	# --- FIX 2: NOME FUNZIONE AGGIORNATO ---
@@ -91,10 +142,3 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		
 		# Il mostro viene rimosso indipendentemente dal drop
 		queue_free()
-		
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	# Usiamo "is Player" che è il metodo più pulito
-	if body is Player:
-		print(name, " ha colpito il giocatore!")
-		# Chiamiamo la funzione ufficiale del Player
-		body.apply_damage(damage_to_player)

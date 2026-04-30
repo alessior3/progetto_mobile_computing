@@ -6,8 +6,15 @@ extends CharacterBody2D
 @export var attack_damage: int = 15
 @export var attack_cooldown: float = 1.0
 
+@export var chases_player: bool = true
+@export var chase_distance: float = 200.0
+@export var patrol_path: Array[Marker2D] = []
+@export var patrol_wait_time: float = 1.0
+
 var can_attack: bool = true
 var player: Node2D = null
+var current_patrol_target = 0
+var wait_timer = 0.0
 
 # --- RIFERIMENTI AI NODI ---
 @onready var anim = $AnimatedSprite2D
@@ -29,31 +36,55 @@ func _ready():
 		progress_bar.add_theme_stylebox_override("fill", style_box)
 
 	player = get_tree().get_first_node_in_group("player")
+	
+	if patrol_path.size() > 0:
+		position = patrol_path[0].position
 
 func _physics_process(delta):
+	# --- ATTACCO AL PLAYER (STILE UNIFICATO) ---
+	if can_attack and hitbox:
+		var targets = hitbox.get_overlapping_bodies() + hitbox.get_overlapping_areas()
+		for target in targets:
+			if target.is_in_group("player"):
+				var actual_player = target if target is Player else target.get_parent()
+				if actual_player and actual_player.has_method("apply_damage"):
+					bite_player(actual_player)
+					break 
+
 	var direction = Vector2.ZERO
 
-	# --- IA DI INSEGUIMENTO MODIFICATA ---
-	# Si muove verso il player SOLO se non sta ricaricando un attacco
-	if player and can_attack:
+	# --- IA DI MOVIMENTO ---
+	if chases_player and player and can_attack:
 		var distance = global_position.distance_to(player.global_position)
-		
-		# Rimosso il limite "> 15.0", ora va fino a sbatterci contro!
 		if distance < chase_distance:
 			direction = (player.global_position - global_position).normalized()
+			velocity = direction * speed
+			move_and_slide()
+			update_animation(direction)
+			return
 
-	velocity = direction * speed
-	move_and_slide()
-	
-	update_animation(direction)
-	
-	# --- ATTACCO AL PLAYER ---
-	if can_attack and hitbox:
-		for body in hitbox.get_overlapping_bodies():
-			if body.is_in_group("player"):
-				bite_player(body)
-				break 
+	if patrol_path.size() > 1:
+		move_along_path(delta)
+	else:
+		velocity = Vector2.ZERO
+		update_animation(Vector2.ZERO)
 
+func move_along_path(delta: float):
+	var target_position = patrol_path[current_patrol_target].global_position
+	var direction = (target_position - global_position).normalized()
+	var distance_to_target = global_position.distance_to(target_position)
+	
+	if distance_to_target > 15.0:
+		update_animation(direction)
+		velocity = direction * speed 
+		move_and_slide()
+	else:
+		update_animation(Vector2.ZERO)
+		global_position = target_position 
+		wait_timer += delta
+		if wait_timer >= patrol_wait_time:
+			wait_timer = 0.0
+			current_patrol_target = (current_patrol_target + 1) % patrol_path.size()
 func update_animation(dir: Vector2):
 	if dir == Vector2.ZERO:
 		anim.stop()

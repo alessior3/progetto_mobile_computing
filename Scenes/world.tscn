@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="11_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://bxnaadjy2w4iy" path="res://Scenes/House1.tscn" id="12_7yui6"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="12_pyn1s"]
-[ext_resource type="Texture2D" uid="uid://dbuykhqs28qe" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetHouse.png" id="12_r0ikl"]
+[ext_resource type="Texture2D" uid="uid://wsaxp4joskvh" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetHouse.png" id="12_r0ikl"]
 [ext_resource type="PackedScene" uid="uid://debprstwe8fj2" path="res://Scenes/inside_house_1.tscn" id="14_e0ngr"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="15_hgpy0"]
 [ext_resource type="Texture2D" uid="uid://tmv2uqlwbhx" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Black Buildings/Barracks.png" id="16_p5wkl"]
@@ -39,7 +39,6 @@
 [ext_resource type="Resource" uid="uid://bin8x578827bo" path="res://Resources/fullPumpkin/fullPumpkin.tres" id="30_1vso6"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="31_3ua1v"]
 [ext_resource type="PackedScene" uid="uid://vkfccv6imaj6" path="res://Scenes/enemy.tscn" id="32_3ua1v"]
-[ext_resource type="PackedScene" uid="uid://by5mdifypb0rr" path="res://Scenes/dark_wizard_boss.tscn" id="34_opbav"]
 [ext_resource type="PackedScene" uid="uid://b3ri8q8pkxt65" path="res://Scenes/Npc1.tscn" id="41_atqvy"]
 [ext_resource type="PackedScene" uid="uid://bhjy0vvi17756" path="res://Scenes/Npc3.tscn" id="42_jwdyn"]
 [ext_resource type="PackedScene" uid="uid://dxvknorvwacsx" path="res://Scenes/Npc2.tscn" id="43_t6yt7"]
@@ -2727,7 +2726,7 @@ position = Vector2(409, 343)
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
 position = Vector2(-2, -2)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="ShopLayer" type="TileMapLayer" parent="." unique_id=417425098]
 tile_map_data = PackedByteArray("AAAXABIAAQATAAAAAAAXABMAAQATAAEAAAAXABQAAQATAAIAAAAYABIAAQAUAAAAAAAYABMAAQAUAAEAAAAYABQAAQAUAAIAAAAZABIAAQAVAAAAAAAZABMAAQAVAAEAAAAZABQAAQAVAAIAAAAaABIAAQAWAAAAAAAaABMAAQAWAAEAAAAaABQAAQAWAAIAAAA=")
@@ -2753,13 +2752,6 @@ position = Vector2(856, -90)
 collision_mask = 3
 script = ExtResource("23_no8kt")
 
-[node name="radishSeed" parent="." unique_id=2055966257 instance=ExtResource("15_hgpy0")]
-z_index = -1
-y_sort_enabled = false
-position = Vector2(367, 359)
-item_id = "radishSeed"
-inventory_item = ExtResource("24_xbk3s")
-
 [node name="radish" parent="." unique_id=1506209311 instance=ExtResource("15_hgpy0")]
 position = Vector2(454, 354)
 item_id = "radish"
@@ -2784,12 +2776,15 @@ inventory_item = ExtResource("30_1vso6")
 [node name="beast" parent="." unique_id=444734141 instance=ExtResource("31_3ua1v")]
 position = Vector2(113, 33)
 
+[node name="radishSeed" parent="." unique_id=2055966257 instance=ExtResource("15_hgpy0")]
+z_index = -1
+y_sort_enabled = false
+position = Vector2(367, 359)
+item_id = "radishSeed"
+inventory_item = ExtResource("24_xbk3s")
+
 [node name="BombPlant" parent="." unique_id=79269094 instance=ExtResource("32_3ua1v")]
 position = Vector2(295, 414)
-
-[node name="DarkWizardBoss" parent="." unique_id=156015731 instance=ExtResource("34_opbav")]
-visible = false
-position = Vector2(322, 541)
 
 [node name="Npc3" parent="." unique_id=453483176 instance=ExtResource("42_jwdyn")]
 position = Vector2(168, 387)
