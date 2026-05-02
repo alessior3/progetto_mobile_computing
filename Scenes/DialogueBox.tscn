@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://2rt8060jq1up" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBox.png" id="2_mjj0w"]
 
 [node name="DialogueBox" type="CanvasLayer" unique_id=1418267364]
+process_mode = 3
 layer = 100
 script = ExtResource("1_sh7kx")
 

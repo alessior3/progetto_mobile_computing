@@ -3,6 +3,7 @@ class_name Player
 
 @export var walk_speed: int = 100
 @export var run_speed: int = 150
+var can_move:bool = true
 var current_speed: int = 100
 var speed_buff_multiplier: float = 1.0
 # LIGHT BUFF VARIABLES
@@ -223,7 +224,10 @@ func apply_attack_damage():
 
 func _physics_process(delta):
 	if is_dead: return
-	
+	if not can_move:
+		velocity = Vector2.ZERO
+		play_anim(0) # Lo mettiamo in idle
+		return
 	var hand_item = Global.persistent_hand
 	if has_node("TorchLight"):
 		$TorchLight.visible = (hand_item != null and hand_item.name == "Torch" or hand_item != null and hand_item.name == "Torcia")

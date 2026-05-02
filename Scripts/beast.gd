@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed: float = 50.0
 @export var attack_damage: int = 15
 @export var attack_cooldown: float = 1.0
-
+@export var chase_distance: float = 200.0
 @export var chases_player: bool = true
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time: float = 1.0
