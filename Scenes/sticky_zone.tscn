@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/sticky_zone.gd" id="1_stck"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sticky"]
+resource_local_to_scene = true
 size = Vector2(32, 32)
 
 [node name="StickyZone" type="Area2D"]

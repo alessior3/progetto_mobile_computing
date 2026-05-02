@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dd8eoq471npuk" path="res://Scenes/phantom.tscn" id="5_k2pb7"]
 [ext_resource type="PackedScene" uid="uid://bi7i17wp74kna" path="res://Scenes/pink_slime.tscn" id="6_axtet"]
 [ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="7_hjqul"]
+[ext_resource type="PackedScene" path="res://Scenes/sticky_zone.tscn" id="8_axtet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sh61r"]
 texture = ExtResource("2_joeuc")
@@ -1379,6 +1380,18 @@ texture = ExtResource("2_joeuc")
 sources/0 = SubResource("TileSetAtlasSource_kpojm")
 sources/1 = SubResource("TileSetAtlasSource_i5gjx")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjqul"]
+resource_local_to_scene = true
+size = Vector2(221, 124)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf5nn"]
+resource_local_to_scene = true
+size = Vector2(577.5, 187)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x36e"]
+resource_local_to_scene = true
+size = Vector2(170, 475)
+
 [node name="Dungeon2" type="Node2D" unique_id=170019413]
 
 [node name="Pavimento" type="TileMapLayer" parent="." unique_id=533632140]
@@ -1418,3 +1431,28 @@ visible = false
 [node name="PinkBat" parent="." unique_id=126545672 instance=ExtResource("7_hjqul")]
 position = Vector2(332, 264)
 chases_player = true
+
+[node name="StickyZone" parent="." unique_id=2072498046 instance=ExtResource("8_axtet")]
+position = Vector2(244, 145)
+
+[node name="CollisionShape2D" parent="StickyZone" index="0"]
+position = Vector2(431.5, 99)
+shape = SubResource("RectangleShape2D_hjqul")
+
+[node name="StickyZone2" parent="." unique_id=1050859042 instance=ExtResource("8_axtet")]
+position = Vector2(366, 157)
+
+[node name="CollisionShape2D" parent="StickyZone2" index="0"]
+position = Vector2(-91.25, 59.5)
+shape = SubResource("RectangleShape2D_jf5nn")
+
+[node name="StickyZone3" parent="." unique_id=1485841544 instance=ExtResource("8_axtet")]
+position = Vector2(837, 34)
+
+[node name="CollisionShape2D" parent="StickyZone3" index="0"]
+position = Vector2(-136, -91.5)
+shape = SubResource("RectangleShape2D_4x36e")
+
+[editable path="StickyZone"]
+[editable path="StickyZone2"]
+[editable path="StickyZone3"]
