@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://b8og5wiq7ok71"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_ly3om"]
+[ext_resource type="Texture2D" uid="uid://dfjy0yd36k8vw" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Lance/SpriteInHand.png" id="2_kthj5"]
+[ext_resource type="Texture2D" uid="uid://cfh4bfenvnbbt" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Lance/Sprite.png" id="3_jh4cg"]
+
+[resource]
+script = ExtResource("1_ly3om")
+slot_type = "Hand"
+name = "Lance"
+texture = ExtResource("3_jh4cg")
+side_texture = ExtResource("2_kthj5")
+max_stacks = 1
+price = 40
+is_weapon = true
+damage = 4
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"

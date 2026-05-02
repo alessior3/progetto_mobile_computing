@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://kliyjep5ye8e"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_32c4j"]
+[ext_resource type="Texture2D" uid="uid://cjxckwuyrwbtk" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Hammer/SpriteInHand.png" id="2_ojcmc"]
+[ext_resource type="Texture2D" uid="uid://dy4u2v8r4mn8a" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Hammer/Sprite.png" id="3_67a5t"]
+
+[resource]
+script = ExtResource("1_32c4j")
+slot_type = "Hand"
+name = "Hammer"
+texture = ExtResource("3_67a5t")
+side_texture = ExtResource("2_ojcmc")
+max_stacks = 1
+price = 70
+is_weapon = true
+damage = 7
+metadata/_custom_type_script = "uid://xa2vtw3obwbv"

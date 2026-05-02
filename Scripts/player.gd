@@ -46,10 +46,8 @@ func set_house(new_house):
 
 func _ready():
 	if health_system and progress_bar:
-		# 1. Inizializziamo PRIMA la vita massima corretta (100)
 		health_system.init(health_system.max_health)
 		
-		# 2. POI carichiamo la vita attuale dal Global
 		if "persistent_health" in Global:
 			health_system.current_health = Global.persistent_health
 			
@@ -80,7 +78,6 @@ func _ready():
 		Global.player_pos = Vector2.ZERO 
 		print("Player: Posizionato dalla PORTA")
 
-	# --- IL TRUCCO DEL BIGLIETTINO: APPLICAZIONE PENALITÀ ---
 	if Global.has_meta("has_died") and Global.get_meta("has_died") == true:
 		print("Penalità di Morte: Svuotamento tasche in corso...")
 		Global.reset_inventory_and_gold()
@@ -88,22 +85,17 @@ func _ready():
 			for i in range(inventory.items.size()):
 				inventory.items[i] = null 
 				
-		# Azzeriamo la memoria delle mani
 		Global.persistent_hand = null
 		Global.persistent_potions = null
 		Global.persistent_food = null
 		
-		# --- IL COLPO DI GRAZIA AL FANTASMA ---
-		# Forziamo l'interfaccia ad aggiornarsi ORA, cancellando le vecchie icone!
 		if has_node("OnScreenUi"):
 			$OnScreenUi.equip_item(null, "Hand")
 			$OnScreenUi.equip_item(null, "Potions")
 			$OnScreenUi.equip_item(null, "Food")
-		# --------------------------------------
 		
 		Global.set_meta("has_died", false) 
 		SaveManager.save_game()
-	# --------------------------------------------------------
 
 	if Global.get("player_facing_dir") != null:
 		current_dir = Global.player_facing_dir
@@ -116,7 +108,6 @@ func _ready():
 	if has_node("Label"):
 		$Label.text = Global.current_username
 	
-	# Connessione del segnale per il cibo dalla UI su schermo
 	if has_node("OnScreenUi"):
 		$OnScreenUi.eat_requested.connect(_on_eat_requested)
 		
@@ -126,20 +117,13 @@ func _ready():
 func _unhandled_input(event):
 	if is_dead: return
 	
-	# 1. Controlliamo l'azione e che non sia un "echo" (tasto tenuto premuto)
 	if event.is_action_pressed("toggle_inventory") and not event.is_echo():
-		
-		# 2. TRUCCO PER LAPTOP: Se l'evento mouse è generato dal tocco, lo scartiamo
-		# perché il segnale "Touch" vero lo ha già processato o lo processerà.
 		if event is InputEventMouseButton and event.is_from_touch():
 			return
 
 		var inv_ui = get_node_or_null("InventoryUI")
 		if inv_ui:
 			inv_ui.toggle()
-			print("DEBUG: Toggle eseguito con successo! Visibile: ", inv_ui.visible)
-			
-			# 3. Diciamo a Godot che abbiamo finito, così non invia altri segnali
 			get_viewport().set_input_as_handled()
 	
 	if event is InputEventKey and event.is_action_pressed("interact") and house != null:
@@ -157,28 +141,49 @@ func _unhandled_input(event):
 		if hand_item != null and hand_item.get("is_weapon") == true:
 			start_attack()
 
+# --- MODIFICATA: NUOVO SISTEMA DI ATTACCO MODULARE ---
 func start_attack():
 	is_attacking = true
 	velocity = Vector2.ZERO
 	
-	var anim = $AnimatedSprite2D
-	if current_dir == "right":
-		anim.flip_h = false
-		anim.play("attack_shadowIr_Right")
-	elif current_dir == "left":
-		anim.flip_h = false
-		anim.play("attack_shadowIr_left")
-	elif current_dir == "down":
-		anim.flip_h = false
-		anim.play("attack_shadowIr_front")
-	elif current_dir == "up":
-		anim.flip_h = false
-		anim.play("attack_shadowIr_back")
+	# Usiamo l'animazione di IDLE di base, nascondendo le vecchie animazioni della spada!
+	play_anim(0)
+	
+	var weapon = get_node_or_null("WeaponSprite")
+	
+	if weapon and weapon.visible:
+		var end_rot = 0
 		
-	await get_tree().create_timer(0.15).timeout
+		if current_dir == "right":
+			weapon.position = Vector2(8, 8)
+			weapon.rotation_degrees = 45 # Parte alzata
+			end_rot = 135              # Finisce abbassata (fendente in giù)
+			weapon.z_index = 1
+		elif current_dir == "left":
+			weapon.position = Vector2(-8, 8)
+			weapon.rotation_degrees = -45 # Parte alzata (ruotata al contrario)
+			end_rot = -135              # Finisce abbassata
+			weapon.z_index = 1
+		elif current_dir == "down":
+			weapon.position = Vector2(-5, 8)
+			weapon.rotation_degrees = 135
+			end_rot = 225
+			weapon.z_index = 1
+		elif current_dir == "up":
+			weapon.position = Vector2(5, 0)
+			weapon.rotation_degrees = -45
+			end_rot = 45
+			weapon.z_index = -1
+			
+		# Creiamo il fendente "magico" via codice
+		var tween = get_tree().create_tween()
+		tween.tween_property(weapon, "rotation_degrees", end_rot, 0.15)
+		await tween.finished
+	else:
+		# Se non hai un'arma (per sicurezza), aspetta solo il tempo dell'animazione
+		await get_tree().create_timer(0.15).timeout
+		
 	apply_attack_damage()
-		
-	await anim.animation_finished
 	is_attacking = false
 
 func apply_attack_damage():
@@ -190,9 +195,7 @@ func apply_attack_damage():
 	if attack_damage == null:
 		attack_damage = 1
 		
-	# --- LA RIGA MANCANTE: SOMMIAMO I DANNI EXTRA DELLA PATATA ---
 	attack_damage += bonus_attack_damage
-	# -------------------------------------------------------------
 		
 	var attack_range: float = 60.0 
 	var attack_angle_deg: float = 180.0 
@@ -222,13 +225,33 @@ func apply_attack_damage():
 					print("Player Attacca! Colpito: ", target.name, " Danno: ", attack_damage)
 					target.apply_damage(attack_damage)
 
+# --- MODIFICATA: AGGIORNAMENTO CONTINUO DELL'ARMA ---
 func _physics_process(delta):
 	if is_dead: return
 	if not can_move:
 		velocity = Vector2.ZERO
-		play_anim(0) # Lo mettiamo in idle
+		play_anim(0)
 		return
+		
 	var hand_item = Global.persistent_hand
+	
+	# GESTIONE VISIVA DEL WEAPON SPRITE
+	var weapon_sprite = get_node_or_null("WeaponSprite")
+	if weapon_sprite:
+		if hand_item != null and hand_item.get("is_weapon") == true:
+			weapon_sprite.show()
+			# Usa la side_texture se esiste, altrimenti usa l'icona normale
+			if "side_texture" in hand_item and hand_item.side_texture != null:
+				weapon_sprite.texture = hand_item.side_texture
+			else:
+				weapon_sprite.texture = hand_item.texture
+				
+			# Aggiorniamo la posizione mentre si muove, MA SOLO se non sta attaccando
+			if not is_attacking:
+				update_weapon_position()
+		else:
+			weapon_sprite.hide()
+	
 	if has_node("TorchLight"):
 		$TorchLight.visible = (hand_item != null and hand_item.name == "Torch" or hand_item != null and hand_item.name == "Torcia")
 	
@@ -236,6 +259,31 @@ func _physics_process(delta):
 		player_movement(delta)
 	else:
 		move_and_slide()
+
+func update_weapon_position():
+	var weapon = $WeaponSprite
+	if not weapon: return
+	
+	if current_dir == "right":
+		# Avvicinata (X più piccola, Y più bassa) e ruotata perché la lama punti in avanti/su
+		weapon.position = Vector2(1, 8) 
+		weapon.rotation_degrees = -90 
+		weapon.z_index = 1
+	elif current_dir == "left":
+		# Stessa cosa a sinistra, ma invertita
+		weapon.position = Vector2(-1, 8)
+		weapon.rotation_degrees = 90
+		weapon.z_index = 1
+	elif current_dir == "down":
+		# Quando guarda giù, la mettiamo vicino alla mano destra e la facciamo puntare giù/lato
+		weapon.position = Vector2(-5, 8)
+		weapon.rotation_degrees = -180
+		weapon.z_index = 1
+	elif current_dir == "up":
+		# Quando guarda su, la mettiamo dietro la schiena (z_index = -1) e la facciamo puntare in alto
+		weapon.position = Vector2(5, 0)
+		weapon.rotation_degrees = 180
+		weapon.z_index = -1
 
 func player_movement(_delta):
 	var anim_state = 1 
@@ -321,7 +369,6 @@ func play_anim(movement_state):
 func _on_damage_taken(new_health: int):
 	print("DEBUG PLAYER: Ricevuto segnale danno! Nuova vita: ", new_health)
 	
-	# Aggiorniamo la memoria globale
 	Global.persistent_health = new_health
 	
 	if progress_bar:
@@ -330,55 +377,39 @@ func _on_damage_taken(new_health: int):
 	if new_health <= 0:
 		die()
 
-# ==========================================
-# GESTIONE MORTE DEL PLAYER
-# ==========================================
 func die():
 	if is_dead: return 
 	is_dead = true
-	
-	# --- RESET DELLA VITA ALLA MORTE ---
 	Global.persistent_health = 100
-	# -----------------------------------
-	
 	print("Il Player è morto! Cerco l'ultimo salvataggio nel Cloud...")
 	
-	# Rendiamo il player invisibile e fermo durante il caricamento
 	visible = false
 	velocity = Vector2.ZERO
 	$CollisionShape2D.set_deferred("disabled", true) 
 	
-	# Impostiamo il bigliettino per fargli svuotare le tasche al risveglio
 	Global.set_meta("has_died", true)
-	
-	# 1. Chiamiamo Firebase
 	SaveManager.load_game() 
 	
-	# 2. ASPETTIAMO CHE FIREBASE RISPONDA (Magia di Godot 4!)
 	var risultato = await SaveManager.load_response
-	var salvataggio_trovato = risultato[0] # È il valore "success" (true o false)
+	var salvataggio_trovato = risultato[0] 
 	
 	if not salvataggio_trovato:
 		print("Nessun salvataggio trovato (o errore)! Riavvio il mondo da zero...")
-		await get_tree().create_timer(1.0).timeout # Piccola pausa drammatica di 1 secondo
+		await get_tree().create_timer(1.0).timeout 
 		get_tree().change_scene_to_file("res://Scenes/world.tscn")
 	else:
 		print("Salvataggio Cloud trovato! Il SaveManager ti sta per riportare in vita...")
-		# Non serve fare nulla qui: il SaveManager ricarica la scena e la posizione da solo!
 
 func apply_damage(amount: int):
 	if is_dead: return 
 	
-	# --- DEFENSE BUFF APPLICATION ---
 	if damage_reduction_multiplier > 0.0:
 		var reduction = float(amount) * damage_reduction_multiplier
 		amount -= int(reduction)
 		
-		# Ensure the player takes at least 1 damage
 		if amount <= 0:
 			amount = 1 
-	# --------------------------------
-	
+			
 	print("Il Player ha subito ", amount, " danni!")
 	
 	if health_system and health_system.has_method("take_damage"):
@@ -390,9 +421,6 @@ func apply_damage(amount: int):
 		if get_tree() != null:
 			modulate = Color(1, 1, 1)
 
-# ==========================================
-# GESTIONE CIBO E BUFF
-# ==========================================
 func _on_eat_requested(item: InventoryItem):
 	eat_equipped_food()
 
@@ -401,24 +429,18 @@ func eat_equipped_food():
 	
 	if food != null and food.get("is_consumable") == true:
 		
-		# 1. HEAL THE PLAYER
 		if food.get("heal_amount") > 0:
 			if health_system and health_system.has_method("heal"):
 				health_system.heal(food.heal_amount)
-				print("Ate ", food.name, "! Healed for ", food.heal_amount, " HP.")
 			else:
 				health_system.current_health += food.heal_amount
 				if health_system.current_health > health_system.max_health:
 					health_system.current_health = health_system.max_health
 				_on_damage_taken(health_system.current_health) 
-				print("Ate ", food.name, "! Healed for ", food.heal_amount, " HP.")
 				
-		# 2. PREPARE THE BUFF
 		if food.get("buff_type") != "nessuno" and food.get("buff_type") != "":
-			print("Obtained buff: ", food.buff_type, " +", food.buff_value, " for ", food.buff_duration, " seconds!")
 			apply_buff(food.get("buff_type"), food.get("buff_value"), food.get("buff_duration"))
 			
-		# 3. CONSUME THE ITEM
 		consume_food_item(food)
 
 func consume_food_item(food: InventoryItem):
@@ -428,11 +450,10 @@ func consume_food_item(food: InventoryItem):
 		Global.persistent_food = null
 		
 		if inventory:
-			# MAGIA CORRETTA: Cerchiamo per NOME anziché per istanza
 			for i in range(inventory.items.size()):
 				if inventory.items[i] != null and inventory.items[i].name == food.name:
 					inventory.items[i] = null
-					break # Trovato e distrutto, fermiamo il ciclo!
+					break
 				
 			if inventory.on_screen_ui:
 				inventory.on_screen_ui.equip_item(null, "Food")
@@ -443,43 +464,32 @@ func consume_food_item(food: InventoryItem):
 	if inventory and inventory.inventory_ui:
 		inventory.inventory_ui.update_slots(inventory.items)
 
-# ==========================================
-# BUFF MANAGER
-# ==========================================
 func apply_buff(type: String, value: float, duration: float):
 	match type:
 		"speed":
-			print("RADISH POWER! Sprint doubled!")
 			speed_buff_multiplier = float(value)
 			await get_tree().create_timer(duration).timeout
 			speed_buff_multiplier = 1.0
-			print("Speed buff faded.")
 			
 		"light":
-			print("CARROT POWER! Torch light expanded!")
 			if has_node("TorchLight") and not is_light_buff_active:
 				is_light_buff_active = true
 				$TorchLight.texture_scale = original_torch_scale * value
 				await get_tree().create_timer(duration).timeout
 				$TorchLight.texture_scale = original_torch_scale
 				is_light_buff_active = false
-				print("Light buff faded.")
 				
 		"max_health":
 			if not is_max_health_buff_active and health_system and progress_bar:
 				is_max_health_buff_active = true
-				print("KALE POWER! Max HP increased by ", value)
-				
 				var extra_hp = int(value)
 				health_system.max_health += extra_hp
 				progress_bar.max_value = health_system.max_health
 				health_system.current_health += extra_hp
 				
-				# --- NOVITÀ: CAMBIAMO IL COLORE IN ORO ---
 				var style_box = progress_bar.get_theme_stylebox("fill")
 				if style_box:
-					style_box.bg_color = Color(1.0, 0.8, 0.0) # Giallo Oro
-				# -----------------------------------------
+					style_box.bg_color = Color(1.0, 0.8, 0.0) 
 				
 				_on_damage_taken(health_system.current_health) 
 
@@ -491,38 +501,28 @@ func apply_buff(type: String, value: float, duration: float):
 				if health_system.current_health > health_system.max_health:
 					health_system.current_health = health_system.max_health
 					
-				# --- NOVITÀ: TORNIAMO AL VERDE NORMALE ---
 				if style_box:
-					style_box.bg_color = Color(0.0, 1.0, 0.0) # Verde classico
-				# -----------------------------------------
+					style_box.bg_color = Color(0.0, 1.0, 0.0)
 					
 				_on_damage_taken(health_system.current_health)
 				is_max_health_buff_active = false
-				print("Max HP buff faded.")
 				
 		"discount":
-			print("CAULIFLOWER POWER! ", value, "% discount for the next ", int(duration), " purchases!")
 			discount_percentage = value
 			discount_charges += int(duration)
 			
 		"damage":
-			print("POTATO POWER! Attack damage increased by +", int(value))
 			bonus_attack_damage = int(value)
 			await get_tree().create_timer(duration).timeout
 			bonus_attack_damage = 0
-			print("Damage buff faded.")
 		
 		"regen":
-			print("CABBAGE POWER! Regenerating ", int(value), " HP per second for ", int(duration), " seconds!")
-			
 			var ticks = int(duration)
 			var heal_per_tick = int(value)
 			
 			for i in range(ticks):
 				await get_tree().create_timer(1.0).timeout
-				
-				if is_dead:
-					break 
+				if is_dead: break 
 				
 				if health_system.current_health < health_system.max_health:
 					if health_system.has_method("heal"):
@@ -533,26 +533,15 @@ func apply_buff(type: String, value: float, duration: float):
 							health_system.current_health = health_system.max_health
 					
 					_on_damage_taken(health_system.current_health)
-					print("Regen tick: +", heal_per_tick, " HP (Current: ", health_system.current_health, ")")
-					
-			print("Regen buff faded.")
 			
 		"defense":
-			print("PUMPKIN POWER! Damage taken reduced by ", value, "%")
 			damage_reduction_multiplier = value / 100.0
 			await get_tree().create_timer(duration).timeout
 			damage_reduction_multiplier = 0.0
-			print("Defense buff faded.")
 
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body == self:
-		print("DEBUG (Player): Uscita dal Dungeon riscontrata.")
 		Global.player_pos = Vector2(1838, 830) 
 		Global.player_facing_dir = "down"
-		
-		print("DEBUG (Player): Salvataggio prima di uscire...")
 		Global.save_game()
-		
-		print("DEBUG (Player): Ritorno al mondo...")
 		TransitionChangeManager.change_scene("res://Scenes/world.tscn")
-		

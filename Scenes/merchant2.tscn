@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://ojldqjjpigb0"]
 
-[ext_resource type="Script" uid="uid://bj7v2edodcdua" path="res://Scenes/merchant_2.gd" id="1_4jb8k"]
+[ext_resource type="Script" uid="uid://bj7v2edodcdua" path="res://Scripts/merchant_2.gd" id="1_4jb8k"]
 [ext_resource type="Texture2D" uid="uid://dtjrp0ns3620e" path="res://Assets/Modern tiles_Free/Characters_free/Alex_idle_anim_16x16.png" id="2_4jl3x"]
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_smeti"]
 [ext_resource type="Texture2D" uid="uid://bg5yw87ndpatt" path="res://Assets/Icons/mano.png" id="3_m5kn6"]
+[ext_resource type="Resource" uid="uid://bbck307rsyyoj" path="res://Resources/CarrotSeed/carrot_seed.tres" id="3_oqvu1"]
+[ext_resource type="Resource" uid="uid://dd1mj72wlu1oj" path="res://Resources/fullWheat/fullWheat.tres" id="4_187we"]
 [ext_resource type="PackedScene" uid="uid://bclvs3krm7k6b" path="res://Scenes/shopping_ui.tscn" id="5_smeti"]
+[ext_resource type="Resource" uid="uid://jb6410dqkqbs" path="res://Resources/seedbeetroot/seedbeetroot.tres" id="5_y5wmp"]
+[ext_resource type="Resource" uid="uid://b3vahtq40jmq" path="res://Resources/seedcabbage/seedcabbage.tres" id="6_dbjba"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8uomo"]
 atlas = ExtResource("2_4jl3x")
@@ -63,6 +68,7 @@ radius = 39.0
 
 [node name="merchant2" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_4jb8k")
+items_to_buy = Array[ExtResource("2_smeti")]([ExtResource("3_oqvu1"), ExtResource("4_187we"), ExtResource("5_y5wmp"), ExtResource("6_dbjba")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 position = Vector2(0, -8)

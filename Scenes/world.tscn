@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://vbd4f1f32u8j" path="res://Assets/Environment/Structures/Buildings/Walls.png" id="7_k7acu"]
 [ext_resource type="Texture2D" uid="uid://bul46e1ocb1yu" path="res://Assets/Environment/Structures/Buildings/Roofs.png" id="8_5v1tr"]
 [ext_resource type="PackedScene" uid="uid://fqxooxxyn2gy" path="res://Scenes/TowerBlu.tscn" id="9_w5giw"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://chc38heu2ftrs" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="10_xbk3s"]
-[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
+[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="11_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://bxnaadjy2w4iy" path="res://Scenes/House1.tscn" id="12_7yui6"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="12_pyn1s"]
@@ -47,6 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://ckhee7d5gpogi" path="res://Scenes/HouseBlu1.tscn" id="45_xcb5n"]
 [ext_resource type="PackedScene" uid="uid://dgfc10mpt5hcd" path="res://Scenes/HouseBlu2.tscn" id="46_te07t"]
 [ext_resource type="PackedScene" uid="uid://ccbb6uqarm5v8" path="res://Scenes/MonasteryBlu.tscn" id="47_xcb5n"]
+[ext_resource type="Resource" uid="uid://cfy8gqk8goif4" path="res://Resources/weapons/Axe.tres" id="48_te07t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5wkl"]
 texture = ExtResource("16_p5wkl")
@@ -2820,5 +2821,9 @@ scale = Vector2(0.5, 0.5)
 [node name="MonasteryBlu" parent="." unique_id=711699145 instance=ExtResource("47_xcb5n")]
 position = Vector2(616, 1513)
 scale = Vector2(0.5, 0.5)
+
+[node name="Axe" parent="." unique_id=1693786489 instance=ExtResource("15_hgpy0")]
+position = Vector2(367, 401)
+inventory_item = ExtResource("48_te07t")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -643,7 +643,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"walk_back",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -675,7 +675,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"walk_front",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -707,7 +707,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"walk_side",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="Animation" id="Animation_x3wgy"]
@@ -776,7 +776,7 @@ shape = ExtResource("2_fkybt")
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_eow3j")
-animation = &"attack_shadowIr_Right"
+animation = &"idle_side"
 
 [node name="Key" type="Sprite2D" parent="." unique_id=1309486492]
 z_index = 5
@@ -823,3 +823,6 @@ texture = SubResource("GradientTexture2D_tx1dd")
 
 [node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("11_gymyn")]
 max_health = 100
+
+[node name="WeaponSprite" type="Sprite2D" parent="." unique_id=1668564375]
+position = Vector2(3, 8)

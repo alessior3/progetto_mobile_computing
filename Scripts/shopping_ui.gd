@@ -125,7 +125,7 @@ func _on_action_btn_pressed():
 		if inventory.has_gold(cost):
 			inventory.remove_gold(cost)
 			inventory.add_item(selected_item, selected_item.stacks)
-			
+			items_to_buy.erase(selected_item)
 	elif current_mode == "SELL":
 		inventory.items.erase(selected_item)
 		var gold_coin_res = load("res://Resources/GoldCoin/gold_coin.tres")
