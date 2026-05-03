@@ -3,6 +3,7 @@ class_name Player
 
 @export var walk_speed: int = 100
 @export var run_speed: int = 150
+@export var god_mode: bool = false # Modalità invincibile per il testing
 var can_move:bool = true
 var current_speed: int = 100
 var speed_buff_multiplier: float = 1.0
@@ -414,7 +415,7 @@ func die():
 		print("Salvataggio Cloud trovato! Il SaveManager ti sta per riportare in vita...")
 
 func apply_damage(amount: int):
-	if is_dead: return 
+	if is_dead or god_mode: return 
 	
 	if damage_reduction_multiplier > 0.0:
 		var reduction = float(amount) * damage_reduction_multiplier

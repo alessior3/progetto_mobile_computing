@@ -3,10 +3,9 @@
 [ext_resource type="PackedScene" path="res://Scenes/arena_door.tscn" id="1_axtet"]
 [ext_resource type="PackedScene" path="res://Scenes/arena_manager.tscn" id="1_k2pb7"]
 [ext_resource type="Texture2D" uid="uid://cxarcvvo5v3um" path="res://RF_Catacombs_v1/mainlevbuild.png" id="2_joeuc"]
+[ext_resource type="PackedScene" uid="uid://dgn5abo1h1pjy" path="res://Scenes/arena_pink_bat.tscn" id="2_k2pb7"]
 [ext_resource type="Texture2D" uid="uid://nkgllj8b02et" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_k2pb7"]
-[ext_resource type="PackedScene" uid="uid://bi7i17wp74kna" path="res://Scenes/pink_slime.tscn" id="6_axtet"]
-[ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="7_hjqul"]
 [ext_resource type="PackedScene" path="res://Scenes/sticky_zone.tscn" id="8_axtet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k2pb7"]
@@ -1366,8 +1365,9 @@ size = Vector2(356, 623)
 
 [node name="ArenaManager" parent="." unique_id=1421157923 node_paths=PackedStringArray("doors") instance=ExtResource("1_k2pb7")]
 position = Vector2(290, -265)
-enemy_types = Array[PackedScene]([ExtResource("7_hjqul"), ExtResource("6_axtet")])
-enemies_per_wave = 0
+enemy_types = Array[PackedScene]([ExtResource("2_k2pb7")])
+waves_count = 1
+enemies_per_wave = 2
 doors = [NodePath("../ArenaDoor"), NodePath("../ArenaDoor2"), NodePath("../ArenaDoor3"), NodePath("../ArenaDoor4"), NodePath("../ArenaDoor5")]
 
 [node name="CollisionShape2D" parent="ArenaManager/TriggerArea" index="0"]

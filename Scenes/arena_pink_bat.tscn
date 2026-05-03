@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dgn5abo1h1pjy"]
+
+[ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="1_hoktk"]
+
+[node name="PinkBat" unique_id=126545672 instance=ExtResource("1_hoktk")]
+speed = 50.0
+chases_player = true
