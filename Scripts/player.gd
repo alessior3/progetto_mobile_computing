@@ -23,9 +23,22 @@ var current_dir = "none"
 var is_attacking: bool = false
 var is_dead: bool = false
 var is_in_slime: bool = false
+var slime_slowing_multiplier: float = 1.0
+var slime_disable_attack: bool = false
 
 func set_in_slime(val: bool):
 	is_in_slime = val
+	if val:
+		slime_slowing_multiplier = 0.4
+		slime_disable_attack = true
+	else:
+		slime_slowing_multiplier = 1.0
+		slime_disable_attack = false
+
+func set_slime_effects(active: bool, speed_mult: float, no_attack: bool):
+	is_in_slime = active
+	slime_slowing_multiplier = speed_mult
+	slime_disable_attack = no_attack
 
 
 @onready var inventory: Inventory = $Inventory
@@ -134,7 +147,7 @@ func _unhandled_input(event):
 		SaveManager.save_game()
 		
 	if event.is_action_pressed("attack") and not is_attacking:
-		if is_in_slime:
+		if is_in_slime and slime_disable_attack:
 			print("Sei nella melma, non puoi attaccare!")
 			return
 		var hand_item = Global.persistent_hand
@@ -296,7 +309,7 @@ func player_movement(_delta):
 		anim_state = 1 
 		
 	if is_in_slime:
-		current_speed *= 0.4
+		current_speed *= slime_slowing_multiplier
 
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"

@@ -26,11 +26,14 @@ func _ready():
 	if trigger_area:
 		trigger_area.body_entered.connect(_on_trigger_entered)
 		
-	# Assicuriamoci che le porte siano aperte all'inizio (disabilitate)
+	# Assicuriamoci che le porte siano aperte all'inizio
 	for door in doors:
 		if door:
-			door.process_mode = Node.PROCESS_MODE_DISABLED
-			door.hide()
+			if door.has_method("open_door"):
+				door.open_door()
+			else:
+				door.process_mode = Node.PROCESS_MODE_DISABLED
+				door.hide()
 
 func _on_trigger_entered(body: Node2D):
 	if arena_cleared or arena_active:
@@ -44,17 +47,25 @@ func start_arena():
 	if trigger_area:
 		trigger_area.queue_free() # Rimuoviamo il trigger per non riattivarlo
 	
-	print("Arena avviata! Porte chiuse.")
+	print("Arena avviata! Attendiamo che il player entri...")
 	emit_signal("arena_started")
 	
-	# Chiudiamo le porte (abilitiamo la collisione e mostriamo l'oggetto)
+	# Pausa per far sì che il giocatore superi la porta prima che si chiuda
+	if get_tree() == null: return
+	await get_tree().create_timer(0.4).timeout
+	
+	# Chiudiamo le porte (abilitiamo la collisione e animiamo)
 	for door in doors:
 		if door:
-			door.process_mode = Node.PROCESS_MODE_INHERIT
-			door.show()
+			if door.has_method("close_door"):
+				door.close_door()
+			else:
+				door.process_mode = Node.PROCESS_MODE_INHERIT
+				door.show()
 			
 	# Piccola pausa drammatica prima che inizino i mostri
-	await get_tree().create_timer(1.0).timeout
+	if get_tree() == null: return
+	await get_tree().create_timer(0.6).timeout
 	start_wave()
 
 func start_wave():
@@ -97,6 +108,7 @@ func start_wave():
 		get_parent().call_deferred("add_child", enemy)
 		
 		# Piccolo stagger nello spawn
+		if get_tree() == null: return
 		await get_tree().create_timer(0.2).timeout
 
 func _on_enemy_died():
@@ -111,6 +123,7 @@ func _on_enemy_died():
 		
 		# Pausa prima della prossima ondata
 		if current_wave < waves_count:
+			if get_tree() == null: return
 			await get_tree().create_timer(time_between_waves).timeout
 			start_wave()
 		else:
@@ -126,5 +139,8 @@ func finish_arena():
 	# Riapri le porte
 	for door in doors:
 		if door:
-			door.process_mode = Node.PROCESS_MODE_DISABLED
-			door.hide()
+			if door.has_method("open_door"):
+				door.open_door()
+			else:
+				door.process_mode = Node.PROCESS_MODE_DISABLED
+				door.hide()
