@@ -19,6 +19,10 @@ func open_door():
 		anim.play("open")
 	collision.set_deferred("disabled", true)
 	is_closed = false
+	
+	# Passa in secondo piano quando è aperto
+	z_index = -1
+	print("DEBUG: Cancello ", name, " APERTO. Z-Index impostato a: ", z_index, " (Disabilitato Y-Sort con il player)")
 
 func close_door():
 	if not is_node_ready():
@@ -29,3 +33,7 @@ func close_door():
 		anim.play("close")
 	collision.set_deferred("disabled", false)
 	is_closed = true
+	
+	# Torna allo stesso livello del player quando è chiuso
+	z_index = 0
+	print("DEBUG: Cancello ", name, " CHIUSO. Z-Index impostato a: ", z_index, " (Riattivato Y-Sort con il player)")

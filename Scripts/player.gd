@@ -152,7 +152,7 @@ func _unhandled_input(event):
 			print("Sei nella melma, non puoi attaccare!")
 			return
 		var hand_item = Global.persistent_hand
-		if hand_item != null and hand_item.get("is_weapon") == true:
+		if (hand_item != null and hand_item.get("is_weapon") == true) or god_mode:
 			start_attack()
 
 # --- MODIFICATA: NUOVO SISTEMA DI ATTACCO MODULARE ---
@@ -201,15 +201,21 @@ func start_attack():
 	is_attacking = false
 
 func apply_attack_damage():
+	var attack_damage = 1
 	var hand_item = Global.persistent_hand
+	
 	if hand_item == null or not hand_item.get("is_weapon"):
-		return
-		
-	var attack_damage = hand_item.get("damage")
-	if attack_damage == null:
-		attack_damage = 1
-		
+		if not god_mode:
+			return
+	else:
+		var w_dmg = hand_item.get("damage")
+		if w_dmg != null:
+			attack_damage = w_dmg
+			
 	attack_damage += bonus_attack_damage
+	
+	if god_mode:
+		attack_damage = 9999 # One-shot damage
 		
 	var attack_range: float = 60.0 
 	var attack_angle_deg: float = 180.0 

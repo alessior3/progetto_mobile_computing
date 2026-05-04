@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 class_name ArenaManager
 
@@ -6,6 +7,10 @@ class_name ArenaManager
 @export var waves_count: int = 3
 @export var enemies_per_wave: int = 4
 @export var time_between_waves: float = 2.0
+@export var random_spawn_area: Vector2 = Vector2(50, 50): # Area rettangolare di spawn (metà larghezza/altezza)
+	set(value):
+		random_spawn_area = value
+		queue_redraw()
 
 @export_category("Scene References")
 @export var doors: Array[StaticBody2D] # Muri invisibili o cancelli da attivare
@@ -23,6 +28,9 @@ signal wave_cleared(wave_num)
 signal arena_cleared_signal
 
 func _ready():
+	if Engine.is_editor_hint():
+		return # Non eseguiamo la logica di gioco nell'editor
+		
 	if trigger_area:
 		trigger_area.body_entered.connect(_on_trigger_entered)
 		
@@ -91,8 +99,28 @@ func start_wave():
 		if spawn_points.size() > 0:
 			spawn_pos = spawn_points.pick_random().global_position 
 		else:
-			# Se non ci sono marker, spawna in posizioni casuali vicine
-			spawn_pos += Vector2(randf_range(-50, 50), randf_range(-50, 50))
+			# Cerchiamo un punto casuale che non sia dentro un muro (massimo 15 tentativi)
+			var valid_spawn = false
+			var attempts = 0
+			var space_state = get_world_2d().direct_space_state
+			
+			while not valid_spawn and attempts < 15:
+				var test_pos = global_position + Vector2(randf_range(-random_spawn_area.x, random_spawn_area.x), randf_range(-random_spawn_area.y, random_spawn_area.y))
+				
+				var query = PhysicsPointQueryParameters2D.new()
+				query.position = test_pos
+				query.collision_mask = 1 # Collision Layer 1 (Muri e Ostacoli)
+				
+				var results = space_state.intersect_point(query)
+				if results.is_empty():
+					valid_spawn = true
+					spawn_pos = test_pos
+					
+				attempts += 1
+				
+			if not valid_spawn:
+				# Se dopo 15 tentativi non trova posto (es. raggio troppo grande), spawna al centro
+				spawn_pos = global_position
 		
 		enemy.global_position = spawn_pos
 		enemy.add_to_group("arena_enemy")
@@ -144,3 +172,11 @@ func finish_arena():
 			else:
 				door.process_mode = Node.PROCESS_MODE_DISABLED
 				door.hide()
+
+func _draw():
+	# Disegna un quadrato rosso semi-trasparente nell'editor per mostrare l'area di spawn casuale
+	if Engine.is_editor_hint():
+		draw_rect(Rect2(-random_spawn_area.x, -random_spawn_area.y, random_spawn_area.x * 2, random_spawn_area.y * 2), Color(1.0, 0.2, 0.2, 0.2), false, 2.0)
+		# Disegniamo anche una crocetta al centro per riferimento
+		draw_line(Vector2(-5, 0), Vector2(5, 0), Color(1.0, 0.2, 0.2, 0.5), 1.0)
+		draw_line(Vector2(0, -5), Vector2(0, 5), Color(1.0, 0.2, 0.2, 0.5), 1.0)
