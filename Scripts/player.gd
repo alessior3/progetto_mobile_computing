@@ -461,6 +461,11 @@ func eat_equipped_food():
 		if food.get("buff_type") != "nessuno" and food.get("buff_type") != "":
 			apply_buff(food.get("buff_type"), food.get("buff_value"), food.get("buff_duration"))
 			
+		# Effetto speciale Barbabietola: Rimuove gli effetti negativi della melma
+		if food.name == "Barbabietola":
+			set_slime_effects(false, 1.0, false)
+			print("DEBUG: Consumata Barbabietola! Effetti della StickyZone rimossi con successo.")
+			
 		consume_food_item(food)
 
 func consume_food_item(food: InventoryItem):
