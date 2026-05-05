@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://cxqj8l7sblhqr"]
+
+[ext_resource type="Script" uid="uid://d6j8l7sblhqr" path="res://Scripts/UI/stone_terminal.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cwyp1qhtack8o" path="res://Assets/stone_terminal_bg.png" id="2_bg"]
+
+[node name="StoneTerminal" type="CanvasLayer"]
+script = ExtResource("1_script")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="StoneBackground" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/StoneBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/StoneBackground/MarginContainer"]
+layout_mode = 2
+
+[node name="OutputLabel" type="RichTextLabel" parent="Control/StoneBackground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.180392, 0.8, 0.882353, 1)
+theme_override_font_sizes/normal_font_size = 18
+text = " "
+scroll_following = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/StoneBackground/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PromptLabel" type="Label" parent="Control/StoneBackground/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.180392, 0.8, 0.882353, 1)
+text = "root@ancient_altar:~# "
+
+[node name="LineEdit" type="LineEdit" parent="Control/StoneBackground/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_x")
+context_menu_enabled = false
+flat = true
+caret_blink = true

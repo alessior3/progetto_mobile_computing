@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://db5c2u5ksem5"]
+
+[ext_resource type="Script" path="res://Scripts/binary_logic_manager.gd" id="1_manager"]
+
+[node name="BinaryLogicManager" type="Node2D"]
+script = ExtResource("1_manager")
+
+[node name="LabelTarget" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = -37.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "00"
+horizontal_alignment = 1
+
+[node name="BusLines" type="Node2D" parent="."]
+
+[node name="Line1" type="Line2D" parent="BusLines"]
+points = PackedVector2Array(0, 0, 10, 0)
+width = 1.0
+default_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Line2" type="Line2D" parent="BusLines"]
+points = PackedVector2Array(0, 0, 10, 0)
+width = 1.0
+default_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Line4" type="Line2D" parent="BusLines"]
+points = PackedVector2Array(0, 0, 10, 0)
+width = 1.0
+default_color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="Line8" type="Line2D" parent="BusLines"]
+points = PackedVector2Array(0, 0, 10, 0)
+width = 1.0
+default_color = Color(0.2, 0.2, 0.2, 1)

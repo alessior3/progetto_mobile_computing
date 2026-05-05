@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dgb76o7sblhqr"]
+
+[ext_resource type="Script" uid="uid://cu3gw2wk1m7yi" path="res://Scripts/binary_socket.gd" id="1_socket"]
+[ext_resource type="Texture2D" uid="uid://cwyp1qhtack8o" path="res://Assets/binary_assets.png" id="2_t872n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ebv5"]
+radius = 12.0
+
+[sub_resource type="Gradient" id="Gradient_light"]
+offsets = PackedFloat32Array(0, 0.7)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_light"]
+gradient = SubResource("Gradient_light")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="BinarySocket" type="Area2D" unique_id=1385796453]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_socket")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154678948]
+shape = SubResource("CircleShape2D_7ebv5")
+
+[node name="SpriteSocket" type="Sprite2D" parent="." unique_id=1666952390]
+modulate = Color(0.329412, 0.329412, 0.329412, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_t872n")
+region_enabled = true
+region_rect = Rect2(27.948029, 28.536003, 202.31204, 199.65)
+
+[node name="SpriteItem" type="Sprite2D" parent="." unique_id=1365870041]
+position = Vector2(0, -2)
+scale = Vector2(0.8, 0.8)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=238429391]
+enabled = false
+energy = 0.5
+texture = SubResource("GradientTexture2D_light")
+texture_scale = 0.5
