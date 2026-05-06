@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ckhee7d5gpogi"]
 
-[ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_0bfil"]
 [ext_resource type="Texture2D" uid="uid://b4ntneiatee50" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Blue Buildings/House1.png" id="2_0bfil"]
+[ext_resource type="Script" uid="uid://dpgveycvnr1nv" path="res://Scripts/house_blu_1.gd" id="1_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
 size = Vector2(80, 95)
@@ -10,7 +10,7 @@ size = Vector2(80, 95)
 size = Vector2(25, 35)
 
 [node name="HouseBlu1" type="Node2D" unique_id=948734644]
-script = ExtResource("1_0bfil")
+script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
 position = Vector2(0, -20)

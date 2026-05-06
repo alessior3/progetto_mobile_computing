@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c47gqknjvvdur"]
 
-[ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_cdkrp"]
 [ext_resource type="Texture2D" uid="uid://etusdhj8il6h" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Blue Buildings/Barracks.png" id="2_cdkrp"]
+[ext_resource type="Script" uid="uid://dy21014kqbfcf" path="res://Scripts/barracks_blu.gd" id="1_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
 size = Vector2(160, 129)
@@ -10,7 +10,7 @@ size = Vector2(160, 129)
 size = Vector2(35, 41)
 
 [node name="BarracksBlu" type="Node2D" unique_id=948734644]
-script = ExtResource("1_cdkrp")
+script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
 position = Vector2(0, -20)

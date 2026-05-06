@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://b0dtx51dyxny5"]
 
 [ext_resource type="Script" uid="uid://days0hgoudb68" path="res://Scripts/inside_house_1.gd" id="1_do57v"]
-[ext_resource type="Texture2D" uid="uid://cfcr4rant5obh" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="2_e32fc"]
+[ext_resource type="Texture2D" uid="uid://b8yp1kji300vq" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="2_e32fc"]
 [ext_resource type="Texture2D" uid="uid://2ljlawj1a7bd" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_ALL_By_AxulArt.png" id="3_rvn8i"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_y62us"]
 [ext_resource type="Texture2D" uid="uid://dchwybi3ilkop" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="5_1flof"]
@@ -2164,10 +2164,10 @@ tile_map_data = PackedByteArray("AAD+/wIAAQADAAkAAAD//wIAAQADAAkAAAAAAAIAAQADAAk
 tile_set = SubResource("TileSet_28awh")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=2067504141]
-position = Vector2(-9, 115)
+position = Vector2(-7, 140)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_y62us")]
-position = Vector2(-8, 113)
+position = Vector2(-6, 135)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1223337844]
 zoom = Vector2(3, 3)
