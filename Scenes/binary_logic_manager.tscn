@@ -1,19 +1,29 @@
-[gd_scene format=3 uid="uid://db5c2u5ksem5"]
+[gd_scene load_steps=3 format=3 uid="uid://db5c2u5ksem5"]
 
-[ext_resource type="Script" path="res://Scripts/binary_logic_manager.gd" id="1_manager"]
+[ext_resource type="Script" uid="uid://cx68e7t7o8yv4" path="res://Scripts/binary_logic_manager.gd" id="1_manager"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_prox"]
+radius = 60.0
 
 [node name="BinaryLogicManager" type="Node2D"]
 script = ExtResource("1_manager")
 
 [node name="LabelTarget" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -60.0
-offset_right = 20.0
-offset_bottom = -37.0
+offset_left = -118.0
+offset_top = -65.0
+offset_right = 120.0
+offset_bottom = -34.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "00"
+theme_override_font_sizes/font_size = 22
+text = "Tocca l'Altare..."
 horizontal_alignment = 1
+
+[node name="ProximityArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximityArea"]
+shape = SubResource("CircleShape2D_prox")
 
 [node name="BusLines" type="Node2D" parent="."]
 

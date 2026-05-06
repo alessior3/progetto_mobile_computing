@@ -39,15 +39,26 @@ func _parse_command(cmd_full: String):
 		"":
 			return
 		"ls":
-			_add_to_output("gate_info.sh  kernel.bin  readme.txt  lost_souls.log")
+			_add_to_output("gate_logic.c  kernel.bin  readme.txt  lost_souls.log")
 		"cat":
 			if parts.size() < 2:
 				_add_to_output("Utilizzo: cat [file]")
 			elif parts[1] == "readme.txt":
 				_add_to_output("LOG: Il livello di potenza per bilanciare i bit e' " + str(target_number) + ".")
-			elif parts[1] == "gate_info.sh":
-				_add_to_output("# GATE CONTROL SCRIPT")
-				_add_to_output("if [ $power_sum -eq $target ]; then open_gate; fi")
+			elif parts[1] == "gate_logic.c":
+				_add_to_output("#include <stdio.h>")
+				_add_to_output("int main() {")
+				_add_to_output("    int target = " + str(target_number) + ";")
+				_add_to_output("    if (get_sum() == target) open_gate();")
+				_add_to_output("    return 0;")
+				_add_to_output("}")
+			elif parts[1] == "lost_souls.log":
+				_add_to_output("[LOG] 12/04/1204: Avventuriero 'Gimli' disperso.")
+				_add_to_output("[LOG] 05/09/1208: Errore di segmentazione nell'anima.")
+				_add_to_output("[LOG] 22/01/1210: Tentativo di login fallito dall'utente 'Phantom'.")
+			elif parts[1] == "kernel.bin":
+				_add_to_output("ERRORE: Impossibile leggere file binario. Dati corrotti o criptati.")
+				_add_to_output("Suggerimento: prova a usare 'hexdump' (non ancora installato).")
 			else:
 				_add_to_output("cat: " + parts[1] + ": Nessun file o directory.")
 		"help":

@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://ccwvh5ul7gojo" path="res://Resources/fullbeetroot/fullbeetroot.tres" id="9_jf5nn"]
 [ext_resource type="PackedScene" path="res://Scenes/binary_logic_manager.tscn" id="10_4x36e"]
 [ext_resource type="PackedScene" uid="uid://dgb76o7sblhqr" path="res://Scenes/binary_socket.tscn" id="10_jf5nn"]
+[ext_resource type="Texture2D" uid="uid://caacflaixdwfu" path="res://Assets/stone_terminal_bg.png" id="11_kpojm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axtet"]
 texture = ExtResource("2_joeuc")
@@ -1426,15 +1427,15 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_kpojm")
 sources/1 = SubResource("TileSetAtlasSource_i5gjx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4x36e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5gjx"]
 resource_local_to_scene = true
 size = Vector2(225, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpojm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdt70"]
 resource_local_to_scene = true
 size = Vector2(578, 530)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5gjx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trpyw"]
 resource_local_to_scene = true
 size = Vector2(356, 623)
 
@@ -1551,7 +1552,7 @@ slowing_multiplier = 1.0
 
 [node name="CollisionShape2D" parent="StickyZone" index="0"]
 position = Vector2(432.5, 99)
-shape = SubResource("RectangleShape2D_4x36e")
+shape = SubResource("RectangleShape2D_i5gjx")
 
 [node name="StickyZone2" parent="." unique_id=1050859042 instance=ExtResource("8_axtet")]
 visible = false
@@ -1560,7 +1561,7 @@ slowing_multiplier = 1.0
 
 [node name="CollisionShape2D" parent="StickyZone2" index="0"]
 position = Vector2(-91, 44)
-shape = SubResource("RectangleShape2D_kpojm")
+shape = SubResource("RectangleShape2D_rdt70")
 
 [node name="StickyZone3" parent="." unique_id=1485841544 instance=ExtResource("8_axtet")]
 visible = false
@@ -1569,33 +1570,38 @@ slowing_multiplier = 1.0
 
 [node name="CollisionShape2D" parent="StickyZone3" index="0"]
 position = Vector2(-43, -165.5)
-shape = SubResource("RectangleShape2D_i5gjx")
+shape = SubResource("RectangleShape2D_trpyw")
 
 [node name="PickUpItem" parent="." unique_id=1473875551 instance=ExtResource("8_hjqul")]
-position = Vector2(1105, -695)
+position = Vector2(1089, -675)
 item_id = "barbabietola_dungeon2"
 inventory_item = ExtResource("9_jf5nn")
 
 [node name="PickUpItem2" parent="." unique_id=1910270743 instance=ExtResource("8_hjqul")]
-position = Vector2(1192, -700)
+position = Vector2(1199, -674)
 item_id = "barbabietola_dungeon2"
 inventory_item = ExtResource("9_jf5nn")
 
 [node name="PickUpItem3" parent="." unique_id=1026799656 instance=ExtResource("8_hjqul")]
-position = Vector2(1170, -699)
+position = Vector2(1173, -678)
 item_id = "barbabietola_dungeon2"
 inventory_item = ExtResource("9_jf5nn")
 
 [node name="PickUpItem4" parent="." unique_id=1407689054 instance=ExtResource("8_hjqul")]
-position = Vector2(1136, -695)
+position = Vector2(1133, -673)
 item_id = "barbabietola_dungeon2"
 inventory_item = ExtResource("9_jf5nn")
 
 [node name="BinaryLogicManager" parent="." unique_id=2019978947 instance=ExtResource("10_4x36e")]
-position = Vector2(1150, -726)
+position = Vector2(1150, -718)
+interaction_radius = 20.0
+
+[node name="Sprite2D" type="Sprite2D" parent="BinaryLogicManager" unique_id=1473285541]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("11_kpojm")
 
 [node name="BinarySocket" parent="." unique_id=1385796453 groups=["binary_sockets"] instance=ExtResource("10_jf5nn")]
-position = Vector2(1031, -761)
+position = Vector2(1027, -758)
 
 [node name="CollisionShape2D" parent="BinarySocket" index="0" unique_id=1154678948]
 shape = SubResource("CircleShape2D_4x36e")
@@ -1604,7 +1610,7 @@ shape = SubResource("CircleShape2D_4x36e")
 scale = Vector2(0.1, 0.1)
 
 [node name="BinarySocket2" parent="." unique_id=1579568212 groups=["binary_sockets"] instance=ExtResource("10_jf5nn")]
-position = Vector2(1096, -763)
+position = Vector2(1094, -759)
 bit_value = 2
 
 [node name="CollisionShape2D" parent="BinarySocket2" index="0" unique_id=1154678948]
@@ -1614,7 +1620,7 @@ shape = SubResource("CircleShape2D_kpojm")
 scale = Vector2(0.1, 0.1)
 
 [node name="BinarySocket3" parent="." unique_id=1897093214 groups=["binary_sockets"] instance=ExtResource("10_jf5nn")]
-position = Vector2(1202, -761)
+position = Vector2(1203, -757)
 bit_value = 4
 
 [node name="CollisionShape2D" parent="BinarySocket3" index="0" unique_id=1154678948]
@@ -1642,6 +1648,7 @@ scale = Vector2(0.1, 0.1)
 [editable path="StickyZone"]
 [editable path="StickyZone2"]
 [editable path="StickyZone3"]
+[editable path="BinaryLogicManager"]
 [editable path="BinarySocket"]
 [editable path="BinarySocket2"]
 [editable path="BinarySocket3"]
