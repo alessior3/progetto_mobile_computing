@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://cay1yek8r2y2b"]
 
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_os1xv"]
-[ext_resource type="Texture2D" uid="uid://ctny3253bipf2" path="res://Ninja Adventure - Asset Pack/Items/Object/Hourglass.png" id="2_phantom_drop"]
+[ext_resource type="Texture2D" uid="uid://bt1sksrnr1jrx" path="res://Ninja Adventure - Asset Pack/Items/Object/Hourglass.png" id="2_phantom_drop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phantom"]
 size = Vector2(16, 16)

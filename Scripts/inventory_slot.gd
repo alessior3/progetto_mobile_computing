@@ -24,6 +24,8 @@ func _ready() -> void:
 
 func add_item(item: InventoryItem):
 	current_item = item
+	if not texture_rect: return # Controllo di sicurezza per evitare crash
+	
 	if item:
 		texture_rect.texture = item.texture
 		if stacks_label:

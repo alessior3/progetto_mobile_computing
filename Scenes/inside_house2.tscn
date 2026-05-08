@@ -2164,10 +2164,10 @@ tile_map_data = PackedByteArray("AAD+/wIAAQADAAkAAAD//wIAAQADAAkAAAAAAAIAAQADAAk
 tile_set = SubResource("TileSet_28awh")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=2067504141]
-position = Vector2(-7, 140)
+position = Vector2(-6, 128)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_y62us")]
-position = Vector2(-6, 135)
+position = Vector2(-5, 126)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1223337844]
 zoom = Vector2(3, 3)

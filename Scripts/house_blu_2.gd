@@ -17,5 +17,4 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 
 func enter():
 	Global.player_pos = player.global_position
-	# Cambiamo scena verso l'interno della casa 2
-	TransitionChangeManager.change_scene("res://Scenes/inside_house2.tscn")
+	get_tree().change_scene_to_file("res://Scenes/inside_house2.tscn")

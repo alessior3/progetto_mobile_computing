@@ -32,7 +32,8 @@ func _ready() -> void:
 	_nascondi_bottoni()
 	
 	hide()
-	await get_tree().process_frame
+	if get_tree():
+		await get_tree().process_frame
 	if main_panel:
 		posizione_centrale_y = main_panel.position.y
 

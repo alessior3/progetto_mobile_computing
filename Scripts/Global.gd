@@ -19,6 +19,7 @@ var player_facing_dir: String = "down"
 var save_path = "user://savegame.save"
 # Dizionario che ricorderà cosa c'è dentro ogni singola cassa del gioco
 var chests_data: Dictionary = {}
+var from_percorso: bool = false
 
 var google_web_client_id = "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com"
 
