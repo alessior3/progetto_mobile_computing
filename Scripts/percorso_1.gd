@@ -7,10 +7,19 @@ func _ready():
 	# Aspettiamo un frame per assicurarci che il player sia stato inizializzato
 	await get_tree().process_frame
 	
-	if player and spawn_point:
-		# Forza la posizione globale del player sul marker di spawn
-		player.global_position = spawn_point.global_position
-		print("Player forzato su PlayerSpawnPoint: ", spawn_point.global_position)
+	if player:
+		if Global.from_grotta_to_percorso:
+			var exit_marker = find_child("UscitaGrotta", true, false)
+			if exit_marker:
+				player.global_position = exit_marker.global_position
+				print("Player posizionato su UscitaGrotta (ritorno da Grotta1)")
+			
+			Global.from_grotta_to_percorso = false
+			Global.player_pos = Vector2.ZERO
+		elif spawn_point:
+			# Forza la posizione globale del player sul marker di spawn
+			player.global_position = spawn_point.global_position
+			print("Player forzato su PlayerSpawnPoint: ", spawn_point.global_position)
 		
 		# Resetta la camera
 		var camera = player.find_child("Camera2D", true, false)

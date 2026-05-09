@@ -24,4 +24,7 @@ func _on_exit_body_entered(body: Node2D) -> void:
 		call_deferred("change_scene")
 
 func change_scene():
-	get_tree().change_scene_to_file(outside)
+	var target_scene = outside
+	if Global.from_grotta_to_percorso:
+		target_scene = "res://Scenes/Percorso1.tscn"
+	get_tree().change_scene_to_file(target_scene)

@@ -23,5 +23,8 @@ func enter():
 		await get_tree().create_timer(0.2).timeout
 		
 		# Salva la posizione e cambia scena
+		if get_tree().current_scene.name == "Percorso1":
+			Global.from_grotta_to_percorso = true
+		
 		Global.player_pos = $"../player".global_position if has_node("../player") else Vector2.ZERO
 		get_tree().change_scene_to_packed(inside_scene)
