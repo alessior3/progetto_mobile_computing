@@ -11,6 +11,7 @@ func _ready():
 	pass # We let the ArenaManager decide when to open/close during its _ready
 
 func open_door():
+	$DoorOpen.play()
 	if not is_node_ready():
 		await ready
 	
@@ -25,6 +26,7 @@ func open_door():
 	print("DEBUG: Cancello ", name, " APERTO. Z-Index impostato a: ", z_index, " (Disabilitato Y-Sort con il player)")
 
 func close_door():
+	$DoorClose.play()
 	if not is_node_ready():
 		await ready
 		

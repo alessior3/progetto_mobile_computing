@@ -3,19 +3,20 @@
 [ext_resource type="Script" uid="uid://cd8hbkdfubkdr" path="res://Scripts/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://d4ld6wxwoq02t" path="res://Assets/Evergrove at sunset.png" id="2_1ehe0"]
 [ext_resource type="Script" uid="uid://ciyyyvsrjlx3w" path="res://Scripts/auth.gd" id="3_1ehe0"]
-[ext_resource type="Texture2D" uid="uid://cvbueuabiduaq" path="res://Assets/EmailN.png" id="4_16hvj"]
+[ext_resource type="Texture2D" uid="uid://dsdu04rxjaykp" path="res://Assets/EmailN.png" id="4_16hvj"]
 [ext_resource type="Texture2D" uid="uid://cy2f6d6vltcnj" path="res://Assets/PressedB.png" id="5_yhxw7"]
-[ext_resource type="Texture2D" uid="uid://bw7sflnoi13h0" path="res://Assets/PassN.png" id="6_16hvj"]
-[ext_resource type="Texture2D" uid="uid://iyisd1o3lto7" path="res://Assets/LoginN1.png" id="6_trj04"]
-[ext_resource type="Texture2D" uid="uid://dccmu2pi5aiq7" path="res://Assets/CreaN1.png" id="7_16hvj"]
+[ext_resource type="Texture2D" uid="uid://dvjahne7i4k0q" path="res://Assets/PassN.png" id="6_16hvj"]
+[ext_resource type="Texture2D" uid="uid://ddoq7edmjcc84" path="res://Assets/LoginN1.png" id="6_trj04"]
+[ext_resource type="Texture2D" uid="uid://w40dhv7h6nnn" path="res://Assets/CreaN1.png" id="7_16hvj"]
 [ext_resource type="Texture2D" uid="uid://decxslc1nu0an" path="res://Assets/LoginPress(1).png" id="8_m3bi6"]
 [ext_resource type="Texture2D" uid="uid://c5smqc13rrkq7" path="res://Assets/GoogleN1.png" id="8_vr1f0"]
-[ext_resource type="Texture2D" uid="uid://dtdbu7qnt776b" path="res://Assets/EscN1.png" id="9_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://ck0xk2r3ko8op" path="res://Assets/EscN1.png" id="9_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://1xcyt8ob24md" path="res://Assets/GooglePress.png" id="10_5egv6"]
 [ext_resource type="Texture2D" uid="uid://dgyxk34g8pity" path="res://Assets/CreaPress.png" id="10_wyh8j"]
 [ext_resource type="Texture2D" uid="uid://vgc7qjhoj6cb" path="res://Assets/NuovaPartitaN.png" id="11_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://cu1i3sglidc6l" path="res://Assets/CaricaPartitaN(1).png" id="12_5egv6"]
 [ext_resource type="Texture2D" uid="uid://vy5ha58cs08" path="res://Assets/EscPress(1).png" id="16_ujyyl"]
+[ext_resource type="AudioStream" uid="uid://cj1xmgkfx0i3l" path="res://Sounds/menu_sound.wav" id="17_wyh8j"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vr1f0"]
 texture = ExtResource("4_16hvj")
@@ -182,8 +183,13 @@ texture_pressed = ExtResource("16_ujyyl")
 ignore_texture_size = true
 stretch_mode = 0
 
-[connection signal="pressed" from="VBoxContainer2/login" to="." method="_on_btn_login_pressed"]
+[node name="MenuBGM" type="AudioStreamPlayer2D" parent="." unique_id=1501774732]
+stream = ExtResource("17_wyh8j")
+volume_db = -10.0
+autoplay = true
+
 [connection signal="pressed" from="VBoxContainer2/login" to="." method="_on_btnlogin_pressed"]
+[connection signal="pressed" from="VBoxContainer2/login" to="." method="_on_btn_login_pressed"]
 [connection signal="pressed" from="VBoxContainer2/Reg" to="." method="_on_btn_registrati_pressed"]
 [connection signal="pressed" from="VBoxContainer2/Google" to="." method="_on_btn_google_pressed"]
 [connection signal="pressed" from="VBoxContainer2/NuovaPartita" to="." method="_on_btn_inizia_pressed"]

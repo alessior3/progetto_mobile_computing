@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://b6dfcv38eg3ul" path="res://Assets/Icons/manoPress.png" id="8_h4iuc"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="11_gymyn"]
 [ext_resource type="PackedScene" uid="uid://haixkuo8s3vn" path="res://Scenes/mobile_controls.tscn" id="12_ukyrk"]
+[ext_resource type="AudioStream" uid="uid://dhkkcmswlfuw0" path="res://Sounds/suono_attacco.wav" id="15_qqcod"]
+[ext_resource type="AudioStream" uid="uid://dnel7ot38yvdn" path="res://Sounds/suono_danno.wav" id="16_igrcy"]
+[ext_resource type="AudioStream" uid="uid://dlvsuyousnnfk" path="res://Sounds/suono_boost.wav" id="17_fs7ks"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ie7r7"]
 atlas = ExtResource("5_pu2lt")
@@ -713,6 +716,7 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_x3wgy"]
 resource_name = "KeyPrompt"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -787,6 +791,7 @@ texture = ExtResource("3_vgqql")
 
 [node name="KeyPrompt" type="AnimationPlayer" parent="." unique_id=200768255]
 libraries/ = SubResource("AnimationLibrary_8erm5")
+speed_scale = 0.6
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=877386485 groups=["player"]]
 y_sort_enabled = true
@@ -825,3 +830,12 @@ max_health = 100
 
 [node name="WeaponSprite" type="Sprite2D" parent="." unique_id=1668564375]
 position = Vector2(3, 8)
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=146698397]
+stream = ExtResource("15_qqcod")
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="." unique_id=944929218]
+stream = ExtResource("16_igrcy")
+
+[node name="BuffSoud" type="AudioStreamPlayer2D" parent="." unique_id=250438464]
+stream = ExtResource("17_fs7ks")

@@ -2,16 +2,17 @@
 
 [ext_resource type="PackedScene" path="res://Scenes/arena_door.tscn" id="1_axtet"]
 [ext_resource type="PackedScene" path="res://Scenes/arena_manager.tscn" id="1_k2pb7"]
-[ext_resource type="Texture2D" uid="uid://cxarcvvo5v3um" path="res://RF_Catacombs_v1/mainlevbuild.png" id="2_joeuc"]
+[ext_resource type="Texture2D" uid="uid://d0k1xmujijwmy" path="res://RF_Catacombs_v1/mainlevbuild.png" id="2_joeuc"]
 [ext_resource type="PackedScene" uid="uid://dgn5abo1h1pjy" path="res://Scenes/arena_pink_bat.tscn" id="2_k2pb7"]
-[ext_resource type="Texture2D" uid="uid://nkgllj8b02et" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
+[ext_resource type="Texture2D" uid="uid://bokpvxtoxp3mc" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_k2pb7"]
 [ext_resource type="PackedScene" path="res://Scenes/sticky_zone.tscn" id="8_axtet"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="8_hjqul"]
 [ext_resource type="Resource" uid="uid://ccwvh5ul7gojo" path="res://Resources/fullbeetroot/fullbeetroot.tres" id="9_jf5nn"]
-[ext_resource type="PackedScene" path="res://Scenes/binary_logic_manager.tscn" id="10_4x36e"]
+[ext_resource type="PackedScene" uid="uid://db5c2u5ksem5" path="res://Scenes/binary_logic_manager.tscn" id="10_4x36e"]
 [ext_resource type="PackedScene" uid="uid://dgb76o7sblhqr" path="res://Scenes/binary_socket.tscn" id="10_jf5nn"]
 [ext_resource type="Texture2D" uid="uid://caacflaixdwfu" path="res://Assets/stone_terminal_bg.png" id="11_kpojm"]
+[ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="13_i5gjx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axtet"]
 texture = ExtResource("2_joeuc")
@@ -1427,15 +1428,15 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_kpojm")
 sources/1 = SubResource("TileSetAtlasSource_i5gjx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5gjx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdt70"]
 resource_local_to_scene = true
 size = Vector2(225, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdt70"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trpyw"]
 resource_local_to_scene = true
 size = Vector2(578, 530)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_trpyw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejumn"]
 resource_local_to_scene = true
 size = Vector2(356, 623)
 
@@ -1552,7 +1553,7 @@ slowing_multiplier = 1.0
 
 [node name="CollisionShape2D" parent="StickyZone" index="0"]
 position = Vector2(432.5, 99)
-shape = SubResource("RectangleShape2D_i5gjx")
+shape = SubResource("RectangleShape2D_rdt70")
 
 [node name="StickyZone2" parent="." unique_id=1050859042 instance=ExtResource("8_axtet")]
 visible = false
@@ -1561,7 +1562,7 @@ slowing_multiplier = 1.0
 
 [node name="CollisionShape2D" parent="StickyZone2" index="0"]
 position = Vector2(-91, 44)
-shape = SubResource("RectangleShape2D_rdt70")
+shape = SubResource("RectangleShape2D_trpyw")
 
 [node name="StickyZone3" parent="." unique_id=1485841544 instance=ExtResource("8_axtet")]
 visible = false
@@ -1570,7 +1571,7 @@ slowing_multiplier = 1.0
 
 [node name="CollisionShape2D" parent="StickyZone3" index="0"]
 position = Vector2(-43, -165.5)
-shape = SubResource("RectangleShape2D_trpyw")
+shape = SubResource("RectangleShape2D_ejumn")
 
 [node name="PickUpItem" parent="." unique_id=1473875551 instance=ExtResource("8_hjqul")]
 position = Vector2(1089, -675)
@@ -1638,6 +1639,10 @@ shape = SubResource("CircleShape2D_rdt70")
 
 [node name="SpriteSocket" parent="BinarySocket4" index="1" unique_id=1666952390]
 scale = Vector2(0.1, 0.1)
+
+[node name="dungeon_sound" type="AudioStreamPlayer2D" parent="." unique_id=78249644]
+stream = ExtResource("13_i5gjx")
+volume_db = -10.0
 
 [editable path="ArenaManager"]
 [editable path="ArenaDoor"]

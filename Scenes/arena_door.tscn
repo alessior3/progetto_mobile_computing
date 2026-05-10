@@ -1,39 +1,11 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d1vfr44fw7mrn"]
 
-[ext_resource type="Script" path="res://Scripts/arena_door.gd" id="1_door"]
-[ext_resource type="Texture2D" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_closing_anim_strip_8.png" id="2_close"]
-[ext_resource type="Texture2D" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png" id="3_open"]
+[ext_resource type="Script" uid="uid://bq4w82ycoia4b" path="res://Scripts/arena_door.gd" id="1_door"]
+[ext_resource type="Texture2D" uid="uid://veac1huv8w6t" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_closing_anim_strip_8.png" id="2_close"]
+[ext_resource type="Texture2D" uid="uid://bkpv3u3ylcfsq" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png" id="3_open"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
 size = Vector2(16, 8)
-
-[sub_resource type="Animation" id="Animation_open"]
-resource_name = "open"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_open")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
 
 [sub_resource type="Animation" id="Animation_close"]
 resource_name = "close"
@@ -63,28 +35,58 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_door"]
-_data = {
-"close": SubResource("Animation_close"),
-"open": SubResource("Animation_open")
+[sub_resource type="Animation" id="Animation_open"]
+resource_name = "open"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_open")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
-[node name="ArenaDoor" type="StaticBody2D"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_door"]
+_data = {
+&"close": SubResource("Animation_close"),
+&"open": SubResource("Animation_open")
+}
+
+[node name="ArenaDoor" type="StaticBody2D" unique_id=758748419]
 y_sort_enabled = true
 script = ExtResource("1_door")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=600633020]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_door")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=484723439]
 y_sort_enabled = true
 texture = ExtResource("3_open")
+offset = Vector2(0, -4)
 hframes = 8
 frame = 7
-offset = Vector2(0, -4)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_door")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1373401435]
+libraries/ = SubResource("AnimationLibrary_door")
+
+[node name="DoorOpen" type="AudioStreamPlayer2D" parent="." unique_id=306260964]
+
+[node name="DoorClose" type="AudioStreamPlayer2D" parent="." unique_id=348772140]

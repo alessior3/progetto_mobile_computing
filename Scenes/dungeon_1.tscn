@@ -13,15 +13,15 @@
 [ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://Scenes/spider.tscn" id="10_4cykx"]
 [ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="11_k5eiu"]
 [ext_resource type="PackedScene" uid="uid://bi7i17wp74kna" path="res://Scenes/pink_slime.tscn" id="12_18kt5"]
-[ext_resource type="Texture2D" uid="uid://dp8e2vdqhm4in" path="res://RF_Catacombs_v1/torch_1.png" id="13_a7fuv"]
-[ext_resource type="Texture2D" uid="uid://5gf7il1dkfia" path="res://RF_Catacombs_v1/candleB_01.png" id="14_h1hro"]
+[ext_resource type="Texture2D" uid="uid://ck6c1xogwt16y" path="res://RF_Catacombs_v1/torch_1.png" id="13_a7fuv"]
+[ext_resource type="Texture2D" uid="uid://b5np28t38xm6g" path="res://RF_Catacombs_v1/candleB_01.png" id="14_h1hro"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="14_wnvaf"]
-[ext_resource type="Texture2D" uid="uid://b3xufm2wu2c3" path="res://RF_Catacombs_v1/candleB_02.png" id="15_gau0i"]
+[ext_resource type="Texture2D" uid="uid://bxtr5mmm7h1ix" path="res://RF_Catacombs_v1/candleB_02.png" id="15_gau0i"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="15_jchmx"]
 [ext_resource type="PackedScene" uid="uid://dhltab2n26syc" path="res://Scenes/coal_box.tscn" id="16_grqd7"]
-[ext_resource type="Texture2D" uid="uid://dbn0ybhqby5c3" path="res://RF_Catacombs_v1/candleB_03.png" id="16_jp8yi"]
+[ext_resource type="Texture2D" uid="uid://df855dihd0sf1" path="res://RF_Catacombs_v1/candleB_03.png" id="16_jp8yi"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="17_grqd7"]
-[ext_resource type="Texture2D" uid="uid://b2tsohr1yffhf" path="res://RF_Catacombs_v1/torch_3.png" id="17_w2mga"]
+[ext_resource type="Texture2D" uid="uid://bn4dsb4ol05f0" path="res://RF_Catacombs_v1/torch_3.png" id="17_w2mga"]
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 [ext_resource type="Resource" uid="uid://dt7fktfvrfnsb" path="res://Resources/DungeonKey/dungeon_key.tres" id="19_jp8yi"]
 [ext_resource type="Resource" uid="uid://bn6pupdgf3sed" path="res://Resources/Shadow3/Shadow3.tres" id="19_xeqhr"]
@@ -29,6 +29,7 @@
 [ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="21_g3xq8"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="27_h1hro"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="28_gau0i"]
+[ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="30_w2mga"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xeqhr"]
 texture = ExtResource("1_yr1ei")
@@ -2778,5 +2779,9 @@ shape = SubResource("RectangleShape2D_g3xq8")
 
 [node name="muro" type="StaticBody2D" parent="." unique_id=2142582537]
 position = Vector2(-102, -88)
+
+[node name="Dungeon_sound" type="AudioStreamPlayer2D" parent="." unique_id=329315315]
+stream = ExtResource("30_w2mga")
+volume_db = -10.0
 
 [connection signal="body_entered" from="exit" to="player" method="_on_exit_body_entered"]

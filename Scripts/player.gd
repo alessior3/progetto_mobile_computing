@@ -159,7 +159,8 @@ func _unhandled_input(event):
 func start_attack():
 	is_attacking = true
 	velocity = Vector2.ZERO
-	
+	if has_node("AttackSound"):
+		$AttackSound.play()
 	# Usiamo l'animazione di IDLE di base, nascondendo le vecchie animazioni della spada!
 	play_anim(0)
 	
@@ -422,7 +423,8 @@ func die():
 
 func apply_damage(amount: int):
 	if is_dead or god_mode: return 
-	
+	if has_node("DamageSound"):
+		$DamageSound.play()
 	if damage_reduction_multiplier > 0.0:
 		var reduction = float(amount) * damage_reduction_multiplier
 		amount -= int(reduction)
@@ -490,6 +492,8 @@ func consume_food_item(food: InventoryItem):
 		inventory.inventory_ui.update_slots(inventory.items)
 
 func apply_buff(type: String, value: float, duration: float):
+	if has_node("BuffSound"):
+		$BuffSound.play()
 	match type:
 		"speed":
 			speed_buff_multiplier = float(value)

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://2htfoyb0t77"]
 
 [ext_resource type="Script" uid="uid://b8k2mdx8qg2p8" path="res://Scripts/chest.gd" id="1_cjfl1"]
-[ext_resource type="Texture2D" uid="uid://vo8ol2skhrfn" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_lyb87"]
+[ext_resource type="Texture2D" uid="uid://cuepwe3od85lb" path="res://Ninja Adventure - Asset Pack/Items/Treasure/BigTreasureChest.png" id="1_lyb87"]
+[ext_resource type="AudioStream" uid="uid://mw0d38iwrrfs" path="res://Sounds/apertura_cassa.wav" id="3_pmguq"]
+[ext_resource type="AudioStream" uid="uid://cne8eltlm6nj1" path="res://Sounds/chiusura_cassa.wav" id="4_dq33m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfl1"]
 size = Vector2(16, 12)
@@ -15,10 +17,6 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_cjfl1")
-chest_id = null
-chest_size = null
-x_chiusa = null
-x_aperta = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1861635381]
 texture = ExtResource("1_lyb87")
@@ -34,6 +32,12 @@ shape = SubResource("RectangleShape2D_cjfl1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1069446767]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_bagqn")
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="." unique_id=396067791]
+stream = ExtResource("3_pmguq")
+
+[node name="CloseSound" type="AudioStreamPlayer2D" parent="." unique_id=578789013]
+stream = ExtResource("4_dq33m")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -85,6 +85,11 @@ func toggle_chest():
 		sprite.region_rect.position.x = x_aperta
 		print("Cassa aperta visivamente!")
 		
+		# --- SUONO APERTURA QUI ---
+		if has_node("OpenSound"):
+			$OpenSound.play()
+		# --------------------------
+		
 		# --- LA MODIFICA CHIAVE: Rinfresca la memoria prima di aprire! ---
 		if Global.chests_data.has(chest_id):
 			chest_items = Global.chests_data[chest_id]
@@ -97,6 +102,11 @@ func toggle_chest():
 	else:
 		sprite.region_rect.position.x = x_chiusa
 		print("Cassa chiusa visivamente!")
+		
+		# --- SUONO CHIUSURA QUI ---
+		if has_node("CloseSound"):
+			$CloseSound.play()
+		# --------------------------
 		
 		# Chiudiamo la UI
 		if chest_ui:
