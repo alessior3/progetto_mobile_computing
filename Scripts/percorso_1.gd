@@ -16,6 +16,14 @@ func _ready():
 			
 			Global.from_grotta_to_percorso = false
 			Global.player_pos = Vector2.ZERO
+		elif Global.from_house3_to_percorso:
+			var exit_marker = find_child("UscitaHouseP1", true, false)
+			if exit_marker:
+				player.global_position = exit_marker.global_position
+				print("Player posizionato su UscitaHouseP1 (ritorno da inside_house3)")
+			
+			Global.from_house3_to_percorso = false
+			Global.player_pos = Vector2.ZERO
 		elif spawn_point:
 			# Forza la posizione globale del player sul marker di spawn
 			player.global_position = spawn_point.global_position

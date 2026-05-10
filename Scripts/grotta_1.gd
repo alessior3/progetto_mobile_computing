@@ -27,4 +27,7 @@ func enter():
 			Global.from_grotta_to_percorso = true
 		
 		Global.player_pos = $"../player".global_position if has_node("../player") else Vector2.ZERO
-		get_tree().change_scene_to_packed(inside_scene)
+		if TransitionChangeManager:
+			TransitionChangeManager.change_scene(inside_scene)
+		else:
+			get_tree().change_scene_to_packed(inside_scene)

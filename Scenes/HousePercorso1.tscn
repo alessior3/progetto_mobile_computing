@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://dpxuad05gqgi7"]
+[gd_scene load_steps=5 format=3 uid="uid://dpxuad05gqgi7"]
 
-[ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_rwopw"]
+[ext_resource type="Script" path="res://Scripts/house_percorso_1.gd" id="1_house_script"]
 [ext_resource type="Texture2D" uid="uid://dj2w3eipnwfo7" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Black Buildings/House1.png" id="2_rwopw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
-size = Vector2(82, 113)
+size = Vector2(82, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u85mr"]
-size = Vector2(32, 40)
+size = Vector2(33, 45)
 
 [node name="HousePercorso1" type="Node2D" unique_id=948734644]
-script = ExtResource("1_rwopw")
+script = ExtResource("1_house_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
 position = Vector2(0, -20)
@@ -20,7 +20,7 @@ texture = ExtResource("2_rwopw")
 position = Vector2(1, -26)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=540551866]
-position = Vector2(-1, 16.5)
+position = Vector2(-1, 19)
 shape = SubResource("RectangleShape2D_o2j0i")
 metadata/_edit_lock_ = true
 
@@ -32,7 +32,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorWay" unique_id=645230459]
 y_sort_enabled = true
-position = Vector2(3, -11)
+position = Vector2(2.5, -8.5)
 shape = SubResource("RectangleShape2D_u85mr")
 metadata/_edit_lock_ = true
 

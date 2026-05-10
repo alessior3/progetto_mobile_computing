@@ -40,6 +40,10 @@ func _on_exit_body_entered(body: Node2D) -> void:
 
 func change_scene():
 	var target_scene = outside
-	if Global.from_grotta_to_percorso:
+	if Global.from_grotta_to_percorso or Global.from_house3_to_percorso:
 		target_scene = "res://Scenes/Percorso1.tscn"
-	get_tree().change_scene_to_file(target_scene)
+	
+	if TransitionChangeManager:
+		TransitionChangeManager.change_scene(target_scene)
+	else:
+		get_tree().change_scene_to_file(target_scene)

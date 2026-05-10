@@ -38,8 +38,11 @@ func on_fade_in_finished():
 	color_rect.visible = false 
 	transition_done.emit()
 	
-func change_scene(target_scene: String):
+func change_scene(target_scene: Variant):
 	if is_transitioning:
 		return
-	next_scene_path = target_scene
+	if target_scene is String:
+		next_scene_path = target_scene
+	elif target_scene is PackedScene:
+		next_scene_path = target_scene.resource_path
 	fade_out()

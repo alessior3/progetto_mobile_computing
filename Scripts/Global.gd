@@ -21,6 +21,7 @@ var save_path = "user://savegame.save"
 var chests_data: Dictionary = {}
 var from_percorso: bool = false
 var from_grotta_to_percorso: bool = false
+var from_house3_to_percorso: bool = false
 
 var google_web_client_id = "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com"
 

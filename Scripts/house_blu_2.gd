@@ -17,4 +17,7 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 
 func enter():
 	Global.player_pos = player.global_position
-	get_tree().change_scene_to_file("res://Scenes/inside_house2.tscn")
+	if TransitionChangeManager:
+		TransitionChangeManager.change_scene("res://Scenes/inside_house2.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/inside_house2.tscn")
