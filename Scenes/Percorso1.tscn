@@ -379,8 +379,5 @@ position = Vector2(2110, 3)
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
 
-[node name="UscitaHouseP1" type="Marker2D" parent="." unique_id=1674127671]
-position = Vector2(3433, 81)
-
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="body_exited" from="exit" to="exit" method="_on_body_exited"]

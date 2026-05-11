@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgfc10mpt5hcd"]
 
-[ext_resource type="Texture2D" uid="uid://b4ntneiatee50" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Blue Buildings/House1.png" id="2_ed3al"]
 [ext_resource type="Script" uid="uid://b86mgrqau3r8u" path="res://Scripts/house_blu_2.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b4ntneiatee50" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Blue Buildings/House1.png" id="2_ed3al"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
 size = Vector2(80, 95)

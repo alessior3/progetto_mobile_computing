@@ -80,7 +80,7 @@ func _update_key_prompt():
 			current_player.get_node("KeyPrompt").stop()
 
 func _unhandled_input(event):
-	if event is InputEventKey and event.is_action_pressed("interact") and player_in_zone:
+	if event.is_action_pressed("interact") and player_in_zone:
 		if not is_planted:
 			_try_plant_seed()
 		elif is_planted and current_growth_stage == max_growth_stage:

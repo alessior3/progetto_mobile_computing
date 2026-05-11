@@ -9,18 +9,21 @@ func _ready():
 	
 	if player:
 		if Global.from_grotta_to_percorso:
-			var exit_marker = find_child("UscitaGrotta", true, false)
-			if exit_marker:
-				player.global_position = exit_marker.global_position
-				print("Player posizionato su UscitaGrotta (ritorno da Grotta1)")
+			if Global.player_pos != Vector2.ZERO:
+				player.global_position = Global.player_pos
+				print("Player posizionato alla posizione di ingresso salvata (ritorno da Grotta1)")
+			else:
+				var exit_marker = find_child("UscitaGrotta", true, false)
+				if exit_marker:
+					player.global_position = exit_marker.global_position
+					print("Player posizionato su UscitaGrotta (ritorno da Grotta1)")
 			
 			Global.from_grotta_to_percorso = false
 			Global.player_pos = Vector2.ZERO
 		elif Global.from_house3_to_percorso:
-			var exit_marker = find_child("UscitaHouseP1", true, false)
-			if exit_marker:
-				player.global_position = exit_marker.global_position
-				print("Player posizionato su UscitaHouseP1 (ritorno da inside_house3)")
+			if Global.player_pos != Vector2.ZERO:
+				player.global_position = Global.player_pos
+				print("Player posizionato alla posizione salvata (ritorno da inside_house3)")
 			
 			Global.from_house3_to_percorso = false
 			Global.player_pos = Vector2.ZERO

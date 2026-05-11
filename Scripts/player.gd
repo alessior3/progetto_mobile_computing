@@ -82,10 +82,13 @@ func _ready():
 		print("Player: Posizionato dal CLOUD")
 		
 	elif get_tree().current_scene.name != "world":
-		var spawn_marker = get_tree().current_scene.find_child("Marker2D", true, false)
+		var spawn_marker = get_tree().current_scene.find_child("SpawnPlayer", true, false)
+		if not spawn_marker:
+			spawn_marker = get_tree().current_scene.find_child("Marker2D", true, false)
+			
 		if spawn_marker:
 			global_position = spawn_marker.global_position
-			print("Player: Posizionato sul Marker del negozio")
+			print("Player: Posizionato su marker: ", spawn_marker.name)
 
 	elif Global.player_pos != Vector2.ZERO:
 		global_position = Global.player_pos
@@ -140,7 +143,7 @@ func _unhandled_input(event):
 			inv_ui.toggle()
 			get_viewport().set_input_as_handled()
 	
-	if event is InputEventKey and event.is_action_pressed("interact") and house != null:
+	if event.is_action_pressed("interact") and house != null:
 		house.enter()
 		
 	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
@@ -570,7 +573,9 @@ func apply_buff(type: String, value: float, duration: float):
 
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body == self:
-		Global.player_pos = Vector2(1838, 830) 
-		Global.player_facing_dir = "down"
+		var target_scene = "res://Scenes/world.tscn"
+		if Global.from_grotta_to_percorso:
+			target_scene = "res://Scenes/Percorso1.tscn"
+			
 		Global.save_game()
-		TransitionChangeManager.change_scene("res://Scenes/world.tscn")
+		TransitionChangeManager.change_scene(target_scene)

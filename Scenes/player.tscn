@@ -723,7 +723,7 @@ tracks/0/path = NodePath("Key:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.7),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("7_7dp3o"), ExtResource("8_h4iuc")]

@@ -16,7 +16,11 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 			body.house = null
 
 func enter():
-	if inside_scene:
+	var target = inside_scene
+	if not target:
+		target = load("res://Scenes/dungeon_1.tscn")
+		
+	if target:
 		# Rimuove l'immagine della porta chiusa per mostrare la grotta sotto
 		door_sprite.hide()
 		# Attende un attimo per dare un effetto visivo di apertura
@@ -28,6 +32,6 @@ func enter():
 		
 		Global.player_pos = $"../player".global_position if has_node("../player") else Vector2.ZERO
 		if TransitionChangeManager:
-			TransitionChangeManager.change_scene(inside_scene)
+			TransitionChangeManager.change_scene(target)
 		else:
-			get_tree().change_scene_to_packed(inside_scene)
+			get_tree().change_scene_to_packed(target)

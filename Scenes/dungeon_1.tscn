@@ -2784,4 +2784,7 @@ position = Vector2(-102, -88)
 stream = ExtResource("30_w2mga")
 volume_db = -10.0
 
+[node name="SpawnPlayer" type="Marker2D" parent="." unique_id=1889388693]
+position = Vector2(16, 52)
+
 [connection signal="body_entered" from="exit" to="player" method="_on_exit_body_entered"]

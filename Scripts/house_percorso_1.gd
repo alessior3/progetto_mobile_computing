@@ -15,6 +15,7 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 			body.house = null
 
 func enter():
+	Global.player_pos = player.global_position
 	Global.from_house3_to_percorso = true
 	if TransitionChangeManager:
 		TransitionChangeManager.change_scene("res://Scenes/inside_house3.tscn")

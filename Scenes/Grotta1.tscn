@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/grotta_1.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://d1vmwcrjgh47o" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Grotta1.png" id="1_7jyu4"]
 [ext_resource type="Texture2D" uid="uid://bt47tmw0wmw7h" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/PortaGrotta1.png" id="2_6nels"]
-[ext_resource type="PackedScene" path="res://Scenes/inside_house6.tscn" id="3_inside"]
+[ext_resource type="PackedScene" uid="uid://c6jgh7o2k88y1" path="res://Scenes/dungeon_1.tscn" id="3_dungeon"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
 size = Vector2(45, 36)
@@ -15,7 +15,7 @@ size = Vector2(21, 18)
 
 [node name="grotta1" type="Node2D" unique_id=948734644]
 script = ExtResource("1_script")
-inside_scene = ExtResource("3_inside")
+inside_scene = ExtResource("3_dungeon")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
 texture = ExtResource("1_7jyu4")
