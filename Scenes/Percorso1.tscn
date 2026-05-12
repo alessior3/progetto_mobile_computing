@@ -390,19 +390,8 @@ transition_flag = "from_percorso1_to_villaggio2"
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="EntrataVillaggio3" unique_id=20241022]
 shape = SubResource("RectangleShape2D_yksme")
 
-[node name="FlamRed" parent="." unique_id=2056889590 instance=ExtResource("12_ebchb")]
-position = Vector2(4165, -341)
-
-[node name="FlamRed3" parent="FlamRed" unique_id=133284754 instance=ExtResource("12_ebchb")]
-position = Vector2(1106, -257)
-
-[node name="FlamRed2" parent="FlamRed" unique_id=969113657 instance=ExtResource("12_ebchb")]
-position = Vector2(38, 104)
-
-[node name="FlamRed" parent="FlamRed" unique_id=275888872 instance=ExtResource("12_ebchb")]
-
-[node name="FlamRed4" parent="FlamRed" unique_id=1898490425 instance=ExtResource("12_ebchb")]
-position = Vector2(1155, -150)
+[node name="FlamRed5" parent="." unique_id=1898490425 instance=ExtResource("12_ebchb")]
+position = Vector2(5320, -491)
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="body_exited" from="exit" to="exit" method="_on_body_exited"]
