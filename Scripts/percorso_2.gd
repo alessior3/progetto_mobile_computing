@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var player = find_child("player", true, false)
-@onready var spawn_point_ingresso = find_child("IngressoVillaggio2", true, false)
-@onready var spawn_point_percorso2 = find_child("UscitaVillaggio2", true, false)
+@onready var spawn_point_ingresso = find_child("SpawnPlayerIngresso", true, false)
+@onready var spawn_point_uscita = find_child("SpawnPlayerUscita", true, false)
 
 func _ready():
 	await get_tree().process_frame
@@ -11,16 +11,16 @@ func _ready():
 	if player:
 		var target_pos = player.global_position
 		
-		if Global.from_percorso1_to_villaggio2:
+		if Global.from_villaggio2_to_percorso2:
 			if spawn_point_ingresso:
 				target_pos = spawn_point_ingresso.global_position
-				print("DEBUG: Spostamento su IngressoVillaggio2 (global_pos: ", target_pos, ")")
-			Global.from_percorso1_to_villaggio2 = false
-		elif Global.from_percorso2_to_villaggio2:
-			if spawn_point_percorso2:
-				target_pos = spawn_point_percorso2.global_position
-				print("DEBUG: Spostamento su UscitaVillaggio2 (global_pos: ", target_pos, ")")
-			Global.from_percorso2_to_villaggio2 = false
+				print("DEBUG: Spostamento su SpawnPlayerIngresso (global_pos: ", target_pos, ")")
+			Global.from_villaggio2_to_percorso2 = false
+		elif Global.from_villaggio3_to_percorso2:
+			if spawn_point_uscita:
+				target_pos = spawn_point_uscita.global_position
+				print("DEBUG: Spostamento su SpawnPlayerUscita (global_pos: ", target_pos, ")")
+			Global.from_villaggio3_to_percorso2 = false
 		
 		# Forza la posizione per qualche frame
 		for i in range(10):

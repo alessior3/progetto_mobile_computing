@@ -1,4 +1,7 @@
-[gd_scene format=4 uid="uid://18p7iws2nja7"]
+[gd_scene load_steps=15 format=4 uid="uid://18p7iws2nja7"]
+
+[ext_resource type="Script" path="res://Scripts/percorso_2.gd" id="1_script"]
+[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="2_trans"]
 
 [ext_resource type="PackedScene" uid="uid://t2wswktwwgto" path="res://Scenes/Grotta2.tscn" id="1_kxe8q"]
 [ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="3_x8jna"]
@@ -670,6 +673,7 @@ size = Vector2(154, 158)
 size = Vector2(102, 162)
 
 [node name="Percorso2" type="Node2D" unique_id=1265854265]
+script = ExtResource("1_script")
 
 [node name="grotta2" parent="." unique_id=948734644 instance=ExtResource("1_kxe8q")]
 z_index = 2
@@ -706,13 +710,17 @@ tile_set = SubResource("TileSet_u13ma")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("10_04mdg")]
 z_index = 1
-position = Vector2(3660, 1278)
+position = Vector2(2260, 696)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
 
 [node name="ingressoPercorso2" type="Area2D" parent="." unique_id=1326350080]
 position = Vector2(2058, 703)
+collision_mask = 2
+script = ExtResource("2_trans")
+target_scene = "res://Scenes/villaggio2.tscn"
+transition_flag = "from_percorso2_to_villaggio2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ingressoPercorso2" unique_id=1232805508]
 position = Vector2(44, -6)
@@ -720,6 +728,10 @@ shape = SubResource("RectangleShape2D_kxe8q")
 
 [node name="UscitaPercorso2" type="Area2D" parent="." unique_id=195062355]
 position = Vector2(4081, 1285)
+collision_mask = 2
+script = ExtResource("2_trans")
+target_scene = "res://Scenes/villaggio3.tscn"
+transition_flag = "from_percorso2_to_villaggio3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UscitaPercorso2" unique_id=696659630]
 position = Vector2(0, 9)
@@ -750,3 +762,6 @@ scale = Vector2(1.3, 1.3)
 [node name="RedGladiator" parent="." unique_id=349992580 instance=ExtResource("8_3j1r5")]
 position = Vector2(3723, 1245)
 scale = Vector2(1.3, 1.3)
+
+[connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
+[connection signal="body_entered" from="UscitaPercorso2" to="UscitaPercorso2" method="_on_body_entered"]

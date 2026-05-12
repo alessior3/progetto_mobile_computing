@@ -1,24 +1,24 @@
-[gd_scene format=4 uid="uid://vveacqr837qp"]
+[gd_scene format=4 uid="uid://bx8du614odd7g"]
 
-[ext_resource type="Script" uid="uid://bsopxbsee3brf" path="res://Scripts/villaggio_2.gd" id="1_villaggio2"]
-[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="2_trans"]
-[ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="6_tga6p"]
-[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="7_hfgww"]
-[ext_resource type="PackedScene" uid="uid://b0spb3q762abr" path="res://Scenes/BarracksRed.tscn" id="11_qp3g5"]
-[ext_resource type="PackedScene" uid="uid://bunupys6h6r8g" path="res://Scenes/ArcheryRed.tscn" id="12_qmgh0"]
-[ext_resource type="PackedScene" uid="uid://qc0q00ppvuyg" path="res://Scenes/CastleRed.tscn" id="13_3rjkl"]
-[ext_resource type="PackedScene" uid="uid://cpl3otpqaqlwp" path="res://Scenes/HouseRed1.tscn" id="14_vnptf"]
-[ext_resource type="PackedScene" uid="uid://b6sq7nl1si6vq" path="res://Scenes/MonasteryRed.tscn" id="15_xabpj"]
-[ext_resource type="PackedScene" uid="uid://cifafmjtwh0x7" path="res://Scenes/TowerRed.tscn" id="16_qmgh0"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="24_gcgqp"]
-[ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="25_yp5ne"]
-[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="26_ljjbl"]
-[ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="27_dknkg"]
-[ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="28_rmqie"]
-[ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="30_l5edf"]
+[ext_resource type="Script" uid="uid://dv1ks8ayo2bol" path="res://Scripts/villaggio_3.gd" id="1_script"]
+[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="2_trans"]
+[ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="2_15gtt"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="3_kthw0"]
+[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="4_5j8lq"]
+[ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="5_nnte5"]
+[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="6_snkfc"]
+[ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="7_0h6x3"]
+[ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="8_tmcdr"]
+[ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="9_yx8oc"]
+[ext_resource type="PackedScene" uid="uid://cifafmjtwh0x7" path="res://Scenes/TowerRed.tscn" id="11_1g37s"]
+[ext_resource type="PackedScene" uid="uid://b0spb3q762abr" path="res://Scenes/BarracksRed.tscn" id="12_h8ueh"]
+[ext_resource type="PackedScene" uid="uid://bunupys6h6r8g" path="res://Scenes/ArcheryRed.tscn" id="13_mjmer"]
+[ext_resource type="PackedScene" uid="uid://qc0q00ppvuyg" path="res://Scenes/CastleRed.tscn" id="14_r8rpu"]
+[ext_resource type="PackedScene" uid="uid://cpl3otpqaqlwp" path="res://Scenes/HouseRed1.tscn" id="15_vgsnw"]
+[ext_resource type="PackedScene" uid="uid://b6sq7nl1si6vq" path="res://Scenes/MonasteryRed.tscn" id="16_2qddd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jwdyn"]
-texture = ExtResource("24_gcgqp")
+texture = ExtResource("4_5j8lq")
 3:9/size_in_atlas = Vector2i(2, 3)
 3:9/0 = 0
 3:9/0/y_sort_origin = 1
@@ -73,7 +73,7 @@ texture = ExtResource("24_gcgqp")
 6:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t6yt7"]
-texture = ExtResource("25_yp5ne")
+texture = ExtResource("5_nnte5")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -375,7 +375,7 @@ sources/7 = SubResource("TileSetAtlasSource_jwdyn")
 sources/8 = SubResource("TileSetAtlasSource_t6yt7")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t2t4p"]
-texture = ExtResource("24_gcgqp")
+texture = ExtResource("4_5j8lq")
 8:1/0 = 0
 8:0/0 = 0
 9:0/0 = 0
@@ -504,7 +504,7 @@ texture = ExtResource("24_gcgqp")
 10:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yq1aw"]
-texture = ExtResource("26_ljjbl")
+texture = ExtResource("6_snkfc")
 6:0/size_in_atlas = Vector2i(3, 2)
 6:0/0 = 0
 6:2/size_in_atlas = Vector2i(3, 2)
@@ -595,10 +595,10 @@ texture = ExtResource("26_ljjbl")
 4:8/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_no8kt"]
-texture = ExtResource("27_dknkg")
+texture = ExtResource("7_0h6x3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbk3s"]
-texture = ExtResource("28_rmqie")
+texture = ExtResource("8_tmcdr")
 
 [sub_resource type="TileSet" id="TileSet_0pcbe"]
 sources/0 = SubResource("TileSetAtlasSource_t2t4p")
@@ -607,7 +607,7 @@ sources/2 = SubResource("TileSetAtlasSource_no8kt")
 sources/3 = SubResource("TileSetAtlasSource_xbk3s")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_13n8b"]
-texture = ExtResource("24_gcgqp")
+texture = ExtResource("4_5j8lq")
 5:9/size_in_atlas = Vector2i(2, 3)
 5:9/0 = 0
 5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -631,7 +631,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_13n8b")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gwaj6"]
-texture = ExtResource("24_gcgqp")
+texture = ExtResource("4_5j8lq")
 5:5/0 = 0
 5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.187067, 6.03426, -0.19784546, -4.847193, 5.638571, -4.847193, 5.7374935, 5.143959)
 7:5/0 = 0
@@ -652,7 +652,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_gwaj6")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uqdn7"]
-texture = ExtResource("24_gcgqp")
+texture = ExtResource("4_5j8lq")
 0:3/0 = 0
 0:4/0 = 0
 1:4/0 = 0
@@ -684,13 +684,13 @@ sources/0 = SubResource("TileSetAtlasSource_uqdn7")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bpa85"]
 size = Vector2(100.324585, 131.39447)
 
-[node name="world" type="Node2D" unique_id=2084603517]
+[node name="villaggio3" type="Node2D" unique_id=2084603517]
 y_sort_enabled = true
 position = Vector2(1624.0001, -514.00006)
 scale = Vector2(1.0296197, 1.0297008)
-script = ExtResource("1_villaggio2")
+script = ExtResource("1_script")
 
-[node name="player" parent="." unique_id=1874989163 instance=ExtResource("6_tga6p")]
+[node name="player" parent="." unique_id=1874989163 instance=ExtResource("2_15gtt")]
 z_index = 1
 position = Vector2(459.39294, 1166.3584)
 
@@ -698,7 +698,7 @@ position = Vector2(459.39294, 1166.3584)
 position = Vector2(-2, -2)
 zoom = Vector2(3, 3)
 
-[node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("7_hfgww")]
+[node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("3_kthw0")]
 
 [node name="ground" type="TileMapLayer" parent="." unique_id=221056651]
 z_index = -1
@@ -731,67 +731,62 @@ tile_map_data = PackedByteArray("AAAUADsAAAAAAAQAAAANADcAAAABAAUAAAAJADgAAAABAAU
 tile_set = SubResource("TileSet_gwaj6")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="." unique_id=1872303410]
-stream = ExtResource("30_l5edf")
+stream = ExtResource("9_yx8oc")
 volume_db = -10.0
 autoplay = true
 
-[node name="IngressoVillaggio" type="Area2D" parent="." unique_id=1242498201]
+[node name="IngressoVillaggio4" type="Area2D" parent="." unique_id=1242498201]
 position = Vector2(-85.46857, 1055.6466)
 collision_mask = 2
 script = ExtResource("2_trans")
-target_scene = "res://Scenes/Percorso1.tscn"
-transition_flag = "from_villaggio2_to_percorso1"
+target_scene = "res://Scenes/Percorso2.tscn"
+transition_flag = "from_villaggio3_to_percorso2"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="IngressoVillaggio" unique_id=1518724342]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IngressoVillaggio4" unique_id=1518724342]
 position = Vector2(40.162354, 55.697266)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_bpa85")
 
-[node name="UscitaVillaggio" type="Area2D" parent="." unique_id=1645613615]
+[node name="Area2D2" type="Area2D" parent="." unique_id=1645613615]
 position = Vector2(911.98706, 1193.5507)
-collision_mask = 2
-script = ExtResource("2_trans")
-target_scene = "res://Scenes/Percorso2.tscn"
-transition_flag = "from_villaggio2_to_percorso2"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UscitaVillaggio" unique_id=1450105705]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1450105705]
 shape = SubResource("RectangleShape2D_bpa85")
 
-[node name="TowerRed" parent="." unique_id=1365122527 instance=ExtResource("16_qmgh0")]
+[node name="TowerRed" parent="." unique_id=1365122527 instance=ExtResource("11_1g37s")]
 y_sort_enabled = true
 position = Vector2(728.42413, 876.95386)
 scale = Vector2(0.5, 0.5)
 
-[node name="BarracksRed" parent="." unique_id=948734644 instance=ExtResource("11_qp3g5")]
+[node name="BarracksRed" parent="." unique_id=948734644 instance=ExtResource("12_h8ueh")]
 y_sort_enabled = true
 position = Vector2(232.12442, 1043.0215)
 scale = Vector2(0.5, 0.5)
 
-[node name="ArcheryRed" parent="." unique_id=395344417 instance=ExtResource("12_qmgh0")]
+[node name="ArcheryRed" parent="." unique_id=395344417 instance=ExtResource("13_mjmer")]
 y_sort_enabled = true
 position = Vector2(444.8243, 875.01154)
 scale = Vector2(0.5, 0.5)
 
-[node name="CastleRed" parent="." unique_id=1953215019 instance=ExtResource("13_3rjkl")]
+[node name="CastleRed" parent="." unique_id=1953215019 instance=ExtResource("14_r8rpu")]
 y_sort_enabled = true
 position = Vector2(456.4791, 1076.0409)
 scale = Vector2(0.6, 0.6)
 
-[node name="HouseRed1" parent="." unique_id=120831047 instance=ExtResource("14_vnptf")]
+[node name="HouseRed1" parent="." unique_id=120831047 instance=ExtResource("15_vgsnw")]
 y_sort_enabled = true
 position = Vector2(216.5847, 1212.9739)
 scale = Vector2(0.5, 0.5)
 
-[node name="MonasteryRed" parent="." unique_id=2052712621 instance=ExtResource("15_xabpj")]
+[node name="MonasteryRed" parent="." unique_id=2052712621 instance=ExtResource("16_2qddd")]
 y_sort_enabled = true
 position = Vector2(752.70496, 1115.8583)
 scale = Vector2(0.5, 0.5)
 
-[node name="IngressoVillaggio2" type="Marker2D" parent="." unique_id=2110856882]
+[node name="IngressoVillaggio3" type="Marker2D" parent="." unique_id=2110856882]
 position = Vector2(34.964245, 1113.916)
 
-[node name="UscitaVillaggio2" type="Marker2D" parent="." unique_id=363480012]
+[node name="UscitaVillaggio3" type="Marker2D" parent="." unique_id=363480012]
 position = Vector2(826.5186, 1207.1469)
 
-[connection signal="body_entered" from="IngressoVillaggio" to="IngressoVillaggio" method="_on_body_entered"]
-[connection signal="body_entered" from="UscitaVillaggio" to="UscitaVillaggio" method="_on_body_entered"]
+[connection signal="body_entered" from="IngressoVillaggio4" to="IngressoVillaggio4" method="_on_body_entered"]

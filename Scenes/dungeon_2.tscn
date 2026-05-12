@@ -1,10 +1,12 @@
-[gd_scene format=4 uid="uid://8oed5se7n6sg"]
+[gd_scene load_steps=18 format=4 uid="uid://8oed5se7n6sg"]
 
-[ext_resource type="PackedScene" path="res://Scenes/arena_door.tscn" id="1_axtet"]
+[ext_resource type="Script" path="res://Scripts/dungeon_2.gd" id="1_script"]
+
+[ext_resource type="PackedScene" uid="uid://d1vfr44fw7mrn" path="res://Scenes/arena_door.tscn" id="1_axtet"]
 [ext_resource type="PackedScene" path="res://Scenes/arena_manager.tscn" id="1_k2pb7"]
-[ext_resource type="Texture2D" uid="uid://cxarcvvo5v3um" path="res://RF_Catacombs_v1/mainlevbuild.png" id="2_joeuc"]
+[ext_resource type="Texture2D" uid="uid://d0k1xmujijwmy" path="res://RF_Catacombs_v1/mainlevbuild.png" id="2_joeuc"]
 [ext_resource type="PackedScene" uid="uid://dgn5abo1h1pjy" path="res://Scenes/arena_pink_bat.tscn" id="2_k2pb7"]
-[ext_resource type="Texture2D" uid="uid://nkgllj8b02et" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
+[ext_resource type="Texture2D" uid="uid://bokpvxtoxp3mc" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_k2pb7"]
 [ext_resource type="PackedScene" path="res://Scenes/sticky_zone.tscn" id="8_axtet"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="8_hjqul"]
@@ -1453,6 +1455,7 @@ radius = 21.0
 radius = 21.0
 
 [node name="Dungeon2" type="Node2D" unique_id=170019413]
+script = ExtResource("1_script")
 y_sort_enabled = true
 position = Vector2(30, -88)
 
@@ -1643,6 +1646,9 @@ scale = Vector2(0.1, 0.1)
 [node name="dungeon_sound" type="AudioStreamPlayer2D" parent="." unique_id=78249644]
 stream = ExtResource("13_i5gjx")
 volume_db = -10.0
+
+[node name="Spawn" type="Marker2D" parent="." unique_id=1236377897]
+position = Vector2(358, 438)
 
 [editable path="ArenaManager"]
 [editable path="ArenaDoor"]
