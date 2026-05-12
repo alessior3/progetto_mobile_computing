@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://digytdnfjevcn" path="res://Scripts/dialogue_box.gd" id="1_sh7kx"]
 [ext_resource type="Texture2D" uid="uid://2rt8060jq1up" path="res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogBox.png" id="2_mjj0w"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_sh7kx"]
+font_size = 32
+
 [node name="DialogueBox" type="CanvasLayer" unique_id=1418267364]
 process_mode = 3
 layer = 100
@@ -13,20 +16,23 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -102.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("2_mjj0w")
 
 [node name="Panel" type="Panel" parent="TextureRect" unique_id=1460530412]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 22.0
-offset_top = -44.0
-offset_right = -21.0
-offset_bottom = -6.0
+anchors_preset = -1
+anchor_left = 0.019000001
+anchor_top = 0.23500001
+anchor_right = 0.98200005
+anchor_bottom = 0.89300007
+offset_left = 0.016998291
+offset_top = 0.02999878
+offset_right = -0.17407227
+offset_bottom = 0.91399384
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -36,10 +42,12 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -37.0
+offset_left = 1.0
+offset_top = -67.0
 offset_right = -2.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
+label_settings = SubResource("LabelSettings_sh7kx")
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 3

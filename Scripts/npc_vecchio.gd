@@ -6,7 +6,11 @@ var has_spotted_player: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
-@export_multiline var storia_npc: String = "Ehi tu! Fermo lì. Non sai che è pericoloso avventurarsi in queste terre? Un tempo questo era un posto pacifico..."
+@export var storia_npc: Array[String] = [
+	"Ehi tu! Fermo lì.",
+	"Non sai che è pericoloso avventurarsi in queste terre?",
+    "Un tempo questo era un posto pacifico..."
+]
 
 # --- RIFERIMENTI AI NODI ---
 @onready var exclamation_mark = $ExclamationMark

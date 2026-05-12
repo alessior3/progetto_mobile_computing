@@ -6,7 +6,12 @@ var has_spotted_player: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
-@export_multiline var storia_npc: String = "Ehi tu! Fermo lì. Non sai che è pericoloso avventurarsi in queste terre? Un tempo questo era un posto pacifico..."
+# --- LA MODIFICA È QUI! Ora è un Array di stringhe (più pagine) ---
+@export var storia_npc: Array[String] = [
+	"Ehi tu! Fermo lì.",
+	"Non sai che è pericoloso avventurarsi in queste terre?",
+	"Un tempo questo era un posto pacifico..."
+]
 
 # --- RIFERIMENTI AI NODI ---
 @onready var exclamation_mark = $ExclamationMark
@@ -38,7 +43,6 @@ func _physics_process(delta):
 			inizia_dialogo()
 
 # --- L'AVVISTAMENTO (!) ---
-# Assicurati di collegare il segnale "body_entered" della tua VisionArea a questa funzione!
 func _on_vision_area_body_entered(body):
 	print("L'NPC ha appena visto entrare nella sua area: ", body.name)
 	
@@ -78,6 +82,7 @@ func inizia_dialogo():
 	
 	print("NPC ha raggiunto il player, inizia il dialogo!")
 	
+	# Passiamo l'Array di frasi al nostro nuovo sistema!
 	if has_node("/root/DialogueManager"):
 		DialogueManager.show_message(storia_npc)
 
