@@ -1,40 +1,42 @@
-[gd_scene format=3 uid="uid://ccbb6uqarm5v8"]
+[gd_scene format=3 uid="uid://t2wswktwwgto"]
 
-[ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_sxih3"]
-[ext_resource type="Texture2D" uid="uid://drr73v4wfarp2" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Blue Buildings/Monastery.png" id="2_sxih3"]
-
-[ext_resource type="PackedScene" uid="uid://cn0cy6aabhw50" path="res://Scenes/Chiesa1.tscn" id="3_sxih3"]
+[ext_resource type="Texture2D" uid="uid://1s5lkfbcjohx" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/grotta3.png" id="1_7ygsr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
-size = Vector2(125, 131)
+size = Vector2(45, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u85mr"]
-size = Vector2(48, 41)
+size = Vector2(21, 18)
 
-[node name="MonasteryBlu" type="Node2D" unique_id=948734644]
-script = ExtResource("1_sxih3")
-inside_scene = ExtResource("3_sxih3")
+[node name="grotta2" type="Node2D" unique_id=948734644]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
-position = Vector2(0, -20)
-texture = ExtResource("2_sxih3")
+position = Vector2(-0.9999973, 2.6226044e-06)
+scale = Vector2(0.31250003, 0.34375006)
+texture = ExtResource("1_7ygsr")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=678984241]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=540551866]
-position = Vector2(0.5, 50.5)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_o2j0i")
 metadata/_edit_lock_ = true
 
 [node name="DoorWay" type="Area2D" parent="." unique_id=1208213178]
-position = Vector2(-13, 107)
+position = Vector2(1, 5)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorWay" unique_id=645230459]
-position = Vector2(13, -5.5)
+visible = false
+position = Vector2(-0.5, 6)
 shape = SubResource("RectangleShape2D_u85mr")
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="DoorWay" unique_id=51299384]
+position = Vector2(-2.0000005, 4.5)
+scale = Vector2(0.75, 0.8125)
 
 [connection signal="body_entered" from="DoorWay" to="." method="_on_door_way_body_entered"]
 [connection signal="body_exited" from="DoorWay" to="." method="_on_door_way_body_exited"]

@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal dialogue_finished
+
 @onready var text_label = $TextureRect/Panel/Label 
 @onready var background = $TextureRect 
 
@@ -50,6 +52,7 @@ func _input(event):
 		get_viewport().set_input_as_handled() 
 		
 		close_dialogue()
+		dialogue_finished.emit()
 
 
 func close_dialogue():

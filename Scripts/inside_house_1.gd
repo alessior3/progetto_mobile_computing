@@ -11,6 +11,10 @@ func _ready():
 
 	# Appena entriamo in casa, cerchiamo il player e il punto di spawn
 	if has_node("player") and has_node("SpawnPoint"):
+		# SICUREZZA: Sblocchiamo il player se fosse rimasto bloccato dalla transizione
+		if "can_move" in $player:
+			$player.can_move = true
+			
 		# Spostiamo l'omino esattamente sopra il Marker2D che hai creato
 		$player.global_position = $SpawnPoint.global_position
 		

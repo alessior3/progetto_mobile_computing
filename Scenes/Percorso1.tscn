@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dqc6wq451qcrj" path="res://Scenes/NpcVecchio1.tscn" id="8_u13ma"]
 [ext_resource type="PackedScene" uid="uid://duqpqcdufdctl" path="res://Scenes/Panda.tscn" id="9_jqp7j"]
 [ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="10_trans"]
+[ext_resource type="PackedScene" uid="uid://dv7i1pie573vl" path="res://Scenes/FlamRed.tscn" id="12_ebchb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("2_yksme")
@@ -351,7 +352,7 @@ tile_map_data = PackedByteArray("AAAhAeL/BAAAAAAAAAAZAeL/BAAAAAAAAAAZAdr/BAAAAAA
 tile_set = SubResource("TileSet_u13ma")
 
 [node name="NpcVecchio1" parent="." unique_id=349992580 instance=ExtResource("8_u13ma")]
-position = Vector2(2891, -144)
+position = Vector2(3000, -143)
 
 [node name="Panda2" parent="." unique_id=1098246921 instance=ExtResource("9_jqp7j")]
 y_sort_enabled = true
@@ -374,13 +375,13 @@ position = Vector2(2650, -122)
 zoom = Vector2(3, 3)
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1880370216]
-position = Vector2(6743, -645)
+position = Vector2(2671, -92)
 
 [node name="UscitaPercorso1" type="Marker2D" parent="." unique_id=172267169]
-position = Vector2(6889, -609)
+position = Vector2(5809, -625)
 
 [node name="EntrataVillaggio3" type="Area2D" parent="." unique_id=20241021]
-position = Vector2(7076, -626)
+position = Vector2(6083, -637)
 collision_mask = 2
 script = ExtResource("10_trans")
 target_scene = "res://Scenes/villaggio2.tscn"
@@ -388,6 +389,20 @@ transition_flag = "from_percorso1_to_villaggio2"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="EntrataVillaggio3" unique_id=20241022]
 shape = SubResource("RectangleShape2D_yksme")
+
+[node name="FlamRed" parent="." unique_id=2056889590 instance=ExtResource("12_ebchb")]
+position = Vector2(4165, -341)
+
+[node name="FlamRed3" parent="FlamRed" unique_id=133284754 instance=ExtResource("12_ebchb")]
+position = Vector2(1106, -257)
+
+[node name="FlamRed2" parent="FlamRed" unique_id=969113657 instance=ExtResource("12_ebchb")]
+position = Vector2(38, 104)
+
+[node name="FlamRed" parent="FlamRed" unique_id=275888872 instance=ExtResource("12_ebchb")]
+
+[node name="FlamRed4" parent="FlamRed" unique_id=1898490425 instance=ExtResource("12_ebchb")]
+position = Vector2(1155, -150)
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="body_exited" from="exit" to="exit" method="_on_body_exited"]
