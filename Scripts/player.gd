@@ -251,8 +251,8 @@ func apply_attack_damage():
 
 # --- MODIFICATA: AGGIORNAMENTO CONTINUO DELL'ARMA ---
 func _physics_process(delta):
-	if Engine.get_frames_drawn() % 60 == 0:
-		print("DEBUG: Player is actually at ", global_position)
+	
+		
 		
 	if is_dead: return
 	if not can_move:

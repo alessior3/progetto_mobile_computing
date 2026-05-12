@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://cmtbafqb0v0wy"]
+
+[ext_resource type="Texture2D" uid="uid://q0hougaouyvm" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/spikes_tile_trap_anim_strip_12.png" id="1_qx2iy"]
+[ext_resource type="Script" uid="uid://ch6v5v2rouyli" path="res://Scripts/trappola_punte.gd" id="1_s3dbm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3dbm"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_qx2iy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AreaDanno/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_s3dbm"]
+resource_name = "attiva"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.43333337, 0.4666667, 0.5, 0.53333336, 0.5666667, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AreaDanno/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kicy"]
+_data = {
+&"RESET": SubResource("Animation_qx2iy"),
+&"attiva": SubResource("Animation_s3dbm")
+}
+
+[node name="TrappolaPunte" type="Node2D" unique_id=427085805]
+script = ExtResource("1_s3dbm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1175516216]
+texture = ExtResource("1_qx2iy")
+hframes = 12
+
+[node name="AreaDanno" type="Area2D" parent="." unique_id=414274904]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDanno" unique_id=1702949342]
+shape = SubResource("RectangleShape2D_s3dbm")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=563800057]
+libraries/ = SubResource("AnimationLibrary_0kicy")
+autoplay = &"attiva"
+speed_scale = 0.6
+
+[connection signal="body_entered" from="AreaDanno" to="." method="_on_area_danno_body_entered"]

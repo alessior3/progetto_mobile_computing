@@ -30,6 +30,7 @@ var player: Node2D = null
 var can_attack: bool = true
 
 func _ready() -> void:
+	
 	health_system.init(health)
 	progress_bar.max_value = health
 	progress_bar.value = health
