@@ -31,7 +31,6 @@ region_enabled = true
 region_rect = Rect2(27.948029, 28.536003, 202.31204, 199.65)
 
 [node name="SpriteItem" type="Sprite2D" parent="." unique_id=1365870041]
-position = Vector2(0, -2)
 scale = Vector2(0.8, 0.8)
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=238429391]

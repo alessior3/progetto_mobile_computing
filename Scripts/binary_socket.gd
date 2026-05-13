@@ -6,7 +6,11 @@ signal power_changed(value: int)
 
 @export var bit_value: int = 1 # 1, 2, 4, 8
 @export var is_high_signal: bool = false
+@export var is_locked: bool = false
+@export var gold_cost: int = 10 # Dilemma morale: costa oro attivare i bit!
 @export var current_item: InventoryItem = null
+
+const GOLD_COIN = preload("res://Resources/GoldCoin/gold_coin.tres")
 
 @onready var sprite_item = $SpriteItem
 @onready var sprite_socket = $SpriteSocket
@@ -38,6 +42,10 @@ func _on_body_exited(body):
 
 func _input(event):
 	if player_in_range and event.is_action_pressed("interact"):
+		if is_locked:
+			print("DEBUG: Socket bloccato. Le monete sono fuse col metallo!")
+			return
+			
 		print("DEBUG: Tasto Interact premuto nel raggio del Socket ", bit_value)
 		if current_item == null:
 			_try_insert_item()
@@ -45,24 +53,26 @@ func _input(event):
 			_try_extract_item()
 
 func _try_insert_item():
-	if player_ref and Global.persistent_food:
-		var item = Global.persistent_food
-		print("DEBUG: Tentativo inserimento. Item attivo: ", item.name)
-		current_item = item
-		is_high_signal = _is_item_high_signal(item)
-		if player_ref.has_method("consume_food_item"):
-			player_ref.consume_food_item(item)
-		_update_visuals()
-		power_changed.emit(bit_value if is_high_signal else 0)
-		print("DEBUG: Inserito ", item.name, " nel socket ", bit_value, ". Segnale: ", "ALTO" if is_high_signal else "BASSO")
+	if player_ref:
+		var inv = player_ref.get_node_or_null("Inventory")
+		if inv and inv.has_gold(gold_cost):
+			inv.remove_gold(gold_cost)
+			print("DEBUG: Pagato ", gold_cost, " oro per il socket ", bit_value)
+			
+			current_item = GOLD_COIN
+			is_high_signal = true
+			_update_visuals()
+			power_changed.emit(bit_value)
+			print("DEBUG: Inserito ORO nel socket ", bit_value, ". Segnale: ALTO")
+		else:
+			print("DEBUG: Non hai abbastanza oro per attivare il socket!")
 
 func _try_extract_item():
 	if player_ref and current_item:
 		var inv = player_ref.get_node_or_null("Inventory")
 		if inv and inv.has_method("smart_add_pickup"):
-			current_item.stacks = 1
-			inv.smart_add_pickup(current_item, 1)
-			print("DEBUG: Restituito ", current_item.name, " all'inventario.")
+			inv.smart_add_pickup(current_item, gold_cost)
+			print("DEBUG: Restituiti ", gold_cost, " ori all'inventario.")
 	
 	current_item = null
 	is_high_signal = false
@@ -82,7 +92,7 @@ func _is_item_high_signal(item: InventoryItem) -> bool:
 func _update_visuals():
 	if sprite_item:
 		if current_item:
-			sprite_item.texture = current_item.texture
+			sprite_item.texture = preload("res://Ninja Adventure - Asset Pack/Items/Treasure/GoldCoin.png")
 			sprite_item.show()
 		else:
 			sprite_item.hide()

@@ -75,6 +75,12 @@ func _ready():
 		
 	await get_tree().process_frame
 	
+	if god_mode and inventory:
+		inventory.gold += 1000
+		Global.persistent_gold = inventory.gold
+		inventory.gold_changed.emit(inventory.gold)
+		print("DEBUG: GOD MODE ATTIVA! Aggiunti 1000 ori.")
+	
 	if SaveManager.is_loading_game:
 		global_position = SaveManager.loaded_position
 		SaveManager.is_loading_game = false

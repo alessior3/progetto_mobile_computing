@@ -6,11 +6,17 @@ signal solved
 
 @export var target_decimal: int = 0
 @export var current_binary_sum: int = 0
-@export var door_to_open: NodePath
+@export var target_node_path: NodePath
 @export var interaction_radius: float = 100.0
-const TERMINAL_SCENE_PATH = "res://Scenes/UI/stone_terminal.tscn"
 
-@onready var label_target = $LabelTarget
+@export_category("Easter Egg Settings")
+@export var easter_egg_enemies: Array[PackedScene] = []
+@export var easter_egg_spawn_count: int = 6
+
+const TERMINAL_SCENE_PATH = "res://Scenes/UI/stone_terminal.tscn"
+const DEFAULT_PHANTOM = preload("res://Scenes/phantom.tscn")
+const DEFAULT_SPIDER = preload("res://Scenes/spider.tscn")
+
 @onready var bus_lines = $BusLines
 @onready var proximity_area = get_node_or_null("ProximityArea")
 
@@ -22,10 +28,6 @@ func _ready():
 	# Genera un numero casuale tra 1 e 15 (4 bit)
 	randomize()
 	target_decimal = randi_range(1, 15)
-	
-	if label_target:
-		label_target.text = str(target_decimal)
-		label_target.show() # Lo teniamo visibile per il debug
 	
 	if not proximity_area:
 		print("DEBUG: ProximityArea mancante, la creo via codice...")
@@ -46,6 +48,10 @@ func _ready():
 		if shape_node and shape_node is CollisionShape2D:
 			if shape_node.shape is CircleShape2D:
 				shape_node.shape.radius = interaction_radius
+	
+	if bus_lines:
+		bus_lines.z_index = 10 # Porta le linee sopra il pavimento e i tile
+		print("DEBUG: BusLines portati in primo piano (Z-Index 10)")
 	
 	if proximity_area:
 		print("DEBUG: ProximityArea pronta.")
@@ -77,6 +83,8 @@ func _calculate_sum():
 	
 	if current_binary_sum == target_decimal:
 		_on_solved()
+	else:
+		_on_unsolved()
 
 func _update_bus_visuals():
 	# Qui accendiamo le Line2D in base ai bit
@@ -93,15 +101,45 @@ func _update_bus_visuals():
 				line.width = 1.0
 
 func _on_solved():
-	print("DEBUG: PUZZLE RISOLTO! Apertura porta...")
+	print("DEBUG: PUZZLE RISOLTO!")
 	solved.emit()
 	
-	if label_target:
-		label_target.add_theme_color_override("font_color", Color(0, 1, 0)) # Verde puro
-	
-	var door = get_node_or_null(door_to_open)
-	if door and door.has_method("open_door"):
-		door.open_door()
+	var target_node = get_node_or_null(target_node_path)
+	if target_node:
+		if target_node.has_method("unlock"):
+			target_node.unlock()
+		elif target_node.has_method("open_door"):
+			target_node.open_door()
+			
+	# Blocca tutti i socket per impedire di riprendersi l'oro!
+	var sockets = get_tree().get_nodes_in_group("binary_sockets")
+	for socket in sockets:
+		if socket is BinarySocket:
+			socket.is_locked = true
+			
+			# Nasconde la "E" se il player era vicino
+			if socket.player_ref and socket.player_ref.has_node("Key"):
+				socket.player_ref.get_node("Key").hide()
+			if socket.player_ref and socket.player_ref.has_node("KeyPrompt"):
+				socket.player_ref.get_node("KeyPrompt").play_backwards("KeyPrompt")
+			
+	# Illumina i bus (flusso di energia) verso la cassa/porta
+	if bus_lines:
+		print("DEBUG: Attivazione bus energetici...")
+		var tween = create_tween()
+		for line in bus_lines.get_children():
+			if line is Line2D:
+				# Diventa ciano brillante e raddoppia lo spessore
+				tween.parallel().tween_property(line, "default_color", Color(0, 4, 4, 1), 0.8).set_trans(Tween.TRANS_SINE)
+				tween.parallel().tween_property(line, "width", line.width * 2.0, 0.4)
+
+func _on_unsolved():
+	var target_node = get_node_or_null(target_node_path)
+	if target_node:
+		if target_node.has_method("lock"):
+			target_node.lock()
+		elif target_node.has_method("close_door"):
+			target_node.close_door()
 	
 func _on_proximity_entered(body):
 	print("DEBUG: Qualcosa e' entrato nell'area dell'altare: ", body.name)
@@ -143,7 +181,60 @@ func _open_terminal():
 		# BLOCCA IL GIOCO
 		get_tree().paused = true
 		terminal.terminal_closed.connect(func(): get_tree().paused = false)
+		terminal.sudo_triggered.connect(_on_sudo_triggered)
+		terminal.sudo_open_triggered.connect(_on_sudo_open_triggered)
 		
 		print("DEBUG: Terminale aggiunto e gioco in pausa!")
 	else:
 		print("DEBUG: ERRORE! Fallito il caricamento della risorsa terminale.")
+
+func _on_sudo_triggered():
+	print("DEBUG: Sudo bypass rilevato. Risveglio dei guardiani...")
+	
+	var parent_node = get_parent() 
+	var num_enemies = easter_egg_spawn_count
+	var radius = interaction_radius + 40.0
+	var space_state = get_world_2d().direct_space_state
+	
+	for i in range(num_enemies):
+		var enemy_scene: PackedScene
+		if not easter_egg_enemies.is_empty():
+			enemy_scene = easter_egg_enemies.pick_random()
+		else:
+			enemy_scene = DEFAULT_PHANTOM if randf() > 0.5 else DEFAULT_SPIDER
+			
+		if not enemy_scene: continue
+		
+		var spawn_pos = global_position
+		
+		# Troviamo il player e spawniamo i nemici più in basso rispetto a lui (Y positivo in Godot)
+		var player = get_tree().get_first_node_in_group("player")
+		if player:
+			spawn_pos = player.global_position + Vector2(randf_range(-25.0, 25.0), 30.0)
+		
+		var enemy = enemy_scene.instantiate()
+		parent_node.add_child(enemy)
+		enemy.global_position = spawn_pos
+		
+		if "chases_player" in enemy:
+			enemy.chases_player = true
+			
+		# Evitiamo che i nemici dell'easter egg droppino oggetti per non far farmare il player
+		if "item_to_drop" in enemy:
+			enemy.item_to_drop = null
+			
+		print("DEBUG: Nemico spawnato a: ", enemy.global_position)
+
+func _on_sudo_open_triggered():
+	print("DEBUG: Sudo Open (God Mode) attivato!")
+	_on_bit_changed(0, 0) # Triggera un check immediato (opzionale)
+	
+	# Sblocca forzatamente il target
+	var target_node = get_node_or_null(target_node_path)
+	if target_node:
+		if target_node.has_method("unlock"):
+			target_node.unlock()
+		elif target_node.has_method("open_door"):
+			target_node.open_door()
+	
+	# Nota: Non blocchiamo i socket qui, lasciamo che il player faccia quello che vuole in God Mode

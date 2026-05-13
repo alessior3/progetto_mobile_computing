@@ -342,6 +342,8 @@ animations = [{
 size = Vector2(12, 7.5)
 
 [node name="PinkBat" type="CharacterBody2D" unique_id=126545672]
+z_index = 10
+y_sort_enabled = false
 script = ExtResource("1_hmjdl")
 item_to_drop = ExtResource("11_wing")
 

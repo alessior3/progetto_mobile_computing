@@ -3,6 +3,7 @@ class_name OnScreenUi
 
 signal request_unequip(item: InventoryItem)
 signal eat_requested(item: InventoryItem)
+signal request_drop(item: InventoryItem)
 
 # RIFERIMENTI AI NODI
 @onready var hand: OnScreenEquipmentSlot = %hand
@@ -20,6 +21,7 @@ func _ready() -> void:
 		if slot:
 			slot.unequip_requested.connect(_on_slot_unequip_requested)
 			slot.eat_requested.connect(func(item): eat_requested.emit(item))
+			slot.drop_requested.connect(_on_slot_drop_requested)
 			
 	# --- NOVITÀ: SINCRONIZZAZIONE INIZIALE ---
 	# Appena la UI si sveglia, controlla cosa c'è salvato nel Global.
@@ -52,6 +54,9 @@ func _on_gold_changed(new_amount: int):
 
 func _on_slot_unequip_requested(item: InventoryItem):
 	request_unequip.emit(item)
+
+func _on_slot_drop_requested(item: InventoryItem):
+	request_drop.emit(item)
 
 func equip_item(item: InventoryItem, slot_to_equip: String):
 	# Il fatto che tu abbia commentato la riga qui sotto è perfetto!

@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 signal terminal_closed
+signal sudo_triggered
+signal sudo_open_triggered
 
 @onready var output_label = $Control/StoneBackground/MarginContainer/VBoxContainer/OutputLabel
 @onready var input_field = $Control/StoneBackground/MarginContainer/VBoxContainer/HBoxContainer/LineEdit
@@ -39,17 +41,22 @@ func _parse_command(cmd_full: String):
 		"":
 			return
 		"ls":
-			_add_to_output("gate_logic.c  kernel.bin  readme.txt  lost_souls.log")
+			_add_to_output("vault_logic.c  kernel.bin  readme.txt  lost_souls.log")
 		"cat":
 			if parts.size() < 2:
 				_add_to_output("Utilizzo: cat [file]")
 			elif parts[1] == "readme.txt":
-				_add_to_output("LOG: Il livello di potenza per bilanciare i bit e' " + str(target_number) + ".")
-			elif parts[1] == "gate_logic.c":
+				_add_to_output("==================================================")
+				_add_to_output("AVVERTENZA: I socket dell'altare richiedono un materiale")
+				_add_to_output("altamente conduttivo per attivarsi correttamente.")
+				_add_to_output("Solo un metallo obile (come l'Oro) garantira' il flusso energetico.")
+				_add_to_output("==================================================")
+			elif parts[1] == "vault_logic.c":
+				_add_to_output("// Require perfect conductivity (Au) to avoid segfaults")
 				_add_to_output("#include <stdio.h>")
 				_add_to_output("int main() {")
 				_add_to_output("    int target = " + str(target_number) + ";")
-				_add_to_output("    if (get_sum() == target) open_gate();")
+				_add_to_output("    if (get_sum() == target) unlock_vault();")
 				_add_to_output("    return 0;")
 				_add_to_output("}")
 			elif parts[1] == "lost_souls.log":
@@ -69,10 +76,26 @@ func _parse_command(cmd_full: String):
 			_close()
 		"sudo":
 			if parts.size() > 1 and parts[1] == "open":
-				_add_to_output("Tentativo di bypass del Kernel...")
-				_add_to_output("ERRORE: L'utente 'player' non e' nel file sudoers. Questo incidente verra' segnalato ai Maghi del Dungeon.")
-			else:
-				_add_to_output("Utilizzo: sudo [comando]")
+				var player = get_tree().get_first_node_in_group("player")
+				if player and "god_mode" in player and player.god_mode:
+					_add_to_output("GOD MODE RILEVATA.")
+					_add_to_output("Bypass del Kernel in corso...")
+					_add_to_output("ACCESSO CONCESSO. Apertura forzata del caveau.")
+					sudo_open_triggered.emit()
+					
+					input_field.editable = false
+					await get_tree().create_timer(1.5).timeout
+					_close()
+					return
+			
+			_add_to_output("Tentativo di bypass del Kernel...")
+			_add_to_output("ERRORE: L'utente 'player' non e' nel file sudoers. Accesso al caveau negato.")
+			_add_to_output("ALLARME SISTEMA: SISTEMA DI DIFESA ATTIVATO.")
+			sudo_triggered.emit()
+			
+			input_field.editable = false
+			await get_tree().create_timer(1.5).timeout
+			_close()
 		"printf":
 			_add_to_output(str(target_number))
 		"whoami":

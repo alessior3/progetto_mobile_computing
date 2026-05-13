@@ -3,6 +3,7 @@ class_name OnScreenEquipmentSlot
 
 signal unequip_requested(item: InventoryItem)
 signal eat_requested(item: InventoryItem) # NUOVO SEGNALE per il cibo
+signal drop_requested(item: InventoryItem) # NUOVO SEGNALE per droppare
 
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var menu_button: MenuButton = %MenuButton 
@@ -28,11 +29,12 @@ func set_equipment_item(item: InventoryItem):
 		menu_button.disabled = false 
 		
 		# 1. Aggiungiamo sempre l'opzione di base (ID = 0)
-		popup.add_item("Unequip", 0)
+		popup.add_item("Riponi", 0)
+		popup.add_item("Lascia", 2)
 		
 		# 2. Se l'oggetto ha la spunta "is_consumable", aggiungiamo "Eat" (ID = 1)
 		if item.get("is_consumable") == true:
-			popup.add_item("Eat", 1)
+			popup.add_item("Mangia", 1)
 			
 	else:
 		texture_rect.texture = null
@@ -42,12 +44,17 @@ func _on_popup_item_pressed(id: int):
 	if not current_item: return
 	
 	if id == 0:
-		print("DEBUG (Slot): Menu 'Unequip' premuto per ", current_item.name)
+		print("DEBUG (Slot): Menu 'Riponi' premuto per ", current_item.name)
 		unequip_requested.emit(current_item)
 		set_equipment_item(null) # Lo svuotiamo visivamente
 		
 	elif id == 1:
-		print("DEBUG (Slot): Menu 'Eat' premuto per ", current_item.name)
+		print("DEBUG (Slot): Menu 'Mangia' premuto per ", current_item.name)
 		eat_requested.emit(current_item)
 		# NOTA: Non svuotiamo lo slot qui! Lo farà il Player controllando 
 		# se sono finiti gli stack (i ravanelli) dopo aver mangiato.
+		
+	elif id == 2:
+		print("DEBUG (Slot): Menu 'Lascia' premuto per ", current_item.name)
+		drop_requested.emit(current_item)
+		set_equipment_item(null) # Lo svuotiamo visivamente

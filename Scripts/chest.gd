@@ -3,6 +3,13 @@ extends Area2D
 @export var chest_id: String = "cassa_casa_1"
 @export var chest_size: int = 15
 @export var oggetto_iniziale: Resource = null
+@export var is_locked: bool = false
+
+@export_group("Loot Pool (Gambling)")
+@export var use_loot_pool: bool = false
+@export var loot_spawn_count: int = 1
+@export var loot_pool_items: Array[InventoryItem] = []
+@export var loot_pool_weights: Array[float] = []
 
 # Coordinate spritesheet
 @export var x_chiusa: float = 0.0
@@ -38,10 +45,45 @@ func _ready() -> void:
 	else:
 		chest_items.resize(chest_size)
 		chest_items.fill(null)
-		if oggetto_iniziale != null:
+		
+		if use_loot_pool and loot_pool_items.size() > 0:
+			print("DEBUG: Generazione loot casuale per la cassa ", chest_id)
+			for i in range(min(loot_spawn_count, chest_size)):
+				var random_item = _get_random_loot()
+				if random_item:
+					print("DEBUG: Slot ", i, " -> ", random_item.name if "name" in random_item else "Oggetto")
+					chest_items[i] = random_item
+		elif oggetto_iniziale != null:
 			# Mettiamo l'oggetto nel primo slot (posizione 0)
 			chest_items[0] = oggetto_iniziale
+			
 		Global.chests_data[chest_id] = chest_items
+
+func _get_random_loot() -> InventoryItem:
+	if loot_pool_items.is_empty() or loot_pool_weights.is_empty():
+		return null
+		
+	var total_weight = 0.0
+	# Usiamo la dimensione minima tra i due array per evitare errori se non sono lunghi uguali
+	var size = min(loot_pool_items.size(), loot_pool_weights.size())
+	
+	for i in range(size):
+		if loot_pool_weights[i] > 0:
+			total_weight += loot_pool_weights[i]
+			
+	if total_weight <= 0:
+		return null
+		
+	var roll = randf() * total_weight
+	var current_sum = 0.0
+	
+	for i in range(size):
+		if loot_pool_weights[i] > 0:
+			current_sum += loot_pool_weights[i]
+			if roll <= current_sum:
+				return loot_pool_items[i]
+				
+	return null
 
 func _on_body_entered(body: Node2D) -> void:
 	print("Qualcosa è entrato nell'area:", body.name)
@@ -75,10 +117,29 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
 	if player_in_range and event.is_action_pressed("interact"):
+		print("DEBUG: Interact premuto sulla cassa. Locked: ", is_locked)
+		if is_locked:
+			print("La cassa è bloccata!")
+			return
 		toggle_chest()
 
+func unlock():
+	print("DEBUG: Ricevuta chiamata unlock() sulla cassa.")
+	if is_locked:
+		is_locked = false
+		print("Cassa sbloccata!")
+
+func lock():
+	print("DEBUG: Ricevuta chiamata lock() sulla cassa.")
+	if not is_locked:
+		is_locked = true
+		print("Cassa di nuovo bloccata!")
+
 func toggle_chest():
+	print("DEBUG: Chiamata toggle_chest()")
 	var chest_ui = get_tree().current_scene.get_node_or_null("ChestUI") 
+	if not chest_ui:
+		print("DEBUG: ERRORE! Nodo 'ChestUI' non trovato nella scena corrente.")
 	var inv_ui = current_player.get_node_or_null("inventoryUI") if current_player else null
 	
 	if sprite.region_rect.position.x == x_chiusa:

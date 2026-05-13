@@ -30,6 +30,8 @@ func _ready() -> void:
 		# Colleghiamo il segnale per gestire i click sui quadratini a schermo
 		if not on_screen_ui.request_unequip.is_connected(_on_unequip_item):
 			on_screen_ui.request_unequip.connect(_on_unequip_item)
+		if not on_screen_ui.request_drop.is_connected(_on_drop_equipped_item):
+			on_screen_ui.request_drop.connect(_on_drop_equipped_item)
 		
 		# Ripristiniamo gli oggetti negli slot (mano, pozioni, cibo)
 		_restore_equipment_ui()
@@ -60,7 +62,12 @@ func add_item(item: InventoryItem, amount: int = 1) -> void:
 	
 	# Oggetti Standard
 	item.stacks = amount
-	items.append(item)
+	
+	if not _insert_item_into_array(item):
+		print("DEBUG (Inventory): Zaino pieno! Droppo a terra: ", item.name)
+		_drop_physical_item(item) # Helper per droppare senza rimuovere dall'array
+		return
+		
 	Global.persistent_items = items # Sincronizzazione persistente
 	
 	if inventory_ui:
@@ -112,8 +119,11 @@ func _on_unequip_item(item: InventoryItem):
 	# 1. Rimuove dai dati persistenti degli slot
 	_save_equipment_to_global(item.slot_type, null)
 	
-	# 2. Riporta nello zaino persistente
-	items.append(item)
+	# 2. Riporta nello zaino persistente nel primo slot libero
+	if not _insert_item_into_array(item):
+		print("DEBUG (Inventory): Zaino pieno! Droppo a terra l'oggetto unequipped.")
+		_drop_physical_item(item)
+	
 	Global.persistent_items = items
 	
 	# 3. Gestione visuale sicura dello sprite
@@ -123,13 +133,34 @@ func _on_unequip_item(item: InventoryItem):
 	if inventory_ui:
 		inventory_ui.update_slots(items)
 
-# NUOVA FUNZIONE: Droppa l'oggetto a terra con animazione di lancio
+func _on_drop_equipped_item(item: InventoryItem):
+	if item == null: return
+	
+	print("DEBUG (Inventory): Droppato direttamente dallo slot equipaggiamento: ", item.name)
+	
+	# 1. Rimuove dai dati persistenti degli slot
+	_save_equipment_to_global(item.slot_type, null)
+	
+	# 2. Gestione visuale sicura dello sprite
+	if item.slot_type == "Hand" and equipped_sprite:
+		equipped_sprite.hide()
+		
+	# 3. Drop fisico a terra (non è nell'array items, quindi non chiamiamo erase)
+	_drop_physical_item(item)
+
 func drop_item(item_to_drop: InventoryItem):
 	if item_to_drop == null: return
 	
 	items.erase(item_to_drop)
 	Global.persistent_items = items
 	
+	_drop_physical_item(item_to_drop)
+	
+	# --- FIX 3: CHIUDI L'INVENTARIO ---
+	if inventory_ui and inventory_ui.visible:
+		inventory_ui.toggle()
+
+func _drop_physical_item(item_to_drop: InventoryItem):
 	# Istanzia l'oggetto
 	var dropped_node = PICK_UP_ITEM_SCENE.instantiate()
 	
@@ -138,17 +169,12 @@ func drop_item(item_to_drop: InventoryItem):
 	dropped_node.y_sort_enabled = true
 	
 	# --- FIX 2: PARENTING PER Y-SORT ---
-	# Lo aggiungiamo allo stesso padre del Player (il livello) per un Y-Sort perfetto
 	var level_node = get_parent().get_parent()
 	level_node.add_child(dropped_node)
 	
 	# Assegna i dati e resetta l'ID
 	dropped_node.inventory_item = item_to_drop
 	dropped_node.item_id = ""
-	
-	# --- FIX 3: CHIUDI L'INVENTARIO ---
-	if inventory_ui and inventory_ui.visible:
-		inventory_ui.toggle()
 	
 	# --- EFFETTO DI LANCIO (TWEEN) ---
 	var start_pos = get_parent().global_position
@@ -230,3 +256,18 @@ func smart_add_pickup(item: InventoryItem, amount: int):
 	# oppure l'oggetto non era né un'arma né cibo (es. semi, legno, ecc.).
 	# Solo ora lo aggiungiamo fisicamente allo zaino:
 	add_item(item, amount)
+
+func _insert_item_into_array(new_item: InventoryItem) -> bool:
+	# 1. Cerca il primo "buco" (null) nell'array
+	for i in range(items.size()):
+		if items[i] == null:
+			items[i] = new_item
+			return true
+			
+	# 2. Se l'array non ha ancora raggiunto la grandezza massima (es. inizio gioco)
+	if inventory_ui and items.size() < inventory_ui.size:
+		items.append(new_item)
+		return true
+		
+	# 3. Zaino pieno
+	return false
