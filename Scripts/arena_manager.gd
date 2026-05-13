@@ -7,10 +7,15 @@ class_name ArenaManager
 @export var waves_count: int = 3
 @export var enemies_per_wave: int = 4
 @export var time_between_waves: float = 2.0
-@export var random_spawn_area: Vector2 = Vector2(50, 50): # Area rettangolare di spawn (metà larghezza/altezza)
+@export var random_spawn_area: Vector2 = Vector2(50, 50):
 	set(value):
 		random_spawn_area = value
 		queue_redraw()
+
+# --- NUOVE IMPOSTAZIONI PER IL BOSS ---
+@export_category("Boss Settings")
+@export var is_boss_arena: bool = false
+@export var boss_node: Node2D 
 
 @export_category("Scene References")
 @export var doors: Array[StaticBody2D] # Muri invisibili o cancelli da attivare
@@ -29,15 +34,17 @@ signal arena_cleared_signal
 
 func _ready():
 	if Engine.is_editor_hint():
-		return # Non eseguiamo la logica di gioco nell'editor
+		return 
 		
 	if trigger_area:
 		trigger_area.body_entered.connect(_on_trigger_entered)
 		
-	# Assicuriamoci che le porte siano aperte all'inizio
 	for door in doors:
 		if door:
 			if door.has_method("open_door"):
+				# Se la porta ha la spunta "start_closed", ignora l'apertura iniziale
+				if "start_closed" in door and door.start_closed:
+					continue
 				door.open_door()
 			else:
 				door.process_mode = Node.PROCESS_MODE_DISABLED
@@ -53,16 +60,14 @@ func _on_trigger_entered(body: Node2D):
 func start_arena():
 	arena_active = true
 	if trigger_area:
-		trigger_area.queue_free() # Rimuoviamo il trigger per non riattivarlo
+		trigger_area.queue_free() 
 	
 	print("Arena avviata! Attendiamo che il player entri...")
 	emit_signal("arena_started")
 	
-	# Pausa per far sì che il giocatore superi la porta prima che si chiuda
 	if get_tree() == null: return
 	await get_tree().create_timer(0.4).timeout
 	
-	# Chiudiamo le porte (abilitiamo la collisione e animiamo)
 	for door in doors:
 		if door:
 			if door.has_method("close_door"):
@@ -71,10 +76,30 @@ func start_arena():
 				door.process_mode = Node.PROCESS_MODE_INHERIT
 				door.show()
 			
-	# Piccola pausa drammatica prima che inizino i mostri
 	if get_tree() == null: return
 	await get_tree().create_timer(0.6).timeout
-	start_wave()
+	
+	# --- BIVIO: ONDATE O BOSS? ---
+	if is_boss_arena:
+		if boss_node:
+			print("Modalità Boss! Attendiamo la caduta del boss...")
+			# Ascoltiamo la morte del boss!
+			boss_node.tree_exited.connect(_on_boss_died)
+			
+			# --- SVEGLIAMO IL BOSS! ---
+			if boss_node.has_method("activate_boss"):
+				boss_node.activate_boss()
+		else:
+			print("ERRORE: Hai spuntato is_boss_arena ma non hai assegnato il Boss!")
+	else:
+		start_wave()
+
+# --- FUNZIONE SPECIALE BOSS MORTO ---
+func _on_boss_died():
+	if not arena_active: return
+	print("IL BOSS È STATO SCONFITTO! Vittoria!")
+	finish_arena()
+
 
 func start_wave():
 	current_wave += 1
@@ -87,7 +112,6 @@ func start_wave():
 	
 	for i in range(enemies_per_wave):
 		if enemy_types.is_empty():
-			print("ATTENZIONE: Nessun tipo di nemico assegnato all'ArenaManager!")
 			break
 			
 		var enemy_scene = enemy_types.pick_random() as PackedScene
@@ -99,7 +123,6 @@ func start_wave():
 		if spawn_points.size() > 0:
 			spawn_pos = spawn_points.pick_random().global_position 
 		else:
-			# Cerchiamo un punto casuale che non sia dentro un muro (massimo 15 tentativi)
 			var valid_spawn = false
 			var attempts = 0
 			var space_state = get_world_2d().direct_space_state
@@ -109,7 +132,7 @@ func start_wave():
 				
 				var query = PhysicsPointQueryParameters2D.new()
 				query.position = test_pos
-				query.collision_mask = 1 # Collision Layer 1 (Muri e Ostacoli)
+				query.collision_mask = 1
 				
 				var results = space_state.intersect_point(query)
 				if results.is_empty():
@@ -119,44 +142,34 @@ func start_wave():
 				attempts += 1
 				
 			if not valid_spawn:
-				# Se dopo 15 tentativi non trova posto (es. raggio troppo grande), spawna al centro
 				spawn_pos = global_position
 		
 		enemy.global_position = spawn_pos
 		enemy.add_to_group("arena_enemy")
 		
-		# Abilita "chases_player" se disponibile per renderli aggressivi
 		if "chases_player" in enemy:
 			enemy.chases_player = true
 		
-		# Ascoltiamo l'eliminazione del nodo per contare le uccisioni
 		enemy.tree_exited.connect(_on_enemy_died)
-		
-		# Lo aggiungiamo al padre del manager (es. la root del dungeon) per l'Y-Sort
 		get_parent().call_deferred("add_child", enemy)
 		
-		# Piccolo stagger nello spawn
 		if get_tree() == null: return
 		await get_tree().create_timer(0.2).timeout
 
 func _on_enemy_died():
-	if not arena_active: return
+	if not arena_active or is_boss_arena: return # Se è un boss, ignoriamo questa funzione
 	
 	enemies_alive -= 1
-	print("Nemico arena ucciso! Restanti nell'ondata: ", enemies_alive)
 	
 	if enemies_alive <= 0:
 		emit_signal("wave_cleared", current_wave)
-		print("Ondata ", current_wave, " completata!")
 		
-		# Pausa prima della prossima ondata
 		if current_wave < waves_count:
 			if get_tree() == null: return
 			await get_tree().create_timer(time_between_waves).timeout
 			start_wave()
 		else:
-			# Se era l'ultima ondata, chiama subito la fine
-			start_wave() # La start_wave capirà che siamo oltre count e chiamerà finish_arena
+			start_wave() 
 
 func finish_arena():
 	arena_active = false
@@ -164,7 +177,7 @@ func finish_arena():
 	print("Arena completata! Porte aperte.")
 	emit_signal("arena_cleared_signal")
 	
-	# Riapri le porte
+	# Riapriamo TUTTE le porte!
 	for door in doors:
 		if door:
 			if door.has_method("open_door"):
@@ -174,9 +187,7 @@ func finish_arena():
 				door.hide()
 
 func _draw():
-	# Disegna un quadrato rosso semi-trasparente nell'editor per mostrare l'area di spawn casuale
 	if Engine.is_editor_hint():
 		draw_rect(Rect2(-random_spawn_area.x, -random_spawn_area.y, random_spawn_area.x * 2, random_spawn_area.y * 2), Color(1.0, 0.2, 0.2, 0.2), false, 2.0)
-		# Disegniamo anche una crocetta al centro per riferimento
 		draw_line(Vector2(-5, 0), Vector2(5, 0), Color(1.0, 0.2, 0.2, 0.5), 1.0)
 		draw_line(Vector2(0, -5), Vector2(0, 5), Color(1.0, 0.2, 0.2, 0.5), 1.0)

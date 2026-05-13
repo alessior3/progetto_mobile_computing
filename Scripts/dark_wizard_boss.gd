@@ -14,6 +14,9 @@ var current_position: int = 0
 var positions: Array[Vector2] = []
 var beam_attacks: Array = [] # Lista che conterrà i tuoi laser
 
+# --- AGGIUNTA: IL LETARGO DEL BOSS ---
+var is_active: bool = false
+
 # --- COLLEGAMENTO AI NODI DELLA SCENA ---
 @onready var boss_node = $BossNode
 @onready var anim_player = $BossNode/AnimationPlayer
@@ -48,10 +51,13 @@ func _ready():
 	elif hurt_box.has_signal("area_entered"):
 		hurt_box.area_entered.connect(_on_damage_taken)
 		
-	# Inizia la battaglia teletrasportandosi nel punto Top (0)
-	teleport(0)
+	# (RIMOSSO: Il teletrasporto non parte più in automatico qui!)
 
 func _on_damage_taken(attack_hitbox):
+	# Se il boss sta dormendo, non può subire danni da fuori l'arena
+	if not is_active:
+		return
+		
 	# 1. Se tocca un muro o un punto di teletrasporto (che non ha la variabile "damage"), IGNORA!
 	if not "damage" in attack_hitbox:
 		return
@@ -71,9 +77,9 @@ func _on_damage_taken(attack_hitbox):
 	if hp <= 0:
 		defeat()
 
-func enable_hitboxes(is_active: bool):
-	hit_box.set_deferred("monitorable", is_active)
-	hurt_box.set_deferred("monitoring", is_active)
+func enable_hitboxes(is_active_box: bool):
+	hit_box.set_deferred("monitorable", is_active_box)
+	hurt_box.set_deferred("monitoring", is_active_box)
 
 
 # --- MACCHINA A STATI (Il "Cervello" del Boss) ---
@@ -179,7 +185,8 @@ func shoot_orb():
 func defeat():
 	enable_hitboxes(false) 
 	boss_health_bar.visible = false # Nasconde la barra della vita
-	$DestroySound.play()
+	if has_node("DestroySound"):
+		$DestroySound.play()
 	explosion(Vector2(0, -30)) 
 	await get_tree().create_timer(0.2).timeout
 	
@@ -214,3 +221,11 @@ func _input(event):
 		
 		# La mandiamo alla funzione del danno!
 		_on_damage_taken(finta_hitbox)
+
+# --- NUOVA FUNZIONE: RISVEGLIO ---
+func activate_boss():
+	print("Il Boss si è svegliato! Inizia la battaglia!")
+	is_active = true
+	
+	# Adesso si teletrasporta al centro dell'arena e inizia lo scontro
+	teleport(0)

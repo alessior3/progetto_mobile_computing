@@ -1,14 +1,16 @@
 extends StaticBody2D
 class_name ArenaDoor
-
+@export var start_closed: bool = false
 @onready var anim = $AnimationPlayer
 @onready var collision = $CollisionShape2D
 
 var is_closed = false
 
 func _ready():
-	# Starts open
-	pass # We let the ArenaManager decide when to open/close during its _ready
+	if start_closed and anim:
+		anim.play("close")
+		# Manda l'animazione "avanti veloce" fino alla fine istantaneamente
+		anim.seek(anim.current_animation_length, true)
 
 func open_door():
 	$DoorOpen.play()
