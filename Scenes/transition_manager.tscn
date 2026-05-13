@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cdfv6rbg5h5as"]
 
 [ext_resource type="Script" uid="uid://i17sqefwegki" path="res://Scripts/transition_change_manager.gd" id="1_2bula"]
+[ext_resource type="Texture2D" uid="uid://dt80eitgcrio3" path="res://Ninja Adventure - Asset Pack/box_percorso_fadeout_spritesheet.png" id="2_teguy"]
 
 [node name="TransitionManager" type="CanvasLayer" unique_id=188856192]
 script = ExtResource("1_2bula")
@@ -12,3 +13,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="LoadingIcon" type="Sprite2D" parent="." unique_id=123456789]
+position = Vector2(864, 27)
+scale = Vector2(0.65500003, 0.71874994)
+texture = ExtResource("2_teguy")
+centered = false
+hframes = 8

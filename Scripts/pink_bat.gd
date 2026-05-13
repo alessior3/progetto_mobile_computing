@@ -10,7 +10,9 @@ class_name PinkBat
 @export var patrol_wait_time: float = 1.0
 # ---------------------------------
 
-@export var chases_player: bool = false
+@export var patrol_speed: float = 50.0
+@export var chase_speed: float = 100.0
+@export var chases_player: bool = true
 @export var chase_distance: float = 200.0
 
 @export var damage_to_player: int = 10
@@ -30,6 +32,7 @@ var current_patrol_target = 0
 var wait_timer = 0.0
 var player: Node2D = null
 var can_attack: bool = true
+var attack_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	health_system.init(health)
@@ -43,15 +46,21 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
+	if not can_attack:
+		# Blocco posizione assoluto: il nemico non si muove di un pixel
+		velocity = Vector2.ZERO
+		global_position = attack_position
+		return
+
 	# --- ATTACCO AL PLAYER (STILE UNIFICATO) ---
-	if can_attack and $Area2D:
+	if $Area2D:
 		var targets = $Area2D.get_overlapping_bodies() + $Area2D.get_overlapping_areas()
 		for target in targets:
 			if target.is_in_group("player"):
 				var actual_player = target if target is Player else target.get_parent()
 				if actual_player and actual_player.has_method("apply_damage"):
 					hit_player(actual_player)
-					break
+					return
 
 	if chases_player and player:
 		var distance = global_position.distance_to(player.global_position)
@@ -67,15 +76,31 @@ func _physics_process(delta: float) -> void:
 func hit_player(target):
 	if target.has_method("apply_damage"):
 		can_attack = false
+		velocity = Vector2.ZERO
+		attack_position = global_position # Salviamo la posizione esatta in cui attacca
 		
-		var knockback_dir = (global_position - target.global_position).normalized()
-		global_position += knockback_dir * 15.0
+		# Determiniamo la direzione dell'attacco per l'animazione
+		var dir_to_player = (target.global_position - global_position).normalized()
+		if animated_sprite_2d.has_method("play_attack_animation"):
+			animated_sprite_2d.play_attack_animation(dir_to_player)
 		
-		print(name, " ha colpito il giocatore!")
-		target.apply_damage(damage_to_player)
+		# Aspettiamo un brevissimo istante per far coincidere il danno con l'inizio dell'animazione
+		await get_tree().create_timer(0.1).timeout
 		
 		if get_tree() == null: return
+		
+		# Danno ad area: controlliamo tutti i bersagli nell'area hitbox
+		if $Area2D:
+			var targets = $Area2D.get_overlapping_bodies() + $Area2D.get_overlapping_areas()
+			for t in targets:
+				if t.is_in_group("player"):
+					var actual_player = t if t is Player else t.get_parent()
+					if actual_player and actual_player.has_method("apply_damage"):
+						actual_player.apply_damage(damage_to_player)
+		
+		# Aspettiamo il tempo di ricarica totale rimanendo fermi
 		await get_tree().create_timer(attack_cooldown).timeout
+		
 		if get_tree() != null:
 			can_attack = true
 

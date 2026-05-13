@@ -38,3 +38,16 @@ func play_death_animation():
 		play("death_animation_right")
 	else:
 		play("death_animation_left")
+
+func play_attack_animation(direction: Vector2):
+	if direction.x < 0:
+		is_facing_right = false
+		play("hit_left_animation")
+	elif direction.x > 0:
+		is_facing_right = true
+		play("hit_right_animation")
+	else:
+		if is_facing_right:
+			play("hit_right_animation")
+		else:
+			play("hit_left_animation")

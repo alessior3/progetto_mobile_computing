@@ -21,3 +21,10 @@ func play_idle_animation():
 # 4. Funzione per quando subisce danno (la collegheremo dopo)
 func play_hit_animation():
 	play("hit")
+
+func play_attack_animation(direction: Vector2):
+	if direction.x < 0:
+		flip_h = true
+	elif direction.x > 0:
+		flip_h = false
+	play("hit")
