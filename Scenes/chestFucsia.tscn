@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://c7rsi6wjhtosl"]
+
+[ext_resource type="Script" uid="uid://b8k2mdx8qg2p8" path="res://Scripts/chest.gd" id="1_gva77"]
+[ext_resource type="Texture2D" uid="uid://cfe5r7r0m22kv" path="res://Ninja Adventure - Asset Pack/Items/Treasure/Chest_fucsia.png" id="2_gva77"]
+[ext_resource type="AudioStream" uid="uid://mw0d38iwrrfs" path="res://Sounds/apertura_cassa.wav" id="3_yqwbd"]
+[ext_resource type="AudioStream" uid="uid://cne8eltlm6nj1" path="res://Sounds/chiusura_cassa.wav" id="4_qxwa2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfl1"]
+size = Vector2(16, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bagqn"]
+size = Vector2(14, 4)
+
+[node name="Chest" type="Area2D" unique_id=716899325]
+z_index = 2
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_gva77")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1861635381]
+texture = ExtResource("2_gva77")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2074264649]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_cjfl1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1435022935]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1069446767]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_bagqn")
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="." unique_id=396067791]
+stream = ExtResource("3_yqwbd")
+
+[node name="CloseSound" type="AudioStreamPlayer2D" parent="." unique_id=578789013]
+stream = ExtResource("4_qxwa2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

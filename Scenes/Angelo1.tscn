@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bqq2pdy2pqkrp"]
+
+[ext_resource type="Script" uid="uid://dnmkghaphpad3" path="res://Scripts/npc_1.gd" id="1_lxoxo"]
+[ext_resource type="Texture2D" uid="uid://dymwud1ty1rxp" path="res://Ninja Adventure - Asset Pack/angelo_dettagliato_bocca.png" id="2_lxoxo"]
+[ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_op0nk"]
+[ext_resource type="Texture2D" uid="uid://68bnnb3yewwj" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_alerted.png" id="4_7cy44"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u1uk"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op0nk"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cy44"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ak6t"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqof8"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0b1h"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2kc0"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx3nq"]
+atlas = ExtResource("2_lxoxo")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iccxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u1uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op0nk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cy44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ak6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqof8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0b1h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2kc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx3nq")
+}],
+"loop": true,
+"name": &"idle_an",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2oh3"]
+size = Vector2(193, 197)
+
+[node name="Angelo1" type="CharacterBody2D" unique_id=349992580]
+script = ExtResource("1_lxoxo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
+sprite_frames = SubResource("SpriteFrames_iccxi")
+animation = &"idle_an"
+frame_progress = 0.77501345
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=454772329]
+position = Vector2(0, 5.25)
+shape = ExtResource("3_op0nk")
+
+[node name="VisionArea" type="Area2D" parent="." unique_id=1940184636]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" unique_id=1178060263]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_n2oh3")
+
+[node name="ExclamationMark" type="Sprite2D" parent="." unique_id=2076566097]
+process_mode = 1
+z_index = 100
+position = Vector2(0, -42)
+texture = ExtResource("4_7cy44")
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
