@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://8irtyi2i27bh"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://hkq2k6b160hm" path="res://Resources/FloppyDisk/corrupted_floppy.jpg" id="2_texture"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = "corrupted_floppy"
+name = "Floppy Corrotto"
+texture = ExtResource("2_texture")
+max_stacks = 1
+description = "Un vecchio floppy disk da 3.5 pollici. È pieno di settori danneggiati (CRC Error). (Rimuovi il Magenta nell'importazione di Godot)"
+ground_visual_scale = Vector2(0.015, 0.015)

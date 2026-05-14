@@ -35,13 +35,35 @@ func _input(event: InputEvent) -> void:
 		enter_dungeon()
 
 func enter_dungeon() -> void:
+	# Controlliamo se il giocatore ha il floppy giusto nell'inventario persistente
+	var has_restored = false
+	var has_corrupted = false
+	
+	for item in Global.persistent_items:
+		if item and item.item_id == "restored_floppy":
+			has_restored = true
+			break
+		if item and item.item_id == "corrupted_floppy":
+			has_corrupted = true
+
+	if has_restored:
+		print("DEBUG (Mondo): Floppy valido rilevato! Accesso consentito.")
+		_perform_transition()
+	elif has_corrupted:
+		print("DEBUG (Mondo): Floppy corrotto rilevato.")
+		# Qui potresti far apparire un fumetto o un messaggio a schermo
+		# Per ora usiamo un print
+		# Se hai un sistema di dialoghi, chiamalo qui!
+	else:
+		print("DEBUG (Mondo): Nessun supporto di avvio trovato. Porta sigillata.")
+
+func _perform_transition() -> void:
 	print("DEBUG (Mondo): Salvataggio stato in corso...")
 	Global.save_game() 
 	
 	if current_player and current_player.has_node("Key"): 
 		current_player.get_node("Key").hide()
 	
-	# --- NUOVA RIGA: Diciamo al Global di farci guardare a Nord ---
 	Global.player_facing_dir = "up"
 	
 	print("DEBUG (Mondo): Caricamento scena: ", destination_scene)
