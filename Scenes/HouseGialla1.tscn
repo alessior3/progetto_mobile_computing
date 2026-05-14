@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dnpm0lw0yb2dm"]
+
+[ext_resource type="Script" uid="uid://dpgveycvnr1nv" path="res://Scripts/house_blu_1.gd" id="1_s52qa"]
+[ext_resource type="Texture2D" uid="uid://cna3nggyoexsp" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Yellow Buildings/House1.png" id="2_qfvgs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
+size = Vector2(80, 95)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u85mr"]
+size = Vector2(25, 35)
+
+[node name="HouseGialla1" type="Node2D" unique_id=948734644]
+script = ExtResource("1_s52qa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
+position = Vector2(0, -20)
+texture = ExtResource("2_qfvgs")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=678984241]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=540551866]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_o2j0i")
+metadata/_edit_lock_ = true
+
+[node name="DoorWay" type="Area2D" parent="." unique_id=1208213178]
+position = Vector2(-1, 33)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorWay" unique_id=645230459]
+position = Vector2(1.5, -2.5)
+shape = SubResource("RectangleShape2D_u85mr")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="DoorWay" to="." method="_on_door_way_body_entered"]
+[connection signal="body_exited" from="DoorWay" to="." method="_on_door_way_body_exited"]
