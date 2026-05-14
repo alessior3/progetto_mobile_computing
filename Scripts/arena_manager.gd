@@ -62,7 +62,7 @@ func start_arena():
 	if trigger_area:
 		trigger_area.queue_free() 
 	
-	print("Arena avviata! Attendiamo che il player entri...")
+	print("Arena avviata a pos: ", global_position, "! Attendiamo che il player entri...")
 	emit_signal("arena_started")
 	
 	if get_tree() == null: return
@@ -107,12 +107,15 @@ func start_wave():
 		finish_arena()
 		return
 		
-	print("Inizio ondata ", current_wave, " di ", waves_count)
-	enemies_alive = enemies_per_wave
+	print("DEBUG: Inizio ondata ", current_wave, " di ", waves_count)
+	enemies_alive = 0 # Iniziamo da 0 e contiamo solo quelli spawnati davvero
+	
+	if enemy_types.is_empty():
+		print("DEBUG: ERRORE! L'array enemy_types è VUOTO. Impossibile spawnare nemici.")
+		finish_arena()
+		return
 	
 	for i in range(enemies_per_wave):
-		if enemy_types.is_empty():
-			break
 			
 		var enemy_scene = enemy_types.pick_random() as PackedScene
 		if not enemy_scene: continue
@@ -121,14 +124,18 @@ func start_wave():
 		var spawn_pos = global_position
 		
 		if spawn_points.size() > 0:
-			spawn_pos = spawn_points.pick_random().global_position 
+			var point = spawn_points.pick_random()
+			spawn_pos = point.global_position 
+			print("DEBUG: Utilizzo SpawnPoint: ", point.name, " a pos: ", spawn_pos)
 		else:
+			print("DEBUG: Nessun SpawnPoint trovato. Calcolo posizione casuale nell'area ", random_spawn_area)
 			var valid_spawn = false
 			var attempts = 0
 			var space_state = get_world_2d().direct_space_state
 			
 			while not valid_spawn and attempts < 15:
-				var test_pos = global_position + Vector2(randf_range(-random_spawn_area.x, random_spawn_area.x), randf_range(-random_spawn_area.y, random_spawn_area.y))
+				var offset = Vector2(randf_range(-random_spawn_area.x, random_spawn_area.x), randf_range(-random_spawn_area.y, random_spawn_area.y))
+				var test_pos = global_position + offset
 				
 				var query = PhysicsPointQueryParameters2D.new()
 				query.position = test_pos
@@ -138,23 +145,32 @@ func start_wave():
 				if results.is_empty():
 					valid_spawn = true
 					spawn_pos = test_pos
-					
+					print("DEBUG: Posizione valida trovata al tentativo ", attempts, " con offset ", offset)
+				
 				attempts += 1
 				
 			if not valid_spawn:
+				print("DEBUG: ATTENZIONE! Nessuna posizione valida trovata dopo 15 tentativi. Uso global_position.")
 				spawn_pos = global_position
 		
+		enemy.tree_exited.connect(_on_enemy_died)
+		get_parent().add_child(enemy)
+		
+		# Configurazioni nemico
 		enemy.global_position = spawn_pos
 		enemy.add_to_group("arena_enemy")
-		
 		if "chases_player" in enemy:
 			enemy.chases_player = true
-		
-		enemy.tree_exited.connect(_on_enemy_died)
-		get_parent().call_deferred("add_child", enemy)
+			
+		enemies_alive += 1 
+		print("DEBUG: Nemico ", i+1, "/", enemies_per_wave, " spawnato a ", enemy.global_position)
 		
 		if get_tree() == null: return
 		await get_tree().create_timer(0.2).timeout
+		
+	if enemies_alive == 0:
+		print("DEBUG: ATTENZIONE! Nessun nemico spawnato nell'ondata. Salto all'ondata successiva...")
+		_on_enemy_died() # Forza il passaggio se lo spawn fallisce
 
 func _on_enemy_died():
 	if not arena_active or is_boss_arena: return # Se è un boss, ignoriamo questa funzione

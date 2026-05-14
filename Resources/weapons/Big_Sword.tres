@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://do6v1fa5kemth"]
 
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_g5vis"]
-[ext_resource type="Texture2D" uid="uid://dt8c2nddtlwv0" path="res://Ninja Adventure - Asset Pack/Items/Weapons/BigSword/SpriteInHand.png" id="2_fn3jj"]
-[ext_resource type="Texture2D" uid="uid://lii2uf2pjr5x" path="res://Ninja Adventure - Asset Pack/Items/Weapons/BigSword/Sprite.png" id="3_dy2mh"]
+[ext_resource type="Texture2D" uid="uid://bf0ggayhfi5mr" path="res://Ninja Adventure - Asset Pack/Items/Weapons/BigSword/SpriteInHand.png" id="2_fn3jj"]
+[ext_resource type="Texture2D" uid="uid://j7v14crgxra7" path="res://Ninja Adventure - Asset Pack/Items/Weapons/BigSword/Sprite.png" id="3_dy2mh"]
 
 [resource]
 script = ExtResource("1_g5vis")

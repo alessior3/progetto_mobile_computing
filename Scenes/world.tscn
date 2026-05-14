@@ -753,14 +753,6 @@ item_id = "30gold"
 inventory_item = ExtResource("18_0pcbe")
 amount = 30
 
-[node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
-z_index = 1
-position = Vector2(1372.3513, 942.02124)
-
-[node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
-position = Vector2(-2, -2)
-zoom = Vector2(3, 3)
-
 [node name="PlayerSpawnPoint2" type="Marker2D" parent="." unique_id=956475020]
 position = Vector2(400.14764, 1451.8782)
 scale = Vector2(0.99999994, 0.99999994)
@@ -769,40 +761,6 @@ scale = Vector2(0.99999994, 0.99999994)
 position = Vector2(361.29834, 1304.2623)
 
 [node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("19_axeuq")]
-
-[node name="radish" parent="." unique_id=1506209311 instance=ExtResource("15_hgpy0")]
-position = Vector2(501.15598, 780.8094)
-item_id = "radish"
-inventory_item = ExtResource("27_dt0r1")
-
-[node name="mucca" parent="." unique_id=534143819 instance=ExtResource("28_dt0r1")]
-position = Vector2(298.15207, 790.0431)
-
-[node name="seedwheat" parent="." unique_id=1336086392 instance=ExtResource("15_hgpy0")]
-position = Vector2(637.1284, 795.3767)
-item_id = "seedwheat"
-inventory_item = ExtResource("29_qebug")
-
-[node name="gallina" parent="." unique_id=349992580 instance=ExtResource("29_o2rbt")]
-position = Vector2(346.73, 793.4344)
-
-[node name="PickUpItem" parent="." unique_id=1009668383 instance=ExtResource("15_hgpy0")]
-position = Vector2(506.012, 745.8478)
-item_id = "pumpkin1"
-inventory_item = ExtResource("30_1vso6")
-
-[node name="radishSeed" parent="." unique_id=2055966257 instance=ExtResource("15_hgpy0")]
-z_index = -1
-y_sort_enabled = false
-position = Vector2(610.9052, 827.4248)
-item_id = "radishSeed"
-inventory_item = ExtResource("24_xbk3s")
-
-[node name="BombPlant" parent="." unique_id=79269094 instance=ExtResource("32_3ua1v")]
-position = Vector2(318.3433, 748.1842)
-
-[node name="Npc1" parent="." unique_id=988991927 instance=ExtResource("41_atqvy")]
-position = Vector2(299.1396, 986.6944)
 
 [node name="CastleBlu" parent="." unique_id=343642427 instance=ExtResource("41_w5giw")]
 position = Vector2(472, 860)
@@ -833,6 +791,47 @@ scale = Vector2(0.5, 0.5)
 [node name="MonasteryBlu" parent="." unique_id=711699145 instance=ExtResource("47_xcb5n")]
 position = Vector2(328, 1208)
 scale = Vector2(0.5, 0.5)
+
+[node name="radish" parent="." unique_id=1506209311 instance=ExtResource("15_hgpy0")]
+position = Vector2(501.15598, 780.8094)
+item_id = "radish"
+inventory_item = ExtResource("27_dt0r1")
+
+[node name="player" parent="." unique_id=1874989163 instance=ExtResource("4_o06y3")]
+position = Vector2(1372.3513, 942.02124)
+
+[node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
+position = Vector2(-2, -2)
+zoom = Vector2(3, 3)
+
+[node name="mucca" parent="." unique_id=534143819 instance=ExtResource("28_dt0r1")]
+position = Vector2(298.15207, 790.0431)
+
+[node name="seedwheat" parent="." unique_id=1336086392 instance=ExtResource("15_hgpy0")]
+position = Vector2(637.1284, 795.3767)
+item_id = "seedwheat"
+inventory_item = ExtResource("29_qebug")
+
+[node name="gallina" parent="." unique_id=349992580 instance=ExtResource("29_o2rbt")]
+position = Vector2(346.73, 793.4344)
+
+[node name="PickUpItem" parent="." unique_id=1009668383 instance=ExtResource("15_hgpy0")]
+position = Vector2(506.012, 745.8478)
+item_id = "pumpkin1"
+inventory_item = ExtResource("30_1vso6")
+
+[node name="radishSeed" parent="." unique_id=2055966257 instance=ExtResource("15_hgpy0")]
+z_index = -1
+y_sort_enabled = false
+position = Vector2(610.9052, 827.4248)
+item_id = "radishSeed"
+inventory_item = ExtResource("24_xbk3s")
+
+[node name="BombPlant" parent="." unique_id=79269094 instance=ExtResource("32_3ua1v")]
+position = Vector2(318.3433, 748.1842)
+
+[node name="Npc1" parent="." unique_id=988991927 instance=ExtResource("41_atqvy")]
+position = Vector2(299.1396, 986.6944)
 
 [node name="Axe" parent="." unique_id=1693786489 instance=ExtResource("15_hgpy0")]
 position = Vector2(328.27646, 1299.4067)

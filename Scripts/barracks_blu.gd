@@ -17,5 +17,6 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 
 func enter():
 	Global.player_pos = player.global_position
+	Global.last_world_scene = get_tree().current_scene.scene_file_path
 	# Utilizziamo la transition o il cambio scena normale verso lo shop
 	TransitionChangeManager.change_scene("res://Scenes/shop_scene.tscn")

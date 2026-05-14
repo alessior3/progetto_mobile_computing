@@ -1708,15 +1708,15 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_kpojm")
 sources/1 = SubResource("TileSetAtlasSource_i5gjx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5iu76"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emywk"]
 resource_local_to_scene = true
 size = Vector2(225, 170)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy8b2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2pj8"]
 resource_local_to_scene = true
 size = Vector2(578, 530)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8otlg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81ay8"]
 resource_local_to_scene = true
 size = Vector2(356, 623)
 
@@ -1747,8 +1747,7 @@ tile_map_data = PackedByteArray("AAAQAPv/AAAVAAEAAAARAPv/AAAVAAEAAAASAPv/AAAVAAE
 tile_set = SubResource("TileSet_hjqul")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_k2pb7")]
-z_index = 1
-position = Vector2(1171, -721)
+position = Vector2(293, 11)
 god_mode = true
 metadata/_edit_group_ = true
 
@@ -1777,7 +1776,6 @@ doors = [NodePath("../ArenaDoor"), NodePath("../ArenaDoor2"), NodePath("../Arena
 position = Vector2(2, 167.5)
 
 [node name="ArenaDoor" parent="." unique_id=732457232 instance=ExtResource("1_axtet")]
-z_index = 1
 position = Vector2(248, -52)
 
 [node name="CollisionShape2D" parent="ArenaDoor" index="0" unique_id=600633020]
@@ -1790,7 +1788,6 @@ position = Vector2(-1, 1)
 position = Vector2(-4, 0)
 
 [node name="ArenaDoor2" parent="." unique_id=1739821196 instance=ExtResource("1_axtet")]
-z_index = 1
 position = Vector2(264, -52)
 
 [node name="CollisionShape2D" parent="ArenaDoor2" index="0" unique_id=600633020]
@@ -1800,7 +1797,6 @@ position = Vector2(-1, 2.125)
 position = Vector2(-1, 1)
 
 [node name="ArenaDoor3" parent="." unique_id=1707723841 instance=ExtResource("1_axtet")]
-z_index = 1
 position = Vector2(280, -52)
 
 [node name="CollisionShape2D" parent="ArenaDoor3" index="0" unique_id=600633020]
@@ -1810,7 +1806,6 @@ position = Vector2(-1, 2.125)
 position = Vector2(-1, 1)
 
 [node name="ArenaDoor4" parent="." unique_id=1707699063 instance=ExtResource("1_axtet")]
-z_index = 1
 position = Vector2(296, -52)
 
 [node name="CollisionShape2D" parent="ArenaDoor4" index="0" unique_id=600633020]
@@ -1820,7 +1815,6 @@ position = Vector2(-1, 2.125)
 position = Vector2(-1, 1)
 
 [node name="ArenaDoor5" parent="." unique_id=1416937392 instance=ExtResource("1_axtet")]
-z_index = 1
 position = Vector2(312, -52)
 
 [node name="CollisionShape2D" parent="ArenaDoor5" index="0" unique_id=600633020]
@@ -1830,7 +1824,6 @@ position = Vector2(-1, 2.125)
 position = Vector2(-1, 1)
 
 [node name="ArenaDoor6" parent="." unique_id=758748419 instance=ExtResource("1_axtet")]
-z_index = 1
 position = Vector2(328, -52)
 
 [node name="CollisionShape2D" parent="ArenaDoor6" index="0" unique_id=600633020]
@@ -1840,7 +1833,6 @@ position = Vector2(-1, 2.125)
 position = Vector2(-1, 1)
 
 [node name="oggetti" type="TileMapLayer" parent="." unique_id=594644060]
-z_index = 1
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAHAOr/AQAeAAwAAAAbAOr/AQAeAAwAAAAbAPT/AQAeAAwAAAAHAPT/AQAeAAwAAAANAOn/AAAFAAQAAAAQAOn/AAAFAAQAAAATAOn/AAAFAAQAAAAWAOn/AAAFAAQAAAADAOP/AAAGAAEAAAAgAOP/AAAGAAEAAAALAO//AAAAAAwAAAAYAO//AAAAAAwAAAAiAOX/AAAMAAQAAAABAOX/AAAMAAQAAAABAPr/AAAMAAQAAAAiAPr/AAAMAAQAAABFAM//AAAGAAEAAABJAM//AAAGAAEAAABBANT/AAAAAAQAAABBANf/AAAAAAYAAABNANf/AAAAAAYAAABBANr/AAAAAAgAAABNANT/AAAAAAgAAABNANr/AAAAAAQAAAApAOn/AAAJAAcAAAAkAAwAAAAKAAkAAAAZAAsAAAALAAcAAAAKAAsAAAALAAcAAAAvAP//AAAKAAkAAABSANH/AAABAAEAAAA9ANH/AAABAAEAAABCAOH/AQAeAAwAAABNAOH/AQAeAAwAAAAsABAAAQAeAAwAAAADAA8AAQAeAAwAAAA=")
 tile_set = SubResource("TileSet_rdt70")
@@ -1851,7 +1843,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone" index="0"]
 position = Vector2(432.5, 120)
-shape = SubResource("RectangleShape2D_5iu76")
+shape = SubResource("RectangleShape2D_emywk")
 
 [node name="StickyZone2" parent="." unique_id=1050859042 instance=ExtResource("8_axtet")]
 position = Vector2(366, 157)
@@ -1859,7 +1851,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone2" index="0"]
 position = Vector2(-91, 44)
-shape = SubResource("RectangleShape2D_gy8b2")
+shape = SubResource("RectangleShape2D_k2pj8")
 
 [node name="StickyZone3" parent="." unique_id=1485841544 instance=ExtResource("8_axtet")]
 position = Vector2(837, 34)
@@ -1867,7 +1859,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone3" index="0"]
 position = Vector2(-43, -165.5)
-shape = SubResource("RectangleShape2D_8otlg")
+shape = SubResource("RectangleShape2D_81ay8")
 
 [node name="BinaryLogicManager" parent="." unique_id=2019978947 instance=ExtResource("10_4x36e")]
 z_index = 1

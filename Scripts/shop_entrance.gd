@@ -12,4 +12,5 @@ func _on_body_entered(body: Node2D) -> void:
 
 	if body.name == "player" or body.name == "Player":
 		Global.player_pos = body.global_position
+		Global.last_world_scene = get_tree().current_scene.scene_file_path
 		TransitionChangeManager.change_scene("res://Scenes/shop_scene.tscn")

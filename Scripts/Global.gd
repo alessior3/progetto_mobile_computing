@@ -30,6 +30,8 @@ var from_percorso2_to_villaggio3: bool = false
 var from_villaggio3_to_percorso2: bool = false
 var from_grotta2_to_dungeon2: bool = false
 
+var last_world_scene: String = ""
+
 var google_web_client_id = "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com"
 
 func save_game():

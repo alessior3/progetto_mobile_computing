@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://b8og5wiq7ok71"]
 
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_ly3om"]
-[ext_resource type="Texture2D" uid="uid://dfjy0yd36k8vw" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Lance/SpriteInHand.png" id="2_kthj5"]
-[ext_resource type="Texture2D" uid="uid://cfh4bfenvnbbt" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Lance/Sprite.png" id="3_jh4cg"]
+[ext_resource type="Texture2D" uid="uid://df86mqo6lq6dx" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Lance/SpriteInHand.png" id="2_kthj5"]
+[ext_resource type="Texture2D" uid="uid://bkq6pli56a651" path="res://Ninja Adventure - Asset Pack/Items/Weapons/Lance/Sprite.png" id="3_jh4cg"]
 
 [resource]
 script = ExtResource("1_ly3om")
