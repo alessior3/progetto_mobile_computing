@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bclvs3krm7k6b" path="res://Scenes/shopping_ui.tscn" id="5_smeti"]
 [ext_resource type="Resource" uid="uid://jb6410dqkqbs" path="res://Resources/seedbeetroot/seedbeetroot.tres" id="5_y5wmp"]
 [ext_resource type="Resource" uid="uid://b3vahtq40jmq" path="res://Resources/seedcabbage/seedcabbage.tres" id="6_dbjba"]
+[ext_resource type="Resource" uid="uid://8irtyi2i27bh" path="res://Resources/FloppyDisk/corrupted_floppy.tres" id="7_oqvu1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8uomo"]
 atlas = ExtResource("2_4jl3x")
@@ -68,7 +69,7 @@ radius = 39.0
 
 [node name="merchant2" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_4jb8k")
-items_to_buy = Array[ExtResource("2_smeti")]([ExtResource("3_oqvu1"), ExtResource("4_187we"), ExtResource("5_y5wmp"), ExtResource("6_dbjba")])
+items_to_buy = Array[ExtResource("2_smeti")]([ExtResource("3_oqvu1"), ExtResource("4_187we"), ExtResource("5_y5wmp"), ExtResource("6_dbjba"), ExtResource("7_oqvu1")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 position = Vector2(0, -8)

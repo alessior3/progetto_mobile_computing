@@ -30,7 +30,10 @@ var from_percorso2_to_villaggio3: bool = false
 var from_villaggio3_to_percorso2: bool = false
 var from_grotta2_to_dungeon2: bool = false
 
-var last_world_scene: String = ""
+var last_world_scene: String = "res://Scenes/world.tscn"
+var has_received_floppy: bool = false
+var has_tried_cave: bool = false
+var has_paid_treasurer: bool = false
 
 var google_web_client_id = "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com"
 
@@ -45,7 +48,10 @@ func save_game():
 			"hand": persistent_hand,
 			"potions": persistent_potions,
 			"food": persistent_food,
-			"raccolti": collected_item_ids # Salvataggio lista nera
+			"raccolti": collected_item_ids, # Salvataggio lista nera
+			"has_received_floppy": has_received_floppy,
+			"has_tried_cave": has_tried_cave,
+			"has_paid_treasurer": has_paid_treasurer
 		}
 		file.store_var(data)
 		file.close()
@@ -65,6 +71,9 @@ func load_game() -> bool:
 		persistent_potions = data.get("potions", null)
 		persistent_food = data.get("food", null)
 		collected_item_ids = data.get("raccolti", []) 
+		has_received_floppy = data.get("has_received_floppy", false)
+		has_tried_cave = data.get("has_tried_cave", false)
+		has_paid_treasurer = data.get("has_paid_treasurer", false)
 		return true
 	return false
 

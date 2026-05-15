@@ -125,6 +125,16 @@ func _on_action_btn_pressed():
 		if inventory.has_gold(cost):
 			inventory.remove_gold(cost)
 			inventory.add_item(selected_item, selected_item.stacks)
+			
+			# AVVERTIMENTO SPECIALE FLOPPY
+			if selected_item.item_id == "corrupted_floppy":
+				if has_node("/root/DialogueManager"):
+					DialogueManager.show_message([
+						"MERCANTE: Ottima scelta!",
+						"Tieni presente però che quel supporto è molto vecchio.",
+						"Potrebbe avere dei settori danneggiati... spero funzioni!"
+					])
+			
 			items_to_buy.erase(selected_item)
 	elif current_mode == "SELL":
 		inventory.items.erase(selected_item)

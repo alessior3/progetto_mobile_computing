@@ -47,15 +47,21 @@ func enter_dungeon() -> void:
 			has_corrupted = true
 
 	if has_restored:
-		print("DEBUG (Mondo): Floppy valido rilevato! Accesso consentito.")
 		_perform_transition()
 	elif has_corrupted:
-		print("DEBUG (Mondo): Floppy corrotto rilevato.")
-		# Qui potresti far apparire un fumetto o un messaggio a schermo
-		# Per ora usiamo un print
-		# Se hai un sistema di dialoghi, chiamalo qui!
+		Global.has_tried_cave = true
+		if has_node("/root/DialogueManager"):
+			DialogueManager.show_message([
+				"SISTEMA: Supporto rilevato.",
+				"ERRORE CRC: Settori danneggiati nel settore 0.",
+				"Accesso negato. Ripristino richiesto presso il Mainframe."
+			])
 	else:
-		print("DEBUG (Mondo): Nessun supporto di avvio trovato. Porta sigillata.")
+		if has_node("/root/DialogueManager"):
+			DialogueManager.show_message([
+				"SISTEMA: Inserire supporto di avvio per sbloccare l'ingresso.",
+				"L'unità accetta Floppy Disk da 3.5 pollici."
+			])
 
 func _perform_transition() -> void:
 	print("DEBUG (Mondo): Salvataggio stato in corso...")

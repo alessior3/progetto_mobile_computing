@@ -10,8 +10,9 @@ class_name Merchant
 
 var can_trigger_merchant_ui = false
 
-# 0 = Tutto chiuso, 1 = Sto parlando, 2 = Negozio aperto
+# 0 = Tutto chiuso, 1 = Sto parlando, 2 = Negozio aperto, 3 = Dialogo Quest
 var stato_interazione = 0 
+var current_player: Player = null
 
 func _ready() -> void:
 	shopping_ui.items_to_buy = items_to_buy
@@ -22,6 +23,7 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
 		can_trigger_merchant_ui = true
+		current_player = body
 		if label:
 			label.visible = true
 
@@ -36,12 +38,10 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		if has_node("/root/DialogueManager"):
 			DialogueManager.hide()
 	
-func _process(delta: float) -> void:
-	# Controlla in modo super-preciso l'input
-	if Input.is_action_just_pressed("interact") and can_trigger_merchant_ui:
-		
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and can_trigger_merchant_ui:
 		if stato_interazione == 0:
-			# PASSO 1: Apro il dialogo
+			# PASSO 1: Dialogo normale
 			stato_interazione = 1
 			if has_node("/root/DialogueManager"):
 				DialogueManager.show_message(frase_mercante)
@@ -54,11 +54,8 @@ func _process(delta: float) -> void:
 				
 			shopping_ui.visible = true
 			shopping_ui.setup_buying_grid()
-			
-		elif stato_interazione == 2:
-			# PASSO 3: Negozio già aperto, ignoriamo il tasto interact
-			pass
-			
+
+func _process(delta: float) -> void:
 	# Tasto per chiudere il negozio e resettare tutto
 	if Input.is_action_just_pressed("ui_cancel") and shopping_ui.visible:
 		shopping_ui.visible = false
