@@ -4,6 +4,9 @@ extends Node2D
 @onready var spawn_point = $PlayerSpawnPoint
 
 func _ready():
+	if has_node("Loop"):
+		$Loop.body_entered.connect(_on_loop_body_entered)
+		
 	await get_tree().process_frame
 	
 	if player:
@@ -37,6 +40,27 @@ func _ready():
 		elif spawn_point:
 			target_pos = spawn_point.global_position
 			print("Player forzato su PlayerSpawnPoint: ", spawn_point.global_position)
+		
+		# Forza la posizione per 5 frame consecutivi per vincere contro la fisica
+		for i in range(5):
+			player.global_position = target_pos
+			player.position = target_pos
+			await get_tree().physics_frame
+		
+		# Resetta la camera
+		var camera = player.find_child("Camera2D", true, false)
+		if camera:
+			camera.reset_smoothing()
+			camera.force_update_scroll()
+
+func _on_loop_body_entered(body):
+	if body == player:
+		teleport_to_spawn()
+
+func teleport_to_spawn():
+	if player and spawn_point:
+		var target_pos = spawn_point.global_position
+		print("Player loop detected! Teleporting to: ", target_pos)
 		
 		# Forza la posizione per 5 frame consecutivi per vincere contro la fisica
 		for i in range(5):

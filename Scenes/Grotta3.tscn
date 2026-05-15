@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://t2wswktwwgto"]
+[gd_scene format=3 uid="uid://ci12xq1p80iba"]
 
-[ext_resource type="Texture2D" uid="uid://1s5lkfbcjohx" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/grotta3.png" id="1_7ygsr"]
-[ext_resource type="Script" uid="uid://d1nedceg6gom6" path="res://Scripts/grotta_2.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://ctyq5f4wcv6hy" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/PortaMarrone.png" id="3_iyq3s"]
+[ext_resource type="Script" uid="uid://d1nedceg6gom6" path="res://Scripts/grotta_2.gd" id="1_d31of"]
+[ext_resource type="Texture2D" uid="uid://od17o12io0fl" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/GrottaV.png" id="2_ed0rs"]
+[ext_resource type="Texture2D" uid="uid://bfsj02gnroepi" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/PortaViola.png" id="3_vhqqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
 size = Vector2(45, 36)
@@ -11,12 +11,12 @@ size = Vector2(45, 36)
 size = Vector2(21, 18)
 
 [node name="grotta2" type="Node2D" unique_id=948734644]
-script = ExtResource("1_script")
+script = ExtResource("1_d31of")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
 position = Vector2(-0.9999973, 2.6226044e-06)
 scale = Vector2(0.31250003, 0.34375006)
-texture = ExtResource("1_7ygsr")
+texture = ExtResource("2_ed0rs")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=678984241]
 visible = false
@@ -38,9 +38,9 @@ shape = SubResource("RectangleShape2D_u85mr")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="DoorWay" unique_id=51299384]
-position = Vector2(-1.9999995, 5.187499)
-scale = Vector2(0.1875, 0.18457036)
-texture = ExtResource("3_iyq3s")
+position = Vector2(-2.0000002, 2)
+scale = Vector2(0.15625001, 0.15722656)
+texture = ExtResource("3_vhqqa")
 
 [connection signal="body_entered" from="DoorWay" to="." method="_on_door_way_body_entered"]
 [connection signal="body_exited" from="DoorWay" to="." method="_on_door_way_body_exited"]
