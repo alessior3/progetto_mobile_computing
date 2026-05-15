@@ -158,3 +158,35 @@ func _on_load_request_completed(result, response_code, headers, body, http_node)
 			get_tree().change_scene_to_file(json["saved_scene"])
 	else:
 		emit_signal("load_response", false, "I dati salvati sono corrotti!")
+
+
+# --- SALVATAGGIO NEW GAME PLUS (POST-CREDITI) ---
+func save_new_game_plus(scene_path: String, spawn_pos: Vector2):
+	if Global.current_username == "":
+		print("ERRORE: Email utente vuota nel Global!")
+		return
+
+	var user_id = Global.current_username.replace(".", "_")
+	
+	# Creiamo i dati con l'inventario intatto, ma forziamo la posizione e la scena iniziale!
+	var data = {
+		"player_x": spawn_pos.x,
+		"player_y": spawn_pos.y,
+		"saved_scene": scene_path,
+		"oro": Global.persistent_gold,
+		"oggetti_zaino": serialize_inventory(Global.persistent_items),
+		"mano": serialize_item(Global.persistent_hand),
+		"pozioni": serialize_item(Global.persistent_potions),
+		"cibo": serialize_item(Global.persistent_food),
+		"raccolti": Global.collected_item_ids
+	}
+	
+	var http = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(_on_save_completed.bind(http))
+	
+	var url = database_url + "users/" + user_id + ".json"
+	var body = JSON.stringify(data)
+	var headers = PackedStringArray(["Content-Type: application/json"])
+	
+	http.request(url, headers, HTTPClient.METHOD_PUT, body)
