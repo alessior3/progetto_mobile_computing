@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bmxqggdjuxmfp" path="res://assets_percorsofinale/colonne_archi_tileset_64x64.png" id="2_cjrma"]
 [ext_resource type="Texture2D" uid="uid://f45asc33bf66" path="res://assets_percorsofinale/parete_marmo_oro_tileset_64x64.png" id="3_obsnd"]
 [ext_resource type="Texture2D" uid="uid://dcd2d1tjpuvd1" path="res://assets_percorsofinale/gold_wall_2ee2spritesheet 2.png" id="4_5qkpl"]
-[ext_resource type="Texture2D" uid="uid://31f5gusk7bik" path="res://Assets/Character/character-spritesheet_nuovo.png" id="5_2jo5s"]
+[ext_resource type="Texture2D" uid="uid://pldsy0ksicpj" path="res://Assets/Character/character-spritesheet_nuovo.png" id="5_2jo5s"]
+[ext_resource type="PackedScene" uid="uid://bqq2pdy2pqkrp" path="res://Scenes/Angelo1.tscn" id="7_ws8ae"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvvfs"]
 texture = ExtResource("1_4vdis")
@@ -573,5 +574,41 @@ autoplay = &"scorrimento_finale"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1036648737]
 color = Color(0, 0, 0, 1)
+
+[node name="Angelo1" parent="." unique_id=349992580 instance=ExtResource("7_ws8ae")]
+position = Vector2(-23, -2175)
+
+[node name="Angelo2" parent="." unique_id=1931270363 instance=ExtResource("7_ws8ae")]
+position = Vector2(233, -1864)
+
+[node name="Angelo3" parent="." unique_id=1697570054 instance=ExtResource("7_ws8ae")]
+position = Vector2(-24, -1537)
+
+[node name="Angelo4" parent="." unique_id=1624567882 instance=ExtResource("7_ws8ae")]
+position = Vector2(230, -1221)
+
+[node name="Angelo5" parent="." unique_id=331143909 instance=ExtResource("7_ws8ae")]
+position = Vector2(-23, -900)
+
+[node name="Angelo6" parent="." unique_id=273496823 instance=ExtResource("7_ws8ae")]
+position = Vector2(231, -583)
+
+[node name="Angelo7" parent="." unique_id=1266823666 instance=ExtResource("7_ws8ae")]
+position = Vector2(-25, -3458)
+
+[node name="Angelo8" parent="." unique_id=1320589340 instance=ExtResource("7_ws8ae")]
+position = Vector2(232, -3137)
+
+[node name="Angelo9" parent="." unique_id=2028277218 instance=ExtResource("7_ws8ae")]
+position = Vector2(-23, -2824)
+
+[node name="Angelo10" parent="." unique_id=921477590 instance=ExtResource("7_ws8ae")]
+position = Vector2(232, -2501)
+
+[node name="Angelo11" parent="." unique_id=1346202569 instance=ExtResource("7_ws8ae")]
+position = Vector2(-24, -4103)
+
+[node name="Angelo12" parent="." unique_id=747787280 instance=ExtResource("7_ws8ae")]
+position = Vector2(233, -3784)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
