@@ -10,12 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://cpl3otpqaqlwp" path="res://Scenes/HouseRed1.tscn" id="14_vnptf"]
 [ext_resource type="PackedScene" uid="uid://b6sq7nl1si6vq" path="res://Scenes/MonasteryRed.tscn" id="15_xabpj"]
 [ext_resource type="PackedScene" uid="uid://cifafmjtwh0x7" path="res://Scenes/TowerRed.tscn" id="16_qmgh0"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="24_gcgqp"]
+[ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="17_vnptf"]
+[ext_resource type="Resource" uid="uid://cfy8gqk8goif4" path="res://Resources/weapons/Axe.tres" id="18_xabpj"]
+[ext_resource type="Resource" uid="uid://do6v1fa5kemth" path="res://Resources/weapons/Big_Sword.tres" id="19_xabpj"]
+[ext_resource type="Texture2D" uid="uid://chc38heu2ftrs" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="24_gcgqp"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="25_yp5ne"]
-[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="26_ljjbl"]
+[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="26_ljjbl"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="27_dknkg"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="28_rmqie"]
-[ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="30_l5edf"]
+[ext_resource type="AudioStream" uid="uid://km3j2ju6xa5e" path="res://Sounds/game_sound.wav" id="30_l5edf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jwdyn"]
 texture = ExtResource("24_gcgqp")
@@ -792,6 +795,14 @@ position = Vector2(34.964245, 1113.916)
 
 [node name="UscitaVillaggio2" type="Marker2D" parent="." unique_id=363480012]
 position = Vector2(826.5186, 1207.1469)
+
+[node name="axe" parent="." unique_id=1473875551 instance=ExtResource("17_vnptf")]
+position = Vector2(481.73114, 1178.9833)
+inventory_item = ExtResource("18_xabpj")
+
+[node name="PickUpItem" parent="." unique_id=334701505 instance=ExtResource("17_vnptf")]
+position = Vector2(423.45718, 1169.2719)
+inventory_item = ExtResource("19_xabpj")
 
 [connection signal="body_entered" from="IngressoVillaggio" to="IngressoVillaggio" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaVillaggio" to="UscitaVillaggio" method="_on_body_entered"]

@@ -164,51 +164,59 @@ func _unhandled_input(event):
 		if (hand_item != null and hand_item.get("is_weapon") == true) or god_mode:
 			start_attack()
 
-# --- MODIFICATA: NUOVO SISTEMA DI ATTACCO MODULARE ---
+# --- MODIFICATA: SOLO POSIZIONAMENTO FISSO (SENZA ROTAZIONE TWEEN) ---
 func start_attack():
 	is_attacking = true
 	velocity = Vector2.ZERO
 	if has_node("AttackSound"):
 		$AttackSound.play()
-	# Usiamo l'animazione di IDLE di base, nascondendo le vecchie animazioni della spada!
-	play_anim(0)
-	
+		
+	var anim = $AnimatedSprite2D
 	var weapon = get_node_or_null("WeaponSprite")
 	
-	if weapon and weapon.visible:
-		var end_rot = 0
+	# 1. Avviamo l'animazione dell'omino (i tuoi nomi esatti)
+	if current_dir == "right":
+		anim.flip_h = false
+		anim.play("attack_right_side")
+	elif current_dir == "left":
+		anim.flip_h = false
+		anim.play("attack_left_side")
+	elif current_dir == "down":
+		anim.flip_h = false
+		anim.play("attack_front")
+	elif current_dir == "up":
+		anim.flip_h = false
+		anim.play("attack_back")
 		
+	# 2. Posizioniamo l'arma NELLA MANO senza farla ruotare o muovere
+	if weapon and weapon.visible:
+		# Prova coordinate per avvicinare l'arma alla mano giusta rispetto a prima
 		if current_dir == "right":
-			weapon.position = Vector2(8, 8)
-			weapon.rotation_degrees = 45 # Parte alzata
-			end_rot = 135              # Finisce abbassata (fendente in giù)
+			weapon.position = Vector2(10, 7) # Avvicinata e abbassata per la mano destra
+			weapon.rotation_degrees = -90    # Verticale fissa
 			weapon.z_index = 1
 		elif current_dir == "left":
-			weapon.position = Vector2(-8, 8)
-			weapon.rotation_degrees = -45 # Parte alzata (ruotata al contrario)
-			end_rot = -135              # Finisce abbassata
+			weapon.position = Vector2(-10, 7) # Idem a sinistra
+			weapon.rotation_degrees = 90     # Verticale fissa
 			weapon.z_index = 1
 		elif current_dir == "down":
-			weapon.position = Vector2(-5, 8)
-			weapon.rotation_degrees = 135
-			end_rot = 225
+			weapon.position = Vector2(1, 7) # Avanti vicino ai piedi
+			weapon.rotation_degrees = -180    # Punta giù fissa
 			weapon.z_index = 1
 		elif current_dir == "up":
-			weapon.position = Vector2(5, 0)
-			weapon.rotation_degrees = -45
-			end_rot = 45
+			weapon.position = Vector2(-5, -2) # Dietro la spalla
+			weapon.rotation_degrees = 0      # Punta su fissa
 			weapon.z_index = -1
 			
-		# Creiamo il fendente "magico" via codice
-		var tween = get_tree().create_tween()
-		tween.tween_property(weapon, "rotation_degrees", end_rot, 0.15)
-		await tween.finished
-	else:
-		# Se non hai un'arma (per sicurezza), aspetta solo il tempo dell'animazione
-		await get_tree().create_timer(0.15).timeout
+		# --- NO TWEEN QUI: L'arma si teletrasporta e sta ferma ---
+		
+	# 3. Usiamo un Timer fisso per sbloccare il player
+	await get_tree().create_timer(0.25).timeout
 		
 	apply_attack_damage()
 	is_attacking = false
+	
+	
 
 func apply_attack_damage():
 	var attack_damage = 1
@@ -255,10 +263,7 @@ func apply_attack_damage():
 					print("Player Attacca! Colpito: ", target.name, " Danno: ", attack_damage)
 					target.apply_damage(attack_damage)
 
-# --- MODIFICATA: AGGIORNAMENTO CONTINUO DELL'ARMA ---
 func _physics_process(delta):
-	
-		
 		
 	if is_dead: return
 	if not can_move:
@@ -268,18 +273,17 @@ func _physics_process(delta):
 		
 	var hand_item = Global.persistent_hand
 	
-	# GESTIONE VISIVA DEL WEAPON SPRITE
+	# GESTIONE VISIVA DEL WEAPON SPRITE (Sempre visibile se equipaggiata!)
 	var weapon_sprite = get_node_or_null("WeaponSprite")
 	if weapon_sprite:
 		if hand_item != null and hand_item.get("is_weapon") == true:
 			weapon_sprite.show()
-			# Usa la side_texture se esiste, altrimenti usa l'icona normale
 			if "side_texture" in hand_item and hand_item.side_texture != null:
 				weapon_sprite.texture = hand_item.side_texture
 			else:
 				weapon_sprite.texture = hand_item.texture
 				
-			# Aggiorniamo la posizione mentre si muove, MA SOLO se non sta attaccando
+			# Aggiorna la posizione fissa dell'arma SOLO se non stiamo attaccando
 			if not is_attacking:
 				update_weapon_position()
 		else:
@@ -298,23 +302,19 @@ func update_weapon_position():
 	if not weapon: return
 	
 	if current_dir == "right":
-		# Avvicinata (X più piccola, Y più bassa) e ruotata perché la lama punti in avanti/su
-		weapon.position = Vector2(1, 8) 
+		weapon.position = Vector2(8, 7) 
 		weapon.rotation_degrees = -90 
 		weapon.z_index = 1
 	elif current_dir == "left":
-		# Stessa cosa a sinistra, ma invertita
-		weapon.position = Vector2(-1, 8)
+		weapon.position = Vector2(-8, 7)
 		weapon.rotation_degrees = 90
 		weapon.z_index = 1
 	elif current_dir == "down":
-		# Quando guarda giù, la mettiamo vicino alla mano destra e la facciamo puntare giù/lato
-		weapon.position = Vector2(-5, 8)
+		weapon.position = Vector2(5, 6)
 		weapon.rotation_degrees = -180
 		weapon.z_index = 1
 	elif current_dir == "up":
-		# Quando guarda su, la mettiamo dietro la schiena (z_index = -1) e la facciamo puntare in alto
-		weapon.position = Vector2(5, 0)
+		weapon.position = Vector2(-5, -2)
 		weapon.rotation_degrees = 180
 		weapon.z_index = -1
 
