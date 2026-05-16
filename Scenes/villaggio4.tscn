@@ -1223,7 +1223,7 @@ position = Vector2(327.30518, 1212.0026)
 scale = Vector2(0.6, 0.6)
 
 [node name="MonasteryViola" parent="." unique_id=863259736 instance=ExtResource("16_4yjl5")]
-position = Vector2(506.0119, 795.37683)
+position = Vector2(502.12698, 801.2038)
 scale = Vector2(0.6, 0.6)
 
 [node name="BarracksViola" parent="." unique_id=1032344357 instance=ExtResource("17_5r6st")]
@@ -1233,7 +1233,5 @@ scale = Vector2(0.6, 0.6)
 [node name="ArcheryViola2" parent="." unique_id=1455734842 instance=ExtResource("13_53m83")]
 position = Vector2(748.82, 942.99255)
 scale = Vector2(0.6, 0.6)
-
-[connection signal="body_entered" from="IngressoVillaggio5" to="IngressoVillaggio5" method="_on_body_entered"]
 
 [connection signal="body_entered" from="IngressoVillaggio5" to="IngressoVillaggio5" method="_on_body_entered"]

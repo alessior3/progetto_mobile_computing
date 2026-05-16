@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://xh25ovogholm"]
+
+[ext_resource type="Texture2D" uid="uid://hjglkn8ev18p" path="res://Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/bonfire_prop_lit_anim_strip_5.png" id="1_ohn7c"]
+[ext_resource type="Texture2D" uid="uid://0pypmhadsdfc" path="res://Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/bonfire_prop_lit_anim_strip_23.png" id="2_g7y87"]
+[ext_resource type="Script" path="res://Scripts/fuoco_campeggio.gd" id="3_script"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7y87"]
+atlas = ExtResource("1_ohn7c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d63s8"]
+atlas = ExtResource("1_ohn7c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f04ao"]
+atlas = ExtResource("1_ohn7c")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxw67"]
+atlas = ExtResource("1_ohn7c")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bardy"]
+atlas = ExtResource("1_ohn7c")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dj5o"]
+atlas = ExtResource("2_g7y87")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iccxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7y87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d63s8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f04ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxw67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bardy")
+}],
+"loop": true,
+"name": &"FuocoAcceso_an",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dj5o")
+}],
+"loop": true,
+"name": &"FuocoSpento_an",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ohn7c"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7y87"]
+radius = 16.0
+
+[node name="FuocoCampeggio" type="CharacterBody2D" unique_id=349992580]
+script = ExtResource("3_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
+sprite_frames = SubResource("SpriteFrames_iccxi")
+animation = &"FuocoSpento_an"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1969871067]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1944922828]
+shape = SubResource("CircleShape2D_ohn7c")
+
+[node name="areaAccendiFuoco" type="Area2D" parent="." unique_id=1050404048]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaAccendiFuoco" unique_id=775825868]
+shape = SubResource("CircleShape2D_g7y87")
