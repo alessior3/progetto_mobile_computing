@@ -164,7 +164,7 @@ func _unhandled_input(event):
 		if (hand_item != null and hand_item.get("is_weapon") == true) or god_mode:
 			start_attack()
 
-# --- MODIFICATA: SOLO POSIZIONAMENTO FISSO (SENZA ROTAZIONE TWEEN) ---
+# --- MODIFICATA: SISTEMA ANIMAZIONI DI ATTACCO DEDICATE ---
 func start_attack():
 	is_attacking = true
 	velocity = Vector2.ZERO
@@ -172,51 +172,45 @@ func start_attack():
 		$AttackSound.play()
 		
 	var anim = $AnimatedSprite2D
-	var weapon = get_node_or_null("WeaponSprite")
-	
-	# 1. Avviamo l'animazione dell'omino (i tuoi nomi esatti)
-	if current_dir == "right":
-		anim.flip_h = false
-		anim.play("attack_right_side")
-	elif current_dir == "left":
-		anim.flip_h = false
-		anim.play("attack_left_side")
-	elif current_dir == "down":
-		anim.flip_h = false
-		anim.play("attack_front")
-	elif current_dir == "up":
-		anim.flip_h = false
-		anim.play("attack_back")
 		
-	# 2. Posizioniamo l'arma NELLA MANO senza farla ruotare o muovere
-	if weapon and weapon.visible:
-		# Prova coordinate per avvicinare l'arma alla mano giusta rispetto a prima
-		if current_dir == "right":
-			weapon.position = Vector2(10, 7) # Avvicinata e abbassata per la mano destra
-			weapon.rotation_degrees = -90    # Verticale fissa
-			weapon.z_index = 1
-		elif current_dir == "left":
-			weapon.position = Vector2(-10, 7) # Idem a sinistra
-			weapon.rotation_degrees = 90     # Verticale fissa
-			weapon.z_index = 1
-		elif current_dir == "down":
-			weapon.position = Vector2(1, 7) # Avanti vicino ai piedi
-			weapon.rotation_degrees = -180    # Punta giù fissa
-			weapon.z_index = 1
-		elif current_dir == "up":
-			weapon.position = Vector2(-5, -2) # Dietro la spalla
-			weapon.rotation_degrees = 0      # Punta su fissa
-			weapon.z_index = -1
+	# Capiamo quale arma ha in mano leggendo il suo nome
+	var weapon_prefix = ""
+	var hand_item = Global.persistent_hand
+	if hand_item and hand_item.get("is_weapon"):
+		var w_name = hand_item.name.to_lower() 
+		
+		if "axe" in w_name or "ascia" in w_name:
+			weapon_prefix = "axe_"
+		elif "bigsword" in w_name or "spadone" in w_name:
+			weapon_prefix = "bigsword_"
+		elif "sword" in w_name or "spada" in w_name:
+			weapon_prefix = "sword_"
+		elif "lance" in w_name or "lancia" in w_name:
+			weapon_prefix = "lance_"
 			
-		# --- NO TWEEN QUI: L'arma si teletrasporta e sta ferma ---
+	# Costruiamo il nome dell'animazione esatta
+	var anim_name = ""
+	if weapon_prefix == "":
+		if current_dir == "right": anim_name = "attack_right_side"
+		elif current_dir == "left": anim_name = "attack_left_side"
+		elif current_dir == "down": anim_name = "attack_front"
+		elif current_dir == "up": anim_name = "attack_back"
+	else:
+		if current_dir == "right": anim_name = "attack_" + weapon_prefix + "right"
+		elif current_dir == "left": anim_name = "attack_" + weapon_prefix + "left"
+		elif current_dir == "down": anim_name = "attack_" + weapon_prefix + "front"
+		elif current_dir == "up": anim_name = "attack_" + weapon_prefix + "back"
 		
-	# 3. Usiamo un Timer fisso per sbloccare il player
-	await get_tree().create_timer(0.25).timeout
+	# Facciamo partire l'animazione
+	anim.flip_h = false
+	anim.play(anim_name)
+		
+	# LA SOLUZIONE ALL'ANIMAZIONE TAGLIATA:
+	# Invece di un timer, aspettiamo la fine naturale dell'animazione!
+	await anim.animation_finished
 		
 	apply_attack_damage()
 	is_attacking = false
-	
-	
 
 func apply_attack_damage():
 	var attack_damage = 1
@@ -264,7 +258,6 @@ func apply_attack_damage():
 					target.apply_damage(attack_damage)
 
 func _physics_process(delta):
-		
 	if is_dead: return
 	if not can_move:
 		velocity = Vector2.ZERO
@@ -273,22 +266,14 @@ func _physics_process(delta):
 		
 	var hand_item = Global.persistent_hand
 	
-	# GESTIONE VISIVA DEL WEAPON SPRITE (Sempre visibile se equipaggiata!)
+	# LA SOLUZIONE ALL'ARMA VISIBILE:
+	# Togliamo tutta la logica che mostrava il WeaponSprite. 
+	# Se il nodo esiste ancora nella scena, lo forziamo a stare nascosto.
 	var weapon_sprite = get_node_or_null("WeaponSprite")
 	if weapon_sprite:
-		if hand_item != null and hand_item.get("is_weapon") == true:
-			weapon_sprite.show()
-			if "side_texture" in hand_item and hand_item.side_texture != null:
-				weapon_sprite.texture = hand_item.side_texture
-			else:
-				weapon_sprite.texture = hand_item.texture
-				
-			# Aggiorna la posizione fissa dell'arma SOLO se non stiamo attaccando
-			if not is_attacking:
-				update_weapon_position()
-		else:
-			weapon_sprite.hide()
+		weapon_sprite.hide()
 	
+	# Manteniamo solo la logica della luce della torcia (se serve)
 	if has_node("TorchLight"):
 		$TorchLight.visible = (hand_item != null and hand_item.name == "Torch" or hand_item != null and hand_item.name == "Torcia")
 	
