@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cqlhk6bivmi6k"]
+
+[ext_resource type="Texture2D" uid="uid://d1xqfuv6w3tmk" path="res://Assets/Modern tiles_Free/Characters_free/Adam_idle_anim_16x16.png" id="1_tmyhj"]
+[ext_resource type="Script" path="res://Scripts/smanettone.gd" id="2_script"]
+[ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_rl6og"]
+[ext_resource type="Texture2D" uid="uid://68bnnb3yewwj" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_alerted.png" id="4_kfk0d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vldg5"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(288, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iccxi"]
+atlas = ExtResource("1_tmyhj")
+region = Rect2(288, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iccxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vldg5")
+}],
+"loop": true,
+"name": &"idle_front",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2oh3"]
+size = Vector2(64, 64)
+
+[node name="Treasurer" type="CharacterBody2D"]
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iccxi")
+animation = &"idle_front"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5.25)
+shape = ExtResource("3_rl6og")
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_n2oh3")
+
+[node name="ExclamationMark" type="Sprite2D" parent="."]
+z_index = 100
+position = Vector2(0, -12)
+texture = ExtResource("4_kfk0d")
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]

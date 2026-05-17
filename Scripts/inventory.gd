@@ -10,6 +10,7 @@ signal gold_changed(new_amount: int)
 @onready var equipped_sprite: Sprite2D = get_node_or_null("../EquippedSprite") 
 
 @export var on_screen_ui: OnScreenUi 
+@export var default_items: Array[InventoryItem] = []
 
 # PRELOAD DELLA SCENA DA DROPPARE (Verifica che il percorso sia corretto!)
 const PICK_UP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
@@ -22,6 +23,15 @@ func _ready() -> void:
 	# 1. CARICAMENTO DATI: Riprendiamo tutto dal Global
 	gold = Global.persistent_gold
 	items = Global.persistent_items
+	
+	# Se è la prima volta che avviamo il gioco, carichiamo gli oggetti configurati nell'editor
+	if Global.is_first_start and default_items.size() > 0:
+		Global.is_first_start = false
+		for item in default_items:
+			if item:
+				var item_copy = item.duplicate()
+				var amt = item_copy.stacks if item_copy.stacks > 0 else 1
+				add_item(item_copy, amt)
 	
 	# 2. TEMPISTICA: Aspettiamo un frame per assicurarci che la UI sia pronta
 	await get_tree().process_frame

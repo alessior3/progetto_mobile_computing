@@ -6,6 +6,7 @@ var current_username = "Giocatore Sconosciuto"
 var persistent_health: int = 100
 var persistent_gold: int = 0
 var persistent_items: Array[InventoryItem] = []
+var is_first_start: bool = true
 
 # ID degli oggetti già raccolti per non farli riapparire
 var collected_item_ids: Array[String] = [] 

@@ -3,6 +3,7 @@ extends CanvasLayer
 signal dialogue_finished
 
 @onready var text_label = $TextureRect/Panel/Label 
+@onready var name_label = $NameLabel
 @onready var background = $TextureRect 
 
 var can_skip: bool = false
@@ -11,32 +12,50 @@ var can_skip: bool = false
 var pages: Array = []
 var current_page: int = 0
 var current_tween: Tween
+var current_speaker: String = ""
 
 func _ready():
 	hide() 
+	
+	# Forza la configurazione della label del nome a runtime in modo impermeabile ai bug di cache di Godot!
+	var settings = LabelSettings.new()
+	settings.font_size = 17
+	settings.font_color = Color(0.98, 0.96, 0.9, 1)
+	settings.outline_size = 4
+	settings.outline_color = Color(0.08, 0.05, 0.03, 1)
+	
+	name_label.label_settings = settings
+	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	
+	# Centratura pixel-perfect orizzontale e verticale basata sulla targhetta originale
+	name_label.offset_left = 22.0
+	name_label.offset_right = 142.0
+	name_label.offset_top = -116.0
+	name_label.offset_bottom = -96.0
 
-# Ora accetta sia una stringa singola che un Array di stringhe!
-func show_message(dialogue_data):
+# Accetta il testo del dialogo e opzionalmente il nome del parlante!
+func show_message(dialogue_data, speaker: String = ""):
 	print("--- DEBUG DIALOGO ---")
 	print("Dato ricevuto dall'NPC: ", dialogue_data)
+	print("Parlante ricevuto: ", speaker)
 	
-	# In Godot 4, 'is' è molto più infallibile di 'typeof()' per riconoscere gli Array
 	if dialogue_data is String:
 		pages = [dialogue_data]
-		print("Risultato: Godot lo sta ancora leggendo come SINGOLA STRINGA (Pagina unica)")
 	elif dialogue_data is Array:
 		pages = dialogue_data
-		print("Risultato: Godot lo sta leggendo correttamente come ARRAY (Più pagine)")
 	else:
 		return
 		
 	current_page = 0
 	can_skip = false
+	current_speaker = speaker
 	
-	# --- LA MAGIA FORZATA ---
-	# Obblighiamo Godot ad applicare l'andata a capo e l'allineamento in alto da codice!
+	# Obblighiamo Godot ad applicare l'andata a capo e la centratura verticale da codice!
 	text_label.autowrap_mode = TextServer.AUTOWRAP_WORD
-	text_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+	text_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	
 	# 1. Blocchiamo il player
 	var player = get_tree().get_first_node_in_group("player")
@@ -57,8 +76,26 @@ func show_message(dialogue_data):
 func play_current_page():
 	can_skip = false
 	
-	# 2. Prepariamo il testo
-	text_label.text = pages[current_page]
+	var page_text = pages[current_page]
+	var speaker_name = current_speaker
+	var dialogue_text = page_text
+	
+	# Fallback intelligente: se non c'è un nome esplicito ma c'è un prefisso "Nome:", lo estrae
+	if speaker_name == "":
+		var colon_idx = page_text.find(":")
+		if colon_idx != -1 and colon_idx < 25:
+			speaker_name = page_text.left(colon_idx).strip_edges()
+			dialogue_text = page_text.substr(colon_idx + 1).strip_edges()
+		
+	if speaker_name != "":
+		name_label.text = speaker_name
+		name_label.show()
+	else:
+		name_label.text = ""
+		name_label.hide()
+	
+	# 2. Prepariamo il testo del dialogo
+	text_label.text = dialogue_text
 	text_label.visible_characters = 0
 	
 	# Stoppiamo la vecchia animazione se clicchi molto velocemente

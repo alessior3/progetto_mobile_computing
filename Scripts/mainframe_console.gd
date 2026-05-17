@@ -30,6 +30,10 @@ func _input(event: InputEvent) -> void:
 		check_and_start_restore()
 
 func check_and_start_restore():
+	if not Global.has_paid_treasurer:
+		DialogueManager.show_message("ACCESSO NEGATO: Questo supercomputer è bloccato da password. Parla con Marcus Byte per sbloccarlo!", "Supercomputer")
+		return
+
 	var corrupted_item = null
 	for item in Global.persistent_items:
 		if item and item.item_id == "corrupted_floppy":
@@ -39,11 +43,11 @@ func check_and_start_restore():
 	if corrupted_item:
 		start_restoration()
 	else:
-		print("DEBUG (Mainframe): Nessun floppy corrotto rilevato. Inserire supporto.")
+		DialogueManager.show_message("ERRORE: Inserisci il Floppy Disk Corrotto nello slot del lettore floppy per iniziare il ripristino.", "Supercomputer")
 
 func start_restoration():
 	is_restoring = true
-	print("DEBUG (Mainframe): Avvio ripristino settori danneggiati... NON USCIRE DALLA STANZA!")
+	DialogueManager.show_message("RIPRISTINO IN CORSO: Rimanere fermi davanti al computer! Tempo stimato: 10 secondi. ATTENZIONE: Il computer sta scaldando come un dannato!", "Supercomputer")
 	
 	# Qui potresti attivare una barra di caricamento sulla UI del player
 	await get_tree().create_timer(restore_time).timeout
@@ -53,7 +57,7 @@ func start_restoration():
 
 func stop_restoration():
 	is_restoring = false
-	print("DEBUG (Mainframe): Connessione interrotta! Ripristino fallito.")
+	DialogueManager.show_message("ERRORE: Connessione interrotta! Ti sei allontanato dal computer prima che il ripristino fosse completato.", "Supercomputer")
 
 func complete_restoration():
 	# Sostituiamo l'oggetto nell'inventario
@@ -63,7 +67,7 @@ func complete_restoration():
 			break
 	
 	is_restoring = false
-	print("DEBUG (Mainframe): Ripristino completato! Ritirare il Floppy Ripristinato.")
+	DialogueManager.show_message("RIPRISTINO COMPLETATO: I settori danneggiati del Floppy Disk sono stati ripristinati correttamente! Ritira il supporto.", "Supercomputer")
 	# Notifica il sistema UI se necessario
 	if current_player and current_player.inventory:
 		current_player.inventory.inventory_ui.update_slots(Global.persistent_items)
