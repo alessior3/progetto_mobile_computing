@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-# --- IMPOSTAZIONI TESORIERE ---
+# --- IMPOSTAZIONI RE RETRO-NERD ---
 var is_talking: bool = false
 var player_in_range: bool = false
 var current_player: Player = null
 
 @export var full_price: int = 1000
 @export var discounted_price: int = 50
-@export var npc_name: String = "TESORIERE"
+@export var npc_name: String = "RE BYTE"
 
 # --- RIFERIMENTI AI NODI ---
 @onready var exclamation_mark = get_node_or_null("ExclamationMark")
@@ -17,7 +17,7 @@ func _ready():
 	if exclamation_mark:
 		exclamation_mark.visible = false
 	if anim:
-		anim.play("idle_front") # O l'animazione di default
+		anim.play("idle_front")
 
 func _on_vision_area_body_entered(body):
 	if body is Player:
@@ -40,34 +40,33 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func start_dialogue():
 	is_talking = true
-	var dm = get_node_or_null("/root/DialogueManager")
+	var dm = DialogueManager
 	if not dm: 
 		is_talking = false
 		return
 		
 	if Global.has_paid_treasurer:
-		dm.show_message(npc_name + ": Il pagamento è registrato nei log. Puoi accedere al Mainframe. Fa' attenzione al calore laggiù.")
+		dm.show_message(npc_name + ": Ah, il mio SysAdmin preferito! Il Mainframe è online. Cerca di non causare un Kernel Panic là dentro.")
 		await dm.dialogue_finished
 		is_talking = false
 		return
 
 	# Logica sconto: Il Cavolfiore (Cauliflower) dà il buff "discount"
-	# Controlliamo il buff del player (cariche di sconto attive)
-	var has_discount = current_player.discount_charges > 0
+	var has_discount = current_player and current_player.get("discount_charges") != null and current_player.discount_charges > 0
 	var price = discounted_price if has_discount else full_price
 	
 	if has_discount:
 		dm.show_message([
-			npc_name + ": Oh! Uhm... emani un'aura di... efficienza agronomica. È l'effetto del Cavolfiore, vero?",
-			"Raramente vedo qualcuno così ben nutrito di questi tempi. Quel vigore bio-organico mi ha messo di buon umore.",
-			"Per un esperto di 'hardware naturale' come te, farò un prezzo di favore: " + str(price) + " ori invece di " + str(full_price) + ".",
-			"Vuoi procedere con l'autorizzazione all'accesso della sala server?"
+			npc_name + ": FERMO! Aspetta... questo profumo... è Cavolfiore fresco?",
+			"Per i circuiti di un Commodore 64! Quel pattern di crescita frattale del cavolfiore è identico all'architettura dei miei sogni!",
+			"Vedo che anche tu apprezzi l'hardware organico di alta qualità. Solo per oggi, ti darò l'accesso Root per soli " + str(price) + " ori.",
+			"È un vero affare, praticamente un Abandonware! Vuoi procedere con l'upload dei fondi?"
 		])
 	else:
 		dm.show_message([
-			npc_name + ": Benvenuto al nodo centrale del Castello Blu. Io gestisco le risorse per il mantenimento del sistema.",
-			"L'accesso al Mainframe richiede un'autorizzazione di Livello 0 e una tassa di manutenzione di " + str(price) + " ori.",
-			"Sono tempi duri per la tecnologia nostalgia: i condensatori da 3.5 pollici sono diventati rarissimi!"
+			npc_name + ": ALT! Stai cercando di fare un'intrusione non autorizzata nel mio dominio magnetico?",
+			"Questo castello gira su un sistema operativo a 8-bit molto delicato. L'accesso alla sala server richiede un contributo di " + str(price) + " ori per i nuovi condensatori.",
+			"Torna quando avrai abbastanza metallo, o se trovi qualcosa che stimoli la mia CPU reale!"
 		])
 	
 	await dm.dialogue_finished
@@ -78,9 +77,9 @@ func start_dialogue():
 		Global.persistent_gold = current_player.inventory.gold
 		current_player.inventory.gold_changed.emit(current_player.inventory.gold)
 		Global.has_paid_treasurer = true
-		dm.show_message(npc_name + ": Pagamento accettato. I permessi sono stati aggiornati nei settori magnetici. La porta della sala server è ora aperta.")
+		dm.show_message(npc_name + ": Pagamento ricevuto. Sincronizzazione permessi in corso... 10%... 100%. La porta è aperta. Che il bit sia con te!")
 	else:
-		dm.show_message(npc_name + ": Errore 402: Fondi insufficienti. Torna quando avrai accumulato abbastanza metallo prezioso per alimentare il sistema.")
+		dm.show_message(npc_name + ": Errore 402: Fondi insufficienti. Il mio database dice che sei povero in canna, straniero.")
 		
 	await dm.dialogue_finished
 	is_talking = false

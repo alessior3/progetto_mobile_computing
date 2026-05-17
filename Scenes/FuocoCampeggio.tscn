@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://xh25ovogholm"]
+[gd_scene format=3 uid="uid://xh25ovogholm"]
 
 [ext_resource type="Texture2D" uid="uid://hjglkn8ev18p" path="res://Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/bonfire_prop_lit_anim_strip_5.png" id="1_ohn7c"]
 [ext_resource type="Texture2D" uid="uid://0pypmhadsdfc" path="res://Top_Down_Adventure_Pack_v.1.0/Props_Items_(animated)/bonfire_prop_lit_anim_strip_23.png" id="2_g7y87"]

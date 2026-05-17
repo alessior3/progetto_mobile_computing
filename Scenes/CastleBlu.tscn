@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b65yj3rihx4rd" path="res://Scripts/house_1.gd" id="1_3otvk"]
 [ext_resource type="Texture2D" uid="uid://ckg5jgtqhxjap" path="res://Assets/HousePng/Tiny Swords (Free Pack)/Buildings/Blue Buildings/Castle.png" id="2_3otvk"]
+[ext_resource type="PackedScene" uid="uid://dcastleinterior001" path="res://Scenes/inside_castle.tscn" id="3_castle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o2j0i"]
 size = Vector2(278, 136)
@@ -11,6 +12,7 @@ size = Vector2(42, 43)
 
 [node name="CastleBlu" type="Node2D" unique_id=948734644]
 script = ExtResource("1_3otvk")
+inside_scene = ExtResource("3_castle")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
 position = Vector2(0, -20)
