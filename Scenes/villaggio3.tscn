@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dv1ks8ayo2bol" path="res://Scripts/villaggio_3.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="2_15gtt"]
-[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="2_trans"]
+[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="2_trans"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="3_kthw0"]
 [ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="4_5j8lq"]
 [ext_resource type="PackedScene" uid="uid://xh25ovogholm" path="res://Scenes/FuocoCampeggio.tscn" id="4_kthw0"]
@@ -11,12 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="7_0h6x3"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="8_tmcdr"]
 [ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="9_yx8oc"]
-[ext_resource type="PackedScene" uid="uid://bafa3ijyaoto" path="res://Scenes/TowerGialla.tscn" id="11_l250t"]
-[ext_resource type="PackedScene" uid="uid://2dpskp0j3045" path="res://Scenes/CastleGiallo.tscn" id="12_kf8sy"]
-[ext_resource type="PackedScene" uid="uid://dnpm0lw0yb2dm" path="res://Scenes/HouseGialla1.tscn" id="13_15gtt"]
-[ext_resource type="PackedScene" uid="uid://f1wgkq42um7p" path="res://Scenes/BarracksGiallo.tscn" id="13_kthw0"]
-[ext_resource type="PackedScene" uid="uid://0v37uvaw86o8" path="res://Scenes/ArcheryGiallo.tscn" id="14_kthw0"]
-[ext_resource type="PackedScene" uid="uid://dgq7u13jt4oqq" path="res://Scenes/MonasteryGiallo.tscn" id="15_5j8lq"]
+[ext_resource type="PackedScene" path="res://Scenes/TowerGialla.tscn" id="11_l250t"]
+[ext_resource type="PackedScene" path="res://Scenes/CastleGiallo.tscn" id="12_kf8sy"]
+[ext_resource type="PackedScene" path="res://Scenes/HouseGialla1.tscn" id="13_15gtt"]
+[ext_resource type="PackedScene" path="res://Scenes/BarracksGiallo.tscn" id="13_kthw0"]
+[ext_resource type="PackedScene" path="res://Scenes/MonasteryGiallo.tscn" id="15_5j8lq"]
 [ext_resource type="PackedScene" uid="uid://dyhglcy6xjxe1" path="res://Scenes/HouseGialla2.tscn" id="15_nnte5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l250t"]
@@ -916,14 +915,6 @@ position = Vector2(1624.0001, -514.00006)
 scale = Vector2(1.0296197, 1.0297008)
 script = ExtResource("1_script")
 
-[node name="player" parent="." unique_id=1874989163 instance=ExtResource("2_15gtt")]
-z_index = 1
-position = Vector2(-18.45359, 1050.7908)
-
-[node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
-position = Vector2(-2, -2)
-zoom = Vector2(3, 3)
-
 [node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("3_kthw0")]
 
 [node name="FuocoCampeggio" parent="." unique_id=349992580 instance=ExtResource("4_kthw0")]
@@ -999,31 +990,119 @@ position = Vector2(-104.89319, 1097.4063)
 position = Vector2(531.264, 750.7036)
 
 [node name="TowerGialla" parent="." unique_id=948734644 instance=ExtResource("11_l250t")]
-position = Vector2(538.0626, 942.99243)
+y_sort_enabled = true
+position = Vector2(536.1202, 990.5792)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="TowerGialla" index="0" unique_id=1998281976]
+offset = Vector2(0, -80)
+
+[node name="StaticBody2D" parent="TowerGialla" index="1" unique_id=678984241]
+position = Vector2(0, -80.92956)
+
+[node name="CollisionShape2D" parent="TowerGialla/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(-0.99975586, 33.18109)
+
+[node name="DoorWay" parent="TowerGialla" index="2" unique_id=1208213178]
+position = Vector2(-3.2372727, -12.948639)
 
 [node name="CastleGiallo" parent="." unique_id=1980833641 instance=ExtResource("12_kf8sy")]
-position = Vector2(886.73505, 1206.1757)
+y_sort_enabled = true
+position = Vector2(885.7638, 1250.8489)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="CastleGiallo" index="0" unique_id=1998281976]
+offset = Vector2(0, -80)
+
+[node name="StaticBody2D" parent="CastleGiallo" index="1" unique_id=678984241]
+position = Vector2(1.6187205, -14.567239)
+
+[node name="CollisionShape2D" parent="CastleGiallo/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(1, -39.655396)
+
+[node name="DoorWay" parent="CastleGiallo" index="2" unique_id=1208213178]
+position = Vector2(-11.331102, 4.8559113)
 
 [node name="BarracksGiallo" parent="." unique_id=193141687 instance=ExtResource("13_kthw0")]
-position = Vector2(536.1201, 1300.3778)
+y_sort_enabled = true
+position = Vector2(537.0914, 1326.5992)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="BarracksGiallo" index="0" unique_id=1998281976]
+offset = Vector2(0, -70)
+
+[node name="StaticBody2D" parent="BarracksGiallo" index="1" unique_id=678984241]
+position = Vector2(-6.474882, -64.74362)
+
+[node name="CollisionShape2D" parent="BarracksGiallo/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0.99975586, 35.608643)
+
+[node name="DoorWay" parent="BarracksGiallo" index="2" unique_id=1208213178]
+position = Vector2(-3.237441, 4.5776367e-05)
 
 [node name="HouseGialla1" parent="." unique_id=1291317796 instance=ExtResource("13_15gtt")]
-position = Vector2(311.76544, 1010.0022)
+y_sort_enabled = true
+position = Vector2(310.79422, 1041.0792)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="HouseGialla1" index="0" unique_id=1998281976]
+offset = Vector2(0, -55)
+
+[node name="StaticBody2D" parent="HouseGialla1" index="1" unique_id=678984241]
+position = Vector2(1.6187205, -59.887844)
+
+[node name="CollisionShape2D" parent="HouseGialla1/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0, 15.71637)
+
+[node name="DoorWay" parent="HouseGialla1" index="2" unique_id=1208213178]
+position = Vector2(-1.6186785, -22.66018)
 
 [node name="HouseGialla2" parent="." unique_id=1217861146 instance=ExtResource("15_nnte5")]
-position = Vector2(760.47473, 1010.0022)
+y_sort_enabled = true
+position = Vector2(761.4459, 1038.1658)
 scale = Vector2(0.6, 0.6)
 
-[node name="ArcheryGiallo" parent="." unique_id=1465089562 instance=ExtResource("14_kthw0")]
-position = Vector2(1459.7622, 1103.2334)
-scale = Vector2(0.6, 0.6)
+[node name="Sprite2D" parent="HouseGialla2" index="0" unique_id=1998281976]
+offset = Vector2(0, -55)
+
+[node name="StaticBody2D" parent="HouseGialla2" index="1" unique_id=678984241]
+position = Vector2(0, -61.50644)
+
+[node name="CollisionShape2D" parent="HouseGialla2/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0, 19.762817)
+
+[node name="DoorWay" parent="HouseGialla2" index="2" unique_id=1208213178]
+position = Vector2(-1.618876, -21.041588)
 
 [node name="MonasteryGiallo" parent="." unique_id=2026959878 instance=ExtResource("15_5j8lq")]
-position = Vector2(219.49844, 1180.9258)
+y_sort_enabled = true
+position = Vector2(214.64229, 1245.0221)
 scale = Vector2(0.6, 0.6)
 
+[node name="Sprite2D" parent="MonasteryGiallo" index="0" unique_id=1998281976]
+offset = Vector2(0, -110)
+
+[node name="StaticBody2D" parent="MonasteryGiallo" index="1" unique_id=678984241]
+position = Vector2(1.6187205, -106.82724)
+
+[node name="CollisionShape2D" parent="MonasteryGiallo/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0.49975586, 74.45532)
+
+[node name="DoorWay" parent="MonasteryGiallo" index="2" unique_id=1208213178]
+position = Vector2(-9.712369, -3.2373123)
+
+[node name="player" parent="." unique_id=1874989163 instance=ExtResource("2_15gtt")]
+position = Vector2(-18.45359, 1050.7908)
+
+[node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
+position = Vector2(-2, -2)
+zoom = Vector2(3, 3)
+
 [connection signal="body_entered" from="IngressoVillaggio4" to="IngressoVillaggio4" method="_on_body_entered"]
+
+[editable path="TowerGialla"]
+[editable path="CastleGiallo"]
+[editable path="BarracksGiallo"]
+[editable path="HouseGialla1"]
+[editable path="HouseGialla2"]
+[editable path="MonasteryGiallo"]

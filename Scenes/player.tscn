@@ -1547,7 +1547,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
-size = Vector2(20, 32)
+size = Vector2(20, 21)
 
 [sub_resource type="Gradient" id="Gradient_f1ek2"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -1594,7 +1594,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1160132405]
-position = Vector2(0, -5)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_hitbox")
 
 [node name="inventoryUI" parent="." unique_id=1764230181 node_paths=PackedStringArray("inventory") instance=ExtResource("6_x3wgy")]

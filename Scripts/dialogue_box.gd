@@ -13,11 +13,12 @@ var pages: Array = []
 var current_page: int = 0
 var current_tween: Tween
 var current_speaker: String = ""
+var current_allow_skip: bool = true
 
+# Forza la configurazione della label del nome a runtime in modo impermeabile ai bug di cache di Godot!
 func _ready():
 	hide() 
 	
-	# Forza la configurazione della label del nome a runtime in modo impermeabile ai bug di cache di Godot!
 	var settings = LabelSettings.new()
 	settings.font_size = 17
 	settings.font_color = Color(0.98, 0.96, 0.9, 1)
@@ -36,7 +37,7 @@ func _ready():
 	name_label.offset_bottom = -96.0
 
 # Accetta il testo del dialogo e opzionalmente il nome del parlante!
-func show_message(dialogue_data, speaker: String = ""):
+func show_message(dialogue_data, speaker: String = "", block_player: bool = true, allow_skip: bool = true):
 	print("--- DEBUG DIALOGO ---")
 	print("Dato ricevuto dall'NPC: ", dialogue_data)
 	print("Parlante ricevuto: ", speaker)
@@ -51,18 +52,20 @@ func show_message(dialogue_data, speaker: String = ""):
 	current_page = 0
 	can_skip = false
 	current_speaker = speaker
+	current_allow_skip = allow_skip
 	
 	# Obblighiamo Godot ad applicare l'andata a capo e la centratura verticale da codice!
 	text_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	text_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	
-	# 1. Blocchiamo il player
-	var player = get_tree().get_first_node_in_group("player")
-	if player == null: player = get_tree().get_first_node_in_group("Player")
-	
-	if player != null and "can_move" in player:
-		player.can_move = false
+	# 1. Blocchiamo il player se richiesto
+	if block_player:
+		var player = get_tree().get_first_node_in_group("player")
+		if player == null: player = get_tree().get_first_node_in_group("Player")
+		
+		if player != null and "can_move" in player:
+			player.can_move = false
 
 	# Mostriamo la grafica
 	background.show()
@@ -108,7 +111,13 @@ func play_current_page():
 	
 	# 5. Timer di sicurezza (mezzo secondo) prima di poter passare oltre
 	await get_tree().create_timer(0.5).timeout
-	can_skip = true
+	if current_allow_skip:
+		can_skip = true
+
+# Permette di aggiornare il testo direttamente (ad esempio per una progress bar) senza animazioni
+func update_text_direct(new_text: String):
+	text_label.text = new_text
+	text_label.visible_ratio = 1.0
 
 
 # --- IL SEGRETO È QUI: Usiamo _input invece di _process! ---

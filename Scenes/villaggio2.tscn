@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://vveacqr837qp"]
 
 [ext_resource type="Script" uid="uid://bsopxbsee3brf" path="res://Scripts/villaggio_2.gd" id="1_villaggio2"]
-[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="2_trans"]
+[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="2_trans"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="6_tga6p"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="7_hfgww"]
 [ext_resource type="PackedScene" uid="uid://b0spb3q762abr" path="res://Scenes/BarracksRed.tscn" id="11_qp3g5"]
@@ -13,12 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="17_vnptf"]
 [ext_resource type="Resource" uid="uid://cfy8gqk8goif4" path="res://Resources/weapons/Axe.tres" id="18_xabpj"]
 [ext_resource type="Resource" uid="uid://do6v1fa5kemth" path="res://Resources/weapons/Big_Sword.tres" id="19_xabpj"]
-[ext_resource type="Texture2D" uid="uid://chc38heu2ftrs" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="24_gcgqp"]
+[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="24_gcgqp"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="25_yp5ne"]
-[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="26_ljjbl"]
+[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="26_ljjbl"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="27_dknkg"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="28_rmqie"]
-[ext_resource type="AudioStream" uid="uid://km3j2ju6xa5e" path="res://Sounds/game_sound.wav" id="30_l5edf"]
+[ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="30_l5edf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jwdyn"]
 texture = ExtResource("24_gcgqp")
@@ -640,7 +640,7 @@ texture = ExtResource("24_gcgqp")
 7:5/0 = 0
 7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.3418045, 5.4407253, 0.29676628, 5.539648, -0.49461174, -5.2428827, -5.539649, -5.6385717)
 6:5/0 = 0
-6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.089655, -2.3424854, -5.8918095, 7.055134, 6.572399, 7.1540565, 5.6820984, -1.6500282)
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -0.40610218, -8, 5.0762777, 8, 4.9747515, 8, 0)
 6:4/0 = 0
 6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.847193, 0.791378, 6.1331825, 1.2859898, 6.1331825, -5.6385717, -5.242882, -6.2321053)
 7:4/0 = 0
@@ -658,9 +658,13 @@ sources/0 = SubResource("TileSetAtlasSource_gwaj6")
 texture = ExtResource("24_gcgqp")
 0:3/0 = 0
 0:4/0 = 0
+0:4/0/y_sort_origin = -23
 1:4/0 = 0
+1:4/0/y_sort_origin = -23
 0:5/0 = 0
+0:5/0/y_sort_origin = -23
 1:5/0 = 0
+1:5/0/y_sort_origin = -23
 2:5/0 = 0
 2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.0004177, 1.337429, 3.8144436, 2.2277317, 3.9133663, -1.6302395, -4.8907175, -1.7291622)
 3:5/0 = 0
@@ -670,14 +674,16 @@ texture = ExtResource("24_gcgqp")
 2:4/0 = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.582756, 1.4838333, -0.09892273, -1.582758, 1.8795242, -1.582758, 1.8795242, 1.8795223)
 3:3/0 = 0
+3:3/0/y_sort_origin = -23
 2:3/0 = 0
+2:3/0/y_sort_origin = -23
 5:4/0 = 0
 4:4/0 = 0
 3:4/0 = 0
 4:3/0 = 0
-4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.4622803, 5.0450363, 2.9676685, 5.0450363, 6.429949, -0.7913799, 2.769825, -6.0342607, -1.6816788, -5.6385717, -5.143959, -2.4730587)
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.5756207, 2.5180225, 5.5756207, 2.5180225, 5.935339, -2.5180216, -5.143959, -2.4730587)
 5:3/0 = 0
-5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.2644367, 5.638571, 3.3633575, 5.7374935, 6.1331825, 0.791378, 2.6709023, -4.748271, -2.769825, -5.440727, -5.539649, -1.2859898)
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.5756207, 2.5180225, 5.5756207, 2.5180225, 5.935339, -2.5180216, -5.143959, -2.4730587)
 8:5/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gwaj6"]
@@ -692,14 +698,6 @@ y_sort_enabled = true
 position = Vector2(1624.0001, -514.00006)
 scale = Vector2(1.0296197, 1.0297008)
 script = ExtResource("1_villaggio2")
-
-[node name="player" parent="." unique_id=1874989163 instance=ExtResource("6_tga6p")]
-z_index = 1
-position = Vector2(459.39294, 1166.3584)
-
-[node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
-position = Vector2(-2, -2)
-zoom = Vector2(3, 3)
 
 [node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("7_hfgww")]
 
@@ -724,11 +722,13 @@ tile_map_data = PackedByteArray("AAAUAB4AAAADAAkAAAAcACAAAAADAAkAAAAUACwAAAADAAk
 tile_set = SubResource("TileSet_uqdn7")
 
 [node name="muretti" type="TileMapLayer" parent="." unique_id=1425222770]
+y_sort_enabled = true
 scale = Vector2(1.3, 1.3)
 tile_map_data = PackedByteArray("AAAZAC0AAAAGAAUAAAAdAC0AAAAGAAUAAAAfAC0AAAAGAAUAAAAgAC0AAAAGAAUAAAAdAC8AAAAGAAQAAAAfAC8AAAAGAAQAAAAeAC8AAAAGAAQAAAAgAC8AAAAGAAQAAAARAC8AAAAGAAQAAAATAC8AAAAGAAQAAAASAC8AAAAGAAQAAAANADYAAAAGAAQAAAAOADYAAAAGAAQAAAANADQAAAAGAAUAAAASAD0AAAAGAAUAAAAUAD0AAAAGAAUAAAAbADIAAAAHAAUAAAAbADYAAAAHAAUAAAAbADAAAAAHAAUAAAAbADgAAAAHAAUAAAAbADkAAAAHAAUAAAAdADoAAAAGAAQAAAAfADoAAAAGAAQAAAAUAC0AAAAGAAUAAAARAC0AAAAGAAUAAAAbAC0AAAAGAAUAAAAJADwAAAAHAAUAAAAJAD0AAAAHAAUAAAAKAD0AAAAGAAUAAAAMAD0AAAAGAAUAAAAWADcAAAAFAAUAAAAWADkAAAAFAAUAAAAWADwAAAAFAAUAAAAWADsAAAAFAAUAAAA=")
 tile_set = SubResource("TileSet_36g3o")
 
 [node name="fiori" type="TileMapLayer" parent="." unique_id=2098140022]
+y_sort_enabled = true
 scale = Vector2(1.3, 1.3)
 tile_map_data = PackedByteArray("AAAUADsAAAAAAAQAAAANADcAAAABAAUAAAAJADgAAAABAAUAAAAFADgAAAABAAUAAAANADMAAAAAAAUAAAAHADcAAAAAAAUAAAAUADkAAAAIAAUAAAAeADEAAAADAAUAAAAFAD8AAAACAAUAAAAIAD4AAAABAAQAAAADADoAAAABAAQAAAANADIAAAABAAQAAAASADAAAAABAAQAAAAfACsAAAABAAQAAAAdACwAAAABAAUAAAAgACoAAAABAAUAAAAgACwAAAABAAUAAAAfACoAAAAAAAQAAAAmADAAAAAAAAQAAAAlAC4AAAAAAAQAAAAeADIAAAAAAAQAAAAhADEAAAAAAAQAAAATADoAAAADAAMAAAAIAD0AAAADAAMAAAAHAEAAAAADAAMAAAAEADwAAAADAAMAAAAHADgAAAADAAMAAAAGAD8AAAAAAAQAAAAIAEAAAAAAAAQAAAAFADwAAAAAAAQAAAAEAD0AAAAAAAQAAAAEAD4AAAAAAAQAAAADADkAAAAAAAQAAAANAEEAAAAAAAQAAAASAEMAAAAAAAQAAAAUAEEAAAAAAAQAAAARAEEAAAAAAAQAAAAPAEMAAAAAAAQAAAAaADsAAAAAAAQAAAAZAD0AAAAAAAQAAAAZAD8AAAAAAAQAAAAdAEAAAAAAAAQAAAAaAEEAAAAAAAQAAAAgADwAAAAAAAQAAAAdADsAAAAAAAQAAAAfAD8AAAAAAAQAAAAkADEAAAAAAAQAAAAaAEAAAAABAAQAAAAfAD4AAAABAAQAAAAhADsAAAABAAQAAAAFAEEAAAABAAQAAAAOAD0AAAAEAAMAAAAEADgAAAAEAAMAAAAZAC8AAAAEAAMAAAAZACwAAAAEAAMAAAAeACgAAAAEAAMAAAAfADIAAAAFAAMAAAAeAD0AAAAFAAMAAAAYADsAAAAFAAMAAAAbAEEAAAAFAAMAAAAYAEIAAAAEAAMAAAASAEEAAAACAAMAAAAWAEIAAAACAAMAAAAaADwAAAACAAMAAAAeADsAAAACAAMAAAAeACwAAAACAAMAAAAfACkAAAACAAMAAAATACwAAAACAAMAAAAGAEIAAAACAAMAAAAjAD0AAAAAAAQAAAAeADAAAAACAAMAAAAkACsAAAACAAMAAAAmACoAAAACAAMAAAAkACcAAAACAAMAAAAmACsAAAADAAUAAAAlACkAAAABAAQAAAAoACsAAAAAAAQAAAAmACkAAAAAAAQAAAAlACcAAAAAAAQAAAAfACcAAAAAAAQAAAAeACYAAAAAAAQAAAASADkAAAACAAUAAAARADoAAAABAAUAAAARADsAAAAAAAQAAAANADsAAAADAAMAAAAMADgAAAADAAMAAAAMADkAAAAAAAUAAAANADoAAAABAAUAAAALAD8AAAAAAAQAAAARAD8AAAAEAAMAAAAPAEAAAAABAAQAAAA=")
 tile_set = SubResource("TileSet_gwaj6")
@@ -762,23 +762,81 @@ shape = SubResource("RectangleShape2D_bpa85")
 
 [node name="TowerRed" parent="." unique_id=1365122527 instance=ExtResource("16_qmgh0")]
 y_sort_enabled = true
-position = Vector2(728.42413, 876.95386)
+position = Vector2(726.4817, 921.627)
 scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="TowerRed" index="0" unique_id=1998281976]
+offset = Vector2(0, -80)
+
+[node name="StaticBody2D" parent="TowerRed" index="1" unique_id=678984241]
+position = Vector2(-1.9424647, -87.40403)
+
+[node name="CollisionShape2D" parent="TowerRed/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(-1, 38.84607)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="DoorWay" parent="TowerRed" index="2" unique_id=1208213178]
+position = Vector2(-1.9422963, -13.596207)
 
 [node name="BarracksRed" parent="." unique_id=948734644 instance=ExtResource("11_qp3g5")]
 y_sort_enabled = true
-position = Vector2(232.12442, 1043.0215)
+position = Vector2(232.12442, 1071.185)
 scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="BarracksRed" index="0" unique_id=1998281976]
+offset = Vector2(0, -70)
+
+[node name="StaticBody2D" parent="BarracksRed" index="1" unique_id=678984241]
+position = Vector2(-1.9424647, -69.9231)
+
+[node name="CollisionShape2D" parent="BarracksRed/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0.9995117, 56.538452)
+scale = Vector2(0.9999998, 0.9999998)
+
+[node name="DoorWay" parent="BarracksRed" index="2" unique_id=1208213178]
+position = Vector2(-1.9424647, 1.9424744)
 
 [node name="ArcheryRed" parent="." unique_id=395344417 instance=ExtResource("12_qmgh0")]
 y_sort_enabled = true
-position = Vector2(444.8243, 875.01154)
+position = Vector2(450.6517, 913.8578)
 scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="ArcheryRed" index="0" unique_id=1998281976]
+offset = Vector2(0, -80)
+
+[node name="StaticBody2D" parent="ArcheryRed" index="1" unique_id=678984241]
+position = Vector2(1.9424647, -87.40403)
+
+[node name="CollisionShape2D" parent="ArcheryRed/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(-5, 43.442383)
+scale = Vector2(0.9999996, 0.9999996)
+
+[node name="DoorWay" parent="ArcheryRed" index="2" unique_id=1208213178]
+position = Vector2(38.849506, -3.8845978)
+
+[node name="player" parent="." unique_id=1874989163 instance=ExtResource("6_tga6p")]
+position = Vector2(459.39294, 1166.3584)
+
+[node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
+position = Vector2(-2, -2)
+zoom = Vector2(3, 3)
 
 [node name="CastleRed" parent="." unique_id=1953215019 instance=ExtResource("13_3rjkl")]
 y_sort_enabled = true
-position = Vector2(456.4791, 1076.0409)
+position = Vector2(457.45032, 1111.9738)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="CastleRed" index="0" unique_id=1998281976]
+offset = Vector2(0, -70)
+
+[node name="StaticBody2D" parent="CastleRed" index="1" unique_id=678984241]
+position = Vector2(0, -84.16694)
+
+[node name="CollisionShape2D" parent="CastleRed/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0.99975586, 53.639526)
+
+[node name="DoorWay" parent="CastleRed" index="2" unique_id=1208213178]
+position = Vector2(-4.8562202, 9.711494)
 
 [node name="HouseRed1" parent="." unique_id=120831047 instance=ExtResource("14_vnptf")]
 y_sort_enabled = true
@@ -787,8 +845,21 @@ scale = Vector2(0.5, 0.5)
 
 [node name="MonasteryRed" parent="." unique_id=2052712621 instance=ExtResource("15_xabpj")]
 y_sort_enabled = true
-position = Vector2(752.70496, 1115.8583)
+position = Vector2(751.7337, 1177.041)
 scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" parent="MonasteryRed" index="0" unique_id=1998281976]
+offset = Vector2(0, -120)
+
+[node name="StaticBody2D" parent="MonasteryRed" index="1" unique_id=678984241]
+position = Vector2(5.827394, -124.308075)
+
+[node name="CollisionShape2D" parent="MonasteryRed/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0.5, 70.89404)
+scale = Vector2(0.9999997, 0.9999997)
+
+[node name="DoorWay" parent="MonasteryRed" index="2" unique_id=1208213178]
+position = Vector2(-7.769667, -13.596291)
 
 [node name="IngressoVillaggio2" type="Marker2D" parent="." unique_id=2110856882]
 position = Vector2(34.964245, 1113.916)
@@ -806,3 +877,9 @@ inventory_item = ExtResource("19_xabpj")
 
 [connection signal="body_entered" from="IngressoVillaggio" to="IngressoVillaggio" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaVillaggio" to="UscitaVillaggio" method="_on_body_entered"]
+
+[editable path="TowerRed"]
+[editable path="BarracksRed"]
+[editable path="ArcheryRed"]
+[editable path="CastleRed"]
+[editable path="MonasteryRed"]

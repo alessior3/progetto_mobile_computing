@@ -1900,6 +1900,7 @@ sources/3 = SubResource("TileSetAtlasSource_7dp5a")
 size = Vector2(47.999817, 16.068157)
 
 [node name="Inside" type="Node2D" unique_id=1860688184]
+y_sort_enabled = true
 position = Vector2(-258, -219)
 script = ExtResource("1_diqpv")
 
@@ -1921,10 +1922,12 @@ position = Vector2(-25, 1)
 oggetto_iniziale = ExtResource("5_osghi")
 
 [node name="chairs" type="TileMapLayer" parent="." unique_id=978179353]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD+/wMAAAAEAAQAAAD//wMAAAAEAAQAAAA=")
 tile_set = SubResource("TileSet_u4j1y")
 
 [node name="oggetti" type="TileMapLayer" parent="." unique_id=588808052]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD+/wQAAgAFAAUAAAD//wQAAgAGAAUAAAD+/wMAAgAFAAMAAAD//wMAAgAGAAMAAAABAAkAAgAIAAUAAAACAAkAAgAIAAUAAAADAAkAAgAIAAUAAAD9/wkAAgAIAAUAAAD8/wkAAgAIAAUAAAD7/wkAAgAIAAUAAAACAP//AgALAAMAAAAAAP//AgAFAAcAAAD8////AgAFAAcAAAA=")
 tile_set = SubResource("TileSet_tqxsn")
 
@@ -1932,7 +1935,7 @@ tile_set = SubResource("TileSet_tqxsn")
 position = Vector2(-9, 115)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_osghi")]
-z_index = 1
+y_sort_enabled = true
 position = Vector2(-8, 113)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1223337844]

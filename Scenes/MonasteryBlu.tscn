@@ -12,6 +12,8 @@ size = Vector2(125, 131)
 size = Vector2(48, 41)
 
 [node name="MonasteryBlu" type="Node2D" unique_id=948734644]
+y_sort_enabled = true
+y_sort_origin = 110
 script = ExtResource("1_sxih3")
 inside_scene = ExtResource("3_sxih3")
 

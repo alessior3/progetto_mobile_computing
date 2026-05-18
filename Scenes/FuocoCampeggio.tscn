@@ -70,7 +70,8 @@ script = ExtResource("3_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 sprite_frames = SubResource("SpriteFrames_iccxi")
-animation = &"FuocoSpento_an"
+animation = &"FuocoAcceso_an"
+frame_progress = 0.039308153
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1969871067]
 

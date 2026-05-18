@@ -2152,6 +2152,7 @@ texture = ExtResource("3_bffew")
 sources/0 = SubResource("TileSetAtlasSource_vvxbn")
 
 [node name="Inside" type="Node2D" unique_id=1860688184]
+y_sort_enabled = true
 position = Vector2(-256, -220)
 script = ExtResource("1_sa33a")
 
@@ -2167,7 +2168,7 @@ tile_set = SubResource("TileSet_28awh")
 position = Vector2(-9, 115)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_3j1db")]
-z_index = 1
+y_sort_enabled = true
 position = Vector2(-8, 113)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1223337844]
@@ -2190,14 +2191,17 @@ tile_map_data = PackedByteArray("AAD7////AAAEAAgAAAD8////AAAEAAgAAAD9////AAAEAAg
 tile_set = SubResource("TileSet_c378k")
 
 [node name="oggetti" type="TileMapLayer" parent="." unique_id=588808052]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD7////AgAKAAEAAAD7/wAAAgAKAAIAAAD/////AgALAAUAAAD8/wAAAgABAAUAAAD9/wAAAgACAAUAAAABAAcAAgAIAAEAAAABAAgAAgAIAAIAAAACAAcAAgAJAAEAAAACAAgAAgAJAAIAAAD7/wQAAgAIAAEAAAD7/wUAAgAIAAIAAAD8/wQAAgAJAAEAAAD8/wUAAgAJAAIAAAD9/wMAAgAIAAEAAAD9/wQAAgAIAAIAAAD+/wMAAgAJAAEAAAD+/wQAAgAJAAIAAAABAAUAAgAIAAEAAAABAAYAAgAIAAIAAAACAAUAAgAJAAEAAAACAAYAAgAJAAIAAAACAP//AgAIAAEAAAACAAAAAgAIAAIAAAADAP//AgAJAAEAAAADAAAAAgAJAAIAAAAAAP//AgAIAAEAAAAAAAAAAgAIAAIAAAABAP//AgAJAAEAAAABAAAAAgAJAAIAAAA=")
 tile_set = SubResource("TileSet_tqxsn")
 
 [node name="chairs" type="TileMapLayer" parent="." unique_id=978179353]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD8/wEAAAAEAAUAAAA=")
 tile_set = SubResource("TileSet_u4j1y")
 
 [node name="tv" type="TileMapLayer" parent="." unique_id=561241756]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD8//7/AAAJAAMAAAD8////AAAJAAQAAAD9//7/AAAKAAMAAAD9////AAAKAAQAAAD9/wAAAAAEAAMAAAA=")
 tile_set = SubResource("TileSet_nf6n5")
 

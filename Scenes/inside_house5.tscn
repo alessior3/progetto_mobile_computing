@@ -1897,6 +1897,7 @@ texture = ExtResource("3_e5hbl")
 sources/0 = SubResource("TileSetAtlasSource_7naer")
 
 [node name="Inside" type="Node2D" unique_id=1860688184]
+y_sort_enabled = true
 position = Vector2(-256, -220)
 script = ExtResource("1_yc2du")
 
@@ -1912,7 +1913,7 @@ tile_set = SubResource("TileSet_28awh")
 position = Vector2(-9, 115)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_cbtfi")]
-z_index = 1
+y_sort_enabled = true
 position = Vector2(-8, 113)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1223337844]
@@ -1935,10 +1936,12 @@ tile_map_data = PackedByteArray("AAD7////AAAGAAgAAAD8////AAAGAAgAAAD9////AAAGAAg
 tile_set = SubResource("TileSet_c378k")
 
 [node name="oggetti" type="TileMapLayer" parent="." unique_id=588808052]
+y_sort_enabled = true
 tile_map_data = PackedByteArray("AAADAAgAAgAHAAQAAAADAAkAAgAHAAUAAAD7/wgAAgAHAAQAAAD7/wkAAgAHAAUAAAD8/wgAAgADAAMAAAD9/wgAAgADAAMAAAACAAgAAgADAAMAAAD8////AgAEAAcAAAADAP//AgAEAAcAAAACAP//AgALAAQAAAA=")
 tile_set = SubResource("TileSet_tqxsn")
 
 [node name="chairs" type="TileMapLayer" parent="." unique_id=978179353]
+y_sort_enabled = true
 tile_set = SubResource("TileSet_u4j1y")
 
 [node name="muri" type="StaticBody2D" parent="." unique_id=1827357304]

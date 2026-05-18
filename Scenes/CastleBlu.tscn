@@ -11,6 +11,8 @@ size = Vector2(278, 136)
 size = Vector2(42, 43)
 
 [node name="CastleBlu" type="Node2D" unique_id=948734644]
+y_sort_enabled = true
+y_sort_origin = 80
 script = ExtResource("1_3otvk")
 inside_scene = ExtResource("3_castle")
 

@@ -10,6 +10,8 @@ size = Vector2(80, 95)
 size = Vector2(25, 35)
 
 [node name="HouseBlu1" type="Node2D" unique_id=948734644]
+y_sort_enabled = true
+y_sort_origin = 45
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]

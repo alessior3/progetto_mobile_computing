@@ -28,6 +28,7 @@ animations = [{
 size = Vector2(64, 64)
 
 [node name="Treasurer" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("2_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

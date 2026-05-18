@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://1ru2270stqiu"]
 
-[ext_resource type="Script" uid="uid://dl6qc3nxv7oxe" path="res://Scripts/titoli_di_coda.gd" id="1_2jo5s"]
+[ext_resource type="Script" path="res://Scripts/titoli_di_coda.gd" id="1_2jo5s"]
 [ext_resource type="Texture2D" uid="uid://oh8kybp26k4k" path="res://assets_percorsofinale/royal_runner_tileset_64x64.png" id="1_4vdis"]
 [ext_resource type="Texture2D" uid="uid://bmxqggdjuxmfp" path="res://assets_percorsofinale/colonne_archi_tileset_64x64.png" id="2_cjrma"]
 [ext_resource type="Texture2D" uid="uid://f45asc33bf66" path="res://assets_percorsofinale/parete_marmo_oro_tileset_64x64.png" id="3_obsnd"]

@@ -47,11 +47,35 @@ func check_and_start_restore():
 
 func start_restoration():
 	is_restoring = true
-	DialogueManager.show_message("RIPRISTINO IN CORSO: Rimanere fermi davanti al computer! Tempo stimato: 10 secondi. ATTENZIONE: Il computer sta scaldando come un dannato!", "Supercomputer")
 	
-	# Qui potresti attivare una barra di caricamento sulla UI del player
-	await get_tree().create_timer(restore_time).timeout
+	# Mostriamo il messaggio di inizio senza bloccare il player e senza consentire lo skip manuale
+	DialogueManager.show_message("Inizializzazione ripristino tracciati floppy...", "Supercomputer", false, false)
 	
+	var elapsed = 0.0
+	while elapsed < restore_time:
+		# Attendiamo un piccolo intervallo di tempo (0.1 secondi)
+		await get_tree().create_timer(0.1).timeout
+		
+		# Se nel frattempo il ripristino è stato annullato (es. il player si è allontanato), usciamo subito
+		if not is_restoring:
+			return
+			
+		elapsed += 0.1
+		var percent = min((elapsed / restore_time) * 100.0, 100.0)
+		
+		# Generiamo una barra di caricamento retrò/pixel-art da 10 blocchi (più compatta per mobile!)
+		var total_blocks = 10
+		var filled_blocks = int((percent / 100.0) * total_blocks)
+		var bar = ""
+		for i in range(total_blocks):
+			if i < filled_blocks:
+				bar += "█"
+			else:
+				bar += "░"
+		
+		var msg = "Ripristino in corso... Non allontanarsi!\n" + bar + "  " + str(int(percent)) + "% completato"
+		DialogueManager.update_text_direct(msg)
+		
 	if is_restoring:
 		complete_restoration()
 

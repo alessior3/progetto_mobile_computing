@@ -10,6 +10,8 @@ size = Vector2(82, 113)
 size = Vector2(32, 40)
 
 [node name="TowerBlu" type="Node2D" unique_id=948734644]
+y_sort_enabled = true
+y_sort_origin = 70
 script = ExtResource("1_nsbin")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1998281976]
