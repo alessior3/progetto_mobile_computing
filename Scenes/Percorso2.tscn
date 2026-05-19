@@ -2,10 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://t2wswktwwgto" path="res://Scenes/Grotta2.tscn" id="1_kxe8q"]
 [ext_resource type="Script" uid="uid://bpowfhxjlsoe" path="res://Scripts/percorso_2.gd" id="1_script"]
-[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="2_trans"]
+[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="2_trans"]
 [ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="3_x8jna"]
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="4_gsl5o"]
 [ext_resource type="Texture2D" uid="uid://c4ox2yhc1bbfp" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/PareteDiroccie2.png" id="5_kxe8q"]
+[ext_resource type="Texture2D" uid="uid://c8xnhnhherxm2" path="res://Top_Down_Adventure_Pack_v.1.0/AlberoViola_Tileset.png" id="5_mieho"]
 [ext_resource type="PackedScene" uid="uid://ld6g3vjh724a" path="res://Scenes/HouseRed2.tscn" id="7_txkus"]
 [ext_resource type="PackedScene" uid="uid://wh7vq7l5a2qe" path="res://Scenes/RedGladiator.tscn" id="8_3j1r5"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="10_04mdg"]
@@ -254,8 +255,17 @@ texture = ExtResource("3_x8jna")
 5:9/size_in_atlas = Vector2i(2, 3)
 5:9/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4m2mf"]
+texture = ExtResource("5_mieho")
+5:9/size_in_atlas = Vector2i(2, 3)
+5:9/0 = 0
+5:9/0/y_sort_origin = 7
+5:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.2950554, 0, 5.2159023, 2.1583061, 4.4964676, 12.590111, -6.4749146, 12.590111)
+
 [sub_resource type="TileSet" id="TileSet_mo136"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yksme")
+sources/1 = SubResource("TileSetAtlasSource_4m2mf")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vx472"]
 texture = ExtResource("3_x8jna")
@@ -633,3 +643,5 @@ position = Vector2(3569, 1002)
 
 [connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaPercorso2" to="UscitaPercorso2" method="_on_body_entered"]
+
+[editable path="HouseRed1"]

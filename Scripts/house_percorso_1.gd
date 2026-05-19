@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var player = find_parent("Percorso1").find_child("player", true, false)
+@onready var player = get_tree().get_first_node_in_group("player") if is_inside_tree() else null
 
 func _ready() -> void:
 	pass
@@ -15,7 +15,8 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 			body.house = null
 
 func enter():
-	Global.player_pos = player.global_position
+	if player:
+		Global.player_pos = player.global_position
 	Global.from_house3_to_percorso = true
 	if TransitionChangeManager:
 		TransitionChangeManager.change_scene("res://Scenes/inside_house3.tscn")

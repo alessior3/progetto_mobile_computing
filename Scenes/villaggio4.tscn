@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="8_4yjl5"]
 [ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="9_5r6st"]
 [ext_resource type="Texture2D" uid="uid://c8xnhnhherxm2" path="res://Top_Down_Adventure_Pack_v.1.0/AlberoViola_Tileset.png" id="9_g4ca1"]
-[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="10_5isi2"]
+[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="10_5isi2"]
 [ext_resource type="PackedScene" uid="uid://bhhlflyq8rge5" path="res://Scenes/CastleViola.tscn" id="12_g4ca1"]
 [ext_resource type="PackedScene" uid="uid://cb6s8v3wrl2es" path="res://Scenes/ArcheryViola.tscn" id="13_53m83"]
 [ext_resource type="PackedScene" uid="uid://dn1qwl6ne8ig7" path="res://Scenes/HouseViola2.tscn" id="14_bxd0e"]
@@ -233,12 +233,17 @@ texture = ExtResource("4_g4ca1")
 17:12/0 = 0
 0:9/size_in_atlas = Vector2i(2, 2)
 0:9/0 = 0
+0:9/0/y_sort_origin = 7
+0:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.748416, 2.5180225, -10.251947, 2.8777409, -8.992936, 9.712372, -13.849122, 10.251947)
 2:9/size_in_atlas = Vector2i(1, 2)
 2:9/0 = 0
 0:11/size_in_atlas = Vector2i(2, 2)
 0:11/0 = 0
+0:11/0/y_sort_origin = 7
+0:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(10.251947, 3.956892, 14.208839, 4.3166103, 14.208839, 9.352655, 9.3526535, 9.892231)
 
 [sub_resource type="TileSet" id="TileSet_kf8sy"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_l250t")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jwdyn"]
@@ -1081,9 +1086,9 @@ texture = ExtResource("4_g4ca1")
 7:5/0 = 0
 7:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.3418045, 5.4407253, 0.29676628, 5.539648, -0.49461174, -5.2428827, -5.539649, -5.6385717)
 6:5/0 = 0
-6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.089655, -2.3424854, -5.8918095, 7.055134, 6.572399, 7.1540565, 5.6820984, -1.6500282)
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.089655, -2.3424854, -5.75548, 3.7770348, 6.2950554, 4.3166103, 5.6820984, -1.6500282)
 6:4/0 = 0
-6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.847193, 0.791378, 6.1331825, 1.2859898, 6.1331825, -5.6385717, -5.242882, -6.2321053)
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.5756207, -5.036044, -4.856186, 0.17985916, 4.856186, 0.35971832, 5.3957615, -5.036044)
 7:4/0 = 0
 7:3/0 = 0
 4:4/0 = 0
@@ -1099,9 +1104,13 @@ sources/0 = SubResource("TileSetAtlasSource_gwaj6")
 texture = ExtResource("4_g4ca1")
 0:3/0 = 0
 0:4/0 = 0
+0:4/0/y_sort_origin = -14
 1:4/0 = 0
+1:4/0/y_sort_origin = -14
 0:5/0 = 0
+0:5/0/y_sort_origin = -14
 1:5/0 = 0
+1:5/0/y_sort_origin = -14
 2:5/0 = 0
 2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4.0004177, 1.337429, 3.8144436, 2.2277317, 3.9133663, -1.6302395, -4.8907175, -1.7291622)
 3:5/0 = 0
@@ -1111,14 +1120,16 @@ texture = ExtResource("4_g4ca1")
 2:4/0 = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.582756, 1.4838333, -0.09892273, -1.582758, 1.8795242, -1.582758, 1.8795242, 1.8795223)
 3:3/0 = 0
+3:3/0/y_sort_origin = -14
 2:3/0 = 0
+2:3/0/y_sort_origin = -14
 5:4/0 = 0
 4:4/0 = 0
 3:4/0 = 0
 4:3/0 = 0
-4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.4622803, 5.0450363, 2.9676685, 5.0450363, 6.429949, -0.7913799, 2.769825, -6.0342607, -1.6816788, -5.6385717, -5.143959, -2.4730587)
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.877739, 3.4173164, 3.2374573, 3.7770348, 5.036045, -2.3381624, -1.2590103, -3.2374563, -4.6763268, -0.8992939)
 5:3/0 = 0
-5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-3.2644367, 5.638571, 3.3633575, 5.7374935, 6.1331825, 0.791378, 2.6709023, -4.748271, -2.769825, -5.440727, -5.539649, -1.2859898)
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.877739, 3.4173164, 3.2374573, 3.7770348, 5.036045, -2.3381624, -1.2590103, -3.2374563, -4.6763268, -0.8992939)
 8:5/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gwaj6"]
@@ -1134,7 +1145,6 @@ position = Vector2(1624.0001, -514.00006)
 scale = Vector2(1.0296197, 1.0297008)
 
 [node name="player" parent="." unique_id=1874989163 instance=ExtResource("2_xjobx")]
-z_index = 1
 position = Vector2(-108.7782, 1427.5992)
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
@@ -1171,11 +1181,13 @@ tile_map_data = PackedByteArray("AAD2/yAAAQAFAAkAAAD2/yEAAQAFAAkAAAD2/yIAAQAFAAk
 tile_set = SubResource("TileSet_uqdn7")
 
 [node name="muretti" type="TileMapLayer" parent="." unique_id=1425222770]
+y_sort_enabled = true
 scale = Vector2(1.3, 1.3)
 tile_map_data = PackedByteArray("AAAWADUAAAAGAAQAAAAXADUAAAAGAAQAAAAcADUAAAAGAAQAAAAdADUAAAAGAAQAAAAiADUAAAAGAAQAAAAjADUAAAAGAAQAAAAQADUAAAAGAAQAAAARADUAAAAGAAQAAAANADAAAAAHAAUAAAANADIAAAAHAAUAAAAkADIAAAAHAAUAAAAkADAAAAAHAAUAAAASADMAAAAGAAUAAAAhADMAAAAGAAUAAAAeADkAAAAHAAUAAAAeADgAAAAHAAUAAAAVADkAAAAFAAUAAAAVADgAAAAFAAUAAAA=")
 tile_set = SubResource("TileSet_36g3o")
 
 [node name="fiori" type="TileMapLayer" parent="." unique_id=2098140022]
+y_sort_enabled = true
 scale = Vector2(1.3, 1.3)
 tile_map_data = PackedByteArray("AAASAC4AAAAEAAMAAAAXADkAAAAEAAMAAAAcADkAAAAEAAMAAAATAD8AAAADAAUAAAAMADwAAAADAAUAAAAcADsAAAADAAUAAAAqADEAAAADAAUAAAAHADUAAAADAAUAAAAJADwAAAACAAQAAAAqADUAAAACAAQAAAAaADkAAAABAAUAAAAYADsAAAABAAUAAAAYAD0AAAABAAUAAAAcAD0AAAABAAUAAAAWAD0AAAABAAUAAAAYADcAAAABAAUAAAAcADYAAAABAAUAAAAXADYAAAABAAUAAAAcADcAAAABAAUAAAAiADAAAAABAAUAAAAgADEAAAABAAUAAAAdAC4AAAABAAUAAAAbAC8AAAABAAUAAAAgACwAAAABAAUAAAAXAC0AAAABAAUAAAARACwAAAABAAUAAAAQADAAAAABAAUAAAASADEAAAABAAUAAAAJADEAAAABAAUAAAAKAC0AAAABAAUAAAAIAC8AAAABAAUAAAAIADgAAAABAAUAAAAKADwAAAABAAUAAAAJADkAAAABAAUAAAAQAEAAAAABAAUAAAAXAEAAAAABAAUAAAAVAEEAAAABAAUAAAAhAD4AAAABAAUAAAAlAD4AAAABAAUAAAAkAD8AAAABAAUAAAArADwAAAABAAUAAAAtADkAAAABAAUAAAAvADcAAAABAAUAAAAtADMAAAABAAUAAAApADMAAAABAAUAAAAsADUAAAABAAUAAAAtAC4AAAABAAUAAAApAC8AAAABAAUAAAAnADEAAAABAAUAAAAhACoAAAABAAUAAAARACkAAAABAAUAAAAdACkAAAABAAUAAAAfACoAAAADAAMAAAAVAC4AAAADAAMAAAASACkAAAADAAMAAAATACsAAAADAAMAAAAOAD4AAAADAAMAAAATAD4AAAADAAMAAAATAEAAAAADAAMAAAAbAD8AAAADAAMAAAAaADsAAAADAAMAAAAiAD8AAAADAAMAAAAgADoAAAADAAMAAAAhADgAAAADAAMAAAAoAD0AAAADAAMAAAArADkAAAADAAMAAAAtADsAAAADAAMAAAAtADYAAAADAAMAAAAvADMAAAADAAMAAAAtADEAAAADAAMAAAArADMAAAADAAMAAAAsAC8AAAADAAMAAAAqAC0AAAADAAMAAAAnADMAAAADAAMAAAAhADEAAAADAAMAAAAKADAAAAADAAMAAAAHADIAAAADAAMAAAAIADYAAAADAAMAAAAKADcAAAADAAMAAAAIADsAAAADAAMAAAASADgAAAADAAMAAAARADsAAAADAAMAAAAGADgAAAADAAMAAAAFADsAAAADAAMAAAACADEAAAADAAMAAAAFADUAAAADAAMAAAAGADoAAAABAAQAAAAGADcAAAABAAQAAAAGADMAAAABAAQAAAAHADAAAAABAAQAAAALADMAAAABAAQAAAASADcAAAABAAQAAAASADoAAAABAAQAAAAbADYAAAABAAQAAAAaAD0AAAABAAQAAAAeAD8AAAABAAQAAAAhADsAAAABAAQAAAAhADcAAAABAAQAAAAiADEAAAABAAQAAAAZAC0AAAABAAQAAAApADAAAAABAAQAAAAvADUAAAABAAQAAAAtADgAAAABAAQAAAAqAD0AAAABAAQAAAAoAD4AAAABAAQAAAAkAEAAAAABAAQAAAAZAEIAAAABAAQAAAALAD8AAAABAAQAAAAEAD0AAAAAAAUAAAADADgAAAAAAAUAAAAAADwAAAAAAAUAAAAEADoAAAAAAAUAAAABADkAAAAAAAUAAAABADsAAAAAAAUAAAACADYAAAAAAAUAAAAAADUAAAAAAAUAAAADADMAAAAAAAUAAAADADUAAAAAAAUAAAABADcAAAAAAAUAAAAHAC8AAAAAAAUAAAAEADEAAAAAAAUAAAAFAC8AAAAAAAUAAAABADIAAAAAAAUAAAD9/zIAAAAAAAUAAAD9/zUAAAAAAAUAAAD8/zYAAAAAAAUAAAABADMAAAAAAAUAAAADAC8AAAAIAAUAAAADADwAAAAIAAUAAAAcAC0AAAABAAUAAAAfACkAAAABAAUAAAAaACoAAAABAAUAAAAWACoAAAABAAUAAAAUACgAAAABAAUAAAAPACcAAAABAAUAAAAOACkAAAABAAUAAAATACYAAAABAAUAAAAcACYAAAABAAUAAAAeACcAAAABAAUAAAAcACcAAAABAAUAAAAeACoAAAADAAUAAAATACcAAAADAAUAAAARACcAAAADAAUAAAAQACsAAAADAAUAAAAKACwAAAADAAUAAAAPACoAAAADAAMAAAAQACoAAAAEAAMAAAAgACgAAAADAAMAAAAhACgAAAAEAAMAAAAbACgAAAADAAMAAAAcACgAAAAEAAMAAAAnADUAAAADAAMAAAAoADUAAAAEAAMAAAAqADoAAAADAAMAAAArADoAAAAEAAMAAAAgADkAAAADAAMAAAAhADkAAAAEAAMAAAALADgAAAADAAMAAAAMADgAAAAEAAMAAAAMAEEAAAADAAMAAAANAEEAAAAEAAMAAAAUAEIAAAADAAMAAAAVAEIAAAAEAAMAAAD9/zYAAAADAAMAAAD+/zYAAAAEAAMAAAD+/zIAAAADAAMAAAD//zIAAAAEAAMAAAAFADAAAAADAAMAAAAGADAAAAAEAAMAAAA=")
 tile_set = SubResource("TileSet_gwaj6")
@@ -1211,27 +1223,106 @@ position = Vector2(-35.93569, 1099.3486)
 position = Vector2(1041.1609, 1243.0796)
 
 [node name="CastleViola" parent="." unique_id=991667738 instance=ExtResource("12_g4ca1")]
-position = Vector2(536.1202, 1020.6851)
+y_sort_enabled = true
+position = Vector2(534.1777, 1060.5023)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="CastleViola" index="0" unique_id=1998281976]
+offset = Vector2(0, -70)
+
+[node name="CollisionShape2D" parent="CastleViola/StaticBody2D" parent_id_path=PackedInt32Array(991667738, 678984241) index="0" unique_id=540551866]
+position = Vector2(2.4282227, -38.036987)
+
+[node name="DoorWay" parent="CastleViola" index="2" unique_id=1208213178]
+position = Vector2(-6.474941, 11.329887)
 
 [node name="HouseViola1" parent="." unique_id=494715455 instance=ExtResource("14_bxd0e")]
-position = Vector2(294.2833, 935.22314)
+y_sort_enabled = true
+position = Vector2(294.2833, 969.2137)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="HouseViola1" index="0" unique_id=1998281976]
+offset = Vector2(0, -55)
+
+[node name="StaticBody2D" parent="HouseViola1" index="1" unique_id=678984241]
+position = Vector2(1.6187205, -50.176388)
+
+[node name="CollisionShape2D" parent="HouseViola1/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(0.00024414063, 2.4279175)
+
+[node name="DoorWay" parent="HouseViola1" index="2" unique_id=1208213178]
+position = Vector2(4.208088e-05, -21.041687)
 
 [node name="HouseViola" parent="." unique_id=1131167609 instance=ExtResource("15_lxk0k")]
-position = Vector2(327.30518, 1212.0026)
+y_sort_enabled = true
+position = Vector2(326.33395, 1241.1373)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="HouseViola" index="0" unique_id=1998281976]
+offset = Vector2(0, -55)
+
+[node name="StaticBody2D" parent="HouseViola" index="1" unique_id=678984241]
+position = Vector2(1.6187205, -64.74362)
+
+[node name="CollisionShape2D" parent="HouseViola/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(-0.8095703, 18.144165)
+
+[node name="DoorWay" parent="HouseViola" index="2" unique_id=1208213178]
+position = Vector2(-3.237399, -22.66018)
 
 [node name="MonasteryViola" parent="." unique_id=863259736 instance=ExtResource("16_4yjl5")]
-position = Vector2(502.12698, 801.2038)
+y_sort_enabled = true
+position = Vector2(501.15576, 860.4442)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="MonasteryViola" index="0" unique_id=1998281976]
+offset = Vector2(0, -110)
+
+[node name="CollisionShape2D" parent="MonasteryViola/StaticBody2D" parent_id_path=PackedInt32Array(863259736, 678984241) index="0" unique_id=540551866]
+position = Vector2(0.5, -40.465027)
+
+[node name="DoorWay" parent="MonasteryViola" index="2" unique_id=1208213178]
+position = Vector2(-9.712369, 1.61837)
 
 [node name="BarracksViola" parent="." unique_id=1032344357 instance=ExtResource("17_5r6st")]
-position = Vector2(790.583, 1190.6373)
+y_sort_enabled = true
+position = Vector2(789.61176, 1226.5702)
 scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" parent="BarracksViola" index="0" unique_id=1998281976]
+offset = Vector2(0, -70)
+
+[node name="StaticBody2D" parent="BarracksViola" index="1" unique_id=678984241]
+position = Vector2(-1.6187205, -82.54835)
+
+[node name="CollisionShape2D" parent="BarracksViola/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(1, 43.427734)
+
+[node name="DoorWay" parent="BarracksViola" index="2" unique_id=1208213178]
+position = Vector2(-1.6187205, -3.2373352)
 
 [node name="ArcheryViola2" parent="." unique_id=1455734842 instance=ExtResource("13_53m83")]
-position = Vector2(748.82, 942.99255)
+y_sort_enabled = true
+position = Vector2(749.79126, 976.98303)
 scale = Vector2(0.6, 0.6)
 
+[node name="Sprite2D" parent="ArcheryViola2" index="0" unique_id=1998281976]
+offset = Vector2(0, -80)
+
+[node name="StaticBody2D" parent="ArcheryViola2" index="1" unique_id=678984241]
+position = Vector2(3.237441, -93.8785)
+
+[node name="CollisionShape2D" parent="ArcheryViola2/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(-5, 37.45343)
+
+[node name="DoorWay" parent="ArcheryViola2" index="2" unique_id=1208213178]
+position = Vector2(40.46791, -8.392334e-05)
+
 [connection signal="body_entered" from="IngressoVillaggio5" to="IngressoVillaggio5" method="_on_body_entered"]
+
+[editable path="CastleViola"]
+[editable path="HouseViola1"]
+[editable path="HouseViola"]
+[editable path="MonasteryViola"]
+[editable path="BarracksViola"]
+[editable path="ArcheryViola2"]
