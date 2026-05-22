@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://1ru2270stqiu"]
 
-[ext_resource type="Script" path="res://Scripts/titoli_di_coda.gd" id="1_2jo5s"]
+[ext_resource type="Script" uid="uid://dl6qc3nxv7oxe" path="res://Scripts/titoli_di_coda.gd" id="1_2jo5s"]
 [ext_resource type="Texture2D" uid="uid://oh8kybp26k4k" path="res://assets_percorsofinale/royal_runner_tileset_64x64.png" id="1_4vdis"]
 [ext_resource type="Texture2D" uid="uid://bmxqggdjuxmfp" path="res://assets_percorsofinale/colonne_archi_tileset_64x64.png" id="2_cjrma"]
 [ext_resource type="Texture2D" uid="uid://f45asc33bf66" path="res://assets_percorsofinale/parete_marmo_oro_tileset_64x64.png" id="3_obsnd"]
@@ -441,7 +441,7 @@ animations = [{
 }]
 
 [sub_resource type="Animation" id="Animation_5qkpl"]
-length = 0.001
+length = 20.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -449,10 +449,10 @@ tracks/0/path = NodePath("FintoPlayer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(106, -5)]
+"values": [Vector2(106, -5), Vector2(104, -4423)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -473,10 +473,10 @@ tracks/2/path = NodePath("CanvasModulate:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 7, 15, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 1), Color(0.5146895, 0.6700851, 0.9980939, 1), Color(0.5137255, 0.67058825, 0.7647059, 1), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_2jo5s"]
@@ -501,10 +501,10 @@ tracks/1/path = NodePath("CanvasLayer/CreditsText:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 20),
+"times": PackedFloat32Array(2, 20),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(425, 596), Vector2(424, -4357)]
+"values": [Vector2(327, 645), Vector2(329, -4239)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -556,16 +556,47 @@ frame_progress = 0.9192627
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=72076646]
 
 [node name="CreditsText" type="RichTextLabel" parent="CanvasLayer" unique_id=113151940]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -151.0
-offset_top = -52.0
-offset_right = 151.0
+anchors_preset = -1
+anchor_left = 0.4296875
+anchor_top = 1.0987654
+anchor_right = 0.6032986
+anchor_bottom = 2.3564816
+offset_left = -70.0
+offset_top = -115.99994
+offset_right = 232.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]
+[font_size=28][b]PERCORSO 30 E LODE[/b][/font_size]
+
+[font_size=25]Grazie per aver giocato!!![/font_size]
+
+
+[font_size=25][b]PROGRAMMAZIONE E DESIGN[/b][/font_size]
+[font_size=25]Luca
+Alessio
+Matthew[/font_size]
+
+
+[font_size=25][b]GRAFICA E ARTISTI (ASSET)[/b][/font_size]
+[font_size=25]AxulArt
+Anokolisa
+Pixel-boy & AAA
+szadi art
+O_lobster[/font_size]
+
+
+[font_size=25][b]RINGRAZIAMENTI SPECIALI[/b][/font_size]
+[font_size=25]Un ringraziamento speciale al nostro professore
+[b]Franco Milicchio[/b]
+per il corso e l'esame di Mobile Computing.[/font_size]
+
+
+[font_size=25]Realizzato con il motore grafico Godot Engine.[/font_size]
+[/center]"
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=916972313]
@@ -573,6 +604,7 @@ libraries/ = SubResource("AnimationLibrary_ws8ae")
 autoplay = &"scorrimento_finale"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1036648737]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Angelo1" parent="." unique_id=349992580 instance=ExtResource("7_ws8ae")]
