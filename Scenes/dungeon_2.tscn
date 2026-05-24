@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="15_trpyw"]
 [ext_resource type="Resource" uid="uid://ccwvh5ul7gojo" path="res://Resources/fullbeetroot/fullbeetroot.tres" id="16_k2pj8"]
 [ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="17_81ay8"]
+[ext_resource type="Resource" uid="uid://c8n6bivtfs2p1" path="res://Resources/SecurityCard/security_card.tres" id="18_card"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axtet"]
 texture = ExtResource("2_joeuc")
@@ -1933,10 +1934,8 @@ z_index = 1
 position = Vector2(1151, -699)
 chest_id = "cassa_casa_3"
 is_locked = true
-use_loot_pool = true
-loot_spawn_count = 5
-loot_pool_items = Array[ExtResource("15_emywk")]([ExtResource("16_k2pj8"), ExtResource("17_81ay8")])
-loot_pool_weights = Array[float]([1.0, 3.0])
+oggetto_iniziale = ExtResource("18_card")
+use_loot_pool = false
 
 [editable path="ArenaManager"]
 [editable path="ArenaDoor"]

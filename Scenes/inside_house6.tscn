@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="7_fco7p"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="8_keld1"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="10_10xwv"]
+[ext_resource type="PackedScene" uid="uid://c6bivtfs2p1h8" path="res://Scenes/hermit.tscn" id="11_hermit"]
+[ext_resource type="PackedScene" uid="uid://cx6bivtfs2p2h" path="res://Scenes/trapdoor.tscn" id="12_trapdoor"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_keld1")
@@ -2173,6 +2175,12 @@ tile_set = SubResource("TileSet_c378k")
 [node name="Chest" parent="." unique_id=716899325 instance=ExtResource("8_keld1")]
 z_index = 0
 oggetto_iniziale = ExtResource("5_bi3hy")
+
+[node name="Hermit" parent="." unique_id=987654321 instance=ExtResource("11_hermit")]
+position = Vector2(32, 48)
+
+[node name="Trapdoor" parent="." unique_id=987654322 instance=ExtResource("12_trapdoor")]
+position = Vector2(-48, 48)
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=2067504141]
 position = Vector2(-9, 115)
