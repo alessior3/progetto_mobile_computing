@@ -3,17 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://dpxuad05gqgi7" path="res://Scenes/HousePercorso1.tscn" id="2_qclq6"]
 [ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="2_yksme"]
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="3_4u4t0"]
-[ext_resource type="Script" uid="uid://csx1y4eubv6ui" path="res://Scripts/percorso_exit.gd" id="3_yksme"]
+[ext_resource type="Script" path="res://Scripts/percorso_exit.gd" id="3_yksme"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_d1xfb"]
 [ext_resource type="Script" uid="uid://y74awwikgrtd" path="res://Scripts/percorso_1.gd" id="4_percorso_root"]
 [ext_resource type="PackedScene" uid="uid://dhinc5gjn3qjh" path="res://Scenes/Grotta1.tscn" id="5_u68j6"]
 [ext_resource type="Texture2D" uid="uid://c8u8tesrhtn30" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Parete di rocce.png" id="6_vx472"]
-[ext_resource type="PackedScene" uid="uid://dqc6wq451qcrj" path="res://Scenes/NpcVecchio1.tscn" id="8_u13ma"]
 [ext_resource type="PackedScene" uid="uid://duqpqcdufdctl" path="res://Scenes/Panda.tscn" id="9_jqp7j"]
-[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="10_trans"]
+[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="10_trans"]
 [ext_resource type="PackedScene" uid="uid://dv7i1pie573vl" path="res://Scenes/FlamRed.tscn" id="12_ebchb"]
-[ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="13_v78ur"]
-[ext_resource type="Resource" uid="uid://d14g8slrjwumf" path="res://Resources/FloppyDisk/restored_floppy.tres" id="14_v78ur"]
+[ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="13_jw1tv"]
+[ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="14_v78ur"]
 [ext_resource type="PackedScene" uid="uid://c7rsi6wjhtosl" path="res://Scenes/chestFucsia.tscn" id="15_cy87q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
@@ -539,6 +538,7 @@ z_index = 3
 y_sort_enabled = true
 position = Vector2(3830, -92)
 scale = Vector2(0.5, 0.5)
+inside_scene = "uid://e4f16m2o0pf5"
 
 [node name="ground" type="TileMapLayer" parent="." unique_id=672969651]
 z_index = -1
@@ -585,10 +585,6 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAhAeL/BAAAAAAAAAAZAeL/BAAAAAAAAAAZAdr/BAAAAAAAAAAhAdr/BAAAAAAAAAApAdr/BAAAAAAAAAAnAeD/AAAAAAAAAAArAeD/AAAAAAAAAAAnAeT/AAAAAAAAAAAvAd7/AAAAAAAAAAAvAdr/AAAAAAAAAAATAd//AAAAAAAAAAApAeL/AAAAAAAAAAAqAdX/BAAAAAAAAAAiAdX/BAAAAAAAAAA=")
 tile_set = SubResource("TileSet_u13ma")
 
-[node name="NpcVecchio1" parent="." unique_id=349992580 instance=ExtResource("8_u13ma")]
-y_sort_enabled = true
-position = Vector2(3000, -143)
-
 [node name="Panda2" parent="." unique_id=1098246921 instance=ExtResource("9_jqp7j")]
 y_sort_enabled = true
 position = Vector2(4573, -396)
@@ -605,6 +601,7 @@ position = Vector2(4640, -386)
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_d1xfb")]
 z_index = 1
 position = Vector2(2650, -122)
+run_speed = 400
 god_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
@@ -628,11 +625,6 @@ shape = SubResource("RectangleShape2D_yksme")
 
 [node name="FlamRed5" parent="." unique_id=1898490425 instance=ExtResource("12_ebchb")]
 position = Vector2(5320, -491)
-
-[node name="PickUpItem" parent="." unique_id=1473875551 instance=ExtResource("13_v78ur")]
-position = Vector2(4633, -313)
-scale = Vector2(0.02, 0.02)
-inventory_item = ExtResource("14_v78ur")
 
 [node name="Loop" type="Area2D" parent="." unique_id=616510164]
 position = Vector2(3768, 463)
@@ -679,6 +671,9 @@ scale = Vector2(1.4, 1.4)
 [node name="Chest" parent="." unique_id=716899325 instance=ExtResource("15_cy87q")]
 position = Vector2(1940, 634)
 scale = Vector2(1.4, 1.4)
+oggetto_iniziale = ExtResource("13_jw1tv")
+
+[node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("14_v78ur")]
 
 [connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
 [connection signal="body_exited" from="exit" to="exit" method="_on_body_exited"]

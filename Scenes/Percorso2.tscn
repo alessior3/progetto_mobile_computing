@@ -7,11 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="4_gsl5o"]
 [ext_resource type="Texture2D" uid="uid://c4ox2yhc1bbfp" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/PareteDiroccie2.png" id="5_kxe8q"]
 [ext_resource type="Texture2D" uid="uid://c8xnhnhherxm2" path="res://Top_Down_Adventure_Pack_v.1.0/AlberoViola_Tileset.png" id="5_mieho"]
-[ext_resource type="PackedScene" uid="uid://ld6g3vjh724a" path="res://Scenes/HouseRed2.tscn" id="7_txkus"]
 [ext_resource type="PackedScene" uid="uid://wh7vq7l5a2qe" path="res://Scenes/RedGladiator.tscn" id="8_3j1r5"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="10_04mdg"]
 [ext_resource type="PackedScene" uid="uid://bvwquh12x8a8k" path="res://Scenes/chestVerde.tscn" id="10_47qqi"]
-[ext_resource type="PackedScene" uid="uid://d3jus14pdk2pr" path="res://Scenes/chestBlu.tscn" id="11_mieho"]
+[ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="11_x8jna"]
+[ext_resource type="Resource" uid="uid://hit7s0ssu37x" path="res://Resources/seedRadish1/Radish.tres" id="12_lxtrv"]
+[ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="13_gsl5o"]
+[ext_resource type="Resource" uid="uid://dnw04t867ju10" path="res://Resources/GoldCoin/gold_coin.tres" id="13_hsodn"]
+[ext_resource type="Resource" uid="uid://jb6410dqkqbs" path="res://Resources/seedbeetroot/seedbeetroot.tres" id="13_lxtrv"]
+[ext_resource type="PackedScene" uid="uid://cpl3otpqaqlwp" path="res://Scenes/HouseRed1.tscn" id="13_pq8ly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("3_x8jna")
@@ -603,11 +607,6 @@ position = Vector2(2223, 706)
 [node name="SpawnPlayerUscita" type="Marker2D" parent="." unique_id=1313191152]
 position = Vector2(5239, 1288)
 
-[node name="HouseRed1" parent="." unique_id=894498158 instance=ExtResource("7_txkus")]
-y_sort_enabled = true
-position = Vector2(3223, 1220)
-scale = Vector2(0.5, 0.5)
-
 [node name="RedGladiator2" parent="." unique_id=1590870995 instance=ExtResource("8_3j1r5")]
 position = Vector2(4017.0002, 1006)
 scale = Vector2(1.3, 1.3)
@@ -632,16 +631,24 @@ scale = Vector2(1.3, 1.3)
 position = Vector2(3508.0002, 1016)
 scale = Vector2(1.3, 1.3)
 
+[node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("11_x8jna")]
+
 [node name="Chest3" parent="." unique_id=716899325 instance=ExtResource("10_47qqi")]
 position = Vector2(4061, 976)
+oggetto_iniziale = ExtResource("12_lxtrv")
 
 [node name="Chest2" parent="." unique_id=1122864719 instance=ExtResource("10_47qqi")]
 position = Vector2(3611, 2245)
+oggetto_iniziale = ExtResource("13_hsodn")
 
-[node name="Chest" parent="." unique_id=2092830098 instance=ExtResource("11_mieho")]
-position = Vector2(3569, 1002)
+[node name="Chest" parent="." unique_id=1258312853 instance=ExtResource("13_gsl5o")]
+position = Vector2(3566, 1016)
+oggetto_iniziale = ExtResource("13_lxtrv")
+
+[node name="HouseRed1" parent="." unique_id=407676494 instance=ExtResource("13_pq8ly")]
+position = Vector2(3224, 1212)
+scale = Vector2(0.5, 0.5)
+inside_scene = "uid://brk61bktukewl"
 
 [connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaPercorso2" to="UscitaPercorso2" method="_on_body_entered"]
-
-[editable path="HouseRed1"]

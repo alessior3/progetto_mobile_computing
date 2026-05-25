@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bhhlflyq8rge5" path="res://Scenes/CastleViola.tscn" id="12_g4ca1"]
 [ext_resource type="PackedScene" uid="uid://cb6s8v3wrl2es" path="res://Scenes/ArcheryViola.tscn" id="13_53m83"]
 [ext_resource type="PackedScene" uid="uid://dn1qwl6ne8ig7" path="res://Scenes/HouseViola2.tscn" id="14_bxd0e"]
+[ext_resource type="PackedScene" uid="uid://cm7rconppri05" path="res://Scenes/Chiesa1_villaggio4.tscn" id="15_audoo"]
 [ext_resource type="PackedScene" uid="uid://dgg8gre6mbwwr" path="res://Scenes/HouseViola1.tscn" id="15_lxk0k"]
 [ext_resource type="PackedScene" uid="uid://blvd7is65ppka" path="res://Scenes/MonasteryViola.tscn" id="16_4yjl5"]
 [ext_resource type="PackedScene" uid="uid://c4nd4dc04k6d0" path="res://Scenes/BarracksViola.tscn" id="17_5r6st"]
@@ -1274,6 +1275,7 @@ position = Vector2(-3.237399, -22.66018)
 y_sort_enabled = true
 position = Vector2(501.15576, 860.4442)
 scale = Vector2(0.6, 0.6)
+inside_scene = ExtResource("15_audoo")
 
 [node name="Sprite2D" parent="MonasteryViola" index="0" unique_id=1998281976]
 offset = Vector2(0, -110)

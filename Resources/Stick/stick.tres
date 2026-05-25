@@ -6,10 +6,10 @@
 
 [resource]
 script = ExtResource("1_qwj5t")
+item_id = "stick"
 slot_type = "Hand"
 ground_collision_shape = ExtResource("1_nojim")
 name = "Stick"
 texture = ExtResource("3_8fbu1")
 price = 40
-is_weapon = true
 damage = 40

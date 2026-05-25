@@ -4,15 +4,16 @@
 [ext_resource type="Script" path="res://Scripts/transition_area.gd" id="2_trans"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="6_tga6p"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="7_hfgww"]
+[ext_resource type="PackedScene" uid="uid://d2xebv1x3y508" path="res://Scenes/inside_house4.tscn" id="11_oh5dj"]
 [ext_resource type="PackedScene" uid="uid://b0spb3q762abr" path="res://Scenes/BarracksRed.tscn" id="11_qp3g5"]
 [ext_resource type="PackedScene" uid="uid://bunupys6h6r8g" path="res://Scenes/ArcheryRed.tscn" id="12_qmgh0"]
 [ext_resource type="PackedScene" uid="uid://qc0q00ppvuyg" path="res://Scenes/CastleRed.tscn" id="13_3rjkl"]
 [ext_resource type="PackedScene" uid="uid://cpl3otpqaqlwp" path="res://Scenes/HouseRed1.tscn" id="14_vnptf"]
 [ext_resource type="PackedScene" uid="uid://b6sq7nl1si6vq" path="res://Scenes/MonasteryRed.tscn" id="15_xabpj"]
 [ext_resource type="PackedScene" uid="uid://cifafmjtwh0x7" path="res://Scenes/TowerRed.tscn" id="16_qmgh0"]
-[ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="17_vnptf"]
-[ext_resource type="Resource" uid="uid://cfy8gqk8goif4" path="res://Resources/weapons/Axe.tres" id="18_xabpj"]
-[ext_resource type="Resource" uid="uid://do6v1fa5kemth" path="res://Resources/weapons/Big_Sword.tres" id="19_xabpj"]
+[ext_resource type="PackedScene" uid="uid://cn0cy6aabhw50" path="res://Scenes/Chiesa1.tscn" id="18_bpa85"]
+[ext_resource type="PackedScene" uid="uid://dxvknorvwacsx" path="res://Scenes/Npc2.tscn" id="20_wncjf"]
+[ext_resource type="Script" uid="uid://jsmbq5abc6i8" path="res://Scripts/npc_villaggio2.gd" id="21_oh5dj"]
 [ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="24_gcgqp"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="25_yp5ne"]
 [ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="26_ljjbl"]
@@ -764,6 +765,7 @@ shape = SubResource("RectangleShape2D_bpa85")
 y_sort_enabled = true
 position = Vector2(726.4817, 921.627)
 scale = Vector2(0.5, 0.5)
+inside_scene = ExtResource("11_oh5dj")
 
 [node name="Sprite2D" parent="TowerRed" index="0" unique_id=1998281976]
 offset = Vector2(0, -80)
@@ -847,6 +849,7 @@ scale = Vector2(0.5, 0.5)
 y_sort_enabled = true
 position = Vector2(751.7337, 1177.041)
 scale = Vector2(0.5, 0.5)
+inside_scene = ExtResource("18_bpa85")
 
 [node name="Sprite2D" parent="MonasteryRed" index="0" unique_id=1998281976]
 offset = Vector2(0, -120)
@@ -867,13 +870,11 @@ position = Vector2(34.964245, 1113.916)
 [node name="UscitaVillaggio2" type="Marker2D" parent="." unique_id=363480012]
 position = Vector2(826.5186, 1207.1469)
 
-[node name="axe" parent="." unique_id=1473875551 instance=ExtResource("17_vnptf")]
-position = Vector2(481.73114, 1178.9833)
-inventory_item = ExtResource("18_xabpj")
-
-[node name="PickUpItem" parent="." unique_id=334701505 instance=ExtResource("17_vnptf")]
-position = Vector2(423.45718, 1169.2719)
-inventory_item = ExtResource("19_xabpj")
+[node name="Npc2" parent="." unique_id=349992580 instance=ExtResource("20_wncjf")]
+y_sort_enabled = true
+position = Vector2(232.1244, 1111.0024)
+script = ExtResource("21_oh5dj")
+storia_npc = Array[String](["Ehi, aspetta un attimo... ma tu sei quello di cui tutti parlano! Colui che ha superato il labirinto del Primo Dungeon!", "Le voci sulle tue eroiche gesta sono arrivate fin qui. Sei l'unica speranza che ci rimane contro il Mago Oscuro.", "Ma non esultare troppo in fretta. Se stai andando verso il Secondo Dungeon, preparati al peggio. Quel posto è molto diverso dalle vecchie rovine.", "È una vera e propria Arena. Nessun labirinto in cui nascondersi, nessuna via di fuga. Solo ondate di nemici spietati progettati per annientarti.", "Al centro troverai un grande Terminale di Controllo. Dovrai attivarlo e sopravvivere finché l'hackeraggio non sarà completo. Che la Dea della Rete vegli su di te!"])
 
 [connection signal="body_entered" from="IngressoVillaggio" to="IngressoVillaggio" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaVillaggio" to="UscitaVillaggio" method="_on_body_entered"]

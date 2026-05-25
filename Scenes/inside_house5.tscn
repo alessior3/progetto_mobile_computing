@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="6_jfgv0"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="7_17j6m"]
 [ext_resource type="Texture2D" uid="uid://dpoutto6vxgkf" path="res://Assets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="8_6e0wl"]
+[ext_resource type="PackedScene" path="res://Scenes/NpcFloppy.tscn" id="9_e5hbl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_6e0wl")
@@ -4202,5 +4203,8 @@ tile_set = SubResource("TileSet_u4j1y")
 
 [node name="muri" type="StaticBody2D" parent="." unique_id=1827357304]
 position = Vector2(-240, -63)
+
+[node name="NpcFloppy" parent="." unique_id=349992580 instance=ExtResource("9_e5hbl")]
+storia_npc = Array[String](["Mmmh, tu sei quello nuovo, vero? Gira voce che tu voglia sconfiggere il mago oscuro!", "Per farlo dovrai avventurarti nella grotta qui vicino. Per entrare avrai bisogno di un vecchio disco dati... un Floppy Disk.", "Purtroppo non ne ho, ma sono sicuro che qualcuno nel villaggio venda oggetti del genere."])
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]

@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/BarracksGiallo.tscn" id="13_kthw0"]
 [ext_resource type="PackedScene" path="res://Scenes/MonasteryGiallo.tscn" id="15_5j8lq"]
 [ext_resource type="PackedScene" uid="uid://dyhglcy6xjxe1" path="res://Scenes/HouseGialla2.tscn" id="15_nnte5"]
+[ext_resource type="PackedScene" path="res://Scenes/NpcVillaggio3.tscn" id="18_kthw0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l250t"]
 texture = ExtResource("4_5j8lq")
@@ -925,7 +926,7 @@ size = Vector2(163.45474, 188.40428)
 
 [node name="villaggio3" type="Node2D" unique_id=2084603517]
 y_sort_enabled = true
-position = Vector2(1624.0001, -514.00006)
+position = Vector2(1632.0001, -514.00006)
 scale = Vector2(1.0296197, 1.0297008)
 script = ExtResource("1_script")
 
@@ -1112,6 +1113,10 @@ position = Vector2(-18.45359, 1050.7908)
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=846630186]
 position = Vector2(-2, -2)
 zoom = Vector2(3, 3)
+
+[node name="NpcVillaggio3" parent="." unique_id=1586378468 instance=ExtResource("18_kthw0")]
+position = Vector2(483.67358, 1122.6563)
+storia_inizio = Array[String](["Benvenuto nel Villaggio Giallo, viaggiatore! Senti, abbiamo un problema urgente.", "Dobbiamo accendere il grande falò del villaggio, ma nessuno ha più un accendino! Ormai qua usano tutti la dannata IQOS da quando è arrivato il mago oscuro!", "Quella diavoleria scalda e basta, non fa una vera fiamma! Potresti cercare nel percorso successivo se trovi un vecchio accendino a gas?"])
 
 [connection signal="body_entered" from="IngressoVillaggio4" to="IngressoVillaggio4" method="_on_body_entered"]
 

@@ -7,16 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://dgn5abo1h1pjy" path="res://Scenes/arena_pink_bat.tscn" id="2_k2pb7"]
 [ext_resource type="Texture2D" uid="uid://nkgllj8b02et" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_k2pb7"]
+[ext_resource type="PackedScene" uid="uid://wh7vq7l5a2qe" path="res://Scenes/RedGladiator.tscn" id="7_gy8b2"]
+[ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="8_8otlg"]
 [ext_resource type="PackedScene" path="res://Scenes/sticky_zone.tscn" id="8_axtet"]
+[ext_resource type="PackedScene" uid="uid://dv7i1pie573vl" path="res://Scenes/FlamRed.tscn" id="9_brvm2"]
+[ext_resource type="PackedScene" uid="uid://dd8eoq471npuk" path="res://Scenes/phantom.tscn" id="10_0p60m"]
 [ext_resource type="PackedScene" uid="uid://db5c2u5ksem5" path="res://Scenes/binary_logic_manager.tscn" id="10_4x36e"]
 [ext_resource type="PackedScene" uid="uid://dgb76o7sblhqr" path="res://Scenes/binary_socket.tscn" id="10_jf5nn"]
+[ext_resource type="PackedScene" uid="uid://bi7i17wp74kna" path="res://Scenes/pink_slime.tscn" id="11_yijr3"]
+[ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://Scenes/spider.tscn" id="12_e3slh"]
 [ext_resource type="Texture2D" uid="uid://b1ntov0ah46dr" path="res://Assets/stone_terminal_active_bg.png" id="12_ejumn"]
 [ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="13_i5gjx"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="15_ejumn"]
-[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="15_emywk"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="15_trpyw"]
-[ext_resource type="Resource" uid="uid://ccwvh5ul7gojo" path="res://Resources/fullbeetroot/fullbeetroot.tres" id="16_k2pj8"]
-[ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="17_81ay8"]
 [ext_resource type="Resource" uid="uid://c8n6bivtfs2p1" path="res://Resources/SecurityCard/security_card.tres" id="18_card"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axtet"]
@@ -1709,15 +1712,15 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_kpojm")
 sources/1 = SubResource("TileSetAtlasSource_i5gjx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_emywk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trpyw"]
 resource_local_to_scene = true
 size = Vector2(225, 170)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2pj8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejumn"]
 resource_local_to_scene = true
 size = Vector2(578, 530)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_81ay8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emywk"]
 resource_local_to_scene = true
 size = Vector2(356, 623)
 
@@ -1767,9 +1770,9 @@ tile_set = SubResource("TileSet_axtet")
 
 [node name="ArenaManager" parent="." unique_id=1421157923 node_paths=PackedStringArray("doors") instance=ExtResource("1_k2pb7")]
 position = Vector2(290, -265)
-enemy_types = Array[PackedScene]([ExtResource("2_k2pb7")])
-waves_count = 1
-enemies_per_wave = 1
+enemy_types = Array[PackedScene]([ExtResource("2_k2pb7"), ExtResource("7_gy8b2"), ExtResource("8_8otlg"), ExtResource("9_brvm2"), ExtResource("10_0p60m"), ExtResource("11_yijr3"), ExtResource("12_e3slh")])
+waves_count = 4
+enemies_per_wave = 6
 random_spawn_area = Vector2(250, 155)
 doors = [NodePath("../ArenaDoor"), NodePath("../ArenaDoor2"), NodePath("../ArenaDoor3"), NodePath("../ArenaDoor4"), NodePath("../ArenaDoor5"), NodePath("../ArenaDoor6")]
 
@@ -1844,7 +1847,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone" index="0"]
 position = Vector2(432.5, 120)
-shape = SubResource("RectangleShape2D_emywk")
+shape = SubResource("RectangleShape2D_trpyw")
 
 [node name="StickyZone2" parent="." unique_id=1050859042 instance=ExtResource("8_axtet")]
 position = Vector2(366, 157)
@@ -1852,7 +1855,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone2" index="0"]
 position = Vector2(-91, 44)
-shape = SubResource("RectangleShape2D_k2pj8")
+shape = SubResource("RectangleShape2D_ejumn")
 
 [node name="StickyZone3" parent="." unique_id=1485841544 instance=ExtResource("8_axtet")]
 position = Vector2(837, 34)
@@ -1860,7 +1863,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone3" index="0"]
 position = Vector2(-43, -165.5)
-shape = SubResource("RectangleShape2D_81ay8")
+shape = SubResource("RectangleShape2D_emywk")
 
 [node name="BinaryLogicManager" parent="." unique_id=2019978947 instance=ExtResource("10_4x36e")]
 z_index = 1
@@ -1933,9 +1936,8 @@ position = Vector2(358, 438)
 z_index = 1
 position = Vector2(1151, -699)
 chest_id = "cassa_casa_3"
-is_locked = true
 oggetto_iniziale = ExtResource("18_card")
-use_loot_pool = false
+is_locked = true
 
 [editable path="ArenaManager"]
 [editable path="ArenaDoor"]

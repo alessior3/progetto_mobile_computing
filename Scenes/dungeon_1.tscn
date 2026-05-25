@@ -24,10 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://b2tsohr1yffhf" path="res://RF_Catacombs_v1/torch_3.png" id="17_w2mga"]
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 [ext_resource type="Resource" uid="uid://dt7fktfvrfnsb" path="res://Resources/DungeonKey/dungeon_key.tres" id="19_jp8yi"]
-[ext_resource type="Resource" uid="uid://bn6pupdgf3sed" path="res://Resources/Shadow3/Shadow3.tres" id="19_xeqhr"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="20_natbj"]
-[ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="21_g3xq8"]
-[ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="27_h1hro"]
+[ext_resource type="PackedScene" uid="uid://d3jus14pdk2pr" path="res://Scenes/chestBlu.tscn" id="27_gau0i"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="28_gau0i"]
 [ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="30_w2mga"]
 
@@ -2668,26 +2666,12 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAEAAMAAAAGAAEAAAAEAAIAAAAGAAAAAAAMAAIAAAAGAAAAAAAMAAMAAAAGAAEAAAASAAMAAAAGAAEAAAASAAIAAAAGAAAAAAAIAPb/AAAGAAAAAAARAPb/AAAGAAAAAAAXAPb/AAAGAAAAAAAfAPb/AAAGAAAAAAAIAPf/AAAGAAEAAAARAPf/AAAGAAEAAAAXAPf/AAAGAAEAAAAfAPf/AAAGAAEAAAA=")
 tile_set = SubResource("TileSet_k5eiu")
 
-[node name="Chest" parent="." unique_id=716899325 instance=ExtResource("27_h1hro")]
-z_index = 0
-position = Vector2(1103, -817)
-chest_id = null
-chest_size = null
-oggetto_iniziale = ExtResource("19_jp8yi")
-is_locked = null
-use_loot_pool = null
-loot_spawn_count = null
-loot_pool = null
-x_chiusa = null
-x_aperta = null
-
 [node name="doors" type="TileMapLayer" parent="." unique_id=755468669]
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAoAAAABAP//AAABAAoAAAABAAAAAAABAAsAAAABAAEAAAABAAwAAAAAAAAAAAAAAAsAAAAAAAEAAAAAAAwAAAA=")
 tile_set = SubResource("TileSet_dmbys")
 
 [node name="DarkCorridor" type="PointLight2D" parent="." unique_id=793748100]
-visible = false
 position = Vector2(293.26862, -784.50006)
 scale = Vector2(21.074621, 14.703125)
 energy = 1.15
@@ -2764,19 +2748,9 @@ zoom = Vector2(3, 3)
 
 [node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("17_grqd7")]
 
-[node name="Shadow3" parent="." unique_id=1427672997 instance=ExtResource("14_wnvaf")]
-position = Vector2(867, -273)
-item_id = "Shadow3"
-inventory_item = ExtResource("19_xeqhr")
-
 [node name="beast" parent="." unique_id=349992580 instance=ExtResource("20_natbj")]
 position = Vector2(929, -199)
 collision_mask = 7
-
-[node name="carrot" parent="." unique_id=1832595935 instance=ExtResource("14_wnvaf")]
-position = Vector2(909, -217)
-item_id = "carrot"
-inventory_item = ExtResource("21_g3xq8")
 
 [node name="exit" type="Area2D" parent="." unique_id=363302866]
 collision_layer = 0
@@ -2795,5 +2769,9 @@ volume_db = -10.0
 
 [node name="SpawnPlayer" type="Marker2D" parent="." unique_id=1889388693]
 position = Vector2(16, 52)
+
+[node name="Chest2" parent="." unique_id=716899325 instance=ExtResource("27_gau0i")]
+position = Vector2(1105, -817)
+oggetto_iniziale = ExtResource("19_jp8yi")
 
 [connection signal="body_entered" from="exit" to="player" method="_on_exit_body_entered"]

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="7_svm4f"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="8_1fjxn"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_awn87"]
+[ext_resource type="PackedScene" path="res://Scenes/NpcVecchio2.tscn" id="9_sa33a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_r0kjn")
@@ -6191,4 +6192,13 @@ tile_set = SubResource("TileSet_u4j1y")
 tile_map_data = PackedByteArray("AAD7/wEAAAADACoAAAD7/wIAAAADACsAAAD8/wEAAAAEACoAAAD8/wIAAAAEACsAAAD9/wEAAAAFACoAAAD9/wIAAAAFACsAAAA=")
 tile_set = SubResource("TileSet_svm4f")
 
+[node name="NpcVecchio2" parent="." unique_id=349992580 instance=ExtResource("9_sa33a")]
+position = Vector2(-10, 55)
+storia_npc = Array[String](["Ho sentito in giro che hai una mezza idea di infilarti nel Secondo Dungeon.", "Devi sapere che quelle rovine sotterranee sono state invase da una strana creatura viscida...", "L'intero pavimento dell'Arena è coperto da una disgustosa melma appiccicosa rosa!", "Se ci cammini sopra senza precauzioni, diventerai lento come una lumaca. Sarai un bersaglio facilissimo.", "Ti svelo un segreto: coltiva qualcosa nel tuo orticello e prepara un pasto che dia un bel Buff alla Velocità.", "Solo così potrai sgusciare via da quella trappola rosa e scivolarci sopra come se fosse ghiaccio!"])
+
+[node name="CollisionShape2D" parent="NpcVecchio2/VisionArea" parent_id_path=PackedInt32Array(349992580, 1940184636) index="0" unique_id=1178060263]
+position = Vector2(1, 4)
+
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+
+[editable path="NpcVecchio2"]

@@ -1,38 +1,35 @@
 extends CharacterBody2D
 
 # --- IMPOSTAZIONI NPC ---
-var speed: float = 80.0
 var player_in_range: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
 @export var storia_npc: Array[String] = [
-	"Ben svegliato, giovane. Finché resti nel villaggio sei al sicuro, ma so che prima o poi vorrai avventurarti oltre i nostri confini.",
-	"Devi sapere che le macchine del Mago Oscuro là fuori non sono invincibili. Con il giusto equipaggiamento, chiunque può essere sconfitto.",
-	"Dovrai armarti: esplora bene, apri le casse, sconfiggi i mostri. Le armi si riveleranno fondamentali per spezzare le loro barriere.",
-	"E non dimenticarti dell'agricoltura! Il cibo giusto non si limita a curarti... alcuni frutti ti conferiranno buff straordinari per essere più veloce o colpire più duramente.",
-	"A proposito... dai un'occhiata alla cassa dietro di me. L'ho tenuta al sicuro finora. Aprila e prendi l'arma al suo interno, ne avrai bisogno!"
+	"Ehi, viaggiatore! Sei capitato nel giorno giusto! Hai per caso saputo la grande notizia?",
+	"Il Villaggio Rosso ha umiliato il Villaggio Blu nel grande derby annuale! Che goduria... Forza Rosso sempre e abbasso i puffi del Villaggio Blu!",
+	"Quelli del Villaggio Blu sanno solo lamentarsi e piangere, mentre noi abbiamo la stoffa dei campioni! E a proposito di sfide impossibili...",
+	"Ho sentito in giro che vuoi infilarti in quel tritacarne del Secondo Dungeon. Amico mio, con quell'armetta che ti ritrovi farai solo il solletico alle macchine di quell'Arena.",
+	"Ti conviene fare un giro in paese e procurarti un'arma più pesante. Un vero tifoso del Rosso non scende mai in campo senza l'equipaggiamento giusto!"
 ]
 
 # --- RIFERIMENTI AI NODI ---
-@onready var exclamation_mark = $ExclamationMark
-@onready var vision_area = $VisionArea
-@onready var anim = $AnimatedSprite2D 
+@onready var exclamation_mark = get_node_or_null("ExclamationMark")
+@onready var anim = get_node_or_null("AnimatedSprite2D")
 
 func _ready():
-	# Nascondiamo il punto esclamativo all'inizio
 	if exclamation_mark:
 		exclamation_mark.visible = false
 	if anim:
 		anim.play("idle_an")
 
 func _physics_process(delta):
-	# NPC statico: non rincorre il giocatore.
+	# NPC statico.
 	pass
 
 # --- L'AVVISTAMENTO (!) ---
 func _on_vision_area_body_entered(body):
-	if Global.talked_to_npc_vecchio: return
+	if Global.get("talked_to_npc_villaggio2_house"): return
 	
 	if body.name == "Player" or body.name == "player" or body.is_in_group("Player") or body.is_in_group("player"):
 		player_in_range = true
@@ -48,7 +45,7 @@ func _on_vision_area_body_exited(body: Node2D) -> void:
 			exclamation_mark.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and not Global.talked_to_npc_vecchio:
+	if event.is_action_pressed("interact") and not Global.get("talked_to_npc_villaggio2_house"):
 		if player_in_range and not is_talking:
 			get_viewport().set_input_as_handled()
 			if exclamation_mark:
@@ -70,5 +67,5 @@ func inizia_dialogo():
 		if dm.visible:
 			await dm.dialogue_finished
 			
-		Global.talked_to_npc_vecchio = true
+		Global.set("talked_to_npc_villaggio2_house", true)
 		dm.show_message(storia_npc)

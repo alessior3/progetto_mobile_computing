@@ -1,5 +1,7 @@
 extends Node2D
 
+@export_file("*.tscn") var inside_scene: String = "res://Scenes/inside_house6.tscn"
+
 @onready var player = get_tree().get_first_node_in_group("player") if is_inside_tree() else null
 
 func _ready() -> void:
@@ -19,6 +21,6 @@ func enter():
 		Global.player_pos = player.global_position
 	Global.from_house3_to_percorso = true
 	if TransitionChangeManager:
-		TransitionChangeManager.change_scene("res://Scenes/inside_house3.tscn")
+		TransitionChangeManager.change_scene(inside_scene)
 	else:
-		get_tree().change_scene_to_file("res://Scenes/inside_house3.tscn")
+		get_tree().change_scene_to_file(inside_scene)

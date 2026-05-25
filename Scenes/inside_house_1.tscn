@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="5_nwdop"]
 [ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="6_qmr4a"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="7_lhkjd"]
-[ext_resource type="Resource" uid="uid://cgbg5yin57x30" path="res://Resources/fullCabbage/fullCabbage.tres" id="8_tqxsn"]
+[ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="8_h67tc"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_s08nh"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="10_s08nh"]
+[ext_resource type="PackedScene" uid="uid://dqc6wq451qcrj" path="res://Scenes/NpcVecchio1.tscn" id="12_h67tc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("1_bpctk")
@@ -2205,7 +2206,7 @@ tile_set = SubResource("TileSet_tqxsn")
 [node name="Chest" parent="." unique_id=716899325 instance=ExtResource("4_1ttny")]
 z_index = 0
 position = Vector2(-9, 0)
-oggetto_iniziale = ExtResource("8_tqxsn")
+oggetto_iniziale = ExtResource("8_h67tc")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("2_0vnda")]
 position = Vector2(-7, 133)
@@ -2239,4 +2240,13 @@ tile_set = SubResource("TileSet_nf6n5")
 
 [node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("10_s08nh")]
 
+[node name="NpcVecchio1" parent="." unique_id=349992580 instance=ExtResource("12_h67tc")]
+position = Vector2(-7, 46)
+storia_npc = Array[String](["Ben svegliato, giovane. Si vede che sei un ragazzo coraggioso e che dentro di te si nasconde un vero guerriero, ma ci sono delle avversità che devi conoscere.", "Le macchine del Mago Oscuro là fuori non sono invincibili. Con il giusto equipaggiamento, chiunque può essere sconfitto.", "Dovrai armarti: esplora bene, apri le casse, sconfiggi i mostri. Le armi si riveleranno fondamentali per spezzare le loro barriere.", "E non dimenticarti dell'agricoltura! Il cibo giusto non si limita a curarti... alcuni frutti ti conferiranno buff straordinari per essere più veloce o colpire più duramente.", "A proposito... dai un'occhiata alla cassa dietro di me. L'ho tenuta al sicuro finora. Aprila e prendi l'arma al suo interno, ne avrai bisogno!"])
+
+[node name="CollisionShape2D" parent="NpcVecchio1/VisionArea" parent_id_path=PackedInt32Array(349992580, 1940184636) index="0" unique_id=1178060263]
+position = Vector2(-1, 2)
+
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+
+[editable path="NpcVecchio1"]

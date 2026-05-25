@@ -36,6 +36,21 @@ var has_received_floppy: bool = false
 var has_tried_cave: bool = false
 var has_paid_treasurer: bool = false
 var has_hermit_pass: bool = false
+var talked_to_npc1: bool = false
+var talked_to_npc2: bool = false
+var talked_to_npc3: bool = false
+var talked_to_npc_vecchio: bool = false
+var talked_to_npc_vecchio2: bool = false
+var talked_to_npc_floppy: bool = false
+var talked_to_npc_villaggio2: bool = false
+var talked_to_npc_villaggio2_house: bool = false
+var talked_to_npc_villaggio3: bool = false
+var talked_to_npc_villaggio4: bool = false
+var talked_to_npc_prete2: bool = false
+
+var quest_accendino_started: bool = false
+var has_accendino: bool = false
+var quest_accendino_completed: bool = false
 
 var google_web_client_id = "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com"
 
@@ -54,7 +69,21 @@ func save_game():
 			"has_received_floppy": has_received_floppy,
 			"has_tried_cave": has_tried_cave,
 			"has_paid_treasurer": has_paid_treasurer,
-			"has_hermit_pass": has_hermit_pass
+			"has_hermit_pass": has_hermit_pass,
+			"talked_to_npc1": talked_to_npc1,
+			"talked_to_npc2": talked_to_npc2,
+			"talked_to_npc3": talked_to_npc3,
+			"talked_to_npc_vecchio": talked_to_npc_vecchio,
+			"talked_to_npc_vecchio2": talked_to_npc_vecchio2,
+			"talked_to_npc_floppy": talked_to_npc_floppy,
+			"talked_to_npc_villaggio2": talked_to_npc_villaggio2,
+			"talked_to_npc_villaggio2_house": talked_to_npc_villaggio2_house,
+			"talked_to_npc_villaggio3": talked_to_npc_villaggio3,
+			"talked_to_npc_villaggio4": talked_to_npc_villaggio4,
+			"talked_to_npc_prete2": talked_to_npc_prete2,
+			"quest_accendino_started": quest_accendino_started,
+			"has_accendino": has_accendino,
+			"quest_accendino_completed": quest_accendino_completed
 		}
 		file.store_var(data)
 		file.close()
@@ -78,6 +107,21 @@ func load_game() -> bool:
 		has_tried_cave = data.get("has_tried_cave", false)
 		has_paid_treasurer = data.get("has_paid_treasurer", false)
 		has_hermit_pass = data.get("has_hermit_pass", false)
+		talked_to_npc1 = data.get("talked_to_npc1", false)
+		talked_to_npc2 = data.get("talked_to_npc2", false)
+		talked_to_npc3 = data.get("talked_to_npc3", false)
+		talked_to_npc_vecchio = data.get("talked_to_npc_vecchio", false)
+		talked_to_npc_vecchio2 = data.get("talked_to_npc_vecchio2", false)
+		talked_to_npc_floppy = data.get("talked_to_npc_floppy", false)
+		talked_to_npc_villaggio2 = data.get("talked_to_npc_villaggio2", false)
+		talked_to_npc_villaggio2_house = data.get("talked_to_npc_villaggio2_house", false)
+		talked_to_npc_villaggio3 = data.get("talked_to_npc_villaggio3", false)
+		talked_to_npc_villaggio4 = data.get("talked_to_npc_villaggio4", false)
+		talked_to_npc_prete2 = data.get("talked_to_npc_prete2", false)
+		
+		quest_accendino_started = data.get("quest_accendino_started", false)
+		has_accendino = data.get("has_accendino", false)
+		quest_accendino_completed = data.get("quest_accendino_completed", false)
 		return true
 	return false
 

@@ -83,7 +83,10 @@ func inizia_dialogo():
 	print("NPC ha raggiunto il player, inizia il dialogo!")
 	
 	if has_node("/root/DialogueManager"):
-		DialogueManager.show_message(storia_npc)
+		var dm = DialogueManager
+		if dm.visible:
+			await dm.dialogue_finished
+		dm.show_message(storia_npc)
 
 func update_animation(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):

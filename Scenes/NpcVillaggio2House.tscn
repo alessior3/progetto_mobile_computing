@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bhjy0vvi17756"]
+[gd_scene format=3 uid="uid://dq403iktldsmt"]
 
-[ext_resource type="Script" uid="uid://bifi6l5gbmxju" path="res://Scenes/npc_3.gd" id="1_uqobo"]
+[ext_resource type="Script" path="res://Scripts/npc_villaggio2_house.gd" id="1_uqobo"]
 [ext_resource type="Texture2D" uid="uid://c3pttfn7xb3la" path="res://Assets/Modern tiles_Free/Characters_free/Bob_idle_anim_16x16.png" id="2_uqobo"]
 [ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_kqm0n"]
 [ext_resource type="Texture2D" uid="uid://68bnnb3yewwj" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_alerted.png" id="4_t2c2o"]
@@ -58,7 +58,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqm0n"]
 size = Vector2(40, 40)
 
-[node name="Npc3" type="CharacterBody2D" unique_id=349992580]
+[node name="NpcVillaggio2House" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_uqobo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]

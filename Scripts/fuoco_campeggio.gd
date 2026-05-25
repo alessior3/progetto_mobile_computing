@@ -7,6 +7,8 @@ var player_in_area = false
 var is_lit = false
 var current_player = null
 
+@export var richiede_quest_accendino: bool = true
+
 func _ready():
 	# L'animazione parte spenta per default
 	animated_sprite.play("FuocoSpento_an")
@@ -37,6 +39,14 @@ func _on_body_exited(body):
 func _input(event):
 	# Se il player è nell'area, il falò è spento e preme il tasto di interazione
 	if player_in_area and not is_lit and event.is_action_pressed("interact"):
+		# Controllo se richiede la quest
+		if richiede_quest_accendino and not Global.get("quest_accendino_completed"):
+			if has_node("/root/DialogueManager"):
+				var dm = get_node("/root/DialogueManager")
+				if not dm.visible:
+					dm.show_message(["Ti serve un accendino a gas per accendere questo falò!"])
+			return
+			
 		accendi_fuoco()
 
 func accendi_fuoco():

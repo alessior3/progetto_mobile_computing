@@ -526,7 +526,22 @@ y_sort_enabled = true
 script = ExtResource("1_wij2s")
 
 [node name="HousePercorso1" parent="." unique_id=948734644 instance=ExtResource("2_acwhn")]
-position = Vector2(4710, 2446)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(4710, 2505)
+inside_scene = "uid://loryt4e3108u"
+
+[node name="Sprite2D" parent="HousePercorso1" index="0" unique_id=1998281976]
+offset = Vector2(0, -60)
+
+[node name="StaticBody2D" parent="HousePercorso1" index="1" unique_id=678984241]
+position = Vector2(2, -138)
+
+[node name="CollisionShape2D" parent="HousePercorso1/StaticBody2D" index="0" unique_id=540551866]
+position = Vector2(-1, 58)
+
+[node name="DoorWay" parent="HousePercorso1" index="2" unique_id=1208213178]
+position = Vector2(-3, -22)
 
 [node name="ground" type="TileMapLayer" parent="." unique_id=672969651]
 z_index = -1
@@ -552,6 +567,7 @@ tile_set = SubResource("TileSet_4u4t0")
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("7_oip58")]
 z_index = 1
 position = Vector2(2260, 696)
+run_speed = 400
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
@@ -619,3 +635,5 @@ position = Vector2(3569, 1002)
 
 [connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaPercorso2" to="UscitaPercorso2" method="_on_body_entered"]
+
+[editable path="HousePercorso1"]
