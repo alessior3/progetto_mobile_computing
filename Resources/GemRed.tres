@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Ninja Adventure - Asset Pack/Items/Resource/GemRed.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = "gem_red"
+slot_type = "NotEquipable"
+name = "Gemma Rossa"
+texture = ExtResource("2_tex")
+max_stacks = 1
+price = 0
+description = "Una gemma misteriosa necessaria per aprire la porta del boss."
+ground_visual_scale = Vector2(1, 1)
+is_weapon = false
+damage = 1
+is_consumable = false
+heal_amount = 0
+buff_type = "nessuno"
+buff_value = 0.0
+buff_duration = 0.0

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b8yp1kji300vq" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="1_thvqx"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="2_07hyo"]
 [ext_resource type="Texture2D" uid="uid://dmmf1rgn41074" path="res://Assets/Environment/Props/Static/Dungeon_Props.png" id="3_0oq6u"]
-[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="3_rju7x"]
+[ext_resource type="Texture2D" uid="uid://b3xvup7vx71eb" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="3_rju7x"]
 [ext_resource type="Texture2D" uid="uid://b3hiomsjge43g" path="res://Assets/Environment/Props/Static/Esoteric.png" id="4_4m2pl"]
 [ext_resource type="Texture2D" uid="uid://b28vnj2nip8pe" path="res://Assets/Environment/Props/Static/Farm.png" id="5_pe2tg"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="6_agruv"]
@@ -22,12 +22,19 @@
 [ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="22_cfqfa"]
 [ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://Scenes/spider.tscn" id="22_hc7at"]
 [ext_resource type="Script" uid="uid://bq4w82ycoia4b" path="res://Scripts/arena_door.gd" id="23_0l0b5"]
-[ext_resource type="Texture2D" uid="uid://veac1huv8w6t" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_closing_anim_strip_8.png" id="25_0l0b5"]
+[ext_resource type="Texture2D" uid="uid://c47u8d0ye6n02" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_closing_anim_strip_8.png" id="25_0l0b5"]
 [ext_resource type="Script" uid="uid://dsj50gnjlfhmj" path="res://Scripts/arena_manager.gd" id="26_g8mwi"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="26_jmi58"]
-[ext_resource type="Texture2D" uid="uid://bkpv3u3ylcfsq" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png" id="26_rju7x"]
+[ext_resource type="Texture2D" uid="uid://bvbxn3a254tg0" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png" id="26_rju7x"]
 [ext_resource type="PackedScene" uid="uid://by5mdifypb0rr" path="res://Scenes/dark_wizard_boss.tscn" id="28_g8mwi"]
 [ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="30_xjmjg"]
+[ext_resource type="PackedScene" path="res://Scenes/cartello_boss.tscn" id="cartello_scn"]
+[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="exit_script_1"]
+[ext_resource type="Resource" path="res://Resources/GemGreen.tres" id="gem_green"]
+[ext_resource type="Resource" path="res://Resources/GemPurple.tres" id="gem_purple"]
+[ext_resource type="Resource" path="res://Resources/GemRed.tres" id="gem_red"]
+[ext_resource type="PackedScene" uid="uid://pcterminal01" path="res://Scenes/pc_terminal.tscn" id="pc_terminal_scn"]
+[ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="pickup_scn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xeqhr"]
 texture = ExtResource("1_thvqx")
@@ -3112,7 +3119,6 @@ blend_mode = 1
 texture = SubResource("GradientTexture2D_grqd7")
 
 [node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("20_ruwhv")]
-visible = false
 
 [node name="spider" parent="." unique_id=830393153 node_paths=PackedStringArray("patrol_path") instance=ExtResource("22_hc7at")]
 position = Vector2(131, 106)
@@ -3131,8 +3137,11 @@ position = Vector2(196, 104)
 [node name="PauseMenu" parent="." unique_id=1112586174 instance=ExtResource("26_jmi58")]
 
 [node name="exit" type="Area2D" parent="." unique_id=363302866]
+position = Vector2(4673, -2292)
 collision_layer = 0
 collision_mask = 2
+script = ExtResource("exit_script_1")
+target_scene = "res://Scenes/titoli_di_coda.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit" unique_id=1221873514]
 position = Vector2(15.5, 19.5)
@@ -3143,7 +3152,11 @@ stream = ExtResource("30_xjmjg")
 volume_db = -10.0
 
 [node name="SpawnPlayer" type="Marker2D" parent="." unique_id=1889388693]
-position = Vector2(17, 46)
+position = Vector2(4696, -2113)
+
+[node name="CartelloBoss" parent="." unique_id=1081323784 instance=ExtResource("cartello_scn")]
+position = Vector2(30, 46)
+messaggio = Array[String](["--- REGOLE DELLA PORTA DEL BOSS ---", "L'antica porta del boss è sigillata.", "Per aprirla, devi trovare 3 Gemme Speciali (Verde, Viola e Rossa) nascoste nei forzieri del dungeon.", "", ""])
 
 [node name="TrappolaPunte" parent="." unique_id=427085805 instance=ExtResource("18_e5wjn")]
 position = Vector2(584, 104)
@@ -3260,7 +3273,8 @@ position = Vector2(2519, -72)
 position = Vector2(2519, -88)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("19_vnca1")]
-position = Vector2(5831, -1771)
+position = Vector2(6145, -2247)
+god_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=110997730]
 zoom = Vector2(3, 3)
@@ -3318,6 +3332,7 @@ y_sort_enabled = true
 position = Vector2(4920.0005, -399.00003)
 rotation = -6.2854853
 script = ExtResource("23_0l0b5")
+requires_gems = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaDoor" unique_id=600633020]
 position = Vector2(-0.14845276, 11.999081)
@@ -3341,6 +3356,7 @@ y_sort_enabled = true
 position = Vector2(4935.9995, -398.99997)
 rotation = -6.281069
 script = ExtResource("23_0l0b5")
+requires_gems = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaDoor2" unique_id=1520222961]
 position = Vector2(-0.10644382, 11.999509)
@@ -3364,6 +3380,7 @@ y_sort_enabled = true
 position = Vector2(4952, -399)
 rotation = -6.2886577
 script = ExtResource("23_0l0b5")
+requires_gems = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaDoor3" unique_id=681231772]
 position = Vector2(0, 12)
@@ -3388,6 +3405,7 @@ y_sort_enabled = true
 position = Vector2(4904.0005, -399)
 rotation = -6.280279
 script = ExtResource("23_0l0b5")
+requires_gems = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaDoor4" unique_id=827344319]
 position = Vector2(0, 12)
@@ -3620,3 +3638,32 @@ libraries/ = SubResource("AnimationLibrary_07hyo")
 [node name="DoorOpen" type="AudioStreamPlayer2D" parent="ArenaDoor12" unique_id=2002634275]
 
 [node name="DoorClose" type="AudioStreamPlayer2D" parent="ArenaDoor12" unique_id=1592560800]
+
+[node name="PickUpGemGreen" parent="." unique_id=430058905 instance=ExtResource("pickup_scn")]
+position = Vector2(578, -182)
+item_id = "pickup_gem_green"
+inventory_item = ExtResource("gem_green")
+
+[node name="PickUpGemPurple" parent="." unique_id=2022563497 instance=ExtResource("pickup_scn")]
+position = Vector2(680, -202)
+item_id = "pickup_gem_purple"
+inventory_item = ExtResource("gem_purple")
+
+[node name="PickUpGemRed" parent="." unique_id=986129993 instance=ExtResource("pickup_scn")]
+position = Vector2(628, -278)
+item_id = "pickup_gem_red"
+inventory_item = ExtResource("gem_red")
+
+[node name="PCTerminal1" parent="." unique_id=1082086414 instance=ExtResource("pc_terminal_scn")]
+position = Vector2(4925, -284)
+pc_id = "pc_boss_1"
+
+[node name="PCTerminal2" parent="." unique_id=1431931951 instance=ExtResource("pc_terminal_scn")]
+position = Vector2(1887, 468)
+required_gem_id = "gem_purple"
+pc_id = "pc_boss_2"
+
+[node name="PCTerminal3" parent="." unique_id=325601436 instance=ExtResource("pc_terminal_scn")]
+position = Vector2(267, 113)
+required_gem_id = "gem_red"
+pc_id = "pc_boss_3"

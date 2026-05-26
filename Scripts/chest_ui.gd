@@ -45,6 +45,38 @@ func open_chest_ui(chest_items: Array, chest_id: String, physical_chest: Area2D)
 			new_slot.drag_started.connect(_on_chest_drag_started)
 		if not new_slot.drag_ended.is_connected(_on_chest_drag_ended):
 			new_slot.drag_ended.connect(_on_chest_drag_ended)
+		
+		# NUOVO: Click per prelevare!
+		if not new_slot.slot_focused.is_connected(_on_chest_slot_focused):
+			new_slot.slot_focused.connect(_on_chest_slot_focused)
+
+func _on_chest_slot_focused(slot: InventorySlot):
+	if linked_chest and linked_chest.current_player:
+		var inv = linked_chest.current_player.get_node_or_null("Inventory")
+		if inv and slot.current_item != null:
+			var item = slot.current_item
+			
+			var inv_ui = linked_chest.current_player.get_node_or_null("inventoryUI")
+			if not inv_ui: inv_ui = linked_chest.current_player.get_node_or_null("InventoryUI")
+			
+			if inv_ui:
+				var added = false
+				for i in range(inv.items.size()):
+					if inv.items[i] == null:
+						inv.items[i] = item
+						added = true
+						break
+				if not added and inv.items.size() < inv_ui.size:
+					inv.items.append(item)
+					added = true
+					
+				if added:
+					Global.persistent_items = inv.items
+					slot.add_item(null)
+					_on_chest_slot_swapped(slot, slot)
+					inv_ui.update_slots(inv.items)
+			else:
+				print("Zaino pieno, impossibile raccogliere dalla cassa!")
 
 func close_chest_ui():
 	# Chiudiamo lo zaino in automatico se stiamo chiudendo la cassa ed era rimasto aperto

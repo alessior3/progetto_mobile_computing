@@ -52,6 +52,10 @@ var quest_accendino_started: bool = false
 var has_accendino: bool = false
 var quest_accendino_completed: bool = false
 
+var pc_boss_1_on: bool = false
+var pc_boss_2_on: bool = false
+var pc_boss_3_on: bool = false
+
 var google_web_client_id = "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com"
 
 func save_game():
@@ -83,7 +87,10 @@ func save_game():
 			"talked_to_npc_prete2": talked_to_npc_prete2,
 			"quest_accendino_started": quest_accendino_started,
 			"has_accendino": has_accendino,
-			"quest_accendino_completed": quest_accendino_completed
+			"quest_accendino_completed": quest_accendino_completed,
+			"pc_boss_1_on": pc_boss_1_on,
+			"pc_boss_2_on": pc_boss_2_on,
+			"pc_boss_3_on": pc_boss_3_on
 		}
 		file.store_var(data)
 		file.close()
@@ -122,6 +129,11 @@ func load_game() -> bool:
 		quest_accendino_started = data.get("quest_accendino_started", false)
 		has_accendino = data.get("has_accendino", false)
 		quest_accendino_completed = data.get("quest_accendino_completed", false)
+		
+		pc_boss_1_on = data.get("pc_boss_1_on", false)
+		pc_boss_2_on = data.get("pc_boss_2_on", false)
+		pc_boss_3_on = data.get("pc_boss_3_on", false)
+		
 		return true
 	return false
 

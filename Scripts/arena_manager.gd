@@ -26,6 +26,9 @@ var enemies_alive: int = 0
 var arena_active: bool = false
 var arena_cleared: bool = false
 
+var original_camera_zoom: Vector2 = Vector2.ONE
+var player_camera: Camera2D = null
+
 @onready var trigger_area: Area2D = $TriggerArea
 
 signal arena_started
@@ -42,8 +45,9 @@ func _ready():
 	for door in doors:
 		if door:
 			if door.has_method("open_door"):
-				# Se la porta ha la spunta "start_closed", ignora l'apertura iniziale
-				if "start_closed" in door and door.start_closed:
+				# Se la porta ha la spunta "start_closed" o "requires_gems", ignora l'apertura iniziale
+				var should_stay_closed = ("start_closed" in door and door.start_closed) or ("requires_gems" in door and door.requires_gems)
+				if should_stay_closed:
 					continue
 				door.open_door()
 			else:
@@ -89,6 +93,20 @@ func start_arena():
 			# --- SVEGLIAMO IL BOSS! ---
 			if boss_node.has_method("activate_boss"):
 				boss_node.activate_boss()
+				
+			# --- ZOOM OUT DELLA CAMERA ---
+			var player = get_tree().get_first_node_in_group("player")
+			if not player: player = get_tree().get_first_node_in_group("Player")
+			if player:
+				player_camera = player.get_node_or_null("Camera2D")
+				if not player_camera:
+					player_camera = player.get_node_or_null("playerCamera")
+				
+				if player_camera:
+					original_camera_zoom = player_camera.zoom
+					var tween = create_tween()
+					# 0.65 allarga ancora di più la visuale
+					tween.tween_property(player_camera, "zoom", original_camera_zoom * 0.65, 2.0).set_trans(Tween.TRANS_SINE)
 		else:
 			print("ERRORE: Hai spuntato is_boss_arena ma non hai assegnato il Boss!")
 	else:
@@ -98,6 +116,12 @@ func start_arena():
 func _on_boss_died():
 	if not arena_active: return
 	print("IL BOSS È STATO SCONFITTO! Vittoria!")
+	
+	# --- RIPRISTINO ZOOM DELLA CAMERA ---
+	if player_camera:
+		var tween = create_tween()
+		tween.tween_property(player_camera, "zoom", original_camera_zoom, 2.0).set_trans(Tween.TRANS_SINE)
+		
 	finish_arena()
 
 
@@ -189,9 +213,15 @@ func _on_enemy_died():
 
 func finish_arena():
 	arena_active = false
+	# L'uscita ai titoli di coda è gestita direttamente dallo script 
+	# "transition_area.gd" assegnato al nodo "exit"!
+	
+	# Riapriamo TUTTE le porte!
 	arena_cleared = true
 	print("Arena completata! Porte aperte.")
 	emit_signal("arena_cleared_signal")
+	# Non facciamo affidamento al body_entered per via delle collision mask,
+	# gestiamo la distanza nell' _process!
 	
 	# Riapriamo TUTTE le porte!
 	for door in doors:
@@ -201,6 +231,9 @@ func finish_arena():
 			else:
 				door.process_mode = Node.PROCESS_MODE_DISABLED
 				door.hide()
+
+func _process(delta):
+	pass
 
 func _draw():
 	if Engine.is_editor_hint():

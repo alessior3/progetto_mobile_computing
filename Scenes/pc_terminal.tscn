@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://pcterminal01"]
+
+[ext_resource type="Script" path="res://Scripts/pc_terminal.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dpoutto6vxgkf" path="res://Assets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="2_icon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_solid"]
+size = Vector2(16, 20)
+
+[node name="PCTerminal" type="Area2D"]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_solid")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_icon")
+region_enabled = true
+region_rect = Rect2(48, 128, 16, 32)

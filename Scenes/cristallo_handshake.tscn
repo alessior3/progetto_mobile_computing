@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c7mvde81frdoq"]
+
+[ext_resource type="Script" uid="uid://cj73ls8mmsanv" path="res://Scripts/cristallo_handshake.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cn7aximv6pg5t" path="res://Ninja Adventure - Asset Pack/Items/Object/Dice 20.png" id="2_3extu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr"]
+size = Vector2(12, 12)
+
+[node name="CristalloHandshake" type="CharacterBody2D" unique_id=2145634861 groups=["enemies"]]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=549976819]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_3extu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=232544697]
+shape = SubResource("RectangleShape2D_cr")
+
+[node name="Label" type="Label" parent="." unique_id=1066035696]
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = -7.0
+text = "SYN"
+horizontal_alignment = 1

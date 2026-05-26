@@ -6,6 +6,8 @@ extends Area2D
 var can_trigger = false
 
 func _ready():
+	if not body_entered.is_connected(_on_body_entered):
+		body_entered.connect(_on_body_entered)
 	# Protezione di 1 secondo all'avvio della scena
 	await get_tree().create_timer(1.0).timeout
 	can_trigger = true
