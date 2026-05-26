@@ -8,6 +8,24 @@ var persistent_gold: int = 0
 var persistent_items: Array[InventoryItem] = []
 var is_first_start: bool = true
 
+var door_sound_player: AudioStreamPlayer
+
+func _ready():
+	door_sound_player = AudioStreamPlayer.new()
+	door_sound_player.name = "GlobalDoorSound"
+	add_child(door_sound_player)
+
+func play_door_open():
+	if door_sound_player:
+		door_sound_player.stream = preload("res://Sounds/apertura_porta.mp3")
+		door_sound_player.play()
+
+func play_door_close():
+	if door_sound_player:
+		door_sound_player.stream = preload("res://Sounds/chiusura_porta.mp3")
+		door_sound_player.play()
+
+
 # ID degli oggetti già raccolti per non farli riapparire
 var collected_item_ids: Array[String] = [] 
 

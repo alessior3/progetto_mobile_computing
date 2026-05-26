@@ -4,6 +4,14 @@ extends Node2D
 @onready var spawn_point = $PlayerSpawnPoint
 
 func _ready():
+	if not has_node("GameSound"):
+		var bg_music = AudioStreamPlayer.new()
+		bg_music.name = "GameSound"
+		bg_music.stream = preload("res://Sounds/game_sound.wav")
+		bg_music.autoplay = true
+		bg_music.volume_db = -25.0
+		add_child(bg_music)
+
 	if has_node("Loop"):
 		$Loop.body_entered.connect(_on_loop_body_entered)
 		

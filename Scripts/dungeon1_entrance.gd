@@ -64,6 +64,7 @@ func enter_dungeon() -> void:
 			])
 
 func _perform_transition() -> void:
+	Global.play_door_open()
 	print("DEBUG (Mondo): Salvataggio stato in corso...")
 	Global.save_game() 
 	

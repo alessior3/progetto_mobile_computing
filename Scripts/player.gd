@@ -59,6 +59,22 @@ func set_house(new_house):
 	house = new_house
 
 func _ready():
+	if not has_node("AttackSound"):
+		var attack_sound = AudioStreamPlayer.new()
+		attack_sound.name = "AttackSound"
+		attack_sound.stream = preload("res://Sounds/suono_attacco.wav")
+		add_child(attack_sound)
+	if not has_node("DamageSound"):
+		var damage_sound = AudioStreamPlayer.new()
+		damage_sound.name = "DamageSound"
+		damage_sound.stream = preload("res://Sounds/suono_danno.wav")
+		add_child(damage_sound)
+	if not has_node("BuffSound"):
+		var buff_sound = AudioStreamPlayer.new()
+		buff_sound.name = "BuffSound"
+		buff_sound.stream = preload("res://Sounds/suono_boost.wav")
+		add_child(buff_sound)
+		
 	if health_system and progress_bar:
 		health_system.init(health_system.max_health)
 		
@@ -566,6 +582,7 @@ func apply_buff(type: String, value: float, duration: float):
 			damage_reduction_multiplier = 0.0
 
 func _on_exit_body_entered(body: Node2D) -> void:
+	Global.play_door_close()
 	if body == self:
 		var target_scene = "res://Scenes/world.tscn"
 		if Global.from_grotta_to_percorso:

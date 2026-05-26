@@ -15,6 +15,14 @@ extends Control
 var google_sign_in_plugin
 
 func _ready():
+	if not has_node("MenuSound"):
+		var menu_sound = AudioStreamPlayer.new()
+		menu_sound.name = "MenuSound"
+		menu_sound.stream = preload("res://Sounds/menu_sound.wav")
+		menu_sound.autoplay = true
+		menu_sound.volume_db = -25.0
+		add_child(menu_sound)
+		
 	# Colleghiamo i segnali di Auth (Autoload)
 	Auth.register_succeeded.connect(_on_register_success)
 	Auth.register_failed.connect(_on_auth_failed)

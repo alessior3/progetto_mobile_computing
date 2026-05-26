@@ -22,6 +22,17 @@ var chest_items: Array = []
 @onready var sprite = $Sprite2D
 
 func _ready() -> void:
+	if not has_node("OpenSound"):
+		var open_sound = AudioStreamPlayer.new()
+		open_sound.name = "OpenSound"
+		open_sound.stream = preload("res://Sounds/apertura_cassa.wav")
+		add_child(open_sound)
+	if not has_node("CloseSound"):
+		var close_sound = AudioStreamPlayer.new()
+		close_sound.name = "CloseSound"
+		close_sound.stream = preload("res://Sounds/chiusura_cassa.wav")
+		add_child(close_sound)
+		
 	print("Chest pronta")
 	sprite.region_enabled = true
 	sprite.region_rect = Rect2(x_chiusa, 0, 16, 14)

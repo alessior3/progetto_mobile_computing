@@ -122,5 +122,3 @@ func update_animation(dir: Vector2):
 			anim.play("front_walking") # Animazione verso il basso
 		else:
 			anim.play("back_walking")  # Animazione verso l'alto
-
-

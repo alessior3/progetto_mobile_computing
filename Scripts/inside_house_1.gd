@@ -24,6 +24,7 @@ func _ready():
 
 # --- 2. GESTIONE USCITA ---
 func _on_exit_body_entered(body: Node2D) -> void:
+	Global.play_door_close()
 	if body.name == "player" or body.is_in_group("player"): # Aggiunto il controllo gruppo per sicurezza extra
 		
 		# --- SUONO: APRI LA PORTA PER USCIRE ---

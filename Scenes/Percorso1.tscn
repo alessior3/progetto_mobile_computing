@@ -617,8 +617,8 @@ position = Vector2(4640, -386)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_d1xfb")]
 position = Vector2(2650, -122)
-run_speed = 400
-god_mode = true
+run_speed = 150
+god_mode = false
 
 [node name="Inventory" parent="player" index="6" unique_id=1240474999]
 default_items = Array[ExtResource("10_kexqr")]([ExtResource("13_jw1tv")])

@@ -5,6 +5,14 @@ extends Node2D
 @onready var spawn_point_uscita = find_child("SpawnPlayerUscita", true, false)
 
 func _ready():
+	if not has_node("GameSound"):
+		var bg_music = AudioStreamPlayer.new()
+		bg_music.name = "GameSound"
+		bg_music.stream = preload("res://Sounds/game_sound.wav")
+		bg_music.autoplay = true
+		bg_music.volume_db = -25.0
+		add_child(bg_music)
+		
 	await get_tree().process_frame
 	await get_tree().process_frame
 	

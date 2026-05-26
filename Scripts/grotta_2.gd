@@ -16,6 +16,7 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 			body.house = null
 
 func enter():
+	Global.play_door_open()
 	var target = inside_scene
 	if not target:
 		target = load("res://Scenes/dungeon_2.tscn")

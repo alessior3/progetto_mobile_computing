@@ -1,9 +1,10 @@
 [gd_scene format=4 uid="uid://euc2624equjd"]
 
+[ext_resource type="Script" uid="uid://be0r1ky3squdx" path="res://Scripts/dungeon_3.gd" id="1_jbhjm"]
 [ext_resource type="Texture2D" uid="uid://b8yp1kji300vq" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="1_thvqx"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="2_07hyo"]
 [ext_resource type="Texture2D" uid="uid://dmmf1rgn41074" path="res://Assets/Environment/Props/Static/Dungeon_Props.png" id="3_0oq6u"]
-[ext_resource type="Texture2D" uid="uid://b3xvup7vx71eb" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="3_rju7x"]
+[ext_resource type="Texture2D" uid="uid://boquwu8yys60f" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="3_rju7x"]
 [ext_resource type="Texture2D" uid="uid://b3hiomsjge43g" path="res://Assets/Environment/Props/Static/Esoteric.png" id="4_4m2pl"]
 [ext_resource type="Texture2D" uid="uid://b28vnj2nip8pe" path="res://Assets/Environment/Props/Static/Farm.png" id="5_pe2tg"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="6_agruv"]
@@ -22,10 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="22_cfqfa"]
 [ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://Scenes/spider.tscn" id="22_hc7at"]
 [ext_resource type="Script" uid="uid://bq4w82ycoia4b" path="res://Scripts/arena_door.gd" id="23_0l0b5"]
-[ext_resource type="Texture2D" uid="uid://c47u8d0ye6n02" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_closing_anim_strip_8.png" id="25_0l0b5"]
+[ext_resource type="Texture2D" uid="uid://veac1huv8w6t" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_closing_anim_strip_8.png" id="25_0l0b5"]
 [ext_resource type="Script" uid="uid://dsj50gnjlfhmj" path="res://Scripts/arena_manager.gd" id="26_g8mwi"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="26_jmi58"]
-[ext_resource type="Texture2D" uid="uid://bvbxn3a254tg0" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png" id="26_rju7x"]
+[ext_resource type="Texture2D" uid="uid://bkpv3u3ylcfsq" path="res://Top_Down_Adventure_Pack_v.1.0/Tiles_(animated)/Dungeon/iron_gate_opening_anim_strip_8.png" id="26_rju7x"]
 [ext_resource type="PackedScene" uid="uid://by5mdifypb0rr" path="res://Scenes/dark_wizard_boss.tscn" id="28_g8mwi"]
 [ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="30_xjmjg"]
 [ext_resource type="PackedScene" path="res://Scenes/cartello_boss.tscn" id="cartello_scn"]
@@ -3078,6 +3079,7 @@ _data = {
 }
 
 [node name="dungeon1" type="Node2D" unique_id=686333185]
+script = ExtResource("1_jbhjm")
 
 [node name="void" type="TileMapLayer" parent="." unique_id=1059357447]
 visible = false
@@ -3152,7 +3154,7 @@ stream = ExtResource("30_xjmjg")
 volume_db = -10.0
 
 [node name="SpawnPlayer" type="Marker2D" parent="." unique_id=1889388693]
-position = Vector2(4696, -2113)
+position = Vector2(607, -210)
 
 [node name="CartelloBoss" parent="." unique_id=1081323784 instance=ExtResource("cartello_scn")]
 position = Vector2(30, 46)

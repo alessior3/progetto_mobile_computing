@@ -27,6 +27,13 @@ var is_active: bool = false
 @onready var boss_health_bar = $CanvasLayer/BossHealthBar # Collegamento alla UI
 
 func _ready():
+	if not has_node("BossBattleSound"):
+		var boss_battle_sound = AudioStreamPlayer.new()
+		boss_battle_sound.name = "BossBattleSound"
+		boss_battle_sound.stream = preload("res://Sounds/boss_battle_sound.wav")
+		boss_battle_sound.volume_db = -5.0
+		add_child(boss_battle_sound)
+		
 	hp = max_hp
 	
 	# 1. Imposta la barra della vita
@@ -226,6 +233,9 @@ func _input(event):
 func activate_boss():
 	print("Il Boss si è svegliato! Inizia la battaglia!")
 	is_active = true
+	
+	if has_node("BossBattleSound"):
+		$BossBattleSound.play()
 	
 	# Adesso si teletrasporta al centro dell'arena e inizia lo scontro
 	teleport(0)

@@ -3,6 +3,12 @@ extends StaticBody2D
 var is_open = false
 
 func _ready():
+	if not has_node("DoorOpen"):
+		var door_open_sound = AudioStreamPlayer.new()
+		door_open_sound.name = "DoorOpen"
+		door_open_sound.stream = preload("res://Sounds/apertura_porta.mp3")
+		add_child(door_open_sound)
+	
 	if has_node("AnimationPlayer"):
 		var anim = $AnimationPlayer
 		if anim.has_animation("close"):

@@ -9,6 +9,17 @@ var is_closed = false
 var opened_with_gems = false
 
 func _ready():
+	if not has_node("DoorOpen"):
+		var door_open_sound = AudioStreamPlayer.new()
+		door_open_sound.name = "DoorOpen"
+		door_open_sound.stream = preload("res://Sounds/apertura_porta.mp3")
+		add_child(door_open_sound)
+	if not has_node("DoorClose"):
+		var door_close_sound = AudioStreamPlayer.new()
+		door_close_sound.name = "DoorClose"
+		door_close_sound.stream = preload("res://Sounds/chiusura_porta.mp3")
+		add_child(door_close_sound)
+	
 	if (start_closed or requires_gems):
 		is_closed = true
 		if anim:

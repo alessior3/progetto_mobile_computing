@@ -30,4 +30,5 @@ func _on_body_exited(body: Node2D) -> void:
 	pass
 
 func enter():
+	Global.play_door_open()
 	pass
