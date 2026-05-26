@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dxvknorvwacsx"]
 
-[ext_resource type="Script" uid="uid://27p5nh5mvwsm" path="res://Scenes/npc_2.gd" id="1_wrx3m"]
+[ext_resource type="Script" uid="uid://27p5nh5mvwsm" path="res://Scripts/npc_2.gd" id="1_wrx3m"]
 [ext_resource type="Texture2D" uid="uid://7j05ghpk6k8d" path="res://Assets/Modern tiles_Free/Characters_free/Amelia_idle_anim_16x16.png" id="2_wrx3m"]
 [ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_drc2k"]
-[ext_resource type="Texture2D" uid="uid://68bnnb3yewwj" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_alerted.png" id="4_n0m3s"]
+[ext_resource type="Texture2D" uid="uid://cmtkghy3ojuf7" path="res://Sunnyside_World_ASSET_PACK_V2.1/Sunnyside_World_Assets/UI/expression_alerted.png" id="4_n0m3s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n0m3s"]
 atlas = ExtResource("2_wrx3m")
@@ -56,11 +56,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_drc2k"]
-size = Vector2(193, 197)
+size = Vector2(63.5, 63)
 
 [node name="Npc2" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_wrx3m")
-storia_npc = "alessio scemo."
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 sprite_frames = SubResource("SpriteFrames_iccxi")
@@ -73,7 +72,7 @@ shape = ExtResource("3_drc2k")
 [node name="VisionArea" type="Area2D" parent="." unique_id=1203902381]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" unique_id=762495827]
-position = Vector2(-0.5, 2.5)
+position = Vector2(-1, 3)
 shape = SubResource("RectangleShape2D_drc2k")
 
 [node name="ExclamationMark" type="Sprite2D" parent="." unique_id=112040009]

@@ -3,6 +3,7 @@ extends Sprite2D
 class_name Merchant
 
 @export var items_to_buy: Array[InventoryItem]
+@export var merchant_name: String = "Mercante"
 @export var frase_mercante: String = "Benvenuto, viandante! Dai un'occhiata alle mie merci."
 
 @onready var label: Label = $Label
@@ -44,7 +45,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			# PASSO 1: Dialogo normale
 			stato_interazione = 1
 			if has_node("/root/DialogueManager"):
-				DialogueManager.show_message(frase_mercante)
+				DialogueManager.show_message(frase_mercante, merchant_name)
 				
 		elif stato_interazione == 1:
 			# PASSO 2: Chiudo il dialogo e apro il negozio

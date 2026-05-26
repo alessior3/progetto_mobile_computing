@@ -5,9 +5,10 @@ var player_in_range: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc Villaggio 3"
 @export var storia_inizio: Array[String] = [
 	"Benvenuto nel Villaggio Blu, viaggiatore! Senti, abbiamo un problema urgente.",
-	"Dobbiamo accendere il grande falò del villaggio, ma nessuno ha più un accendino! Ormai qua usano tutti la dannata IQOS!",
+	"Dobbiamo accendere il grande falò del villaggio, ma nessuno ha più un accendino! Ormai qua usano tutti la IQOS!",
 	"Quella diavoleria scalda e basta, non fa una vera fiamma! Potresti cercare nel percorso successivo se trovi un vecchio accendino a gas?"
 ]
 
@@ -95,7 +96,7 @@ func inizia_dialogo():
 		if dm.visible:
 			await dm.dialogue_finished
 			
-		dm.show_message(current_dialogue)
+		dm.show_message(current_dialogue, npc_name)
 		await dm.dialogue_finished
 		
 		# Logica post-dialogo

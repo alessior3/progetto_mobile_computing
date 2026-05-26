@@ -17,8 +17,10 @@ func _on_door_way_body_exited(body: Node2D) -> void:
 			body.house = null
 
 func enter():
-	if player:
-		Global.player_pos = player.global_position
+	var p = get_tree().get_first_node_in_group("player")
+	if p:
+		Global.player_pos = p.global_position
+	Global.last_world_scene = get_tree().current_scene.scene_file_path
 	Global.from_house3_to_percorso = true
 	if TransitionChangeManager:
 		TransitionChangeManager.change_scene(inside_scene)

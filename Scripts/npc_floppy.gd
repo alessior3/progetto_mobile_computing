@@ -6,6 +6,7 @@ var player_in_range: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc Floppy"
 @export var storia_npc: Array[String] = [
 	"Mmmh, tu sei quello nuovo, vero? Gira voce che tu voglia raggiungere la botola del vecchio eremita...",
 	"L'eremita un tempo era un tecnico del Mago Oscuro. Ha progettato i suoi sistemi di sicurezza. È l'unico che può aprirti la strada per il Terzo Percorso.",
@@ -70,4 +71,4 @@ func inizia_dialogo():
 			await dm.dialogue_finished
 			
 		Global.talked_to_npc_floppy = true
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)

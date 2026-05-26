@@ -11,13 +11,14 @@
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="7_0h6x3"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="8_tmcdr"]
 [ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="9_yx8oc"]
-[ext_resource type="PackedScene" path="res://Scenes/TowerGialla.tscn" id="11_l250t"]
-[ext_resource type="PackedScene" path="res://Scenes/CastleGiallo.tscn" id="12_kf8sy"]
-[ext_resource type="PackedScene" path="res://Scenes/HouseGialla1.tscn" id="13_15gtt"]
-[ext_resource type="PackedScene" path="res://Scenes/BarracksGiallo.tscn" id="13_kthw0"]
-[ext_resource type="PackedScene" path="res://Scenes/MonasteryGiallo.tscn" id="15_5j8lq"]
+[ext_resource type="PackedScene" uid="uid://da2f1lo7esn0e" path="res://Scenes/TowerGialla.tscn" id="11_l250t"]
+[ext_resource type="PackedScene" uid="uid://chucy6icurspg" path="res://Scenes/CastleGiallo.tscn" id="12_kf8sy"]
+[ext_resource type="PackedScene" uid="uid://efgmcuh0qrgh" path="res://Scenes/HouseGialla1.tscn" id="13_15gtt"]
+[ext_resource type="PackedScene" uid="uid://j8bdx3s2unk7" path="res://Scenes/BarracksGiallo.tscn" id="13_kthw0"]
+[ext_resource type="PackedScene" uid="uid://b81vucvkiy7ik" path="res://Scenes/MonasteryGiallo.tscn" id="15_5j8lq"]
 [ext_resource type="PackedScene" uid="uid://dyhglcy6xjxe1" path="res://Scenes/HouseGialla2.tscn" id="15_nnte5"]
-[ext_resource type="PackedScene" path="res://Scenes/NpcVillaggio3.tscn" id="18_kthw0"]
+[ext_resource type="PackedScene" uid="uid://cn0cy6aabhw50" path="res://Scenes/Chiesa1.tscn" id="17_5j8lq"]
+[ext_resource type="PackedScene" uid="uid://b22xxnf1wdlyw" path="res://Scenes/NpcVillaggio3.tscn" id="18_kthw0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l250t"]
 texture = ExtResource("4_5j8lq")
@@ -905,7 +906,7 @@ texture = ExtResource("4_5j8lq")
 2:4/0 = 0
 2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-1.582756, 1.4838333, -0.09892273, -1.582758, 1.8795242, -1.582758, 1.8795242, 1.8795223)
 3:3/0 = 0
-3:3/0/y_sort_origin = 12
+3:3/0/y_sort_origin = -20
 2:3/0 = 0
 2:3/0/y_sort_origin = -20
 5:4/0 = 0
@@ -1060,6 +1061,7 @@ position = Vector2(-3.237441, 4.5776367e-05)
 y_sort_enabled = true
 position = Vector2(310.79422, 1041.0792)
 scale = Vector2(0.6, 0.6)
+inside_scene = ""
 
 [node name="Sprite2D" parent="HouseGialla1" index="0" unique_id=1998281976]
 offset = Vector2(0, -55)
@@ -1077,6 +1079,7 @@ position = Vector2(-1.6186785, -22.66018)
 y_sort_enabled = true
 position = Vector2(761.4459, 1038.1658)
 scale = Vector2(0.6, 0.6)
+inside_scene = ""
 
 [node name="Sprite2D" parent="HouseGialla2" index="0" unique_id=1998281976]
 offset = Vector2(0, -55)
@@ -1094,6 +1097,7 @@ position = Vector2(-1.618876, -21.041588)
 y_sort_enabled = true
 position = Vector2(214.64229, 1245.0221)
 scale = Vector2(0.6, 0.6)
+inside_scene = ExtResource("17_5j8lq")
 
 [node name="Sprite2D" parent="MonasteryGiallo" index="0" unique_id=1998281976]
 offset = Vector2(0, -110)

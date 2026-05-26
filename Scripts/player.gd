@@ -87,6 +87,11 @@ func _ready():
 		Global.player_pos = Vector2.ZERO 
 		print("Player: Posizionato dal CLOUD")
 		
+	elif Global.player_pos != Vector2.ZERO and (get_tree().current_scene.scene_file_path == Global.last_world_scene or get_tree().current_scene.name == "world"):
+		global_position = Global.player_pos
+		Global.player_pos = Vector2.ZERO 
+		print("Player: Posizionato dalla PORTA")
+
 	elif get_tree().current_scene.name != "world":
 		var spawn_marker = get_tree().current_scene.find_child("SpawnPlayer", true, false)
 		if not spawn_marker:
@@ -95,11 +100,6 @@ func _ready():
 		if spawn_marker:
 			global_position = spawn_marker.global_position
 			print("Player: Posizionato su marker: ", spawn_marker.name)
-
-	elif Global.player_pos != Vector2.ZERO:
-		global_position = Global.player_pos
-		Global.player_pos = Vector2.ZERO 
-		print("Player: Posizionato dalla PORTA")
 
 	if Global.has_meta("has_died") and Global.get_meta("has_died") == true:
 		print("Penalità di Morte: Svuotamento tasche in corso...")

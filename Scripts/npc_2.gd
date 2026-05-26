@@ -6,6 +6,7 @@ var has_spotted_player: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc 2"
 @export var storia_npc: Array[String] = [
 	"Ehi tu! Fermo lì.",
 	"Non sai che è pericoloso avventurarsi in queste terre?",
@@ -86,7 +87,7 @@ func inizia_dialogo():
 		var dm = DialogueManager
 		if dm.visible:
 			await dm.dialogue_finished
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)
 
 func update_animation(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):

@@ -526,9 +526,9 @@ y_sort_enabled = true
 script = ExtResource("1_wij2s")
 
 [node name="HousePercorso1" parent="." unique_id=948734644 instance=ExtResource("2_acwhn")]
-z_index = 1
 y_sort_enabled = true
 position = Vector2(4710, 2505)
+scale = Vector2(0.5, 0.5)
 inside_scene = "uid://loryt4e3108u"
 
 [node name="Sprite2D" parent="HousePercorso1" index="0" unique_id=1998281976]
@@ -538,7 +538,7 @@ offset = Vector2(0, -60)
 position = Vector2(2, -138)
 
 [node name="CollisionShape2D" parent="HousePercorso1/StaticBody2D" index="0" unique_id=540551866]
-position = Vector2(-1, 58)
+position = Vector2(-1, 71.5)
 
 [node name="DoorWay" parent="HousePercorso1" index="2" unique_id=1208213178]
 position = Vector2(-3, -22)

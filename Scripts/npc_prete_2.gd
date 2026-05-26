@@ -3,6 +3,7 @@ extends CharacterBody2D
 var has_spotted_player: bool = false
 var is_talking: bool = false
 
+@export var npc_name: String = "Npc Prete 2"
 @export var storia_npc: Array[String] = [
 	"Che la Luce sia con te, prescelto. Sapevo che saresti arrivato fin qui, al confine del mondo conosciuto.",
 	"L'ingresso per il Dungeon Finale, la tana del Mago Oscuro, non si trova in alcun castello visibile...",
@@ -51,7 +52,7 @@ func inizia_dialogo():
 		dm = get_node("/root/DialogueManager")
 	
 	if dm:
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)
 		await dm.dialogue_finished
 		Global.set("talked_to_npc_prete2", true)
 		

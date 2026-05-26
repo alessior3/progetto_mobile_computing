@@ -5,6 +5,7 @@ var player_in_range: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc Villaggio 4"
 @export var storia_npc: Array[String] = [
 	"Salve, viaggiatore. Hai raggiunto l'ultimo avamposto libero, l'ultima speranza prima dell'oscurità totale.",
 	"Molti guerrieri prima di te hanno tentato di spingersi oltre, ma nessuno è mai tornato per raccontarlo.",
@@ -68,4 +69,4 @@ func inizia_dialogo():
 			await dm.dialogue_finished
 			
 		Global.set("talked_to_npc_villaggio4", true)
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)

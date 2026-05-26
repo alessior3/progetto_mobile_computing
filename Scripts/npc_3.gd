@@ -14,6 +14,7 @@ var seeds: Array = [
 ]
 var has_given_seed: bool = false
 
+@export var npc_name: String = "Npc 3"
 @export var storia_npc: Array[String] = [
 	"Ehi tu! Lo sai che questa terra può ancora darci i suoi frutti, nonostante la corruzione?",
 	"Ho imparato a coltivare piccoli semi nei terreni umidi. Basta zappare la terra soffice, piantarli e dar loro da bere.",
@@ -74,7 +75,7 @@ func inizia_dialogo():
 	
 	if has_node("/root/DialogueManager"):
 		var dm = DialogueManager
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)
 		await dm.dialogue_finished
 		
 		if not has_given_seed:

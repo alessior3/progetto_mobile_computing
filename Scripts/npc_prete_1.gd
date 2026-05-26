@@ -4,6 +4,7 @@ extends CharacterBody2D
 var has_spotted_player: bool = false
 var is_talking: bool = false
 
+@export var npc_name: String = "Npc Prete 1"
 @export_multiline var storia_npc: String = "Pace a te, figliolo. Cosa ti porta in questo luogo sacro in tempi così bui?"
 
 # --- RIFERIMENTI AI NODI ---
@@ -62,7 +63,7 @@ func inizia_dialogo():
 		dm = get_node("/root/DialogueManager")
 	
 	if dm:
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)
 		# Aspettiamo che il dialogo finisca
 		await dm.dialogue_finished
 		

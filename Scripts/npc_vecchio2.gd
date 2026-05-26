@@ -5,6 +5,7 @@ var player_in_range: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc Vecchio 2"
 @export var storia_npc: Array[String] = [
 	"Ehi, giovanotto! Ho sentito in giro che hai una mezza idea di infilarti nel Secondo Dungeon.",
 	"Devi sapere che quelle rovine sotterranee sono state invase da una strana creatura viscida...",
@@ -69,4 +70,4 @@ func inizia_dialogo():
 			await dm.dialogue_finished
 			
 		Global.set("talked_to_npc_vecchio2", true)
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)

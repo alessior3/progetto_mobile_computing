@@ -44,6 +44,9 @@ func _on_exit_body_entered(body: Node2D) -> void:
 
 func change_scene():
 	var target_scene = outside
+	if Global.last_world_scene != "":
+		target_scene = Global.last_world_scene
+		
 	if Global.from_grotta_to_percorso or Global.from_house3_to_percorso:
 		target_scene = "res://Scenes/Percorso1.tscn"
 	

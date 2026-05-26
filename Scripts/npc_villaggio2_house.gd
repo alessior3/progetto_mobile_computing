@@ -5,6 +5,7 @@ var player_in_range: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc Villaggio 2 House"
 @export var storia_npc: Array[String] = [
 	"Ehi, viaggiatore! Sei capitato nel giorno giusto! Hai per caso saputo la grande notizia?",
 	"Il Villaggio Rosso ha umiliato il Villaggio Blu nel grande derby annuale! Che goduria... Forza Rosso sempre e abbasso i puffi del Villaggio Blu!",
@@ -68,4 +69,4 @@ func inizia_dialogo():
 			await dm.dialogue_finished
 			
 		Global.set("talked_to_npc_villaggio2_house", true)
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)

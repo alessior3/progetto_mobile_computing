@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Merchant2
 
 @export var items_to_buy: Array[InventoryItem]
+@export var merchant_name: String = "Mercante"
 # NUOVO: Aggiungiamo la frase anche per questo mercante!
 @export var frase_mercante: String = "Benvenuto, viandante! Dai un'occhiata alle mie merci."
 
@@ -70,12 +71,12 @@ func _unhandled_input(event: InputEvent) -> void:
 						Solo una macchina così antica e potente può ripararlo.",
 						"Però attento: i server del castello emanano un calore insopportabile. Ti servirà della rigenerazione...",
 						"Magari mangia un bel Cavolo prima di attivare il processo, ti terrà in vita mentre la macchina lavora!"
-					])
+					], merchant_name)
 			else:
 				# PASSO 1: Mostra la linea di dialogo normale
 				stato_interazione = 1
 				if has_node("/root/DialogueManager"):
-					DialogueManager.show_message(frase_mercante)
+					DialogueManager.show_message(frase_mercante, merchant_name)
 				
 		elif stato_interazione == 1 or stato_interazione == 3:
 			# PASSO 2: Chiudi il dialogo e apri lo shop

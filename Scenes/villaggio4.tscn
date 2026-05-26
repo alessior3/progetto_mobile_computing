@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://b6tlbra4s61nf"]
 
+[ext_resource type="Script" path="res://Scripts/villaggio_4.gd" id="1_villaggio4"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="2_xjobx"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="3_audoo"]
 [ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="4_g4ca1"]
@@ -1141,6 +1142,7 @@ sources/0 = SubResource("TileSetAtlasSource_uqdn7")
 size = Vector2(163.45474, 188.40428)
 
 [node name="villaggio4" type="Node2D" unique_id=2084603517]
+script = ExtResource("1_villaggio4")
 y_sort_enabled = true
 position = Vector2(1624.0001, -514.00006)
 scale = Vector2(1.0296197, 1.0297008)

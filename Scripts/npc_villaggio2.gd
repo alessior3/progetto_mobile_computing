@@ -5,9 +5,10 @@ var player_in_range: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc Villaggio 2"
 @export var storia_npc: Array[String] = [
 	"Ehi, aspetta un attimo... ma tu sei quello di cui tutti parlano! Colui che ha superato il labirinto del Primo Dungeon e sconfitto il guardiano!",
-	"Le voci sulle tue eroiche gesta sono arrivate fin qui. Sei l'unica speranza che ci rimane contro il Mago Oscuro.",
+	"Le voci sulle deine eroiche gesta sono arrivate fin qui. Sei l'unica speranza che ci rimane contro il Mago Oscuro.",
 	"Ma non esultare troppo in fretta. Se stai andando verso il Secondo Dungeon, preparati al peggio. Quel posto è molto diverso dalle vecchie rovine.",
 	"È una vera e propria Arena. Nessun labirinto in cui nascondersi, nessuna via di fuga. Solo ondate di macchine spietate progettate per annientarti.",
 	"Al centro troverai un grande Terminale di Controllo. Dovrai attivarlo e sopravvivere finché l'hackeraggio non sarà completo. Che la Dea della Rete vegli su di te!"
@@ -68,4 +69,4 @@ func inizia_dialogo():
 			await dm.dialogue_finished
 			
 		Global.set("talked_to_npc_villaggio2", true)
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)

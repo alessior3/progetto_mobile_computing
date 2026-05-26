@@ -6,6 +6,7 @@ var has_spotted_player: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
 
+@export var npc_name: String = "Npc 1"
 # --- LA MODIFICA È QUI! Ora è un Array di stringhe (più pagine) ---
 @export var storia_npc: Array[String] = [
 	"Ehi tu! Avvicinati, viandante. Che ci fai da queste parti?",
@@ -93,7 +94,7 @@ func inizia_dialogo():
 			await dm.dialogue_finished
 			
 		Global.talked_to_npc1 = true
-		dm.show_message(storia_npc)
+		dm.show_message(storia_npc, npc_name)
 
 func update_animation(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):

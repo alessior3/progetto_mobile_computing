@@ -20,7 +20,11 @@ func _on_exit_area_body_entered(body: Node2D) -> void:
 		body.can_move = false
 		await get_tree().create_timer(0.3).timeout
 		
+		var target_scene = outside
+		if Global.last_world_scene != "":
+			target_scene = Global.last_world_scene
+		
 		if TransitionChangeManager:
-			TransitionChangeManager.change_scene(outside)
+			TransitionChangeManager.change_scene(target_scene)
 		else:
-			get_tree().change_scene_to_file(outside)
+			get_tree().change_scene_to_file(target_scene)
