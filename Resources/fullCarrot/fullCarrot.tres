@@ -11,7 +11,7 @@ ground_collision_shape = ExtResource("1_7rvgi")
 name = "Carota"
 texture = ExtResource("3_jhqxp")
 max_stacks = 1
-price = 40
+price = 36
 description = "\"Ricchissima di betacarotene. La tua vista si acuisce e l'oscurità dei dungeon fa improvvisamente meno paura.
 Effetto: Espande notevolmente il raggio di luce della torcia per 2 minuti.\""
 damage = 40

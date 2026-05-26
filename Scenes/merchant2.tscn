@@ -10,6 +10,14 @@
 [ext_resource type="Resource" uid="uid://jb6410dqkqbs" path="res://Resources/seedbeetroot/seedbeetroot.tres" id="5_y5wmp"]
 [ext_resource type="Resource" uid="uid://b3vahtq40jmq" path="res://Resources/seedcabbage/seedcabbage.tres" id="6_dbjba"]
 [ext_resource type="Resource" uid="uid://8irtyi2i27bh" path="res://Resources/FloppyDisk/corrupted_floppy.tres" id="7_oqvu1"]
+[ext_resource type="Resource" uid="uid://cbq0dyydxvwn1" path="res://Resources/seedcauliflower/seedcauliflower.tres" id="8_cauli"]
+[ext_resource type="Resource" uid="uid://bwl2006lwiski" path="res://Resources/seedkale/seedkale.tres" id="9_kale"]
+[ext_resource type="Resource" uid="uid://dasq12hwecodo" path="res://Resources/seedparsnip/seedparsnip.tres" id="10_pars"]
+[ext_resource type="Resource" uid="uid://bqg8j3kk1nkfg" path="res://Resources/seedpotato/seedpotato.tres" id="11_pota"]
+[ext_resource type="Resource" uid="uid://bwnjhcjit3h1o" path="res://Resources/seedpumpkin/seedpumpkin.tres" id="12_pump"]
+[ext_resource type="Resource" uid="uid://dl4wj4cm6mdn8" path="res://Resources/seedsunflower/seedsunflower.tres" id="13_sunf"]
+[ext_resource type="Resource" uid="uid://hit7s0ssu37x" path="res://Resources/seedRadish1/Radish.tres" id="14_rad"]
+[ext_resource type="Resource" uid="uid://54ofoq403c3v" path="res://Resources/seedwheat/seedwheat.tres" id="15_wheat"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8uomo"]
 atlas = ExtResource("2_4jl3x")
@@ -69,7 +77,7 @@ radius = 39.0
 
 [node name="merchant2" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_4jb8k")
-items_to_buy = Array[ExtResource("2_smeti")]([ExtResource("3_oqvu1"), ExtResource("4_187we"), ExtResource("5_y5wmp"), ExtResource("6_dbjba"), ExtResource("7_oqvu1")])
+items_to_buy = Array[ExtResource("2_smeti")]([ExtResource("3_oqvu1"), ExtResource("4_187we"), ExtResource("5_y5wmp"), ExtResource("6_dbjba"), ExtResource("7_oqvu1"), ExtResource("8_cauli"), ExtResource("9_kale"), ExtResource("10_pars"), ExtResource("11_pota"), ExtResource("12_pump"), ExtResource("13_sunf"), ExtResource("14_rad"), ExtResource("15_wheat")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 position = Vector2(0, -8)

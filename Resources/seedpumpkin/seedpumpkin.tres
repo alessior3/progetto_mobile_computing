@@ -8,7 +8,7 @@
 script = ExtResource("2_vdkdb")
 slot_type = "Hand"
 ground_collision_shape = ExtResource("1_ok233")
-name = "seedbeetroot"
+name = "Pumpkin Seed"
 texture = ExtResource("3_qqljb")
 max_stacks = 999
 price = 40

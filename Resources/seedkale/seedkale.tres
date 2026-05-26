@@ -8,8 +8,8 @@
 script = ExtResource("2_t7ib3")
 slot_type = "Hand"
 ground_collision_shape = ExtResource("1_fjnsr")
-name = "seedbeetroot"
+name = "Kale Seed"
 texture = ExtResource("3_lbomy")
 max_stacks = 999
-price = 40
+price = 50
 damage = 40

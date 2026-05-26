@@ -12,7 +12,7 @@ ground_collision_shape = ExtResource("1_ltl5l")
 name = "Cavolo Riccio"
 texture = ExtResource("3_rl6h5")
 max_stacks = 1
-price = 40
+price = 150
 description = "\"Un vero 'superfood' pesante e compatto. Senti i muscoli e le ossa indurirsi a ogni morso.
 Effetto: Aumenta temporaneamente la Salute Massima di 20 HP.\""
 damage = 40

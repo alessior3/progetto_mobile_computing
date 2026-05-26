@@ -21,6 +21,46 @@ var crop_database = {
 		"grown_item": preload("res://Resources/fullWheat/fullWheat.tres"),
 		"animation": "wheat_animation",
 		"max_stages": 4
+	},
+	"Beetroot Seed": {
+		"grown_item": preload("res://Resources/fullbeetroot/fullbeetroot.tres"),
+		"animation": "beetroot_animation",
+		"max_stages": 4
+	},
+	"Cabbage Seed": {
+		"grown_item": preload("res://Resources/fullCabbage/fullCabbage.tres"),
+		"animation": "cabbage_animation",
+		"max_stages": 4
+	},
+	"Cauliflower Seed": {
+		"grown_item": preload("res://Resources/fullCauliflower/fullCauliflower.tres"),
+		"animation": "cauliflowerAnimation",
+		"max_stages": 5
+	},
+	"Kale Seed": {
+		"grown_item": preload("res://Resources/fullKale/fullKale.tres"),
+		"animation": "kaleAnimation",
+		"max_stages": 5
+	},
+	"Parsnip Seed": {
+		"grown_item": preload("res://Resources/fullParsnip/fullParsnip.tres"),
+		"animation": "parsnip_animation",
+		"max_stages": 4
+	},
+	"Potato Seed": {
+		"grown_item": preload("res://Resources/fullPotato/fullPotato.tres"),
+		"animation": "potato_animation",
+		"max_stages": 4
+	},
+	"Pumpkin Seed": {
+		"grown_item": preload("res://Resources/fullPumpkin/fullPumpkin.tres"),
+		"animation": "pumpkin_animation",
+		"max_stages": 4
+	},
+	"Sunflower Seed": {
+		"grown_item": preload("res://Resources/fullSunflower/fullSunflower.tres"),
+		"animation": "sunflower_animation",
+		"max_stages": 4
 	}
 }
 

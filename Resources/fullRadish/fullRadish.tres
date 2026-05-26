@@ -12,7 +12,7 @@ ground_collision_shape = ExtResource("1_sunaq")
 name = "Ravanello"
 texture = ExtResource("3_nalpq")
 max_stacks = 1
-price = 40
+price = 24
 description = "\"Un sapore così piccante e pungente che ti fa letteralmente scattare in piedi come una molla!
 Effetto: Velocità di scatto notevolmente aumentata per pochi secondi. Ottimo per le fughe!\""
 damage = 40

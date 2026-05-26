@@ -12,7 +12,7 @@ ground_collision_shape = ExtResource("1_2r5fu")
 name = "Zucca"
 texture = ExtResource("3_jra0k")
 max_stacks = 1
-price = 40
+price = 120
 description = "\"Ha una scorza così dura e resistente che, mangiandola, sembra quasi di farsi crescere una corazza sulla pelle.
 Effetto: Riduci tutti i danni subiti del 30% per 45 secondi.\"
 "

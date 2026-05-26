@@ -11,7 +11,7 @@ ground_collision_shape = ExtResource("1_gye4i")
 name = "Cavolfiore"
 texture = ExtResource("3_2f0ik")
 max_stacks = 1
-price = 40
+price = 105
 description = "\"Un concentrato di fosforo per la mente. Ti senti incredibilmente scaltro e pronto a contrattare su qualsiasi prezzo.
 Effetto: Ottieni il 20% di sconto su tutti gli acquisti dal mercante per 60 secondi.\""
 damage = 40
