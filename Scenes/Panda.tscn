@@ -5,6 +5,8 @@
 [ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_6miny"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="4_rrmfs"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="5_3bm0u"]
+[ext_resource type="Resource" path="res://Resources/pandaDrop/panda_drop.tres" id="6_honey"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_usj4m"]
 atlas = ExtResource("2_nmshl")
@@ -146,6 +148,7 @@ size = Vector2(16, 16)
 
 [node name="Panda" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_nmshl")
+item_to_drop = ExtResource("6_honey")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 sprite_frames = SubResource("SpriteFrames_iccxi")

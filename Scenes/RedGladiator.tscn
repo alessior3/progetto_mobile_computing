@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="4_ejs5o"]
 [ext_resource type="Texture2D" uid="uid://bu3csstpr4o02" path="res://Ninja Adventure - Asset Pack/Actor/Characters/RedGladiator/SeparateAnim/Dead.png" id="4_g8pjl"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="5_g8pjl"]
+[ext_resource type="Resource" path="res://Resources/redGladiatorDrop/red_gladiator_drop.tres" id="6_steel"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxmhv"]
 atlas = ExtResource("2_adbs1")
@@ -208,6 +210,7 @@ size = Vector2(16, 16)
 
 [node name="RedGladiator" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_crhuu")
+item_to_drop = ExtResource("6_steel")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 sprite_frames = SubResource("SpriteFrames_iccxi")

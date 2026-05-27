@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/inventory_item.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://Ninja Adventure - Asset Pack/Items/Scroll/ScrollFire.png" id="2_tex"]
+
+[resource]
+script = ExtResource("1_script")
+item_id = "fire_scroll"
+slot_type = "NotEquipable"
+name = "Pergamena del Fuoco"
+texture = ExtResource("2_tex")
+max_stacks = 99
+price = 60
+description = "Una rara pergamena magica contenente potenti incantesimi di fuoco, droppata dai Flam Rossi."
+ground_visual_scale = Vector2(1, 1)
+is_weapon = false
+damage = 0
+is_consumable = false
+heal_amount = 0
+buff_type = "nessuno"
+buff_value = 0.0
+buff_duration = 0.0

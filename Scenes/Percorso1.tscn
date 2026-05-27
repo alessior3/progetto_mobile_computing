@@ -3,14 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://dpxuad05gqgi7" path="res://Scenes/HousePercorso1.tscn" id="2_qclq6"]
 [ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="2_yksme"]
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="3_4u4t0"]
-[ext_resource type="Script" path="res://Scripts/percorso_exit.gd" id="3_yksme"]
+[ext_resource type="Script" uid="uid://csx1y4eubv6ui" path="res://Scripts/percorso_exit.gd" id="3_yksme"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_d1xfb"]
 [ext_resource type="Script" uid="uid://y74awwikgrtd" path="res://Scripts/percorso_1.gd" id="4_percorso_root"]
 [ext_resource type="PackedScene" uid="uid://dhinc5gjn3qjh" path="res://Scenes/Grotta1.tscn" id="5_u68j6"]
 [ext_resource type="Texture2D" uid="uid://c8u8tesrhtn30" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/Parete di rocce.png" id="6_vx472"]
 [ext_resource type="PackedScene" uid="uid://duqpqcdufdctl" path="res://Scenes/Panda.tscn" id="9_jqp7j"]
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="10_kexqr"]
-[ext_resource type="Script" path="res://Scripts/transition_area.gd" id="10_trans"]
+[ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="10_trans"]
 [ext_resource type="PackedScene" uid="uid://dv7i1pie573vl" path="res://Scenes/FlamRed.tscn" id="12_ebchb"]
 [ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="13_jw1tv"]
 [ext_resource type="PackedScene" uid="uid://d3jus14pdk2pr" path="res://Scenes/chestBlu.tscn" id="14_efmdg"]
@@ -581,12 +581,12 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AACuAP3/AAABAAUAAACmAP3/AAABAAUAAACfAP3/AAABAAUAAADIAPf/AAABAAUAAADJAP//AAABAAUAAADKAP3/AAABAAUAAADIAP3/AAABAAUAAADUAPv/AAABAAUAAADSAPz/AAABAAUAAADXAPz/AAABAAUAAADcAPv/AAABAAUAAADbAP3/AAABAAUAAADdAAMAAAABAAUAAADZAAQAAAABAAUAAADRAAMAAAABAAUAAADnAAQAAAABAAUAAADvAAQAAAABAAUAAAD2AAMAAAABAAUAAAD7AAMAAAABAAUAAAD9APf/AAABAAUAAAD+APj/AAABAAUAAAD+AP3/AAABAAUAAADzAPr/AAABAAUAAAD1APf/AAABAAUAAAD/APL/AAABAAUAAAAHAfH/AAABAAUAAAALAen/AAABAAUAAAADAej/AAABAAUAAAALAef/AAABAAUAAAAQAen/AAABAAUAAAAcAen/AAABAAUAAAAoAer/AAABAAUAAAAlAfL/AAABAAUAAAAgAfH/AAABAAUAAAAtAfH/AAABAAUAAAAlAfP/AAABAAUAAAAqAfL/AAABAAUAAAAyAer/AAABAAUAAAA5Aej/AAABAAUAAAA2AfH/AAABAAUAAAAyAfP/AAABAAUAAABIAev/AAABAAUAAABFAef/AAABAAUAAABKAeX/AAABAAUAAABMAef/AAABAAUAAABSAeT/AAABAAUAAABUAeH/AAABAAUAAABIAeL/AAABAAUAAABJAdf/AAABAAUAAABMAdr/AAABAAUAAABSAdf/AAABAAUAAABXAdX/AAABAAUAAABiAdX/AAABAAUAAABaAd3/AAABAAUAAABxAdb/AAABAAUAAABpAdb/AAABAAUAAACBAdP/AAABAAUAAAB+AdX/AAABAAUAAAB8AdP/AAABAAUAAACHAdX/AAABAAUAAACGAdX/AAABAAUAAAB6Adb/AAABAAUAAAB+Ad3/AAABAAUAAACBAdX/AAADAAUAAACBAd3/AAADAAUAAABZAdX/AAADAAUAAABNAdv/AAADAAUAAAA8Aeb/AAADAAUAAAA1Aer/AAADAAUAAAAnAfH/AAADAAUAAAANAen/AAADAAUAAAABAfL/AAADAAUAAAAAAer/AAADAAMAAAD5AOr/AAADAAMAAAD2APD/AAADAAMAAAAFAfH/AAADAAMAAAANAfH/AAADAAMAAAAYAen/AAADAAMAAAAXAer/AAADAAMAAAAtAej/AAADAAMAAAAsAer/AAADAAMAAAAxAfH/AAADAAMAAABHAe3/AAADAAMAAABGAen/AAADAAMAAABKAej/AAADAAMAAABOAeL/AAADAAMAAABJAeP/AAADAAMAAABFAeT/AAADAAMAAABIAdn/AAADAAMAAABKAdv/AAADAAMAAABMAdj/AAADAAMAAABPAdr/AAADAAMAAABTAdb/AAADAAMAAABWAdb/AAADAAMAAABjAd3/AAADAAMAAABZAd//AAADAAMAAABfAdb/AAADAAMAAABsAdX/AAADAAMAAAB1AdX/AAADAAMAAAB5AdT/AAADAAMAAAB2Ad3/AAADAAMAAAB6Ad3/AAADAAMAAACLAdT/AAADAAMAAACGAdP/AAADAAMAAACJAdb/AAADAAMAAACGAd3/AAADAAMAAACeAdT/AAABAAUAAACaAdX/AAABAAUAAACTAdb/AAABAAUAAACPAdX/AAABAAUAAACNAd3/AAABAAUAAACaAd3/AAABAAUAAACiAd//AAABAAUAAACUAd3/AAABAAUAAACfAdT/AAADAAMAAACcAdX/AAADAAMAAACgAd//AAADAAMAAACdAd3/AAADAAMAAACVAd3/AAADAAMAAAA9Ad//AAADAAMAAAA9AeP/AAADAAMAAAD1AP3/AAAEAAMAAAD9APz/AAAEAAMAAAD1APP/AAAEAAMAAAACAer/AAAEAAMAAAADAfD/AAAEAAMAAADeAP3/AAAEAAMAAADUAPz/AAAEAAMAAADOAPf/AAAEAAMAAADNAAIAAAAEAAMAAADoAAYAAAAEAAMAAADoAAkAAAADAAMAAADuAA4AAAADAAMAAADoABYAAAADAAMAAADvACEAAAADAAMAAADoACMAAAADAAMAAADuABcAAAADAAMAAADvAAgAAAADAAMAAADvAB4AAAABAAUAAADoABQAAAABAAUAAADvABMAAAABAAUAAADvAAsAAAABAAUAAADnABAAAAABAAUAAADoAAwAAAABAAUAAADvABAAAAABAAUAAADxAAMAAAABAAUAAACwAAQAAAABAAUAAACvAA0AAAABAAUAAACwABMAAAABAAUAAACwABgAAAABAAUAAACwABUAAAAEAAMAAACwAAkAAAAEAAMAAACwAAAAAAAEAAMAAACoAP3/AAAEAAMAAAChAP3/AAAEAAMAAAB9APv/AAACAAMAAAB9AAkAAAACAAMAAAB9ABMAAAACAAMAAABsACUAAAACAAMAAABsACsAAAACAAMAAAB5ACwAAAACAAMAAAB8ACoAAAACAAMAAAB9ABcAAAABAAQAAAB+ABYAAAACAAMAAAB+ABcAAAACAAQAAAB9AAUAAAABAAQAAAB+AAQAAAACAAMAAAB+AAUAAAACAAQAAAA=")
 tile_set = SubResource("TileSet_kexqr")
 
-[node name="exit" type="Area2D" parent="." unique_id=189363447]
+[node name="EntrataVillaggio1" type="Area2D" parent="." unique_id=189363447]
 position = Vector2(2391, -323)
 collision_mask = 2
 script = ExtResource("3_yksme")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="exit" unique_id=2011070977]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntrataVillaggio1" unique_id=2011070977]
 position = Vector2(92.75, 37.5)
 shape = SubResource("RectangleShape2D_yksme")
 
@@ -617,8 +617,7 @@ position = Vector2(4640, -386)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_d1xfb")]
 position = Vector2(2650, -122)
-run_speed = 150
-god_mode = false
+god_mode = true
 
 [node name="Inventory" parent="player" index="6" unique_id=1240474999]
 default_items = Array[ExtResource("10_kexqr")]([ExtResource("13_jw1tv")])
@@ -626,20 +625,20 @@ default_items = Array[ExtResource("10_kexqr")]([ExtResource("13_jw1tv")])
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
 
-[node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=1880370216]
+[node name="UscitaVillaggio1" type="Marker2D" parent="." unique_id=1880370216]
 position = Vector2(2509, -139)
 
-[node name="UscitaPercorso1" type="Marker2D" parent="." unique_id=172267169]
+[node name="UscitaVillaggio2" type="Marker2D" parent="." unique_id=172267169]
 position = Vector2(6620, -625)
 
-[node name="EntrataVillaggio3" type="Area2D" parent="." unique_id=20241021]
+[node name="EntrataVillaggio2" type="Area2D" parent="." unique_id=20241021]
 position = Vector2(6882, -646)
 collision_mask = 2
 script = ExtResource("10_trans")
 target_scene = "res://Scenes/villaggio2.tscn"
 transition_flag = "from_percorso1_to_villaggio2"
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="EntrataVillaggio3" unique_id=20241022]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EntrataVillaggio2" unique_id=20241022]
 shape = SubResource("RectangleShape2D_yksme")
 
 [node name="FlamRed5" parent="." unique_id=1898490425 instance=ExtResource("12_ebchb")]
@@ -694,8 +693,8 @@ oggetto_iniziale = ExtResource("15_tlk5o")
 
 [node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("14_v78ur")]
 
-[connection signal="body_entered" from="exit" to="exit" method="_on_body_entered"]
-[connection signal="body_exited" from="exit" to="exit" method="_on_body_exited"]
-[connection signal="body_entered" from="EntrataVillaggio3" to="EntrataVillaggio3" method="_on_body_entered"]
+[connection signal="body_entered" from="EntrataVillaggio1" to="EntrataVillaggio1" method="_on_body_entered"]
+[connection signal="body_exited" from="EntrataVillaggio1" to="EntrataVillaggio1" method="_on_body_exited"]
+[connection signal="body_entered" from="EntrataVillaggio2" to="EntrataVillaggio2" method="_on_body_entered"]
 
 [editable path="player"]

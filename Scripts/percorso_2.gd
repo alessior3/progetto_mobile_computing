@@ -29,6 +29,11 @@ func _ready():
 				target_pos = spawn_point_uscita.global_position
 				print("DEBUG: Spostamento su SpawnPlayerUscita (global_pos: ", target_pos, ")")
 			Global.from_villaggio3_to_percorso2 = false
+		elif Global.from_villaggio4_to_percorso3:
+			if spawn_point_uscita:
+				target_pos = spawn_point_uscita.global_position
+				print("DEBUG: Spostamento su SpawnPlayerUscita per percorso 3 (global_pos: ", target_pos, ")")
+			Global.from_villaggio4_to_percorso3 = false
 		
 		# Forza la posizione per qualche frame
 		for i in range(10):

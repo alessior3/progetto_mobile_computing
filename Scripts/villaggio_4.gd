@@ -13,10 +13,18 @@ func _ready():
 	
 	# Se il player sta uscendo da una casa, lasciamo che il sistema delle porte gestisca il posizionamento.
 	# Altrimenti (ad esempio se arriva dal percorso adiacente), lo posizioniamo sull'ingresso.
-	if player and spawn_point and not was_exiting_house:
-		var target_pos = spawn_point.global_position
-		print("DEBUG Villaggio4: Posizionamento player su IngressoVillaggio3: ", target_pos)
+	if player and not was_exiting_house:
+		var target_pos = spawn_point.global_position if spawn_point else player.global_position
 		
+		if Global.from_percorso3_to_villaggio4:
+			var exit_spawn = find_child("UscitaVillaggio5", true, false)
+			if exit_spawn:
+				target_pos = exit_spawn.global_position
+				print("DEBUG Villaggio4: Posizionamento player su UscitaVillaggio5: ", target_pos)
+			Global.from_percorso3_to_villaggio4 = false
+		else:
+			print("DEBUG Villaggio4: Posizionamento player su IngressoVillaggio3: ", target_pos)
+			
 		# Forza la posizione per qualche frame per stabilizzare fisica e telecamera
 		for i in range(10):
 			player.global_position = target_pos

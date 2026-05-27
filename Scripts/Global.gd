@@ -47,6 +47,9 @@ var from_villaggio2_to_percorso2: bool = false
 var from_percorso2_to_villaggio2: bool = false
 var from_percorso2_to_villaggio3: bool = false
 var from_villaggio3_to_percorso2: bool = false
+var from_percorso4_to_villaggio3: bool = false
+var from_villaggio4_to_percorso3: bool = false
+var from_percorso3_to_villaggio4: bool = false
 var from_grotta2_to_dungeon2: bool = false
 
 var last_world_scene: String = "res://Scenes/world.tscn"
@@ -67,7 +70,19 @@ var talked_to_npc_villaggio4: bool = false
 var talked_to_npc_prete2: bool = false
 
 var quest_accendino_started: bool = false
-var has_accendino: bool = false
+var has_accendino: bool = false:
+	get:
+		if quest_accendino_completed:
+			return false
+		for item in persistent_items:
+			if item and (item.name == "Accendino" or item.item_id == "accendino"):
+				return true
+		for slot in [persistent_hand, persistent_potions, persistent_food]:
+			if slot and (slot.name == "Accendino" or slot.item_id == "accendino"):
+				return true
+		return false
+	set(value):
+		pass
 var quest_accendino_completed: bool = false
 
 var pc_boss_1_on: bool = false
@@ -163,3 +178,52 @@ func reset_inventory_and_gold():
 	persistent_potions = null
 	persistent_food = null
 	# Non svuotiamo collected_item_ids, altrimenti gli oggetti nel mondo respawnano!
+
+# --- NUOVA FUNZIONE PER RIMUOVERE UN OGGETTO ---
+func remove_inventory_item(item_name_or_id: String) -> void:
+	# Cerca nello zaino
+	for i in range(persistent_items.size()):
+		var item = persistent_items[i]
+		if item and (item.name == item_name_or_id or item.item_id == item_name_or_id):
+			persistent_items.remove_at(i)
+			break
+	# Cerca negli slot equipaggiati
+	if persistent_hand and (persistent_hand.name == item_name_or_id or persistent_hand.item_id == item_name_or_id):
+		persistent_hand = null
+	elif persistent_potions and (persistent_potions.name == item_name_or_id or persistent_potions.item_id == item_name_or_id):
+		persistent_potions = null
+	elif persistent_food and (persistent_food.name == item_name_or_id or persistent_food.item_id == item_name_or_id):
+		persistent_food = null
+
+	# Sincronizza l'inventario attivo se presente nella scena corrente
+	var active_scene = Engine.get_main_loop().current_scene
+	if active_scene:
+		var player_node = active_scene.find_child("player", true, false)
+		if player_node:
+			var inv = player_node.get_node_or_null("Inventory")
+			if inv:
+				inv.items = persistent_items
+				if inv.inventory_ui:
+					inv.inventory_ui.update_slots(inv.items)
+				if inv.on_screen_ui:
+					inv._restore_equipment_ui()
+
+# --- NUOVA FUNZIONE PER AGGIUNGERE ORO ---
+func add_gold(amount: int) -> void:
+	persistent_gold += amount
+	print("DEBUG (Global): Aggiunto oro: ", amount, ". Totale persistente: ", persistent_gold)
+	
+	# Sincronizza l'inventario del player nella scena corrente
+	var active_scene = Engine.get_main_loop().current_scene
+	if active_scene:
+		var player_node = active_scene.find_child("player", true, false)
+		if player_node:
+			var inv = player_node.get_node_or_null("Inventory")
+			if inv:
+				inv.gold = persistent_gold
+				inv.gold_changed.emit(persistent_gold)
+				
+		# Aggiorna direttamente la label di OnScreenUi per sicurezza extra
+		var ui_node = active_scene.find_child("CoinCount", true, false)
+		if ui_node and "text" in ui_node:
+			ui_node.text = str(persistent_gold)

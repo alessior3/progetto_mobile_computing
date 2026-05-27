@@ -5,6 +5,8 @@
 [ext_resource type="Shape2D" uid="uid://dm4p4mwxkra2g" path="res://enemies/beast_collison_shape.tres" id="3_lc224"]
 [ext_resource type="PackedScene" uid="uid://d36623py4wojg" path="res://Scenes/health_system.tscn" id="4_vnd4n"]
 [ext_resource type="PackedScene" uid="uid://doo4ofrsk7u37" path="res://Scenes/health_bar.tscn" id="5_7etip"]
+[ext_resource type="Resource" path="res://Resources/snakeRedDrop/snake_red_drop.tres" id="6_ruby"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4oc3b"]
 atlas = ExtResource("2_xjor3")
@@ -146,6 +148,7 @@ size = Vector2(16, 16)
 
 [node name="SnakeRed" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_fo5g6")
+item_to_drop = ExtResource("6_ruby")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
 sprite_frames = SubResource("SpriteFrames_iccxi")

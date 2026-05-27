@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InventoryItem" format=3 uid="uid://l3jxp8rksg81"]
+
+[ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="1_jsjey"]
+[ext_resource type="Texture2D" uid="uid://kqw1n4i5gvm" path="res://Resources/Lighter/Gemini_Generated_Image_w4yxl9w4yxl9w4yx-removebg-preview.png" id="2_jw3hp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3uje"]
+
+[resource]
+script = ExtResource("1_jsjey")
+item_id = "accendino"
+slot_type = "Hand"
+ground_collision_shape = SubResource("RectangleShape2D_u3uje")
+name = "Accendino"
+texture = ExtResource("2_jw3hp")
+max_stacks = 1
+description = "Un vecchio accendino a gas ancora funzionante. Perfetto per accendere un falò!"
+ground_visual_scale = Vector2(0.03, 0.03)

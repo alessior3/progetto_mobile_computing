@@ -15,6 +15,12 @@ func _ready():
 				target_pos = spawn_point.global_position
 				print("DEBUG: Spostamento su IngressoVillaggio3 (global_pos: ", target_pos, ")")
 			Global.from_percorso2_to_villaggio3 = false
+		elif Global.from_percorso4_to_villaggio3:
+			var exit_spawn = find_child("UscitaVillaggio3", true, false)
+			if exit_spawn:
+				target_pos = exit_spawn.global_position
+				print("DEBUG: Spostamento su UscitaVillaggio3 (global_pos: ", target_pos, ")")
+			Global.from_percorso4_to_villaggio3 = false
 		
 		# Forza la posizione per qualche frame
 		for i in range(10):

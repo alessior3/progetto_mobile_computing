@@ -10,8 +10,12 @@ var current_player = null
 @export var richiede_quest_accendino: bool = true
 
 func _ready():
-	# L'animazione parte spenta per default
-	animated_sprite.play("FuocoSpento_an")
+	# L'animazione parte accesa se la quest è completata, altrimenti spenta
+	if richiede_quest_accendino and Global.get("quest_accendino_completed"):
+		is_lit = true
+		animated_sprite.play("FuocoAcceso_an")
+	else:
+		animated_sprite.play("FuocoSpento_an")
 	
 	# Connettiamo i segnali dell'area di interazione
 	interaction_area.body_entered.connect(_on_body_entered)

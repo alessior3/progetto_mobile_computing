@@ -35,6 +35,13 @@ func _ready():
 		exclamation_mark.visible = false
 	if anim:
 		anim.play("idle_an")
+		
+	# Se la quest è già completata, posiziona l'NPC stabilmente vicino al falò a scaldarsi!
+	if Global.get("quest_accendino_completed"):
+		await get_tree().process_frame
+		var campfire = get_parent().find_child("FuocoCampeggio", true, false)
+		if campfire:
+			global_position = campfire.global_position - Vector2(20, 0)
 
 func _physics_process(delta):
 	# NPC statico.
@@ -103,13 +110,54 @@ func inizia_dialogo():
 		if state == 1:
 			Global.set("quest_accendino_started", true)
 		elif state == 3:
-			Global.set("has_accendino", false)
+			# Diamo la ricompensa in modo sicuro e sincronizzato (subito dopo la chiusura del dialogo)
+			Global.add_gold(50)
+			
+			# Rimozione dell'accendino
+			Global.remove_inventory_item("Accendino")
+			
+			# Movimento verso il falò
+			var campfire = get_parent().find_child("FuocoCampeggio", true, false)
+			if campfire:
+				# Disattiva collisioni temporaneamente per non incastrarsi col player o col fuoco
+				var col = get_node_or_null("CollisionShape2D")
+				if col:
+					col.disabled = true
+					
+				var target_pos = campfire.global_position - Vector2(20, 0)
+				
+				# Slide smoothly
+				var tween = create_tween()
+				tween.tween_property(self, "global_position", target_pos, 1.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+				await tween.finished
+				
+				if col:
+					col.disabled = false
+				
+				# Aspetta un attimo prima di accenderlo
+				await get_tree().create_timer(0.5).timeout
+				
+				# Dialogo di accensione - Parte 1 (il flic flic floc)
+				if has_node("/root/DialogueManager"):
+					var dm_c = get_node("/root/DialogueManager")
+					dm_c.show_message(["*Flic! Flic! Floc!*"], npc_name)
+					await dm_c.dialogue_finished
+				
+				# Accende il falò SUBITO alla chiusura del flic flic floc!
+				if campfire.has_method("accendi_fuoco"):
+					campfire.accendi_fuoco()
+				
+				# Aspetta un breve istante per far apprezzare la fiamma
+				await get_tree().create_timer(0.3).timeout
+				
+				# Dialogo di accensione - Parte 2 (commento sulla fiamma)
+				if has_node("/root/DialogueManager"):
+					var dm_c2 = get_node("/root/DialogueManager")
+					dm_c2.show_message(["Ed ecco fatto! Che bella fiamma calda! Altro che le sigarette elettroniche!", "Grazie mille ancora, viaggiatore!"], npc_name)
+					await dm_c2.dialogue_finished
+			
+			# Completa la quest
 			Global.set("quest_accendino_completed", true)
-			# Diamo la ricompensa
-			Global.persistent_gold += 50
-			if has_node("/root/OnScreenUi/Control/CoinContainer/CoinCount"):
-				var ui_node = get_node("/root/OnScreenUi/Control/CoinContainer/CoinCount")
-				ui_node.text = str(Global.persistent_gold)
 	
 	is_talking = false
 	if player_target != null and "can_move" in player_target:

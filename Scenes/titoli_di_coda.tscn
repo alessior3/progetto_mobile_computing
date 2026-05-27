@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://1ru2270stqiu"]
 
-[ext_resource type="Script" uid="uid://dl6qc3nxv7oxe" path="res://Scripts/titoli_di_coda.gd" id="1_2jo5s"]
+[ext_resource type="Script" path="res://Scripts/titoli_di_coda.gd" id="1_2jo5s"]
 [ext_resource type="Texture2D" uid="uid://oh8kybp26k4k" path="res://assets_percorsofinale/royal_runner_tileset_64x64.png" id="1_4vdis"]
 [ext_resource type="Texture2D" uid="uid://bmxqggdjuxmfp" path="res://assets_percorsofinale/colonne_archi_tileset_64x64.png" id="2_cjrma"]
 [ext_resource type="Texture2D" uid="uid://f45asc33bf66" path="res://assets_percorsofinale/parete_marmo_oro_tileset_64x64.png" id="3_obsnd"]
@@ -482,7 +482,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_2jo5s"]
 resource_name = "scorrimento_finale"
-length = 20.0
+length = 60.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -490,7 +490,7 @@ tracks/0/path = NodePath("FintoPlayer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 20),
+"times": PackedFloat32Array(0, 60),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(106, -5), Vector2(104, -4486)]
@@ -502,7 +502,7 @@ tracks/1/path = NodePath("CanvasLayer/CreditsText:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2, 20),
+"times": PackedFloat32Array(2, 60),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(327, 645), Vector2(329, -4239)]
@@ -514,7 +514,7 @@ tracks/2/path = NodePath("CanvasModulate:color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 3, 4, 17, 20),
+"times": PackedFloat32Array(0, 3, 4, 57, 60),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0.24313726, 0.6117647, 1, 1), Color(1, 1, 1, 1), Color(0.24313726, 0.6117647, 1, 1), Color(0, 0, 0, 1)]
@@ -580,7 +580,7 @@ anchors_preset = -1
 anchor_left = 0.4296875
 anchor_top = 1.0987654
 anchor_right = 0.6032986
-anchor_bottom = 2.3564816
+anchor_bottom = 3.683642
 offset_left = -70.0
 offset_top = -115.99994
 offset_right = 232.0
@@ -592,13 +592,20 @@ bbcode_enabled = true
 text = "[center]
 [font_size=28][b]PERCORSO 31[/b][/font_size]
 
-[font_size=25]Grazie per aver giocato!!![/font_size]
+[font_size=25]\"Il Mago Oscuro è caduto, e con lui l'incessante ronzio delle macchine che aveva avvelenato queste valli. Gli schermi di vetro si sono spenti e le fredde barriere di energia si sono dissolte nel vento. Il viandante, che ha brandito la Leggendaria Big Sword, bypassato il Mainframe e riportato la vera fiamma nei villaggi, ha compiuto il suo destino. Oggi la natura riprende il sopravvento sul metallo e sulla magia corrotta. Il Percorso 31 è finalmente libero. Ma ricorda: il codice non dorme mai davvero. Nuove sfide attendono chi oserà riaccendere i vecchi sistemi...\"
+[/font_size]
+
+[font_size=25][b]
+Grazie per aver giocato!
+[/b]
 
 
 [font_size=25][b]PROGRAMMAZIONE E DESIGN[/b][/font_size]
 [font_size=25]Luca
 Alessio
 Matthew[/font_size]
+
+
 
 
 [font_size=25][b]GRAFICA E ARTISTI (ASSET)[/b][/font_size]
