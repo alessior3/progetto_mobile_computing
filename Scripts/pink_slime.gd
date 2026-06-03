@@ -12,7 +12,7 @@ class_name PinkSlime
 @export var damage_to_player: int = 10
 @export var attack_cooldown: float = 1.0
 
-@export var health: int = 50
+@export var health: int = 30
 @export var item_to_drop: InventoryItem
 
 # MODIFICA IMPORTANTE: Ora accetta qualsiasi AnimatedSprite2D (Fantasma, Ragno, ecc.)
@@ -33,6 +33,17 @@ var attack_position: Vector2 = Vector2.ZERO
 func set_in_slime(val: bool):
 	is_in_slime = val
 
+
+var is_knocked_back: bool = false
+var knockback_velocity: Vector2 = Vector2.ZERO
+
+func apply_knockback(direction: Vector2):
+	is_knocked_back = true
+	knockback_velocity = direction * 300.0
+	await get_tree().create_timer(0.2).timeout
+	if get_tree() != null:
+		is_knocked_back = false
+
 func _ready() -> void:
 	health_system.init(health)
 	progress_bar.max_value = health
@@ -45,6 +56,12 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta: float) -> void:
+	if is_knocked_back:
+		velocity = knockback_velocity
+		move_and_slide()
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1500 * delta)
+		return
+
 	if not can_attack:
 		# Blocco posizione assoluto: il nemico non si muove di un pixel
 		velocity = Vector2.ZERO

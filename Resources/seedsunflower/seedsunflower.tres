@@ -6,9 +6,11 @@
 
 [resource]
 script = ExtResource("2_aiahg")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_ijexi")
+item_id = "sunflower_seed"
 name = "Sunflower Seed"
+description = "\"Un seme striato. Genera un fiore maestoso, simbolo di calore e speranza vitale.\""
 texture = ExtResource("3_rjw0v")
 max_stacks = 999
 price = 30

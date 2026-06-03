@@ -31,7 +31,15 @@ func open_chest_ui(chest_items: Array, chest_id: String, physical_chest: Area2D)
 	for child in grid.get_children():
 		child.queue_free()
 		
-	for item in chest_items:
+	for i in range(chest_items.size()):
+		var item = chest_items[i]
+		
+		# Evita i crash se per sbaglio è stato inserito un AtlasTexture (o altro) invece di un InventoryItem
+		if item != null and not item is InventoryItem:
+			print("ERRORE CASSA (", chest_id, "): L'oggetto inserito non è un InventoryItem valido! Verrà rimosso.")
+			item = null
+			chest_items[i] = null
+			
 		var new_slot = slot_scene.instantiate()
 		grid.add_child(new_slot)
 		new_slot.add_item(item)

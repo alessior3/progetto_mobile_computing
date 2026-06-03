@@ -15,15 +15,15 @@ func _ready():
 	if SaveManager.is_loading_game:
 		return
 
-	# Se torniamo dal percorso, cerchiamo il marker specifico PlayerSpawnPoint2
+	# Se torniamo dal percorso, cerchiamo il marker specifico PlayerSpawnPointDaPercorso
 	if Global.from_percorso:
-		var spawn2 = find_child("PlayerSpawnPoint2", true, false)
+		var spawn2 = find_child("PlayerSpawnPointDaPercorso", true, false)
 		if spawn2:
 			player.global_position = spawn2.global_position
 			player.current_dir = "up" # Lo facciamo guardare in su
 			Global.set("player_facing_dir", "up") # Evitiamo che player.gd lo rimetta verso il basso!
 			player.play_anim(0)
-			print("Player posizionato su PlayerSpawnPoint2 (ritorno da Percorso1)")
+			print("Player posizionato su PlayerSpawnPointDaPercorso (ritorno da Percorso1)")
 		else:
 			# Se non esiste, usiamo la posizione salvata o il default
 			_handle_standard_positioning()

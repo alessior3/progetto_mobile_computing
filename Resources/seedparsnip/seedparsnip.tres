@@ -6,9 +6,11 @@
 
 [resource]
 script = ExtResource("2_4lkit")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_35f5n")
+item_id = "parsnip_seed"
 name = "Parsnip Seed"
+description = "\"Un seme allungato. Genera una radice nutriente in grado di rinvigorire un viandante esausto.\""
 texture = ExtResource("3_i5ogk")
 max_stacks = 999
 price = 10

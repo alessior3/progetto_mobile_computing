@@ -5,7 +5,7 @@ var is_talking: bool = false
 var player_in_range: bool = false
 var current_player: Player = null
 
-@export var full_price: int = 1000
+@export var full_price: int = 1000000
 @export var discounted_price: int = 50
 @export var npc_name: String = "RE BYTE"
 

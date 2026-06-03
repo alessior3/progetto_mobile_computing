@@ -13,5 +13,5 @@ side_texture = ExtResource("2_kthj5")
 max_stacks = 1
 price = 40
 is_weapon = true
-damage = 4
+damage = 12
 metadata/_custom_type_script = "uid://xa2vtw3obwbv"

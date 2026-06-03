@@ -205,13 +205,13 @@ texture = ExtResource("2_joeuc")
 4:1/0 = 0
 5:1/0 = 0
 11:11/0 = 0
-11:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.965769, -8.284401, 7.913784, -7.733925, 8.093643, -0.35971642, -8.093642, -0.35971642)
+11:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 12:11/0 = 0
-12:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.965769, -8.284401, 7.913784, -7.733925, 8.273502, -0.71943474, -8.093642, -0.71943474)
+12:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 13:11/0 = 0
-13:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.965769, -8.284401, 7.913784, -7.733925, 8.093643, -0.35971642, -8.093642, -0.35971642)
+13:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 14:11/0 = 0
-14:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(8.093643, -1.4388695, 8.4533615, -8.45336, -8.633219, -8.093642, -8.093642, -1.4388695)
+14:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 4:4/0 = 0
 4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8.273501, 7.733925, -7.3742085, -8.093643, 8.46711, -8.467102, 8.4533615, 7.733925)
 4:5/0 = 0
@@ -300,13 +300,13 @@ texture = ExtResource("2_joeuc")
 8:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:11/0 = 0
 5:11/0 = 0
-5:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1.7985859, -8, -1.7985859)
+5:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 6:11/0 = 0
-6:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1.7985859, -8, -1.7985859)
+6:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 7:11/0 = 0
-7:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1.7985859, -8, -1.7985859)
+7:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 8:11/0 = 0
-8:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -1.7985859, -8, -1.7985859)
+8:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 0.8992939, -8, 0.8992939)
 11:8/0 = 0
 12:8/0 = 0
 13:8/0 = 0
@@ -488,16 +488,16 @@ texture = ExtResource("2_joeuc")
 6:24/0 = 0
 6:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:25/0 = 0
-7:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.13675, -8, -4.3166084)
+7:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.5395756, -8, -0.5395756)
 8:25/0 = 0
-8:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.13675, -8, -4.3166084)
+8:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.5395756, -8, -0.5395756)
 7:24/0 = 0
 7:24/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:25/0 = 0
 4:25/0 = 0
 4:26/0 = 0
 6:25/0 = 0
-6:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.13675, -8, -4.3166084)
+6:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.5395756, -8, -0.5395756)
 9:25/0 = 0
 10:25/0 = 0
 0:23/0 = 0
@@ -532,7 +532,7 @@ texture = ExtResource("2_joeuc")
 3:21/0 = 0
 4:21/0 = 0
 5:25/0 = 0
-5:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.13675, -8, -4.3166084)
+5:25/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -0.5395756, -8, -0.5395756)
 3:27/0 = 0
 2:27/0 = 0
 1:28/0 = 0
@@ -1712,32 +1712,29 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_kpojm")
 sources/1 = SubResource("TileSetAtlasSource_i5gjx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_trpyw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy8b2"]
 resource_local_to_scene = true
 size = Vector2(225, 170)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejumn"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8otlg"]
 resource_local_to_scene = true
 size = Vector2(578, 530)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_emywk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brvm2"]
 resource_local_to_scene = true
 size = Vector2(356, 623)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ejumn"]
-radius = 20.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_4x36e"]
-radius = 21.0
+radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpojm"]
-radius = 21.0
+radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5gjx"]
-radius = 21.0
+radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rdt70"]
-radius = 21.0
+radius = 23.0
 
 [node name="Dungeon2" type="Node2D" unique_id=170019413]
 y_sort_enabled = true
@@ -1751,7 +1748,8 @@ tile_map_data = PackedByteArray("AAAQAPv/AAAVAAEAAAARAPv/AAAVAAEAAAASAPv/AAAVAAE
 tile_set = SubResource("TileSet_hjqul")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_k2pb7")]
-position = Vector2(293, 11)
+position = Vector2(1178, -683)
+run_speed = 400
 god_mode = true
 metadata/_edit_group_ = true
 
@@ -1847,7 +1845,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone" index="0"]
 position = Vector2(432.5, 120)
-shape = SubResource("RectangleShape2D_trpyw")
+shape = SubResource("RectangleShape2D_gy8b2")
 
 [node name="StickyZone2" parent="." unique_id=1050859042 instance=ExtResource("8_axtet")]
 position = Vector2(366, 157)
@@ -1855,7 +1853,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone2" index="0"]
 position = Vector2(-91, 44)
-shape = SubResource("RectangleShape2D_ejumn")
+shape = SubResource("RectangleShape2D_8otlg")
 
 [node name="StickyZone3" parent="." unique_id=1485841544 instance=ExtResource("8_axtet")]
 position = Vector2(837, 34)
@@ -1863,18 +1861,16 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone3" index="0"]
 position = Vector2(-43, -165.5)
-shape = SubResource("RectangleShape2D_emywk")
+shape = SubResource("RectangleShape2D_brvm2")
 
 [node name="BinaryLogicManager" parent="." unique_id=2019978947 instance=ExtResource("10_4x36e")]
 z_index = 1
+y_sort_enabled = true
 position = Vector2(1148, -767)
 target_node_path = NodePath("../Chest")
-interaction_radius = 20.0
+interaction_radius = 35.0
 easter_egg_enemies = Array[PackedScene]([ExtResource("2_k2pb7")])
 easter_egg_spawn_count = 3
-
-[node name="CollisionShape2D" parent="BinaryLogicManager/ProximityArea" index="0"]
-shape = SubResource("CircleShape2D_ejumn")
 
 [node name="Sprite2D" type="Sprite2D" parent="BinaryLogicManager" unique_id=1473285541]
 scale = Vector2(0.027, 0.027)
@@ -1933,7 +1929,7 @@ position = Vector2(358, 438)
 [node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("15_ejumn")]
 
 [node name="Chest" parent="." unique_id=716899325 instance=ExtResource("15_trpyw")]
-z_index = 1
+z_index = 0
 position = Vector2(1151, -699)
 chest_id = "cassa_casa_3"
 oggetto_iniziale = ExtResource("18_card")
@@ -1949,7 +1945,6 @@ is_locked = true
 [editable path="StickyZone"]
 [editable path="StickyZone2"]
 [editable path="StickyZone3"]
-[editable path="BinaryLogicManager"]
 [editable path="BinarySocket"]
 [editable path="BinarySocket2"]
 [editable path="BinarySocket3"]

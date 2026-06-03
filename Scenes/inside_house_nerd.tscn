@@ -2219,7 +2219,6 @@ tile_set = SubResource("TileSet_tqxsn")
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_3j1db")]
 z_index = 1
 position = Vector2(-8, 113)
-god_mode = true
 
 [node name="Inventory" parent="player" index="6" unique_id=1240474999]
 default_items = Array[ExtResource("5_v4gxv")]([ExtResource("6_6ruwn"), ExtResource("7_6ruwn")])

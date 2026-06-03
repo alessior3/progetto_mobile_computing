@@ -20,12 +20,16 @@ func _ready() -> void:
 func setup(item: InventoryItem) -> void:
 	current_item = item
 	
+	if item == null:
+		return
+		
 	if item.texture:
 		item_icon.texture = item.texture
 		
 	name_label.text = item.name
 	# Formattazione pulita del prezzo
-	price_label.text = str(item.price * item.stacks) + " Gold"
+	var amt = item.stacks if item.stacks > 0 else 1
+	price_label.text = str(item.price * amt) + " Gold"
 
 func _on_row_pressed() -> void:
 	# Quando clicchi la riga, "urla" al pannello principale quale oggetto hai scelto

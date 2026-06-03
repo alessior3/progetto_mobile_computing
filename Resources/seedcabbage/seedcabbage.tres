@@ -6,9 +6,11 @@
 
 [resource]
 script = ExtResource("2_1f35i")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_0xdfu")
+item_id = "cabbage_seed"
 name = "Cabbage Seed"
+description = "\"Un seme tondeggiante. Cresce in foglie fresche dalle note proprietà curative.\""
 texture = ExtResource("3_6okii")
 max_stacks = 999
 price = 20

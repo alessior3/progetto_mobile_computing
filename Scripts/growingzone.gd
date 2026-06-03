@@ -76,12 +76,39 @@ var current_growth_stage = 0
 # Variabili dinamiche che cambiano in base a cosa piantiamo
 var current_crop_info: Dictionary = {}
 var max_growth_stage: int = 0
+var zone_id: String = ""
 
 func _ready():
+	zone_id = get_tree().current_scene.name + "_" + name + "_" + str(global_position)
 	plant.animation = "none"
 	is_planted = false
 	current_growth_stage = 0
 	
+	if Global.growing_zones_data.has(zone_id):
+		var data = Global.growing_zones_data[zone_id]
+		is_planted = true
+		var seed_name = data["seed_name"]
+		var planted_time = data["planted_time"]
+		
+		if crop_database.has(seed_name):
+			current_crop_info = crop_database[seed_name]
+			max_growth_stage = current_crop_info["max_stages"]
+			plant.animation = current_crop_info["animation"]
+			
+			var current_time = Time.get_unix_time_from_system()
+			var elapsed = current_time - planted_time
+			var seconds_per_stage = growth_timer.wait_time
+			
+			var stages_grown = int(elapsed / seconds_per_stage)
+			current_growth_stage = min(stages_grown, max_growth_stage)
+			plant.frame = current_growth_stage
+			
+			if current_growth_stage < max_growth_stage:
+				var leftover_time = seconds_per_stage - fmod(elapsed, seconds_per_stage)
+				growth_timer.start(leftover_time)
+		else:
+			is_planted = false
+			
 	area_2d.body_entered.connect(_on_area_2d_body_entered)
 	area_2d.body_exited.connect(_on_area_2d_body_exited)
 	growth_timer.timeout.connect(_on_growth_timer_timeout)
@@ -141,8 +168,14 @@ func _try_plant_seed():
 		plant.animation = current_crop_info["animation"]
 		plant.frame = current_growth_stage
 		
+		growth_timer.wait_time = 5.0
 		growth_timer.start()
 		print("Piantato seme con ID: ", food_item.name)
+		
+		Global.growing_zones_data[zone_id] = {
+			"seed_name": food_item.name,
+			"planted_time": Time.get_unix_time_from_system()
+		}
 		
 		_update_key_prompt()
 		consume_seed(food_item) # Passiamo l'oggetto cibo alla funzione
@@ -181,6 +214,8 @@ func _harvest_plant():
 	
 	# Puliamo la memoria del terreno
 	current_crop_info = {}
+	if Global.growing_zones_data.has(zone_id):
+		Global.growing_zones_data.erase(zone_id)
 
 func consume_seed(seed_item: InventoryItem):
 	seed_item.stacks -= 1
@@ -220,3 +255,6 @@ func _on_growth_timer_timeout():
 		if current_growth_stage == max_growth_stage:
 			growth_timer.stop()
 			_update_key_prompt()
+		else:
+			growth_timer.wait_time = 5.0
+			growth_timer.start()

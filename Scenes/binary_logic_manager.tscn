@@ -1,38 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://db5c2u5ksem5"]
+[gd_scene format=3 uid="uid://db5c2u5ksem5"]
 
-[ext_resource type="Script" uid="uid://cx68e7t7o8yv4" path="res://Scripts/binary_logic_manager.gd" id="1_manager"]
+[ext_resource type="Script" uid="uid://ckb8qq1x40kvc" path="res://Scripts/binary_logic_manager.gd" id="1_manager"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_prox"]
 radius = 60.0
 
-[node name="BinaryLogicManager" type="Node2D"]
+[node name="BinaryLogicManager" type="Node2D" unique_id=912223560]
 script = ExtResource("1_manager")
 
-[node name="ProximityArea" type="Area2D" parent="."]
+[node name="ProximityArea" type="Area2D" parent="." unique_id=1532987579]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximityArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximityArea" unique_id=769348629]
 shape = SubResource("CircleShape2D_prox")
-
-[node name="BusLines" type="Node2D" parent="."]
-
-[node name="Line1" type="Line2D" parent="BusLines"]
-points = PackedVector2Array(0, 0, 10, 0)
-width = 1.0
-default_color = Color(0.2, 0.2, 0.2, 1)
-
-[node name="Line2" type="Line2D" parent="BusLines"]
-points = PackedVector2Array(0, 0, 10, 0)
-width = 1.0
-default_color = Color(0.2, 0.2, 0.2, 1)
-
-[node name="Line4" type="Line2D" parent="BusLines"]
-points = PackedVector2Array(0, 0, 10, 0)
-width = 1.0
-default_color = Color(0.2, 0.2, 0.2, 1)
-
-[node name="Line8" type="Line2D" parent="BusLines"]
-points = PackedVector2Array(0, 0, 10, 0)
-width = 1.0
-default_color = Color(0.2, 0.2, 0.2, 1)

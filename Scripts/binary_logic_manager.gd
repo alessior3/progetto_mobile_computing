@@ -21,6 +21,7 @@ const DEFAULT_SPIDER = preload("res://Scenes/spider.tscn")
 @onready var proximity_area = get_node_or_null("ProximityArea")
 
 var player_in_range_of_altar = false
+var current_player_ref = null
 
 var bits = {1: 0, 2: 0, 4: 0, 8: 0}
 
@@ -44,6 +45,7 @@ func _ready():
 		proximity_area.add_child(shape)
 	else:
 		# Se il nodo esiste gia', aggiorniamo comunque il raggio da quello impostato nell'Inspector
+		proximity_area.collision_mask = 3 # Forza la collision mask a 3 (layer 1 e 2) per sicurezza
 		var shape_node = proximity_area.get_child(0)
 		if shape_node and shape_node is CollisionShape2D:
 			if shape_node.shape is CircleShape2D:
@@ -145,14 +147,23 @@ func _on_proximity_entered(body):
 	print("DEBUG: Qualcosa e' entrato nell'area dell'altare: ", body.name)
 	if body.is_in_group("player") or body.name == "player":
 		player_in_range_of_altar = true
+		current_player_ref = body
 		if body.has_node("Key"): body.get_node("Key").show()
 		if body.has_node("KeyPrompt"): body.get_node("KeyPrompt").play("KeyPrompt")
 
 func _on_proximity_exited(body):
 	if body.is_in_group("player") or body.name == "player":
 		player_in_range_of_altar = false
+		current_player_ref = null
 		if body.has_node("Key"): body.get_node("Key").hide()
 		if body.has_node("KeyPrompt"): body.get_node("KeyPrompt").play_backwards("KeyPrompt")
+
+func _process(delta):
+	if player_in_range_of_altar and current_player_ref:
+		if current_player_ref.has_node("Key") and not current_player_ref.get_node("Key").visible:
+			current_player_ref.get_node("Key").show()
+			if current_player_ref.has_node("KeyPrompt"):
+				current_player_ref.get_node("KeyPrompt").play("KeyPrompt")
 
 func _input(event):
 	if player_in_range_of_altar and event.is_action_pressed("interact"):

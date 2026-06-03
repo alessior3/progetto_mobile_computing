@@ -6,9 +6,11 @@
 
 [resource]
 script = ExtResource("2_vdkdb")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_ok233")
+item_id = "pumpkin_seed"
 name = "Pumpkin Seed"
+description = "\"Un seme robusto. Darà vita a un ortaggio dalla scorza dura come una corazza.\""
 texture = ExtResource("3_qqljb")
 max_stacks = 999
 price = 40

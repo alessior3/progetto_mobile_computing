@@ -148,6 +148,7 @@ size = Vector2(16, 16)
 
 [node name="Panda" type="CharacterBody2D" unique_id=349992580]
 script = ExtResource("1_nmshl")
+health = 20
 item_to_drop = ExtResource("6_honey")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=297826505]
@@ -166,6 +167,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_n2oh3")
 
 [node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("4_rrmfs")]
-max_health = 100
+max_health = 20
 
 [node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("5_3bm0u")]

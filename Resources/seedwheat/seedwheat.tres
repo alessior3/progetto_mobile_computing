@@ -6,10 +6,12 @@
 
 [resource]
 script = ExtResource("2_10746")
+item_id = "wheat_seed"
 slot_type = "Food"
 ground_collision_shape = ExtResource("1_goop8")
 name = "Wheat Seed"
 texture = ExtResource("3_y3cpe")
 max_stacks = 999
 price = 5
+description = "\"Un seme dorato. I suoi frutti permettono di preparare cibi fragranti e molto nutrienti.\""
 damage = 40

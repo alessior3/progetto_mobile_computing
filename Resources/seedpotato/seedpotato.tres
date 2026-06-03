@@ -6,10 +6,12 @@
 
 [resource]
 script = ExtResource("2_8vj5j")
-slot_type = "Hand"
+item_id = "potato_seed"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_lgblo")
 name = "Potato Seed"
 texture = ExtResource("3_yc1qe")
 max_stacks = 999
 price = 25
+description = "\"Un seme bitorzoluto. Genera un tubero capace di darti energia e forza esplosiva.\""
 damage = 40

@@ -15,7 +15,6 @@
 [ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="13_jw1tv"]
 [ext_resource type="PackedScene" uid="uid://d3jus14pdk2pr" path="res://Scenes/chestBlu.tscn" id="14_efmdg"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="14_v78ur"]
-[ext_resource type="Texture2D" uid="uid://tbiaghowi8s1" path="res://Resources/fullCarrot/fullCarrot_sprite.tres" id="15_tlk5o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("2_yksme")
@@ -616,8 +615,7 @@ scale = Vector2(1.4, 1.4)
 position = Vector2(4640, -386)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_d1xfb")]
-position = Vector2(2650, -122)
-god_mode = true
+position = Vector2(1978, 735)
 
 [node name="Inventory" parent="player" index="6" unique_id=1240474999]
 default_items = Array[ExtResource("10_kexqr")]([ExtResource("13_jw1tv")])
@@ -687,9 +685,10 @@ position = Vector2(1933, 677)
 scale = Vector2(1.4, 1.4)
 
 [node name="Chest2" parent="." unique_id=716899325 instance=ExtResource("14_efmdg")]
+z_index = 0
 position = Vector2(1940, 634)
 scale = Vector2(1.4, 1.4)
-oggetto_iniziale = ExtResource("15_tlk5o")
+oggetto_iniziale = ExtResource("13_jw1tv")
 
 [node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("14_v78ur")]
 

@@ -6,9 +6,11 @@
 
 [resource]
 script = ExtResource("2_t7ib3")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_fjnsr")
+item_id = "kale_seed"
 name = "Kale Seed"
+description = "\"Un seme scuro e compatto. Sviluppa un superfood capace di indurire muscoli e ossa.\""
 texture = ExtResource("3_lbomy")
 max_stacks = 999
 price = 50

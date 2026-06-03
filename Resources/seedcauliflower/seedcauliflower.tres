@@ -6,9 +6,11 @@
 
 [resource]
 script = ExtResource("2_vse5m")
-slot_type = "Hand"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_mah6n")
+item_id = "cauliflower_seed"
 name = "Cauliflower Seed"
+description = "\"Un seme pallido. Chi ne mangia il frutto diventa incredibilmente scaltro negli affari.\""
 texture = ExtResource("3_365fr")
 max_stacks = 999
 price = 35

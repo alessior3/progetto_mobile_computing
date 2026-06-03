@@ -42,6 +42,14 @@ func _ready() -> void:
 		body_exited.connect(_on_body_exited)
 
 	# Inizializzazione inventario cassa
+	# --- FIX ID: Evita che tutte le casse del gioco condividano lo stesso inventario! ---
+	if chest_id == "cassa_casa_1" or chest_id == "":
+		var root_name = "UnknownScene"
+		if owner:
+			root_name = owner.name
+		chest_id = root_name + "_" + self.name
+		print("DEBUG: ID Cassa autogenerato per evitare conflitti -> ", chest_id)
+		
 	if Global.chests_data.has(chest_id):
 		chest_items = Global.chests_data[chest_id]
 		
@@ -65,8 +73,11 @@ func _ready() -> void:
 					print("DEBUG: Slot ", i, " -> ", random_item.name if "name" in random_item else "Oggetto")
 					chest_items[i] = random_item
 		elif oggetto_iniziale != null:
-			# Mettiamo l'oggetto nel primo slot (posizione 0)
-			chest_items[0] = oggetto_iniziale
+			if oggetto_iniziale is InventoryItem:
+				# Mettiamo l'oggetto nel primo slot (posizione 0)
+				chest_items[0] = oggetto_iniziale
+			else:
+				print("ERRORE CASSA (", chest_id, "): L'oggetto_iniziale inserito nell'Inspector NON è un InventoryItem valido!")
 			
 		Global.chests_data[chest_id] = chest_items
 

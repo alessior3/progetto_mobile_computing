@@ -67,6 +67,9 @@ func populate_list(item_array: Array[InventoryItem]):
 		child.queue_free()
 		
 	for item in item_array:
+		if item == null:
+			continue
+			
 		var row = ROW_SCENE.instantiate() as ShopItemRow
 		items_list.add_child(row)
 		row.setup(item)

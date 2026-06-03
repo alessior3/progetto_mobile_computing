@@ -89,6 +89,8 @@ var pc_boss_1_on: bool = false
 var pc_boss_2_on: bool = false
 var pc_boss_3_on: bool = false
 
+var growing_zones_data: Dictionary = {}
+
 var google_web_client_id = "779309651323-ntcj6cp529p6r01vt5f2im0jdpdt9266.apps.googleusercontent.com"
 
 func save_game():
@@ -123,7 +125,8 @@ func save_game():
 			"quest_accendino_completed": quest_accendino_completed,
 			"pc_boss_1_on": pc_boss_1_on,
 			"pc_boss_2_on": pc_boss_2_on,
-			"pc_boss_3_on": pc_boss_3_on
+			"pc_boss_3_on": pc_boss_3_on,
+			"growing_zones_data": growing_zones_data
 		}
 		file.store_var(data)
 		file.close()
@@ -166,6 +169,7 @@ func load_game() -> bool:
 		pc_boss_1_on = data.get("pc_boss_1_on", false)
 		pc_boss_2_on = data.get("pc_boss_2_on", false)
 		pc_boss_3_on = data.get("pc_boss_3_on", false)
+		growing_zones_data = data.get("growing_zones_data", {})
 		
 		return true
 	return false

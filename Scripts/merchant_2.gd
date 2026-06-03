@@ -63,14 +63,11 @@ func _unhandled_input(event: InputEvent) -> void:
 				if has_node("/root/DialogueManager"):
 					DialogueManager.show_message([
 						"MERCANTE: Ah, bentornato! Immaginavo che saresti tornato...",
-						"Sì, mi aspettavo che quel vecchio floppy fosse rovinato. 
-						Quella tecnologia è così delicata!",
-						"Si tratta di un Errore CRC, un classico. 
-						Ma non temere, c'è una soluzione.",
-						"Dovresti portarlo al Mainframe del Castello Blu. 
-						Solo una macchina così antica e potente può ripararlo.",
-						"Però attento: i server del castello emanano un calore insopportabile. Ti servirà della rigenerazione...",
-						"Magari mangia un bel Cavolo prima di attivare il processo, ti terrà in vita mentre la macchina lavora!"
+						"Sì, mi aspettavo che quel vecchio floppy fosse rovinato. \n						Quella tecnologia è così delicata!",
+						"Si tratta di un Errore CRC, un classico. Ma c'è una soluzione.",
+						"Dovresti portarlo da Marcus Byte, nella casa blu. Il suo computer è l'unica macchina in grado di ripararlo.",
+						"Però attento: quel vecchio è un tirchione pazzesco! Ti chiederà sicuramente una fortuna assurda per farti usare il suo PC.",
+						"Ti svelo un segreto: in questa terra i Cavolfiori donano una parlantina irresistibile! Se ne mangi uno prima di vederlo, avrai il carisma giusto per convincerlo a farti un bello sconto."
 					], merchant_name)
 			else:
 				# PASSO 1: Mostra la linea di dialogo normale

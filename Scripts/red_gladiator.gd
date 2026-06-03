@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time: float = 1.0
 
-@export var health: int = 100
+@export var health: int = 70
 @export var item_to_drop: InventoryItem
 
 var can_attack: bool = true
@@ -26,6 +26,17 @@ var attack_position: Vector2 = Vector2.ZERO # Posizione bloccata durante l'attac
 @onready var hitbox: Area2D = $Area2D
 
 const PICKUP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
+
+
+var is_knocked_back: bool = false
+var knockback_velocity: Vector2 = Vector2.ZERO
+
+func apply_knockback(direction: Vector2):
+	is_knocked_back = true
+	knockback_velocity = direction * 300.0
+	await get_tree().create_timer(0.2).timeout
+	if get_tree() != null:
+		is_knocked_back = false
 
 func _ready():
 	if health_system and progress_bar:
@@ -46,6 +57,12 @@ func _ready():
 		position = patrol_path[0].position
 
 func _physics_process(delta):
+	if is_knocked_back:
+		velocity = knockback_velocity
+		move_and_slide()
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1500 * delta)
+		return
+
 	if not can_attack:
 		# Blocco posizione assoluto: il nemico non si muove di un pixel
 		velocity = Vector2.ZERO

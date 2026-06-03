@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name ExplosivePlant
 
 # --- VARIABILI ESPORTATE ---
-@export var max_health: int = 100 
+@export var max_health: int = 70 
 @export var explosion_damage: int = 50 # <-- Alzato a 50! Fa malissimo!
 @export var explosion_radius: float = 150.0
 
@@ -15,6 +15,17 @@ class_name ExplosivePlant
 
 # Variabile per evitare che prenda colpi mentre sta già esplodendo
 var is_dead: bool = false
+
+
+var is_knocked_back: bool = false
+var knockback_velocity: Vector2 = Vector2.ZERO
+
+func apply_knockback(direction: Vector2):
+	is_knocked_back = true
+	knockback_velocity = direction * 300.0
+	await get_tree().create_timer(0.2).timeout
+	if get_tree() != null:
+		is_knocked_back = false
 
 func _ready():
 	health_system.init(max_health)

@@ -166,6 +166,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_n2oh3")
 
 [node name="HealthSystem" parent="." unique_id=92458494 instance=ExtResource("4_5wuf0")]
-max_health = 100
+max_health = 70
 
 [node name="ProgressBar" parent="." unique_id=1165259361 instance=ExtResource("5_r5ybc")]

@@ -6,10 +6,12 @@
 
 [resource]
 script = ExtResource("2_a6j5n")
-slot_type = "Hand"
+item_id = "carrot_seed"
+slot_type = "Food"
 ground_collision_shape = ExtResource("1_4wr20")
 name = "Carrot Seed"
 texture = ExtResource("3_3sl8i")
 max_stacks = 999
 price = 12
+description = "\"Un seme arancione. La radice che ne crescerà renderà la tua vista più acuta nell'oscurità.\""
 damage = 40

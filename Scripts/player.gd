@@ -22,6 +22,7 @@ var damage_reduction_multiplier: float = 0.0
 
 var current_dir = "none"
 var is_attacking: bool = false
+var is_invincible: bool = false
 var is_dead: bool = false
 var is_in_slime: bool = false
 var slime_slowing_multiplier: float = 1.0
@@ -221,11 +222,15 @@ func start_attack():
 	anim.flip_h = false
 	anim.play(anim_name)
 		
-	# LA SOLUZIONE ALL'ANIMAZIONE TAGLIATA:
-	# Invece di un timer, aspettiamo la fine naturale dell'animazione!
-	await anim.animation_finished
+	# Applichiamo il danno A META' animazione invece che alla fine (piu' reattivo!)
+	await get_tree().create_timer(0.2).timeout
+	if not is_dead:
+		apply_attack_damage()
 		
-	apply_attack_damage()
+	# Aspettiamo la fine naturale dell'animazione per sbloccare il movimento
+	if anim.is_playing():
+		await anim.animation_finished
+		
 	is_attacking = false
 
 func apply_attack_damage():
@@ -272,6 +277,10 @@ func apply_attack_damage():
 				if abs(angle_to_target) <= (attack_angle_deg / 2.0):
 					print("Player Attacca! Colpito: ", target.name, " Danno: ", attack_damage)
 					target.apply_damage(attack_damage)
+					
+					# Knockback!
+					if target.has_method("apply_knockback"):
+						target.apply_knockback(attack_dir)
 
 func _physics_process(delta):
 	if is_dead: return
@@ -435,7 +444,7 @@ func die():
 		print("Salvataggio Cloud trovato! Il SaveManager ti sta per riportare in vita...")
 
 func apply_damage(amount: int):
-	if is_dead or god_mode: return 
+	if is_dead or god_mode or is_invincible: return 
 	if has_node("DamageSound"):
 		$DamageSound.play()
 	if damage_reduction_multiplier > 0.0:
@@ -447,14 +456,26 @@ func apply_damage(amount: int):
 			
 	print("Il Player ha subito ", amount, " danni!")
 	
+	is_invincible = true # I-Frames
+	
 	if health_system and health_system.has_method("take_damage"):
 		health_system.take_damage(amount)
 		
 	if health_system.current_health > 0 and get_tree() != null:
-		modulate = Color(1, 0, 0)
+		# Animazione di invulnerabilita' (lampeggia)
+		var tween = create_tween()
+		tween.set_loops(4)
+		tween.tween_property(self, "modulate:a", 0.3, 0.1)
+		tween.tween_property(self, "modulate:a", 1.0, 0.1)
+		
+		modulate = Color(1, 0.3, 0.3)
 		await get_tree().create_timer(0.2).timeout
 		if get_tree() != null:
 			modulate = Color(1, 1, 1)
+			
+		# Finestra I-Frames
+		await get_tree().create_timer(0.6).timeout
+		is_invincible = false
 
 func _on_eat_requested(item: InventoryItem):
 	eat_equipped_food()

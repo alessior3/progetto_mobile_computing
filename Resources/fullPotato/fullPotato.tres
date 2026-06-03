@@ -2,14 +2,14 @@
 
 [ext_resource type="Shape2D" uid="uid://7o0kmdwy3xtv" path="res://Resources/fullPumpkin/fullPumpkin_collision_shape.tres" id="1_ubjg0"]
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="2_0nu6a"]
-[ext_resource type="Texture2D" uid="uid://b0xi1bdaym8me" path="res://Resources/fullPumpkin/fullPumpkin_sprite.tres" id="3_b8xnq"]
+[ext_resource type="Texture2D" uid="uid://cs2pu2ryuplqs" path="res://Resources/fullPotato/fullPotato_sprite.tres" id="3_n3sr4"]
 
 [resource]
 script = ExtResource("2_0nu6a")
 slot_type = "Food"
 ground_collision_shape = ExtResource("1_ubjg0")
 name = "Patata"
-texture = ExtResource("3_b8xnq")
+texture = ExtResource("3_n3sr4")
 max_stacks = 1
 price = 75
 description = "\"Carboidrati puri. Una fonte di energia grezza ed esplosiva pronta a scorrere nelle tue braccia.

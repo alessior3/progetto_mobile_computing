@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var patrol_path: Array[Marker2D] = []
 @export var patrol_wait_time: float = 1.0
 
-@export var health: int = 100
+@export var health: int = 70
 @export var item_to_drop: InventoryItem
 
 var can_attack: bool = true
@@ -24,6 +24,17 @@ var wait_timer = 0.0
 @onready var hitbox: Area2D = $Area2D
 
 const PICKUP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
+
+var is_knocked_back: bool = false
+var knockback_velocity: Vector2 = Vector2.ZERO
+
+func apply_knockback(direction: Vector2):
+	is_knocked_back = true
+	knockback_velocity = direction * 300.0
+	await get_tree().create_timer(0.2).timeout
+	if get_tree() != null:
+		is_knocked_back = false
+
 func _ready():
 	if health_system and progress_bar:
 		health_system.init(health_system.max_health)
@@ -43,6 +54,12 @@ func _ready():
 		position = patrol_path[0].position
 
 func _physics_process(delta):
+	if is_knocked_back:
+		velocity = knockback_velocity
+		move_and_slide()
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1500 * delta)
+		return
+
 	# --- ATTACCO AL PLAYER (STILE UNIFICATO) ---
 	if can_attack and hitbox:
 		var targets = hitbox.get_overlapping_bodies() + hitbox.get_overlapping_areas()
