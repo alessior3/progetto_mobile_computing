@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://rbjf1ffbn58w"]
 
 [ext_resource type="Script" uid="uid://bpowfhxjlsoe" path="res://Scripts/percorso_2.gd" id="1_jqdre"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="2_cy3v1"]
+[ext_resource type="Texture2D" uid="uid://b67e0u2ehvs0l" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="2_cy3v1"]
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="3_qy46v"]
 [ext_resource type="Texture2D" uid="uid://cqsphlespidqx" path="res://Top_Down_Adventure_Pack_v.1.0/AlberoGiallo_Tileset.png" id="4_gg5vx"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="5_47n71"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://l3jxp8rksg81" path="res://Resources/Lighter/lighter.tres" id="10_gg5vx"]
 [ext_resource type="PackedScene" uid="uid://wh7vq7l5a2qe" path="res://Scenes/RedGladiator.tscn" id="10_vgbyd"]
 [ext_resource type="PackedScene" uid="uid://cu855uopkqbeq" path="res://Scenes/SnakeRed.tscn" id="12_vgbyd"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("2_cy3v1")
@@ -755,8 +756,6 @@ tile_set = SubResource("TileSet_k70ao")
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("5_47n71")]
 z_index = 1
 position = Vector2(2260, 696)
-run_speed = 400
-god_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
@@ -813,6 +812,8 @@ position = Vector2(3931, 667)
 [node name="FlamRed" parent="." unique_id=1102712667 instance=ExtResource("9_k1lij")]
 y_sort_enabled = true
 position = Vector2(4450, 1780)
+
+[node name="PauseMenu" parent="." unique_id=1549986908 instance=ExtResource("999_pause")]
 
 [connection signal="body_entered" from="IngressoVillaggio3" to="IngressoVillaggio3" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaPercorso2" to="UscitaPercorso2" method="_on_body_entered"]

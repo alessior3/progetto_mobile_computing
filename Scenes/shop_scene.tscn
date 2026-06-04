@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ojldqjjpigb0" path="res://Scenes/merchant2.tscn" id="15_5jnio"]
 [ext_resource type="Texture2D" uid="uid://b8yp1kji300vq" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="16_2n1fq"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="17_4i3mv"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ff2d1"]
 texture = ExtResource("16_2n1fq")
@@ -4033,3 +4034,5 @@ position = Vector2(516.5, 130.5)
 zoom = Vector2(1.3, 1.3)
 
 [connection signal="body_entered" from="exitArea" to="." method="_on_exit_area_body_entered"]
+
+[node name="PauseMenu" parent="." unique_id=1422006970 instance=ExtResource("999_pause")]

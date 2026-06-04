@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c6bivtfs2p1h8" path="res://Scenes/hermit.tscn" id="11_hermit"]
 [ext_resource type="PackedScene" uid="uid://cx6bivtfs2p2h" path="res://Scenes/trapdoor.tscn" id="12_trapdoor"]
 [ext_resource type="Texture2D" uid="uid://dpoutto6vxgkf" path="res://Assets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="13_vgue1"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_keld1")
@@ -4725,3 +4726,5 @@ tile_set = SubResource("TileSet_3jfib")
 
 [editable path="Trapdoor"]
 [editable path="player"]
+
+[node name="PauseMenu" parent="." unique_id=1065013000 instance=ExtResource("999_pause")]

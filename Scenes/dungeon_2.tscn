@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="15_ejumn"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="15_trpyw"]
 [ext_resource type="Resource" uid="uid://c8n6bivtfs2p1" path="res://Resources/SecurityCard/security_card.tres" id="18_card"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axtet"]
 texture = ExtResource("2_joeuc")
@@ -1950,3 +1951,5 @@ is_locked = true
 [editable path="BinarySocket3"]
 [editable path="BinarySocket4"]
 [editable path="Chest"]
+
+[node name="PauseMenu" parent="." unique_id=1415167992 instance=ExtResource("999_pause")]

@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="8_1fjxn"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_awn87"]
 [ext_resource type="PackedScene" path="res://Scenes/NpcVecchio2.tscn" id="9_sa33a"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_r0kjn")
@@ -6202,3 +6203,5 @@ position = Vector2(1, 4)
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
 
 [editable path="NpcVecchio2"]
+
+[node name="PauseMenu" parent="." unique_id=1995224068 instance=ExtResource("999_pause")]

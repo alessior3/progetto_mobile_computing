@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpowfhxjlsoe" path="res://Scripts/percorso_2.gd" id="1_wij2s"]
 [ext_resource type="PackedScene" uid="uid://dpxuad05gqgi7" path="res://Scenes/HousePercorso1.tscn" id="2_acwhn"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="3_gfnj7"]
+[ext_resource type="Texture2D" uid="uid://b67e0u2ehvs0l" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="3_gfnj7"]
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="4_02bka"]
 [ext_resource type="Texture2D" uid="uid://c8xnhnhherxm2" path="res://Top_Down_Adventure_Pack_v.1.0/AlberoViola_Tileset.png" id="5_a5xma"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="7_oip58"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="9_acwhn"]
 [ext_resource type="PackedScene" uid="uid://wh7vq7l5a2qe" path="res://Scenes/RedGladiator.tscn" id="10_ud5xm"]
 [ext_resource type="PackedScene" uid="uid://dv7i1pie573vl" path="res://Scenes/FlamRed.tscn" id="10_wij2s"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("3_gfnj7")
@@ -565,8 +566,6 @@ tile_set = SubResource("TileSet_4u4t0")
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("7_oip58")]
 z_index = 1
 position = Vector2(2260, 696)
-run_speed = 400
-god_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
@@ -605,6 +604,8 @@ position = Vector2(4716, 1333)
 
 [node name="beast" parent="." unique_id=302329218 instance=ExtResource("9_acwhn")]
 position = Vector2(3260, 672)
+
+[node name="PauseMenu" parent="." unique_id=1204080391 instance=ExtResource("999_pause")]
 
 [connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
 

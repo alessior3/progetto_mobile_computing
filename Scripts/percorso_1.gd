@@ -40,10 +40,10 @@ func _ready():
 			Global.from_house3_to_percorso = false
 			Global.player_pos = Vector2.ZERO
 		elif Global.from_villaggio2_to_percorso1:
-			var exit_marker = find_child("UscitaPercorso1", true, false)
+			var exit_marker = find_child("UscitaVillaggio2", true, false)
 			if exit_marker:
 				target_pos = exit_marker.global_position
-				print("Player posizionato su UscitaPercorso1 (ritorno da Villaggio2)")
+				print("Player posizionato su UscitaVillaggio2 (ritorno da Villaggio2)")
 			Global.from_villaggio2_to_percorso1 = false
 		elif spawn_point:
 			target_pos = spawn_point.global_position

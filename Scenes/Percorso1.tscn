@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://c8frby27u28kq" path="res://Resources/fullCarrot/fullCarrot.tres" id="13_jw1tv"]
 [ext_resource type="PackedScene" uid="uid://d3jus14pdk2pr" path="res://Scenes/chestBlu.tscn" id="14_efmdg"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="14_v78ur"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("2_yksme")
@@ -693,3 +694,5 @@ oggetto_iniziale = ExtResource("13_jw1tv")
 [connection signal="body_entered" from="EntrataVillaggio2" to="EntrataVillaggio2" method="_on_body_entered"]
 
 [editable path="player"]
+
+[node name="PauseMenu" parent="." unique_id=1864319234 instance=ExtResource("999_pause")]

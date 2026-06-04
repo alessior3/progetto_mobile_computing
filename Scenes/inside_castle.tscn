@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://biekmh15u550g" path="res://Scripts/mainframe_console.gd" id="6_mainframe_script"]
 [ext_resource type="Script" uid="uid://cxehb01khjfc2" path="res://Scripts/heat_area.gd" id="7_heat_script"]
 [ext_resource type="Texture2D" uid="uid://b8yp1kji300vq" path="res://Assets/Environment/Structures/Buildings/Floors2.png" id="8_floor"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exit"]
 size = Vector2(100, 40)
@@ -70,3 +71,5 @@ shape = SubResource("RectangleShape2D_exit")
 # Se vuoi una camera fissa o che segue il player (il player ha già la sua di solito)
 
 [connection signal="body_entered" from="ExitArea" to="." method="_on_exit_area_body_entered"]
+
+[node name="PauseMenu" parent="." unique_id=1511840399 instance=ExtResource("999_pause")]

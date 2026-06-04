@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="7_17j6m"]
 [ext_resource type="Texture2D" uid="uid://dpoutto6vxgkf" path="res://Assets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="8_6e0wl"]
 [ext_resource type="PackedScene" uid="uid://wb83j71se01c" path="res://Scenes/NpcFloppy.tscn" id="9_e5hbl"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_6e0wl")
@@ -5341,3 +5342,5 @@ tile_map_data = PackedByteArray("AAD//wgAAgAAACoAAAA=")
 tile_set = SubResource("TileSet_ftn80")
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+
+[node name="PauseMenu" parent="." unique_id=1421190283 instance=ExtResource("999_pause")]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://t2wswktwwgto" path="res://Scenes/Grotta2.tscn" id="1_kxe8q"]
 [ext_resource type="Script" uid="uid://bpowfhxjlsoe" path="res://Scripts/percorso_2.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://b7tjlpkbbw108" path="res://Scripts/transition_area.gd" id="2_trans"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="3_x8jna"]
+[ext_resource type="Texture2D" uid="uid://b67e0u2ehvs0l" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="3_x8jna"]
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="4_gsl5o"]
 [ext_resource type="Texture2D" uid="uid://c4ox2yhc1bbfp" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/PareteDiroccie2.png" id="5_kxe8q"]
 [ext_resource type="Texture2D" uid="uid://c8xnhnhherxm2" path="res://Top_Down_Adventure_Pack_v.1.0/AlberoViola_Tileset.png" id="5_mieho"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://dnw04t867ju10" path="res://Resources/GoldCoin/gold_coin.tres" id="13_hsodn"]
 [ext_resource type="Resource" uid="uid://jb6410dqkqbs" path="res://Resources/seedbeetroot/seedbeetroot.tres" id="13_lxtrv"]
 [ext_resource type="PackedScene" uid="uid://cpl3otpqaqlwp" path="res://Scenes/HouseRed1.tscn" id="13_pq8ly"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("3_x8jna")
@@ -576,8 +577,6 @@ tile_set = SubResource("TileSet_u13ma")
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("10_04mdg")]
 position = Vector2(2260, 696)
-run_speed = 400
-god_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
@@ -659,3 +658,5 @@ inside_scene = "uid://brk61bktukewl"
 
 [connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
 [connection signal="body_entered" from="IngressoVillaggio3" to="IngressoVillaggio3" method="_on_body_entered"]
+
+[node name="PauseMenu" parent="." unique_id=1682597474 instance=ExtResource("999_pause")]

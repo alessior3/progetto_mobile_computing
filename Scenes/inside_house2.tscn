@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="5_1flof"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="6_adr0h"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="7_l18ho"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_e32fc")
@@ -2227,3 +2228,5 @@ tile_map_data = PackedByteArray("AAD6/wIAAAAAAAUAAAD6/wMAAAAAAAUAAAD6/wQAAAAAAAU
 tile_set = SubResource("TileSet_e32fc")
 
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
+
+[node name="PauseMenu" parent="." unique_id=1274952697 instance=ExtResource("999_pause")]
