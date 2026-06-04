@@ -23,6 +23,10 @@ const DEFAULT_SPIDER = preload("res://Scenes/spider.tscn")
 var player_in_range_of_altar = false
 var current_player_ref = null
 
+var is_solved: bool = false
+var waiting_for_open: bool = false
+var waiting_for_close: bool = false
+
 var bits = {1: 0, 2: 0, 4: 0, 8: 0}
 
 func _ready():
@@ -104,6 +108,8 @@ func _update_bus_visuals():
 
 func _on_solved():
 	print("DEBUG: PUZZLE RISOLTO!")
+	if is_solved: return
+	is_solved = true
 	solved.emit()
 	
 	var target_node = get_node_or_null(target_node_path)
@@ -112,6 +118,10 @@ func _on_solved():
 			target_node.unlock()
 		elif target_node.has_method("open_door"):
 			target_node.open_door()
+			
+		if "chest_items" in target_node:
+			waiting_for_open = true
+			waiting_for_close = false
 			
 	# Blocca tutti i socket per impedire di riprendersi l'oro!
 	var sockets = get_tree().get_nodes_in_group("binary_sockets")
@@ -164,6 +174,75 @@ func _process(delta):
 			current_player_ref.get_node("Key").show()
 			if current_player_ref.has_node("KeyPrompt"):
 				current_player_ref.get_node("KeyPrompt").play("KeyPrompt")
+
+	if waiting_for_open:
+		var target_node = get_node_or_null(target_node_path)
+		if target_node and "sprite" in target_node and target_node.sprite:
+			if "x_aperta" in target_node and target_node.sprite.region_rect.position.x == target_node.x_aperta:
+				waiting_for_open = false
+				waiting_for_close = true
+				
+	elif waiting_for_close:
+		var target_node = get_node_or_null(target_node_path)
+		if target_node and "sprite" in target_node and target_node.sprite:
+			if "x_chiusa" in target_node and target_node.sprite.region_rect.position.x == target_node.x_chiusa:
+				waiting_for_close = false
+				_reset_system(target_node)
+
+func _reset_system(chest: Node2D):
+	print("DEBUG: Reset del sistema logico e spegnimento socket!")
+	is_solved = false
+	
+	# Spegni e sblocca i socket
+	var sockets = get_tree().get_nodes_in_group("binary_sockets")
+	for socket in sockets:
+		if socket is BinarySocket:
+			socket.is_locked = false
+			socket.current_item = null
+			socket.is_high_signal = false
+			socket._update_visuals()
+			# Emettiamo 0 per spegnere anche il bus e aggiornare le linee
+			socket.power_changed.emit(0)
+	
+	# Genera nuovo codice
+	randomize()
+	target_decimal = randi_range(1, 15)
+	
+	# Modifica la cassa per la prossima volta: toglie il chip e attiva il loot
+	if "oggetto_iniziale" in chest:
+		chest.oggetto_iniziale = null
+	if "use_loot_pool" in chest:
+		chest.use_loot_pool = true
+		chest.loot_spawn_count = randi_range(1, 3)
+		if chest.loot_pool_items.is_empty():
+			chest.loot_pool_items.append(preload("res://Resources/GoldCoin/gold_coin.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/GemGreen.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/GemRed.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/GemPurple.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/fullPotato/fullPotato.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/fullCarrot/fullCarrot.tres"))
+			
+			chest.loot_pool_weights.append(10.0)
+			chest.loot_pool_weights.append(3.0)
+			chest.loot_pool_weights.append(3.0)
+			chest.loot_pool_weights.append(3.0)
+			chest.loot_pool_weights.append(5.0)
+			chest.loot_pool_weights.append(5.0)
+	
+	# Resetta la cassa per la prossima volta
+	if chest.has_method("lock"):
+		chest.lock()
+	if "sprite" in chest and chest.sprite:
+		if "x_chiusa" in chest:
+			chest.sprite.region_rect.position.x = chest.x_chiusa
+			
+	# Cancelliamo i dati globali di questa cassa così _ready la ripopola da zero con l'oggetto iniziale
+	if "chest_id" in chest and Global.chests_data.has(chest.chest_id):
+		Global.chests_data.erase(chest.chest_id)
+		
+	# Chiamiamo _ready per rigenerare il contenuto
+	if chest.has_method("_ready"):
+		chest._ready()
 
 func _input(event):
 	if player_in_range_of_altar and event.is_action_pressed("interact"):

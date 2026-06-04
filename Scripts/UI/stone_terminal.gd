@@ -110,6 +110,9 @@ func _close():
 	terminal_closed.emit()
 	queue_free()
 
+func _on_close_button_pressed():
+	_close()
+
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		_close()

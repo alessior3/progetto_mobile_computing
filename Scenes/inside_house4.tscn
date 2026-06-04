@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://2ljlawj1a7bd" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_ALL_By_AxulArt.png" id="3_v3dil"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_osghi"]
 [ext_resource type="Resource" uid="uid://cfy8gqk8goif4" path="res://Resources/weapons/Axe.tres" id="5_ljq3r"]
-[ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="5_p2afn"]
+[ext_resource type="Texture2D" uid="uid://dchwybi3ilkop" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="5_p2afn"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="6_ljq3r"]
 [ext_resource type="Texture2D" uid="uid://dpoutto6vxgkf" path="res://Assets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="6_p2afn"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="7_awg2r"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="7_li15h"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="10_p2afn"]
-[ext_resource type="PackedScene" path="res://Scenes/NpcVillaggio2House.tscn" id="12_ljq3r"]
+[ext_resource type="PackedScene" uid="uid://dq403iktldsmt" path="res://Scenes/NpcVillaggio2House.tscn" id="12_ljq3r"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
@@ -5353,6 +5353,8 @@ tile_set = SubResource("TileSet_28awh")
 position = Vector2(-1, 43)
 storia_npc = Array[String](["Ehi, viaggiatore! Sei capitato nel giorno giusto! Hai per caso saputo la grande notizia?", "Il Villaggio Rosso ha umiliato il Villaggio Blu nel grande derby annuale! Che goduria... Forza Rosso sempre e abbasso i puffi del Villaggio Blu!", "Ho sentito in giro che vuoi infilarti in quel tritacarne del Secondo Dungeon. Amico mio, con quell'armetta che ti ritrovi farai solo il solletico alle macchine di quell'Arena.", "Sono talmente entusiasta che ti lascio la mia fidata ascia. Un vero tifoso del Rosso non scende mai in campo senza l'equipaggiamento giusto! Prendila dalla cassa e fai strage."])
 
+[node name="PauseMenu" parent="." unique_id=2076697769 instance=ExtResource("999_pause")]
+
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
 
-[node name="PauseMenu" parent="." unique_id=2076697769 instance=ExtResource("999_pause")]
+[editable path="NpcVillaggio2House"]

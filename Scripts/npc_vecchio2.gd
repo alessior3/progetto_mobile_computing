@@ -57,12 +57,15 @@ func _unhandled_input(event: InputEvent) -> void:
 func inizia_dialogo():
 	is_talking = true
 	velocity = Vector2.ZERO
-	if anim:
-		anim.play("idle_an")
 	
-	# BLOCCIAMO IL PLAYER!
-	if player_target != null and "can_move" in player_target:
-		player_target.can_move = false
+	# BLOCCIAMO IL PLAYER E GIRIAMO L'NPC!
+	if player_target != null:
+		if "can_move" in player_target:
+			player_target.can_move = false
+		var dir_to_player = (player_target.global_position - global_position).normalized()
+		update_idle_animation(dir_to_player)
+	elif anim:
+		anim.play("idle_an")
 	
 	if has_node("/root/DialogueManager"):
 		var dm = get_node("/root/DialogueManager")
@@ -71,3 +74,17 @@ func inizia_dialogo():
 			
 		Global.set("talked_to_npc_vecchio2", true)
 		dm.show_message(storia_npc, npc_name)
+
+func update_idle_animation(dir: Vector2):
+	if anim == null:
+		return
+	if abs(dir.x) > abs(dir.y):
+		if dir.x > 0:
+			anim.play("destra fermo")
+		else:
+			anim.play("sinistra fermo")
+	else:
+		if dir.y > 0:
+			anim.play("idle_an") # Guarda verso il basso (fronte)
+		else:
+			anim.play("back fermo") # Guarda verso l'alto (spalle)
