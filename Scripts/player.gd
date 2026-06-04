@@ -262,16 +262,25 @@ func apply_attack_damage():
 
 	var root = get_tree().current_scene
 	var possible_targets = root.find_children("", "CharacterBody2D", true, false)
+	# Aggiungiamo anche il boss alla lista dei bersagli possibili
+	var possible_bosses = root.find_children("*", "DarkWizardBoss", true, false)
+	possible_targets.append_array(possible_bosses)
 	
 	for target in possible_targets:
 		if target == self:
 			continue
 			
 		if target.has_method("apply_damage"):
-			var distance = global_position.distance_to(target.global_position)
+			# Calcoliamo la posizione reale del bersaglio
+			var target_pos = target.global_position
+			if target.name == "DarkWizardBoss" or "DarkWizardBoss" in target.name:
+				if target.has_node("BossNode"):
+					target_pos = target.get_node("BossNode").global_position
+					
+			var distance = global_position.distance_to(target_pos)
 			if distance <= attack_range:
 				
-				var dir_to_target = (target.global_position - global_position).normalized()
+				var dir_to_target = (target_pos - global_position).normalized()
 				var angle_to_target = rad_to_deg(attack_dir.angle_to(dir_to_target))
 				
 				if abs(angle_to_target) <= (attack_angle_deg / 2.0):

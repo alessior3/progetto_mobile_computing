@@ -4,9 +4,9 @@ class_name DarkWizardBoss
 const EXPLOSION_SCENE = preload("res://Scenes/energy_explosion.tscn")
 const BOSS_ORB = preload("res://Scenes/boss_orb.tscn")
 # --- VARIABILI DELLA SALUTE ---
-@export var max_hp: int = 5
+@export var max_hp: int = 250
 @onready var player = get_tree().get_first_node_in_group("player")
-var hp: int = 5
+var hp: int = 250
 var damage_count: int = 0
 
 # --- VARIABILI DEL TELETRASPORTO E ATTACCHI ---
@@ -61,8 +61,8 @@ func _ready():
 	# (RIMOSSO: Il teletrasporto non parte più in automatico qui!)
 
 func _on_damage_taken(attack_hitbox):
-	# Se il boss sta dormendo, non può subire danni da fuori l'arena
-	if not is_active:
+	# Se il boss sta dormendo o è già morto, non può subire danni
+	if not is_active or hp <= 0:
 		return
 		
 	# 1. Se tocca un muro o un punto di teletrasporto (che non ha la variabile "damage"), IGNORA!
@@ -119,16 +119,33 @@ func idle():
 	boss_node.modulate = Color.WHITE # <--- Torna colore normale
 	enable_hitboxes(true) 
 	
-	if randf() > 0.5:
+	# Ripristiniamo l'animazione di fluttuare mentre aspetta
+	anim_player.play("idle")
+	
+	# Aspetta 2 secondi, rendendo il boss vulnerabile ma senza farlo morire prima che attacchi
+	await get_tree().create_timer(2.0).timeout
+	if hp <= 0: return
+	
+	# Decide a caso quale attacco fare (più probabilità per i laser)
+	var r = randf()
+	if r < 0.33:
+		# Solo Sfera
 		anim_player.play("cast_spell") 
 		shoot_orb() 
 		await get_tree().create_timer(1.0).timeout
 		if hp <= 0: return
-		
-	if damage_count < 1: 
+	elif r < 0.66:
+		# Solo Laser
 		energy_beam_attack() 
 		anim_player.play("cast_spell")
-		await get_tree().create_timer(1.0).timeout # Aspetta senza bloccarsi
+		await get_tree().create_timer(1.0).timeout
+		if hp <= 0: return
+	else:
+		# Entrambi!
+		energy_beam_attack() 
+		anim_player.play("cast_spell") 
+		shoot_orb() 
+		await get_tree().create_timer(1.0).timeout
 		if hp <= 0: return
 		
 	var next_pos: int = current_position
@@ -214,8 +231,16 @@ func defeat():
 func explosion(offset: Vector2 = Vector2.ZERO):
 	if EXPLOSION_SCENE:
 		var e = EXPLOSION_SCENE.instantiate()
+		e.z_index = 100 # Forziamo la profondità
 		e.global_position = boss_node.global_position + offset
-		get_parent().add_child.call_deferred(e)
+		
+		# Aggiungiamo l'esplosione direttamente alla radice della scena,
+		# così non viene cancellata né coperta dall'arena
+		var root = get_tree().current_scene
+		if root:
+			root.add_child.call_deferred(e)
+		else:
+			get_parent().add_child.call_deferred(e)
 
 
 func _input(event):
@@ -224,7 +249,7 @@ func _input(event):
 		print("SBAM! Danno finto inflitto!")
 		
 		# Creiamo una finta spada (un dizionario) che fa 1 di danno
-		var finta_hitbox = {"damage": 1}
+		var finta_hitbox = {"damage": 50}
 		
 		# La mandiamo alla funzione del danno!
 		_on_damage_taken(finta_hitbox)
@@ -239,3 +264,9 @@ func activate_boss():
 	
 	# Adesso si teletrasporta al centro dell'arena e inizia lo scontro
 	teleport(0)
+
+# Permette al Player di danneggiare il Boss tramite il suo normale metodo di attacco (spada)
+func apply_damage(amount: int):
+	# Trasformiamo il danno in un finto "attack_hitbox" e lo mandiamo al gestore danni
+	var fake_hitbox = {"damage": amount}
+	_on_damage_taken(fake_hitbox)

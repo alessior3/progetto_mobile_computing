@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="19_vnca1"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="20_j1ca4"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="20_ruwhv"]
+[ext_resource type="Resource" uid="uid://do6v1fa5kemth" path="res://Resources/weapons/Big_Sword.tres" id="21_jbhjm"]
 [ext_resource type="PackedScene" uid="uid://dd8eoq471npuk" path="res://Scenes/phantom.tscn" id="21_pmoxd"]
 [ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="22_cfqfa"]
 [ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://Scenes/spider.tscn" id="22_hc7at"]
@@ -2792,8 +2793,12 @@ shape = SubResource("RectangleShape2D_g3xq8")
 stream = ExtResource("30_xjmjg")
 volume_db = -10.0
 
+[node name="PickUpItem" parent="." unique_id=1473875551 instance=ExtResource("pickup_scn")]
+position = Vector2(4923, -431)
+inventory_item = ExtResource("21_jbhjm")
+
 [node name="SpawnPlayer" type="Marker2D" parent="." unique_id=1889388693]
-position = Vector2(17, 53)
+position = Vector2(4923, -431)
 
 [node name="CartelloBoss" parent="." unique_id=1081323784 instance=ExtResource("cartello_scn")]
 position = Vector2(17, 86)
@@ -2915,8 +2920,7 @@ position = Vector2(2519, -72)
 position = Vector2(2519, -88)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("19_vnca1")]
-position = Vector2(6145, -2247)
-god_mode = true
+position = Vector2(6145, -2248)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=110997730]
 zoom = Vector2(3, 3)
