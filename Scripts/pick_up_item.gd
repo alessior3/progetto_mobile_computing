@@ -21,6 +21,10 @@ var current_player : CharacterBody2D = null
 func _ready() -> void:
 	# 1. CONTROLLO PERSISTENZA (Solo in gioco)
 	if not Engine.is_editor_hint():
+		# Se l'oggetto è stato piazzato nell'editor ma non ha un ID, generiamo noi uno univoco
+		if item_id == "" and owner != null:
+			item_id = get_tree().current_scene.name + "_" + str(get_path())
+			
 		# Se l'ID è già stato raccolto, l'oggetto si auto-elimina subito
 		if item_id != "" and Global.collected_item_ids.has(item_id):
 			queue_free()

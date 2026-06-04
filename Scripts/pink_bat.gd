@@ -3,15 +3,15 @@ extends CharacterBody2D
 # 1. ERRORE ROSSO RISOLTO: Cambiato nome alla classe!
 class_name PinkBat
 
-@export var speed: float = 100
+@export var speed: float = 60.0
 @export var patrol_path: Array[Marker2D] = []
 
 # --- FIX 1: TIPIZZAZIONE FLOAT ---
 @export var patrol_wait_time: float = 1.0
 # ---------------------------------
 
-@export var patrol_speed: float = 50.0
-@export var chase_speed: float = 100.0
+@export var patrol_speed: float = 30.0
+@export var chase_speed: float = 60.0
 @export var chases_player: bool = true
 @export var chase_distance: float = 200.0
 
@@ -40,7 +40,7 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 
 func apply_knockback(direction: Vector2):
 	is_knocked_back = true
-	knockback_velocity = direction * 300.0
+	knockback_velocity = direction * 150.0
 	await get_tree().create_timer(0.2).timeout
 	if get_tree() != null:
 		is_knocked_back = false

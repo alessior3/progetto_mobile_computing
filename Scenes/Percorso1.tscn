@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://b3mv0qd5cs2fg"]
 
 [ext_resource type="PackedScene" uid="uid://dpxuad05gqgi7" path="res://Scenes/HousePercorso1.tscn" id="2_qclq6"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="2_yksme"]
+[ext_resource type="Texture2D" uid="uid://b67e0u2ehvs0l" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="2_yksme"]
 [ext_resource type="Texture2D" uid="uid://f14e8roh03r3" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld22_Tileset.png" id="3_4u4t0"]
 [ext_resource type="Script" uid="uid://csx1y4eubv6ui" path="res://Scripts/percorso_exit.gd" id="3_yksme"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_d1xfb"]
@@ -547,6 +547,7 @@ size = Vector2(189, 59)
 
 [node name="Percorso1" type="Node2D" unique_id=1265854265]
 y_sort_enabled = true
+position = Vector2(32, 0)
 script = ExtResource("4_percorso_root")
 
 [node name="HousePercorso1" parent="." unique_id=948734644 instance=ExtResource("2_qclq6")]
@@ -586,7 +587,7 @@ collision_mask = 2
 script = ExtResource("3_yksme")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EntrataVillaggio1" unique_id=2011070977]
-position = Vector2(92.75, 37.5)
+position = Vector2(98, 43)
 shape = SubResource("RectangleShape2D_yksme")
 
 [node name="grotta1" parent="." unique_id=1965681741 instance=ExtResource("5_u68j6")]
@@ -615,13 +616,13 @@ scale = Vector2(1.4, 1.4)
 position = Vector2(4640, -386)
 
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_d1xfb")]
-position = Vector2(2505, -166)
+position = Vector2(2506, -146)
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=2107895140]
 zoom = Vector2(3, 3)
 
 [node name="UscitaVillaggio1" type="Marker2D" parent="." unique_id=1880370216]
-position = Vector2(2509, -139)
+position = Vector2(2523, -132)
 
 [node name="UscitaVillaggio2" type="Marker2D" parent="." unique_id=172267169]
 position = Vector2(6620, -625)
@@ -689,10 +690,10 @@ oggetto_iniziale = ExtResource("13_jw1tv")
 
 [node name="ChestUI" parent="." unique_id=1727687350 instance=ExtResource("14_v78ur")]
 
+[node name="PauseMenu" parent="." unique_id=1864319234 instance=ExtResource("999_pause")]
+
 [connection signal="body_entered" from="EntrataVillaggio1" to="EntrataVillaggio1" method="_on_body_entered"]
 [connection signal="body_exited" from="EntrataVillaggio1" to="EntrataVillaggio1" method="_on_body_exited"]
 [connection signal="body_entered" from="EntrataVillaggio2" to="EntrataVillaggio2" method="_on_body_entered"]
 
 [editable path="player"]
-
-[node name="PauseMenu" parent="." unique_id=1864319234 instance=ExtResource("999_pause")]

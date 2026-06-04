@@ -65,9 +65,11 @@ func inizia_dialogo():
 	velocity = Vector2.ZERO
 	anim.stop()
 	
-	# BLOCCIAMO IL PLAYER!
+	# BLOCCIAMO IL PLAYER E GIRIAMO L'NPC!
 	if player_target != null:
 		player_target.can_move = false
+		var dir_to_player = (player_target.global_position - global_position).normalized()
+		update_idle_animation(dir_to_player)
 	
 	print("NPC ha raggiunto il player, inizia il dialogo!")
 	
@@ -109,14 +111,14 @@ func _drop_random_seed():
 	tween_y.tween_property(loot_drop, "global_position:y", peak_y, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	tween_y.tween_property(loot_drop, "global_position:y", end_pos.y, 0.2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
-func update_animation(dir: Vector2):
+func update_idle_animation(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):
 		if dir.x > 0:
-			anim.play("right_walking") # Cambia con il nome della tua animazione destra
+			anim.play("destra fermo")
 		else:
-			anim.play("left_walking")  # Cambia con il nome della tua animazione sinistra
+			anim.play("sinistra fermo")
 	else:
 		if dir.y > 0:
-			anim.play("front_walking") # Animazione verso il basso
+			anim.play("idle_an") # Guarda verso il basso (fronte)
 		else:
-			anim.play("back_walking")  # Animazione verso l'alto
+			anim.play("back_animation") # Guarda verso l'alto (spalle)e verso l'alto

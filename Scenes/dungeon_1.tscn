@@ -14,15 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://Scenes/spider.tscn" id="10_4cykx"]
 [ext_resource type="PackedScene" uid="uid://c3a61s3pv70p3" path="res://Scenes/pink_bat.tscn" id="11_k5eiu"]
 [ext_resource type="PackedScene" uid="uid://bi7i17wp74kna" path="res://Scenes/pink_slime.tscn" id="12_18kt5"]
-[ext_resource type="Texture2D" uid="uid://dp8e2vdqhm4in" path="res://RF_Catacombs_v1/torch_1.png" id="13_a7fuv"]
-[ext_resource type="Texture2D" uid="uid://5gf7il1dkfia" path="res://RF_Catacombs_v1/candleB_01.png" id="14_h1hro"]
+[ext_resource type="Texture2D" uid="uid://ck6c1xogwt16y" path="res://RF_Catacombs_v1/torch_1.png" id="13_a7fuv"]
+[ext_resource type="Texture2D" uid="uid://b5np28t38xm6g" path="res://RF_Catacombs_v1/candleB_01.png" id="14_h1hro"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="14_wnvaf"]
-[ext_resource type="Texture2D" uid="uid://b3xufm2wu2c3" path="res://RF_Catacombs_v1/candleB_02.png" id="15_gau0i"]
+[ext_resource type="Texture2D" uid="uid://bxtr5mmm7h1ix" path="res://RF_Catacombs_v1/candleB_02.png" id="15_gau0i"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="15_jchmx"]
 [ext_resource type="PackedScene" uid="uid://dhltab2n26syc" path="res://Scenes/coal_box.tscn" id="16_grqd7"]
-[ext_resource type="Texture2D" uid="uid://dbn0ybhqby5c3" path="res://RF_Catacombs_v1/candleB_03.png" id="16_jp8yi"]
+[ext_resource type="Texture2D" uid="uid://df855dihd0sf1" path="res://RF_Catacombs_v1/candleB_03.png" id="16_jp8yi"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="17_grqd7"]
-[ext_resource type="Texture2D" uid="uid://b2tsohr1yffhf" path="res://RF_Catacombs_v1/torch_3.png" id="17_w2mga"]
+[ext_resource type="Texture2D" uid="uid://bn4dsb4ol05f0" path="res://RF_Catacombs_v1/torch_3.png" id="17_w2mga"]
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 [ext_resource type="Resource" uid="uid://dt7fktfvrfnsb" path="res://Resources/DungeonKey/dungeon_key.tres" id="19_jp8yi"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="20_natbj"]
@@ -2624,7 +2624,10 @@ fill_from = Vector2(0, 0.5)
 fill_to = Vector2(0.81504273, 0.48290598)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3xq8"]
-size = Vector2(29, 35)
+size = Vector2(29, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp8yi"]
+size = Vector2(39, 20)
 
 [node name="dungeon1" type="Node2D" unique_id=686333185]
 position = Vector2(1923, 866)
@@ -2724,7 +2727,7 @@ position = Vector2(-117, -347)
 
 [node name="PinkSlime" parent="." unique_id=555553155 node_paths=PackedStringArray("patrol_path") instance=ExtResource("12_18kt5")]
 position = Vector2(937, -297)
-speed = 100.0
+speed = 60.0
 patrol_path = [NodePath("../MarkerSlime1"), NodePath("../MarkerSlime2"), NodePath("../MarkerSlime3")]
 patrol_wait_time = 1.0
 damage_to_player = 10
@@ -2759,7 +2762,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit" unique_id=1221873514]
-position = Vector2(15.5, 19.5)
+position = Vector2(15.5, 25.5)
 shape = SubResource("RectangleShape2D_g3xq8")
 
 [node name="muro" type="StaticBody2D" parent="." unique_id=2142582537]
@@ -2770,7 +2773,7 @@ stream = ExtResource("30_w2mga")
 volume_db = -10.0
 
 [node name="SpawnPlayer" type="Marker2D" parent="." unique_id=1889388693]
-position = Vector2(16, 52)
+position = Vector2(16, 68)
 
 [node name="SaccaOro" parent="." unique_id=1612886559 instance=ExtResource("31_gold")]
 position = Vector2(857, -251)
@@ -2778,5 +2781,12 @@ position = Vector2(857, -251)
 [node name="PickUpItem" parent="." unique_id=837869725 instance=ExtResource("14_wnvaf")]
 position = Vector2(1076, -767)
 inventory_item = ExtResource("19_jp8yi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1174900296]
+position = Vector2(16.5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1030795819]
+position = Vector2(-0.5, -8)
+shape = SubResource("RectangleShape2D_jp8yi")
 
 [connection signal="body_entered" from="exit" to="player" method="_on_exit_body_entered"]

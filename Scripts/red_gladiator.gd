@@ -33,7 +33,7 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 
 func apply_knockback(direction: Vector2):
 	is_knocked_back = true
-	knockback_velocity = direction * 300.0
+	knockback_velocity = direction * 150.0
 	await get_tree().create_timer(0.2).timeout
 	if get_tree() != null:
 		is_knocked_back = false
@@ -85,10 +85,14 @@ func _physics_process(delta):
 	if chases_player and player:
 		var distance = global_position.distance_to(player.global_position)
 		if distance < chase_distance:
-			direction = (player.global_position - global_position).normalized()
-			velocity = direction * speed
-			move_and_slide()
-			update_animation(direction)
+			if distance > 18.0:
+				direction = (player.global_position - global_position).normalized()
+				velocity = direction * speed
+				move_and_slide()
+				update_animation(direction)
+			else:
+				velocity = Vector2.ZERO
+				update_animation(Vector2.ZERO)
 			return
 
 	if patrol_path.size() > 1:

@@ -26,14 +26,14 @@ func _physics_process(delta):
 			var dir = (current_player.global_position - global_position).normalized()
 			if abs(dir.x) > abs(dir.y):
 				if dir.x > 0:
-					anim.play("idle_right")
+					anim.play("new_animation_1_right")
 				else:
-					anim.play("idle_left")
+					anim.play("new_animation_2_left")
 			else:
 				if dir.y > 0:
 					anim.play("idle_front")
 				else:
-					anim.play("idle_back")
+					anim.play("new_animation_back")
 		else:
 			anim.play("idle_front")
 

@@ -5,25 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_o06y3"]
 [ext_resource type="PackedScene" uid="uid://debprstwe8fj2" path="res://Scenes/inside_house_1.tscn" id="9_1vso6"]
 [ext_resource type="PackedScene" uid="uid://fqxooxxyn2gy" path="res://Scenes/TowerBlu.tscn" id="9_w5giw"]
-[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://b67e0u2ehvs0l" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="10_xbk3s"]
-[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
+[ext_resource type="Texture2D" uid="uid://b3xvup7vx71eb" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="11_yq1aw"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="12_pyn1s"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="15_hgpy0"]
 [ext_resource type="Resource" uid="uid://d14g8slrjwumf" path="res://Resources/FloppyDisk/restored_floppy.tres" id="16_1vso6"]
 [ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="16_t2t4p"]
-[ext_resource type="Resource" uid="uid://dnw04t867ju10" path="res://Resources/GoldCoin/gold_coin.tres" id="18_0pcbe"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="19_axeuq"]
-[ext_resource type="Resource" uid="uid://hit7s0ssu37x" path="res://Resources/seedRadish1/Radish.tres" id="24_xbk3s"]
-[ext_resource type="Resource" uid="uid://btdghetjlvcxg" path="res://Resources/fullRadish/fullRadish.tres" id="27_dt0r1"]
 [ext_resource type="PackedScene" uid="uid://bysbvk5dibwog" path="res://Scenes/mucca.tscn" id="28_dt0r1"]
 [ext_resource type="PackedScene" uid="uid://hx7d6jpgj3ms" path="res://Scenes/gallina.tscn" id="29_o2rbt"]
-[ext_resource type="Resource" uid="uid://54ofoq403c3v" path="res://Resources/seedwheat/seedwheat.tres" id="29_qebug"]
 [ext_resource type="PackedScene" uid="uid://bhjy0vvi17756" path="res://Scenes/Npc3.tscn" id="30_1vso6"]
 [ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="30_o2rbt"]
 [ext_resource type="PackedScene" uid="uid://vkfccv6imaj6" path="res://Scenes/enemy.tscn" id="32_3ua1v"]
-[ext_resource type="Resource" uid="uid://di2ompxbqt7lr" path="res://Resources/fullCauliflower/fullCauliflower.tres" id="32_r0ikl"]
 [ext_resource type="PackedScene" uid="uid://b3ri8q8pkxt65" path="res://Scenes/Npc1.tscn" id="41_atqvy"]
 [ext_resource type="PackedScene" uid="uid://xgpca5n30sst" path="res://Scenes/ArcheryBlu.tscn" id="43_jwdyn"]
 [ext_resource type="PackedScene" uid="uid://c47gqknjvvdur" path="res://Scenes/BarracksBlu.tscn" id="44_6mm6r"]
@@ -709,7 +704,7 @@ size = Vector2(171.90894, 123.33688)
 
 [node name="world" type="Node2D" unique_id=2084603517]
 y_sort_enabled = true
-position = Vector2(1625.0001, -514.00006)
+position = Vector2(1625, -514.00006)
 scale = Vector2(1.0296197, 1.0297008)
 script = ExtResource("1_c5t2i")
 
@@ -750,19 +745,12 @@ z_index = -1
 position = Vector2(72, 1013)
 
 [node name="stick1" parent="." unique_id=1473875551 instance=ExtResource("15_hgpy0")]
-position = Vector2(585.65295, 807.03064)
+position = Vector2(312.7368, 1394.58)
 item_id = "stick1"
 inventory_item = ExtResource("16_t2t4p")
 
-[node name="goldcoin" parent="." unique_id=322180328 instance=ExtResource("15_hgpy0")]
-z_index = -1
-position = Vector2(647.812, 902.2039)
-item_id = "30gold"
-inventory_item = ExtResource("18_0pcbe")
-amount = 30
-
 [node name="PlayerSpawnPointDaPercorso" type="Marker2D" parent="." unique_id=956475020]
-position = Vector2(400.14764, 1451.8782)
+position = Vector2(399.17654, 1436.3397)
 scale = Vector2(0.99999994, 0.99999994)
 
 [node name="PlayerSpawnPoint" type="Marker2D" parent="." unique_id=339122936]
@@ -883,11 +871,6 @@ scale = Vector2(0.9999998, 0.9999998)
 [node name="DoorWay" parent="MonasteryBlu" index="2" unique_id=1208213178]
 position = Vector2(-11.654834, 15.5383835)
 
-[node name="radish" parent="." unique_id=1506209311 instance=ExtResource("15_hgpy0")]
-position = Vector2(501.15598, 780.8094)
-item_id = "radish"
-inventory_item = ExtResource("27_dt0r1")
-
 [node name="PickUpItem" parent="." unique_id=259802131 instance=ExtResource("15_hgpy0")]
 z_index = -1
 position = Vector2(295.25452, 1393.6089)
@@ -902,28 +885,16 @@ position = Vector2(-2, -2)
 zoom = Vector2(3, 3)
 
 [node name="mucca" parent="." unique_id=534143819 instance=ExtResource("28_dt0r1")]
-position = Vector2(298.15207, 790.0431)
-
-[node name="seedwheat" parent="." unique_id=1336086392 instance=ExtResource("15_hgpy0")]
-position = Vector2(637.1284, 795.3767)
-item_id = "seedwheat"
-inventory_item = ExtResource("29_qebug")
+position = Vector2(272.91626, 1165.3872)
 
 [node name="gallina" parent="." unique_id=349992580 instance=ExtResource("29_o2rbt")]
-position = Vector2(346.73, 793.4344)
-
-[node name="radishSeed" parent="." unique_id=2055966257 instance=ExtResource("15_hgpy0")]
-z_index = -1
-y_sort_enabled = false
-position = Vector2(610.9052, 827.4248)
-item_id = "radishSeed"
-inventory_item = ExtResource("24_xbk3s")
+position = Vector2(404.0327, 1243.0797)
 
 [node name="BombPlant" parent="." unique_id=79269094 instance=ExtResource("32_3ua1v")]
-position = Vector2(318.3433, 748.1842)
+position = Vector2(649.7545, 1082.8389)
 
 [node name="Npc1" parent="." unique_id=988991927 instance=ExtResource("41_atqvy")]
-position = Vector2(255.43405, 968.2425)
+position = Vector2(358.38467, 951.7329)
 
 [node name="CollisionShape2D" parent="Npc1/VisionArea" parent_id_path=PackedInt32Array(988991927, 1940184636) index="0" unique_id=1178060263]
 position = Vector2(-1.942585, 2.913598)
@@ -979,16 +950,12 @@ volume_db = -10.0
 autoplay = true
 
 [node name="Npc3" parent="." unique_id=695439539 instance=ExtResource("30_1vso6")]
-position = Vector2(119.461464, 1086.7235)
+position = Vector2(125.28886, 1082.839)
 npc_name = "Landro Carota"
 
 [node name="CollisionShape2D" parent="Npc3/VisionArea" parent_id_path=PackedInt32Array(695439539, 148756299) index="0" unique_id=317106674]
 position = Vector2(-3.8146973e-06, 5.8269997)
 scale = Vector2(0.99999994, 0.99999994)
-
-[node name="PickUpItem2" parent="." unique_id=195877927 instance=ExtResource("15_hgpy0")]
-position = Vector2(444.8243, 799.26135)
-inventory_item = ExtResource("32_r0ikl")
 
 [connection signal="body_entered" from="Enter" to="Enter" method="_on_body_entered"]
 [connection signal="body_exited" from="Enter" to="Enter" method="_on_body_exited"]

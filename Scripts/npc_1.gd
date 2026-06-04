@@ -5,6 +5,7 @@ var speed: float = 80.0
 var has_spotted_player: bool = false
 var is_talking: bool = false
 var player_target: Node2D = null
+var last_direction: Vector2 = Vector2.DOWN
 
 @export var npc_name: String = "Npc 1"
 # --- LA MODIFICA È QUI! Ora è un Array di stringhe (più pagine) ---
@@ -23,7 +24,7 @@ var player_target: Node2D = null
 @onready var anim = $AnimatedSprite2D 
 
 func _ready():
-	anim.play("idle_an")
+	update_idle_animation()
 	# Nascondiamo il punto esclamativo all'inizio
 	if exclamation_mark:
 		exclamation_mark.visible = false
@@ -41,6 +42,7 @@ func _physics_process(delta):
 			velocity = direction * speed
 			move_and_slide()
 			
+			last_direction = direction
 			# Aggiorna l'animazione di camminata (assicurati che i nomi coincidano con i tuoi!)
 			update_animation(direction)
 		else:
@@ -59,7 +61,7 @@ func _on_vision_area_body_entered(body):
 			
 			# 1. Ferma l'NPC
 			velocity = Vector2.ZERO
-			anim.play("idle_an")
+			update_idle_animation()
 			
 			# 2. Mostra il punto esclamativo
 			if exclamation_mark:
@@ -79,7 +81,7 @@ func _on_vision_area_body_entered(body):
 func inizia_dialogo():
 	is_talking = true
 	velocity = Vector2.ZERO
-	anim.play("idle_an")
+	update_idle_animation()
 	
 	# BLOCCIAMO IL PLAYER!
 	if player_target != null:
@@ -100,14 +102,26 @@ func inizia_dialogo():
 func update_animation(dir: Vector2):
 	if abs(dir.x) > abs(dir.y):
 		if dir.x > 0:
-			anim.play("right_walking") # Cambia con il nome della tua animazione destra
+			anim.play("run_destra")
 		else:
-			anim.play("left_walking")  # Cambia con il nome della tua animazione sinistra
+			anim.play("run_sinistra")
 	else:
 		if dir.y > 0:
-			anim.play("front_walking") # Animazione verso il basso
+			anim.play("run_frontale")
 		else:
-			anim.play("back_walking")  # Animazione verso l'alto
+			anim.play("run di spalle")
+
+func update_idle_animation():
+	if abs(last_direction.x) > abs(last_direction.y):
+		if last_direction.x > 0:
+			anim.play("right_fermo")
+		else:
+			anim.play("left_fermo")
+	else:
+		if last_direction.y > 0:
+			anim.play("fermo forntale")
+		else:
+			anim.play("_back_fermo")
 
 
 func _on_vision_area_body_exited(body: Node2D) -> void:

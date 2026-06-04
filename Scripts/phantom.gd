@@ -40,7 +40,7 @@ var knockback_velocity: Vector2 = Vector2.ZERO
 
 func apply_knockback(direction: Vector2):
 	is_knocked_back = true
-	knockback_velocity = direction * 300.0
+	knockback_velocity = direction * 150.0
 	await get_tree().create_timer(0.2).timeout
 	if get_tree() != null:
 		is_knocked_back = false
