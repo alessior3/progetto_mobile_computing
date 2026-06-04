@@ -11,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="8_1fjxn"]
 [ext_resource type="Texture2D" uid="uid://dpoutto6vxgkf" path="res://Assets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="8_a7fxd"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_awn87"]
+[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 [ext_resource type="PackedScene" uid="uid://cqlhk6bivmi6k" path="res://Scenes/smanettone.tscn" id="ExtResource_smanettone"]
 [ext_resource type="Script" uid="uid://cxehb01khjfc2" path="res://Scripts/heat_area.gd" id="Script_heat_area"]
 [ext_resource type="Script" uid="uid://biekmh15u550g" path="res://Scripts/mainframe_console.gd" id="Script_mainframe"]
-[ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s0o4e"]
 texture = ExtResource("2_r0kjn")
@@ -2220,6 +2220,7 @@ tile_set = SubResource("TileSet_tqxsn")
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_3j1db")]
 z_index = 1
 position = Vector2(-8, 113)
+god_mode = true
 
 [node name="Inventory" parent="player" index="6" unique_id=1240474999]
 default_items = Array[ExtResource("5_v4gxv")]([ExtResource("6_6ruwn"), ExtResource("7_6ruwn")])
@@ -2268,6 +2269,10 @@ polygon = PackedVector2Array(160, 65, 192, 65, 192, 79, 208, 79, 208, 63, 240, 6
 [node name="Smanettone" parent="." unique_id=197055675 instance=ExtResource("ExtResource_smanettone")]
 y_sort_enabled = false
 position = Vector2(-31, 80)
+full_price = null
+discounted_price = null
+npc_name = null
+discount_item = null
 
 [node name="HeatArea" type="Area2D" parent="." unique_id=2047988141]
 position = Vector2(-45, -46)
@@ -2290,8 +2295,8 @@ shape = SubResource("RectangleShape2D_mainframe")
 [node name="Sprite2D" type="Sprite2D" parent="Mainframe" unique_id=179206071]
 scale = Vector2(2, 2)
 
+[node name="PauseMenu" parent="." unique_id=1016653242 instance=ExtResource("999_pause")]
+
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered"]
 
 [editable path="player"]
-
-[node name="PauseMenu" parent="." unique_id=1016653242 instance=ExtResource("999_pause")]

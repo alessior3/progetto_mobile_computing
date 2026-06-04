@@ -22,6 +22,12 @@ func _ready() -> void:
 		# Se c'è già, lo posizioniamo semplicemente al punto di spawn
 		if player_spawn_place_marker:
 			spawned_player.position = player_spawn_place_marker.position
+			
+	# Aumentiamo la velocità per pareggiare la sensazione di velocità delle altre case
+	if "walk_speed" in spawned_player:
+		spawned_player.walk_speed = 180
+	if "run_speed" in spawned_player:
+		spawned_player.run_speed = 250
 	
 func on_transition_done():
 	# Invece di usare $Player, usiamo la nostra variabile sicura!

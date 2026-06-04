@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_o06y3"]
 [ext_resource type="PackedScene" uid="uid://debprstwe8fj2" path="res://Scenes/inside_house_1.tscn" id="9_1vso6"]
 [ext_resource type="PackedScene" uid="uid://fqxooxxyn2gy" path="res://Scenes/TowerBlu.tscn" id="9_w5giw"]
-[ext_resource type="Texture2D" uid="uid://b67e0u2ehvs0l" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
+[ext_resource type="Texture2D" uid="uid://cnma1mjslca7o" path="res://Top_Down_Adventure_Pack_v.1.0/Overworld_Tileset.png" id="10_0fj1v"]
 [ext_resource type="Texture2D" uid="uid://bvoy51ji57fxn" path="res://Assets/Environment/Tilesets/Dungeon_Tiles.png" id="10_xbk3s"]
-[ext_resource type="Texture2D" uid="uid://b3xvup7vx71eb" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
+[ext_resource type="Texture2D" uid="uid://dme0yctk0qqfq" path="res://Top_Down_Adventure_Pack_v.1.0/Dungeon_Tileset.png" id="11_ikia7"]
 [ext_resource type="Texture2D" uid="uid://cfp40msjthayq" path="res://Assets/Environment/Tilesets/Wall_Tiles.png" id="11_yq1aw"]
 [ext_resource type="Texture2D" uid="uid://dts2hwetlrm15" path="res://Assets/Environment/Tilesets/Wall_Variations.png" id="12_pyn1s"]
 [ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="15_hgpy0"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bhjy0vvi17756" path="res://Scenes/Npc3.tscn" id="30_1vso6"]
 [ext_resource type="AudioStream" uid="uid://cdakxlexl7cfd" path="res://Sounds/game_sound.wav" id="30_o2rbt"]
 [ext_resource type="PackedScene" uid="uid://vkfccv6imaj6" path="res://Scenes/enemy.tscn" id="32_3ua1v"]
+[ext_resource type="Resource" uid="uid://di2ompxbqt7lr" path="res://Resources/fullCauliflower/fullCauliflower.tres" id="32_r0ikl"]
 [ext_resource type="PackedScene" uid="uid://b3ri8q8pkxt65" path="res://Scenes/Npc1.tscn" id="41_atqvy"]
 [ext_resource type="PackedScene" uid="uid://xgpca5n30sst" path="res://Scenes/ArcheryBlu.tscn" id="43_jwdyn"]
 [ext_resource type="PackedScene" uid="uid://c47gqknjvvdur" path="res://Scenes/BarracksBlu.tscn" id="44_6mm6r"]
@@ -984,6 +985,10 @@ npc_name = "Landro Carota"
 [node name="CollisionShape2D" parent="Npc3/VisionArea" parent_id_path=PackedInt32Array(695439539, 148756299) index="0" unique_id=317106674]
 position = Vector2(-3.8146973e-06, 5.8269997)
 scale = Vector2(0.99999994, 0.99999994)
+
+[node name="PickUpItem2" parent="." unique_id=195877927 instance=ExtResource("15_hgpy0")]
+position = Vector2(444.8243, 799.26135)
+inventory_item = ExtResource("32_r0ikl")
 
 [connection signal="body_entered" from="Enter" to="Enter" method="_on_body_entered"]
 [connection signal="body_exited" from="Enter" to="Enter" method="_on_body_exited"]

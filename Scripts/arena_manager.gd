@@ -105,8 +105,8 @@ func start_arena():
 				if player_camera:
 					original_camera_zoom = player_camera.zoom
 					var tween = create_tween()
-					# 0.65 allarga ancora di più la visuale
-					tween.tween_property(player_camera, "zoom", original_camera_zoom * 0.65, 2.0).set_trans(Tween.TRANS_SINE)
+					# 0.45 allarga ancora di più la visuale
+					tween.tween_property(player_camera, "zoom", original_camera_zoom * 0.45, 2.0).set_trans(Tween.TRANS_SINE)
 		else:
 			print("ERRORE: Hai spuntato is_boss_arena ma non hai assegnato il Boss!")
 	else:

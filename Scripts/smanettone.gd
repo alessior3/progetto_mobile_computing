@@ -122,7 +122,7 @@ func start_dialogue():
 		dm.show_message([
 			"ALT! Non toccare il mio computer! Questo è il mio laboratorio privato di informatica vintage.",
 			"Laggiù c'è il mio computer, il più potente del villaggio! Ma consuma e scalda come un dannato! Se vuoi usarlo per ripristinare il tuo floppy disk, mi servono " + str(price) + " ori per coprire i costi di elettricità.",
-			"Torna quando avrai abbastanza monete, o se trovi un " + item_name_label + " per rinfrescare la mia CPU!"
+			"Torna quando avrai abbastanza monete!"
 		], npc_name)
 	
 	await dm.dialogue_finished
@@ -138,7 +138,10 @@ func start_dialogue():
 			consume_discount()
 			
 		Global.has_paid_treasurer = true
-		dm.show_message("Perfetto! Configuro i permessi di amministratore... Fatto! Ora puoi usare il mio supercomputer per ripristinare il floppy. Ma fai attenzione: quando lavora a pieno regime sprigiona un calore infernale! Se rimani troppo vicino, subirai danni da surriscaldamento!", npc_name)
+		dm.show_message([
+		"Perfetto! Configuro i permessi di amministratore...", 
+		"Fatto! Ora puoi usare il mio supercomputer per ripristinare il floppy. Ma fai attenzione: quando lavora a pieno regime sprigiona un calore infernale!",
+		"Se rimani troppo vicino, subirai danni da surriscaldamento!"], npc_name)
 	else:
 		dm.show_message("Errore 402: Fondi insufficienti per coprire i costi dei condensatori. Torna quando hai caricato il portafoglio virtuale!", npc_name)
 		

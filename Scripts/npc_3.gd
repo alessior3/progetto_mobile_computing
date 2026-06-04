@@ -8,9 +8,7 @@ var player_target: Node2D = null
 
 const PICKUP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
 var seeds: Array = [
-	preload("res://Resources/seedcarrot/seedcarrot.tres"),
-	preload("res://Resources/seedpotato/seedpotato.tres"),
-	preload("res://Resources/seedwheat/seedwheat.tres")
+	preload("res://Resources/seedcauliflower/seedcauliflower.tres")
 ]
 var has_given_seed: bool = false
 

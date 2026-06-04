@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource("2_uk8au")
+item_id = "calu"
 slot_type = "Food"
 ground_collision_shape = ExtResource("1_gye4i")
 name = "Cavolfiore"
