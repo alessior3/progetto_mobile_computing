@@ -26,7 +26,6 @@
 [ext_resource type="Resource" uid="uid://f77w6xgldd5l" path="res://Resources/Torch/torch.tres" id="17_yr1ei"]
 [ext_resource type="Resource" uid="uid://dt7fktfvrfnsb" path="res://Resources/DungeonKey/dungeon_key.tres" id="19_jp8yi"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="20_natbj"]
-[ext_resource type="PackedScene" uid="uid://d3jus14pdk2pr" path="res://Scenes/chestBlu.tscn" id="27_gau0i"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="28_gau0i"]
 [ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="30_w2mga"]
 [ext_resource type="PackedScene" path="res://Scenes/sacca_oro.tscn" id="31_gold"]
@@ -2744,7 +2743,6 @@ position = Vector2(891, -283)
 position = Vector2(932, -263)
 collision_layer = 2
 collision_mask = 5
-god_mode = true
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=907469725]
 position = Vector2(-2, -4)
@@ -2774,11 +2772,11 @@ volume_db = -10.0
 [node name="SpawnPlayer" type="Marker2D" parent="." unique_id=1889388693]
 position = Vector2(16, 52)
 
-[node name="Chest2" parent="." unique_id=716899325 instance=ExtResource("27_gau0i")]
-position = Vector2(1105, -817)
-oggetto_iniziale = ExtResource("19_jp8yi")
-
 [node name="SaccaOro" parent="." unique_id=1612886559 instance=ExtResource("31_gold")]
 position = Vector2(857, -251)
+
+[node name="PickUpItem" parent="." unique_id=837869725 instance=ExtResource("14_wnvaf")]
+position = Vector2(1076, -767)
+inventory_item = ExtResource("19_jp8yi")
 
 [connection signal="body_entered" from="exit" to="player" method="_on_exit_body_entered"]

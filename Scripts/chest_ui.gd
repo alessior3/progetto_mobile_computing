@@ -28,21 +28,16 @@ func open_chest_ui(chest_items: Array, chest_id: String, physical_chest: Area2D)
 	current_chest_id = chest_id
 	linked_chest = physical_chest
 	
-	for child in grid.get_children():
-		child.queue_free()
-		
-	for i in range(chest_items.size()):
-		var item = chest_items[i]
-		
-		# Evita i crash se per sbaglio è stato inserito un AtlasTexture (o altro) invece di un InventoryItem
-		if item != null and not item is InventoryItem:
-			print("ERRORE CASSA (", chest_id, "): L'oggetto inserito non è un InventoryItem valido! Verrà rimosso.")
-			item = null
-			chest_items[i] = null
-			
+	# HIDE grid during child manipulation to prevent Godot 4 layout infinite recursion
+	grid.visible = false
+	
+	var children = grid.get_children()
+	var needed_children = min(chest_items.size(), 100) # Cap at 100 to prevent any array-size infinite loop
+	
+	# Crea i figli mancanti se necessario
+	while children.size() < needed_children:
 		var new_slot = slot_scene.instantiate()
 		grid.add_child(new_slot)
-		new_slot.add_item(item)
 		
 		# Connessione per il salvataggio
 		if not new_slot.slot_swapped.is_connected(_on_chest_slot_swapped):
@@ -57,6 +52,30 @@ func open_chest_ui(chest_items: Array, chest_id: String, physical_chest: Area2D)
 		# NUOVO: Click per prelevare!
 		if not new_slot.slot_focused.is_connected(_on_chest_slot_focused):
 			new_slot.slot_focused.connect(_on_chest_slot_focused)
+			
+		children.append(new_slot)
+		
+	# Rimuove i figli in eccesso (raro)
+	while children.size() > needed_children:
+		var child = children.pop_back()
+		grid.remove_child(child)
+		child.queue_free()
+		
+	# Aggiorna gli oggetti
+	for i in range(needed_children):
+		var item = chest_items[i]
+		
+		# Evita i crash se per sbaglio è stato inserito un AtlasTexture (o altro) invece di un InventoryItem
+		if item != null and not item is InventoryItem:
+			print("ERRORE CASSA (", chest_id, "): L'oggetto inserito non è un InventoryItem valido! Verrà rimosso.")
+			item = null
+			if i < chest_items.size():
+				chest_items[i] = null
+			
+		children[i].add_item(item)
+		
+	# Ripristina la visibilità dopo aver aggiornato tutto
+	grid.visible = true
 
 func _on_chest_slot_focused(slot: InventorySlot):
 	if linked_chest and linked_chest.current_player:

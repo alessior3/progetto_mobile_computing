@@ -62,8 +62,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				stato_interazione = 3
 				if has_node("/root/DialogueManager"):
 					DialogueManager.show_message([
-						"MERCANTE: Ah, bentornato! Immaginavo che saresti tornato...",
-						"Sì, mi aspettavo che quel vecchio floppy fosse rovinato. \n						Quella tecnologia è così delicata!",
+						"Ah, bentornato! Immaginavo che saresti tornato...",
+						"Sì, mi aspettavo che quel vecchio floppy fosse rovinato, quella tecnologia è così delicata!",
 						"Si tratta di un Errore CRC, un classico. Ma c'è una soluzione.",
 						"Dovresti portarlo da Marcus Byte, nella casa blu. Il suo computer è l'unica macchina in grado di ripararlo.",
 						"Però attento: quel vecchio è un tirchione pazzesco! Ti chiederà sicuramente una fortuna assurda per farti usare il suo PC.",

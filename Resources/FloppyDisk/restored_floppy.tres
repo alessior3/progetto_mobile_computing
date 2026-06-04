@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_script")
 item_id = "restored_floppy"
+slot_type = "Potions"
 name = "Floppy Disk"
 texture = ExtResource("2_texture")
 max_stacks = 1
