@@ -7,12 +7,12 @@
 [ext_resource type="Script" uid="uid://xa2vtw3obwbv" path="res://Scripts/inventory_item.gd" id="5_v4gxv"]
 [ext_resource type="Resource" uid="uid://di2ompxbqt7lr" path="res://Resources/fullCauliflower/fullCauliflower.tres" id="6_6ruwn"]
 [ext_resource type="Resource" uid="uid://8irtyi2i27bh" path="res://Resources/FloppyDisk/corrupted_floppy.tres" id="7_6ruwn"]
-[ext_resource type="Texture2D" uid="uid://c2q8jhnkf1g2k" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="7_svm4f"]
+[ext_resource type="Texture2D" uid="uid://dchwybi3ilkop" path="res://Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetElement.png" id="7_svm4f"]
 [ext_resource type="Texture2D" uid="uid://blb1cu0co5byl" path="res://Assets/Environment/Props/Static/Furniture.png" id="8_1fjxn"]
 [ext_resource type="Texture2D" uid="uid://dpoutto6vxgkf" path="res://Assets/Modern tiles_Free/Interiors_free/16x16/Interiors_free_16x16.png" id="8_a7fxd"]
 [ext_resource type="Texture2D" uid="uid://jswa618kut5t" path="res://Assets/AxulArtīs_Basic-Top-down-interior_By_AxulArt/AxulArtīs_Basic-Top-down-interior_By_AxulArt.png" id="9_awn87"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
-[ext_resource type="PackedScene" uid="uid://cqlhk6bivmi6k" path="res://Scenes/smanettone.tscn" id="ExtResource_smanettone"]
+[ext_resource type="PackedScene" uid="uid://cqlhk6bivmi6k" path="res://Scenes/treasurer.tscn" id="ExtResource_smanettone"]
 [ext_resource type="Script" uid="uid://cxehb01khjfc2" path="res://Scripts/heat_area.gd" id="Script_heat_area"]
 [ext_resource type="Script" uid="uid://biekmh15u550g" path="res://Scripts/mainframe_console.gd" id="Script_mainframe"]
 
@@ -2267,12 +2267,10 @@ position = Vector2(-240, -63)
 polygon = PackedVector2Array(160, 65, 192, 65, 192, 79, 208, 79, 208, 63, 240, 63, 240, 71, 304, 71, 304, 215, 255, 215, 256, 222, 207, 222, 207, 215, 160, 215, 160, 72, 194, 71, 129, 67, 113, 238, 388, 257, 364, -7, 118, 4, 159, 64)
 
 [node name="Smanettone" parent="." unique_id=197055675 instance=ExtResource("ExtResource_smanettone")]
-y_sort_enabled = false
 position = Vector2(-31, 80)
 full_price = null
 discounted_price = null
 npc_name = null
-discount_item = null
 
 [node name="HeatArea" type="Area2D" parent="." unique_id=2047988141]
 position = Vector2(-45, -46)

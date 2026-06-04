@@ -20,6 +20,23 @@ func _ready():
 	if anim:
 		anim.play("idle_front")
 
+func _physics_process(delta):
+	if anim:
+		if player_in_range and current_player:
+			var dir = (current_player.global_position - global_position).normalized()
+			if abs(dir.x) > abs(dir.y):
+				if dir.x > 0:
+					anim.play("idle_right")
+				else:
+					anim.play("idle_left")
+			else:
+				if dir.y > 0:
+					anim.play("idle_front")
+				else:
+					anim.play("idle_back")
+		else:
+			anim.play("idle_front")
+
 func _on_vision_area_body_entered(body):
 	if body is Player:
 		player_in_range = true

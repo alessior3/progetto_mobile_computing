@@ -23,6 +23,7 @@ var player_target: Node2D = null
 @onready var anim = $AnimatedSprite2D 
 
 func _ready():
+	anim.play("idle_an")
 	# Nascondiamo il punto esclamativo all'inizio
 	if exclamation_mark:
 		exclamation_mark.visible = false
@@ -58,7 +59,7 @@ func _on_vision_area_body_entered(body):
 			
 			# 1. Ferma l'NPC
 			velocity = Vector2.ZERO
-			anim.stop()
+			anim.play("idle_an")
 			
 			# 2. Mostra il punto esclamativo
 			if exclamation_mark:
@@ -78,7 +79,7 @@ func _on_vision_area_body_entered(body):
 func inizia_dialogo():
 	is_talking = true
 	velocity = Vector2.ZERO
-	anim.stop()
+	anim.play("idle_an")
 	
 	# BLOCCIAMO IL PLAYER!
 	if player_target != null:

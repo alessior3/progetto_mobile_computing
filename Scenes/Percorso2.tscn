@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="13_gsl5o"]
 [ext_resource type="Resource" uid="uid://dnw04t867ju10" path="res://Resources/GoldCoin/gold_coin.tres" id="13_hsodn"]
 [ext_resource type="Resource" uid="uid://jb6410dqkqbs" path="res://Resources/seedbeetroot/seedbeetroot.tres" id="13_lxtrv"]
-[ext_resource type="PackedScene" uid="uid://cpl3otpqaqlwp" path="res://Scenes/HouseRed1.tscn" id="13_pq8ly"]
+[ext_resource type="PackedScene" uid="uid://0i8xkji70u1c" path="res://Scenes/HouseRed1Percorso2.tscn" id="17_hsodn"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
@@ -650,13 +650,12 @@ z_index = 0
 position = Vector2(3566, 1016)
 oggetto_iniziale = ExtResource("13_lxtrv")
 
-[node name="HouseRed1" parent="." unique_id=407676494 instance=ExtResource("13_pq8ly")]
+[node name="PauseMenu" parent="." unique_id=1682597474 instance=ExtResource("999_pause")]
+
+[node name="HouseRed1" parent="." unique_id=833030943 instance=ExtResource("17_hsodn")]
 y_sort_enabled = true
-position = Vector2(3224, 1212)
+position = Vector2(3225, 1213)
 scale = Vector2(0.5, 0.5)
-inside_scene = "uid://brk61bktukewl"
 
 [connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
 [connection signal="body_entered" from="IngressoVillaggio3" to="IngressoVillaggio3" method="_on_body_entered"]
-
-[node name="PauseMenu" parent="." unique_id=1682597474 instance=ExtResource("999_pause")]
