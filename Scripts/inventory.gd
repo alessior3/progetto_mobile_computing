@@ -18,6 +18,7 @@ const PICK_UP_ITEM_SCENE = preload("res://Scenes/pick_up_item.tscn")
 # VARIABILI DATI
 var items: Array[InventoryItem] = []
 var gold: int = 0
+var last_toggle_time: float = 0.0
 
 func _ready() -> void:
 	# 1. CARICAMENTO DATI: Riprendiamo tutto dal Global
@@ -54,8 +55,15 @@ func _ready() -> void:
 
 # --- GESTIONE INPUT E RACCOLTA ---
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_inventory") and not event.is_echo():
+		var current_time = Time.get_ticks_msec() / 1000.0
+		if current_time - last_toggle_time < 0.2:
+			return
+		last_toggle_time = current_time
+		
+		get_viewport().set_input_as_handled()
+		
 		if inventory_ui:
 			inventory_ui.update_slots(items) 
 			inventory_ui.toggle()
