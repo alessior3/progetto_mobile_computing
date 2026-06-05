@@ -13,8 +13,8 @@ name = "Cavolo Riccio"
 texture = ExtResource("3_rl6h5")
 max_stacks = 1
 price = 150
-description = "\"Un vero 'superfood' pesante e compatto. Senti i muscoli e le ossa indurirsi a ogni morso.
-Effetto: Aumenta temporaneamente la Salute Massima di 20 HP.\""
+description = "Un vero 'superfood' pesante e compatto. Senti i muscoli e le ossa indurirsi a ogni morso.
+Effetto: Aumenta la tua Salute Massima di 25 e ti cura di altrettanto istantaneamente (dura finché non lasci il dungeon)."
 damage = 40
 is_consumable = true
 heal_amount = 15

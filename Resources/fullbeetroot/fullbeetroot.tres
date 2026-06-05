@@ -12,9 +12,9 @@ name = "Barbabietola"
 texture = ExtResource("3_wxpmi")
 max_stacks = 1
 price = 45
-description = " \"Il suo succo denso e dolciastro migliora l'ossigenazione del sangue, rendendoti instancabile.
-Effetto: Aumenta leggermente la velocità di movimento per un tempo considerevole
-Inoltre, mangiandola all'interno delle catacombe ti renderà immune alla melma di slime\""
+description = "Il suo succo denso e dolciastro migliora l'ossigenazione del sangue, rendendoti instancabile.
+Effetto: La tua Velocità aumenta del 20% e puoi scattare più a lungo per 60 secondi.
+Inoltre, mangiandola all'interno delle catacombe ti renderà immune alla melma di slime"
 damage = 40
 is_consumable = true
 heal_amount = 8

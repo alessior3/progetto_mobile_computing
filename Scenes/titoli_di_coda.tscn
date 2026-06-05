@@ -719,3 +719,7 @@ position = Vector2(-24, -4103)
 position = Vector2(233, -3784)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[node name="Angelo12" parent="." unique_id=747787280 instance=ExtResource("7_ws8ae")]
+position = Vector2(233, -3784)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

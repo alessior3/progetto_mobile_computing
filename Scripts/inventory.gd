@@ -55,7 +55,7 @@ func _ready() -> void:
 # --- GESTIONE INPUT E RACCOLTA ---
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("toggle_inventory"):
+	if event.is_action_pressed("toggle_inventory") and not event.is_echo():
 		if inventory_ui:
 			inventory_ui.update_slots(items) 
 			inventory_ui.toggle()
@@ -65,7 +65,7 @@ func add_item(item: InventoryItem, amount: int = 1) -> void:
 	
 	# Intercettazione Oro (Wallet)
 	if item.name == "Gold Coin":
-		gold += amount
+		gold += amount * 10 # <-- Adesso ogni moneta vale 10 ori!
 		Global.persistent_gold = gold # Sincronizzazione persistente
 		gold_changed.emit(gold)
 		return 
@@ -87,6 +87,17 @@ func add_item(item: InventoryItem, amount: int = 1) -> void:
 
 func _on_slot_item_clicked(item: InventoryItem):
 	if item == null: return
+	
+	# --- FIX ORO: Se clicchiamo "Metti in tasca" su una moneta già nello zaino ---
+	if item.name == "Gold Coin":
+		var amt = item.stacks if item.stacks > 0 else 1
+		add_item(item, amt) # add_item si occupa di fare x10 automaticamente!
+		items.erase(item)
+		Global.persistent_items = items
+		if inventory_ui:
+			inventory_ui.update_slots(items)
+		return
+	# -----------------------------------------------------------------------------
 	
 	# --- FIX: GESTIONE DELLO SCAMBIO (SWAP) ---
 	var old_item: InventoryItem = null

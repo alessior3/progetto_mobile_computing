@@ -102,6 +102,15 @@ func _on_slot_focused(slot: InventorySlot):
 			var desc = item.get("description")
 			details_label.text = desc if desc else "Nessuna descrizione."
 		_mostra_bottoni()
+		
+		# Cambiamo il testo del bottone dinamicamente!
+		if equip_button:
+			if item.name == "Gold Coin":
+				equip_button.text = "Metti in tasca"
+			elif item.get("is_consumable"):
+				equip_button.text = "Usa/Mangia"
+			else:
+				equip_button.text = "Equipaggia"
 	else:
 		# --- LA PULIZIA: AGGIUNGI QUESTO BLOCCO ---
 		item_icon.hide()            # Nasconde l'immagine del ravanello
@@ -146,7 +155,15 @@ func _on_slot_swapped(source_slot, target_slot):
 		var nuovi_oggetti: Array[InventoryItem] = []
 		
 		for i in range(slots.size()):
-			nuovi_oggetti.append(slots[i].current_item)
+			var item = slots[i].current_item
+			# --- INTERCETTA ORO TRASCINATO NELLO ZAINO ---
+			if item and item.name == "Gold Coin":
+				var amt = item.stacks if item.stacks > 0 else 1
+				inventory.add_item(item, amt)
+				slots[i].add_item(null) # Svuota visivamente lo slot
+				item = null # Non inserirlo nell'array
+			# ---------------------------------------------
+			nuovi_oggetti.append(item)
 		
 		# 1. Aggiorniamo la risorsa locale
 		inventory.items = nuovi_oggetti

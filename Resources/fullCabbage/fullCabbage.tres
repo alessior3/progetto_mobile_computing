@@ -13,8 +13,8 @@ name = "Cavolo"
 texture = ExtResource("3_bt1x7")
 max_stacks = 1
 price = 60
-description = "\"Foglie fresche e croccanti dalle potenti proprietà antinfiammatorie. Il corpo ringrazia.
-Effetto: Rigenera 1 HP al secondo per 10 secondi.\""
+description = "Foglie fresche e croccanti dalle potenti proprietà antinfiammatorie. Il corpo ringrazia.
+Effetto: Applica un effetto di rigenerazione salute continua (cura 2 HP al secondo per 20 secondi)."
 damage = 40
 is_consumable = true
 heal_amount = 5

@@ -68,11 +68,14 @@ func _try_insert_item():
 			print("DEBUG: Non hai abbastanza oro per attivare il socket!")
 
 func _try_extract_item():
-	if player_ref and current_item:
-		var inv = player_ref.get_node_or_null("Inventory")
-		if inv and inv.has_method("smart_add_pickup"):
-			inv.smart_add_pickup(current_item, gold_cost)
-			print("DEBUG: Restituiti ", gold_cost, " ori all'inventario.")
+	if player_ref:
+		if current_item != null:
+			# C'è già una moneta, il giocatore la ritira
+			var inv = player_ref.get_node_or_null("Inventory")
+			if inv and inv.has_method("smart_add_pickup"):
+				# Adesso passiamo 1 come quantità di oggetti, perché una singola moneta vale già 10 ori
+				inv.smart_add_pickup(current_item, 1)
+				print("DEBUG: Restituita 1 moneta (valore: ", gold_cost, " ori) all'inventario.")
 	
 	current_item = null
 	is_high_signal = false

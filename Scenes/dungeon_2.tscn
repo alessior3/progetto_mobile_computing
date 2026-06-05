@@ -1,11 +1,13 @@
 [gd_scene format=4 uid="uid://8oed5se7n6sg"]
 
-[ext_resource type="PackedScene" uid="uid://d1vfr44fw7mrn" path="res://Scenes/arena_door.tscn" id="1_axtet"]
+[ext_resource type="PackedScene" path="res://Scenes/arena_door.tscn" id="1_axtet"]
 [ext_resource type="PackedScene" path="res://Scenes/arena_manager.tscn" id="1_k2pb7"]
 [ext_resource type="Script" uid="uid://dvmsxy38o3u27" path="res://Scripts/dungeon_2.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://d0k1xmujijwmy" path="res://RF_Catacombs_v1/mainlevbuild.png" id="2_joeuc"]
+[ext_resource type="Texture2D" uid="uid://cxarcvvo5v3um" path="res://RF_Catacombs_v1/mainlevbuild.png" id="2_joeuc"]
 [ext_resource type="PackedScene" uid="uid://dgn5abo1h1pjy" path="res://Scenes/arena_pink_bat.tscn" id="2_k2pb7"]
-[ext_resource type="Texture2D" uid="uid://bokpvxtoxp3mc" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
+[ext_resource type="Texture2D" uid="uid://nkgllj8b02et" path="res://RF_Catacombs_v1/decorative.png" id="3_sh61r"]
+[ext_resource type="PackedScene" uid="uid://cu24c2u5ksem5" path="res://Scenes/pick_up_item.tscn" id="3_yijr3"]
+[ext_resource type="Resource" uid="uid://bqt54litiliyw" path="res://Resources/Stick/stick.tres" id="4_e3slh"]
 [ext_resource type="PackedScene" uid="uid://bstfbqarthdp6" path="res://Scenes/player.tscn" id="4_k2pb7"]
 [ext_resource type="PackedScene" uid="uid://wh7vq7l5a2qe" path="res://Scenes/RedGladiator.tscn" id="7_gy8b2"]
 [ext_resource type="PackedScene" uid="uid://dx3sc23nslh1o" path="res://Scenes/beast.tscn" id="8_8otlg"]
@@ -16,11 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://dgb76o7sblhqr" path="res://Scenes/binary_socket.tscn" id="10_jf5nn"]
 [ext_resource type="PackedScene" uid="uid://bi7i17wp74kna" path="res://Scenes/pink_slime.tscn" id="11_yijr3"]
 [ext_resource type="PackedScene" uid="uid://d2t84sddt58t5" path="res://Scenes/spider.tscn" id="12_e3slh"]
-[ext_resource type="Texture2D" uid="uid://d3oek0fcrl0fa" path="res://Assets/stone_terminal_active_bg.png" id="12_ejumn"]
+[ext_resource type="Texture2D" uid="uid://b1ntov0ah46dr" path="res://Assets/stone_terminal_active_bg.png" id="12_ejumn"]
 [ext_resource type="AudioStream" uid="uid://b8o4apy5qa47u" path="res://Sounds/dungeon_sound.wav" id="13_i5gjx"]
 [ext_resource type="PackedScene" uid="uid://bahf3p608nysb" path="res://Scenes/chest_ui.tscn" id="15_ejumn"]
 [ext_resource type="PackedScene" uid="uid://2htfoyb0t77" path="res://Scenes/chest.tscn" id="15_trpyw"]
 [ext_resource type="Resource" uid="uid://c8n6bivtfs2p1" path="res://Resources/SecurityCard/security_card.tres" id="18_card"]
+[ext_resource type="Texture2D" uid="uid://cmix4gww52pw5" path="res://Scenes/Chest_nera.png" id="22_brvm2"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axtet"]
@@ -1713,15 +1716,15 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_kpojm")
 sources/1 = SubResource("TileSetAtlasSource_i5gjx")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8otlg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p60m"]
 resource_local_to_scene = true
 size = Vector2(225, 170)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_brvm2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yijr3"]
 resource_local_to_scene = true
 size = Vector2(578, 530)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p60m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3slh"]
 resource_local_to_scene = true
 size = Vector2(356, 623)
 
@@ -1748,9 +1751,12 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAQAPv/AAAVAAEAAAARAPv/AAAVAAEAAAASAPv/AAAVAAEAAAATAPv/AAAVAAEAAAAVAPv/AAAXAAEAAAAOAPv/AAATAAEAAAAUAPv/AAAVAAEAAAAPAPv/AAAUAAEAAAA=")
 tile_set = SubResource("TileSet_hjqul")
 
+[node name="PickUpItem" parent="." unique_id=1473875551 instance=ExtResource("3_yijr3")]
+position = Vector2(365, 292)
+inventory_item = ExtResource("4_e3slh")
+
 [node name="player" parent="." unique_id=293458414 instance=ExtResource("4_k2pb7")]
-position = Vector2(1176, -683)
-god_mode = true
+position = Vector2(336, 304)
 metadata/_edit_group_ = true
 
 [node name="playerCamera" type="Camera2D" parent="player" unique_id=1214216010]
@@ -1845,7 +1851,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone" index="0"]
 position = Vector2(432.5, 120)
-shape = SubResource("RectangleShape2D_8otlg")
+shape = SubResource("RectangleShape2D_0p60m")
 
 [node name="StickyZone2" parent="." unique_id=1050859042 instance=ExtResource("8_axtet")]
 position = Vector2(366, 157)
@@ -1853,7 +1859,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone2" index="0"]
 position = Vector2(-91, 44)
-shape = SubResource("RectangleShape2D_brvm2")
+shape = SubResource("RectangleShape2D_yijr3")
 
 [node name="StickyZone3" parent="." unique_id=1485841544 instance=ExtResource("8_axtet")]
 position = Vector2(837, 34)
@@ -1861,7 +1867,7 @@ slowing_multiplier = 0.5
 
 [node name="CollisionShape2D" parent="StickyZone3" index="0"]
 position = Vector2(-43, -165.5)
-shape = SubResource("RectangleShape2D_0p60m")
+shape = SubResource("RectangleShape2D_e3slh")
 
 [node name="BinaryLogicManager" parent="." unique_id=2019978947 instance=ExtResource("10_4x36e")]
 z_index = 1
@@ -1934,6 +1940,9 @@ position = Vector2(1151, -699)
 chest_id = "cassa_casa_3"
 oggetto_iniziale = ExtResource("18_card")
 is_locked = true
+
+[node name="Sprite2D" parent="Chest" index="0" unique_id=1861635381]
+texture = ExtResource("22_brvm2")
 
 [node name="PauseMenu" parent="." unique_id=1415167992 instance=ExtResource("999_pause")]
 

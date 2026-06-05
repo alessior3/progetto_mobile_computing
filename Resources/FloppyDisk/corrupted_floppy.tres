@@ -9,5 +9,5 @@ item_id = "corrupted_floppy"
 name = "Floppy Corrotto"
 texture = ExtResource("2_1fn7f")
 max_stacks = 1
-description = "Un vecchio floppy disk da 3.5 pollici. È pieno di settori danneggiati (CRC Error). (Rimuovi il Magenta nell'importazione di Godot)"
+description = "Un vecchio floppy disk da 3.5 pollici. È pieno di settori danneggiati (CRC Error)."
 ground_visual_scale = Vector2(0.02, 0.02)

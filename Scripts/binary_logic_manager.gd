@@ -146,6 +146,7 @@ func _on_solved():
 				tween.parallel().tween_property(line, "width", line.width * 2.0, 0.4)
 
 func _on_unsolved():
+	is_solved = false # FONDAMENTALE: se viene rimossa una moneta, il puzzle non è più risolto!
 	var target_node = get_node_or_null(target_node_path)
 	if target_node:
 		if target_node.has_method("lock"):
@@ -193,6 +194,10 @@ func _reset_system(chest: Node2D):
 	print("DEBUG: Reset del sistema logico e spegnimento socket!")
 	is_solved = false
 	
+	# Genera nuovo codice in anticipo per evitare che i reset triggerino falsi _on_solved
+	randomize()
+	target_decimal = -1 # Disabilita temporaneamente il traguardo
+	
 	# Spegni e sblocca i socket
 	var sockets = get_tree().get_nodes_in_group("binary_sockets")
 	for socket in sockets:
@@ -204,8 +209,7 @@ func _reset_system(chest: Node2D):
 			# Emettiamo 0 per spegnere anche il bus e aggiornare le linee
 			socket.power_changed.emit(0)
 	
-	# Genera nuovo codice
-	randomize()
+	# Ora imposta il nuovo target reale
 	target_decimal = randi_range(1, 15)
 	
 	# Modifica la cassa per la prossima volta: toglie il chip e attiva il loot
@@ -216,18 +220,26 @@ func _reset_system(chest: Node2D):
 		chest.loot_spawn_count = randi_range(1, 3)
 		if chest.loot_pool_items.is_empty():
 			chest.loot_pool_items.append(preload("res://Resources/GoldCoin/gold_coin.tres"))
-			chest.loot_pool_items.append(preload("res://Resources/GemGreen.tres"))
-			chest.loot_pool_items.append(preload("res://Resources/GemRed.tres"))
-			chest.loot_pool_items.append(preload("res://Resources/GemPurple.tres"))
 			chest.loot_pool_items.append(preload("res://Resources/fullPotato/fullPotato.tres"))
 			chest.loot_pool_items.append(preload("res://Resources/fullCarrot/fullCarrot.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/fullPumpkin/fullPumpkin.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/pinkSlimeBall/pink_slime_ball.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/spiderDrop/spider_drop.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/phantomDrop/phantom_drop.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/Milk/milk.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/Egg/egg.tres"))
+			chest.loot_pool_items.append(preload("res://Resources/Stick/stick.tres"))
 			
-			chest.loot_pool_weights.append(10.0)
-			chest.loot_pool_weights.append(3.0)
-			chest.loot_pool_weights.append(3.0)
-			chest.loot_pool_weights.append(3.0)
-			chest.loot_pool_weights.append(5.0)
-			chest.loot_pool_weights.append(5.0)
+			chest.loot_pool_weights.append(10.0) # Oro (molto comune)
+			chest.loot_pool_weights.append(5.0)  # Patata
+			chest.loot_pool_weights.append(5.0)  # Carota
+			chest.loot_pool_weights.append(2.0)  # Zucca (rara)
+			chest.loot_pool_weights.append(4.0)  # Slime Rosa
+			chest.loot_pool_weights.append(4.0)  # Tela di ragno
+			chest.loot_pool_weights.append(4.0)  # Drop fantasma
+			chest.loot_pool_weights.append(3.0)  # Latte
+			chest.loot_pool_weights.append(3.0)  # Uovo
+			chest.loot_pool_weights.append(1.0)  # Bastone (rarissimo da trovare in cassa)
 	
 	# Resetta la cassa per la prossima volta
 	if chest.has_method("lock"):

@@ -12,7 +12,7 @@ name = "Patata"
 texture = ExtResource("3_n3sr4")
 max_stacks = 1
 price = 75
-description = "\"Carboidrati puri. Una fonte di energia grezza ed esplosiva pronta a scorrere nelle tue braccia.
+description = "Carboidrati puri. Una fonte di energia grezza ed esplosiva pronta a scorrere nelle tue braccia.
 Effetto: Aumenta i danni inflitti dai tuoi attacchi di 5 per 30 secondi."
 damage = 40
 is_consumable = true
