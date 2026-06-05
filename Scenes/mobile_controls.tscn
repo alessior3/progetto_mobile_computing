@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://haixkuo8s3vn"]
 
-[ext_resource type="Texture2D" uid="uid://bdq3n06do3cyt" path="res://Assets/Icons/LeftButton.png" id="1_k0vrn"]
+[ext_resource type="Texture2D" uid="uid://w6fqon83ilwv" path="res://Assets/Icons/LeftButton.png" id="1_k0vrn"]
 [ext_resource type="Texture2D" uid="uid://dv7656rff0hvk" path="res://Assets/Icons/press3LL2.png" id="3_md083"]
-[ext_resource type="Texture2D" uid="uid://d25o3yorh7mf2" path="res://Assets/Icons/RightButton.png" id="3_uhutp"]
-[ext_resource type="Texture2D" uid="uid://b8212d8nu1dvd" path="res://Assets/Icons/UpButton.png" id="5_n67iu"]
+[ext_resource type="Texture2D" uid="uid://dg74ebws18dkd" path="res://Assets/Icons/RightButton.png" id="3_uhutp"]
+[ext_resource type="Texture2D" uid="uid://b57q2sdmyrags" path="res://Assets/Icons/UpButton.png" id="5_n67iu"]
 [ext_resource type="Texture2D" uid="uid://bw21ixm781gkp" path="res://Assets/Icons/press3RR2.png" id="5_uhutp"]
 [ext_resource type="Texture2D" uid="uid://mi0np1h24v15" path="res://Assets/Icons/pressUPP2.png" id="7_md083"]
-[ext_resource type="Texture2D" uid="uid://q4gowftamoyu" path="res://Assets/Icons/DownButton.png" id="7_q5klo"]
+[ext_resource type="Texture2D" uid="uid://d33jccg3lo0gl" path="res://Assets/Icons/DownButton.png" id="7_q5klo"]
 [ext_resource type="Texture2D" uid="uid://yr400bxrhh2j" path="res://Assets/Icons/pressdd2.png" id="9_md083"]
 [ext_resource type="Texture2D" uid="uid://bjfeeodpk8shd" path="res://Assets/Icons/attack_normal32.png" id="10_8jnog"]
-[ext_resource type="Texture2D" uid="uid://bw4tdcrn03jy7" path="res://Assets/Icons/ATTpress2.png" id="11_i47fd"]
+[ext_resource type="Texture2D" uid="uid://dbb6drqvqoj0x" path="res://Assets/Icons/ATTpress2.png" id="11_i47fd"]
 [ext_resource type="Texture2D" uid="uid://ivdmtjmn3fl3" path="res://Assets/Icons/corsa1.png" id="12_i47fd"]
 [ext_resource type="Texture2D" uid="uid://cqgw777drff6e" path="res://Assets/Icons/corsa32 copia(1) copia.png" id="13_i47fd"]
 [ext_resource type="Texture2D" uid="uid://bg5yw87ndpatt" path="res://Assets/Icons/mano.png" id="14_ryli0"]
 [ext_resource type="Texture2D" uid="uid://b6dfcv38eg3ul" path="res://Assets/Icons/manoPress.png" id="15_tkpwc"]
-[ext_resource type="Texture2D" uid="uid://bpru1h2sxht2l" path="res://Assets/Icons/in.png" id="16_kaa57"]
-[ext_resource type="Texture2D" uid="uid://caueh8bk4ny01" path="res://Assets/Icons/inPress.png" id="17_ryli0"]
+[ext_resource type="Texture2D" uid="uid://bkd8d1m8kxit6" path="res://Assets/Icons/in.png" id="16_kaa57"]
+[ext_resource type="Texture2D" uid="uid://dauw7wxwvut12" path="res://Assets/Icons/inPress.png" id="17_ryli0"]
 [ext_resource type="Texture2D" uid="uid://d4e5v2kh7ywoc" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonY/ButtonY.png" id="18_h5qkv"]
 [ext_resource type="Texture2D" uid="uid://bshpy27r0e100" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonY/Pressed.png" id="19_0wd8i"]
 [ext_resource type="Texture2D" uid="uid://bg781884jqavs" path="res://Ninja Adventure - Asset Pack/Ui/Input/Gamepad/ButtonY/Hovered.png" id="20_1dd02"]
@@ -79,8 +79,8 @@ grow_vertical = 0
 mouse_filter = 2
 
 [node name="LeftButton" type="TouchScreenButton" parent="CanvasLayer/AncoraSinistra" unique_id=2063095623]
-position = Vector2(24, -66.00001)
-scale = Vector2(5.307691, 5.366668)
+position = Vector2(40, -84)
+scale = Vector2(7, 7.4000006)
 texture_normal = ExtResource("1_k0vrn")
 texture_pressed = ExtResource("3_md083")
 shape = SubResource("RectangleShape2D_md083")
@@ -88,8 +88,8 @@ passby_press = true
 action = "ui_left"
 
 [node name="UpButton" type="TouchScreenButton" parent="CanvasLayer/AncoraSinistra" unique_id=174836046]
-position = Vector2(104, -160)
-scale = Vector2(5.3, 5.369)
+position = Vector2(136, -197.00003)
+scale = Vector2(6.8461533, 7.266665)
 texture_normal = ExtResource("5_n67iu")
 texture_pressed = ExtResource("7_md083")
 shape = SubResource("RectangleShape2D_8jnog")
@@ -97,8 +97,8 @@ passby_press = true
 action = "ui_up"
 
 [node name="DownButton" type="TouchScreenButton" parent="CanvasLayer/AncoraSinistra" unique_id=496426620]
-position = Vector2(104, -66)
-scale = Vector2(5.3, 5.369)
+position = Vector2(136, -84)
+scale = Vector2(6.923077, 7.3999996)
 texture_normal = ExtResource("7_q5klo")
 texture_pressed = ExtResource("9_md083")
 shape = SubResource("RectangleShape2D_n67iu")
@@ -106,8 +106,8 @@ passby_press = true
 action = "ui_down"
 
 [node name="RightButton" type="TouchScreenButton" parent="CanvasLayer/AncoraSinistra" unique_id=841482299]
-position = Vector2(184, -66)
-scale = Vector2(5.3, 5.366668)
+position = Vector2(231, -84.00003)
+scale = Vector2(6.8461547, 7.4000015)
 texture_normal = ExtResource("3_uhutp")
 texture_pressed = ExtResource("5_uhutp")
 shape = SubResource("RectangleShape2D_uhutp")
@@ -130,8 +130,8 @@ grow_vertical = 0
 mouse_filter = 2
 
 [node name="inventario" type="TouchScreenButton" parent="CanvasLayer/AncoraDestra" unique_id=1929019868]
-position = Vector2(559.99994, -168)
-scale = Vector2(0.21428564, 0.23738869)
+position = Vector2(566.00006, -86)
+scale = Vector2(0.2763975, 0.32047477)
 texture_normal = ExtResource("16_kaa57")
 texture_pressed = ExtResource("17_ryli0")
 shape = SubResource("RectangleShape2D_0y3to")
@@ -139,8 +139,8 @@ passby_press = true
 action = "toggle_inventory"
 
 [node name="interazione" type="TouchScreenButton" parent="CanvasLayer/AncoraDestra" unique_id=1281332741]
-position = Vector2(639.99994, -168)
-scale = Vector2(0.21118021, 0.23738874)
+position = Vector2(566, -197)
+scale = Vector2(0.2763976, 0.32344207)
 texture_normal = ExtResource("14_ryli0")
 texture_pressed = ExtResource("15_tkpwc")
 shape = SubResource("RectangleShape2D_0y3to")
@@ -148,8 +148,8 @@ passby_press = true
 action = "interact"
 
 [node name="AttackButton" type="TouchScreenButton" parent="CanvasLayer/AncoraDestra" unique_id=1310786920]
-position = Vector2(560, -74.00001)
-scale = Vector2(0.21118005, 0.23738852)
+position = Vector2(472.00012, -197)
+scale = Vector2(0.2763974, 0.3234421)
 texture_normal = ExtResource("10_8jnog")
 texture_pressed = ExtResource("11_i47fd")
 shape = SubResource("RectangleShape2D_i47fd")
@@ -157,8 +157,8 @@ passby_press = true
 action = "attack"
 
 [node name="Corsa" type="TouchScreenButton" parent="CanvasLayer/AncoraDestra" unique_id=274158880]
-position = Vector2(639.99994, -74.00001)
-scale = Vector2(0.21118006, 0.23738852)
+position = Vector2(472.00006, -86)
+scale = Vector2(0.2763975, 0.3234422)
 texture_normal = ExtResource("12_i47fd")
 texture_pressed = ExtResource("13_i47fd")
 shape = SubResource("RectangleShape2D_0y3to")
@@ -166,8 +166,10 @@ passby_press = true
 action = "run"
 
 [node name="MenuButton" type="TextureButton" parent="CanvasLayer" unique_id=793224339]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 104.0
 texture_normal = ExtResource("18_h5qkv")
 texture_pressed = ExtResource("19_0wd8i")
 texture_hover = ExtResource("20_1dd02")

@@ -1608,10 +1608,10 @@ on_screen_ui = NodePath("../OnScreenUi")
 [node name="OnScreenUi" parent="." unique_id=1509945341 instance=ExtResource("8_8erm5")]
 
 [node name="ProgressBar" parent="OnScreenUi" unique_id=1165259361 instance=ExtResource("2_tx1dd")]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 139.0
-offset_bottom = 61.0
+offset_left = 99.0
+offset_top = 80.0
+offset_right = 272.0
+offset_bottom = 91.0
 
 [node name="MobileControls" parent="OnScreenUi" unique_id=1738634788 instance=ExtResource("12_ukyrk")]
 

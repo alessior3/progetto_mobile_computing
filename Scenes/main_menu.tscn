@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://vgc7qjhoj6cb" path="res://Assets/NuovaPartitaN.png" id="11_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://cu1i3sglidc6l" path="res://Assets/CaricaPartitaN(1).png" id="12_5egv6"]
 [ext_resource type="Texture2D" uid="uid://vy5ha58cs08" path="res://Assets/EscPress(1).png" id="16_ujyyl"]
-[ext_resource type="AudioStream" uid="uid://cj1xmgkfx0i3l" path="res://Sounds/menu_sound.wav" id="17_wyh8j"]
+[ext_resource type="AudioStream" uid="uid://djoxahjtyk0wi" path="res://Sounds/menu_sound.wav" id="17_wyh8j"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vr1f0"]
 texture = ExtResource("4_16hvj")
@@ -46,10 +46,10 @@ script = ExtResource("1_48xlc")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=102948906]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.9990001
-anchor_bottom = 0.998
-offset_right = 1726.6516
-offset_bottom = 975.79584
+anchor_right = 1.139
+anchor_bottom = 1.019
+offset_right = 1967.8717
+offset_bottom = 989.68787
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_1ehe0")
 
