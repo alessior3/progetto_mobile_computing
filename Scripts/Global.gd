@@ -3,7 +3,7 @@ extends Node
 var player_pos : Vector2
 var current_username = "Giocatore Sconosciuto"
 # Variabile per ricordare la vita tra una scena e l'altra
-var persistent_health: int = 100
+var persistent_health: int = 200
 var persistent_gold: int = 0
 var persistent_items: Array[InventoryItem] = []
 var is_first_start: bool = true

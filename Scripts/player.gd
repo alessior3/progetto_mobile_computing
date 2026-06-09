@@ -422,7 +422,7 @@ func _on_damage_taken(new_health: int):
 func die():
 	if is_dead: return 
 	is_dead = true
-	Global.persistent_health = 100
+	Global.persistent_health = 200
 	print("Il Player è morto! Cerco l'ultimo salvataggio nel Cloud...")
 	
 	visible = false
