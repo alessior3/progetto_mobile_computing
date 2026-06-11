@@ -16,6 +16,22 @@ func _ready() -> void:
 	slot_label.text = slot_name
 	var popup = menu_button.get_popup()
 	popup.id_pressed.connect(_on_popup_item_pressed)
+	popup.about_to_popup.connect(_on_about_to_popup)
+	
+	# Ingrandisci il menu a tendina
+	popup.add_theme_font_size_override("font_size", 26)
+	popup.add_theme_constant_override("v_separation", 14)
+	popup.add_theme_constant_override("item_start_padding", 14)
+	popup.add_theme_constant_override("item_end_padding", 14)
+
+func _on_about_to_popup() -> void:
+	call_deferred("_adjust_popup_position")
+
+func _adjust_popup_position() -> void:
+	var popup = menu_button.get_popup()
+	# Riduciamo l'offset per farlo apparire più in basso rispetto a prima
+	var offset_y = popup.size.y + 10 
+	popup.position.y -= offset_y
 
 func set_equipment_item(item: InventoryItem):
 	current_item = item
