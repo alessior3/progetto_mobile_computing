@@ -14,6 +14,12 @@ extends Control
 # Variabile per il plugin nativo Android
 var google_sign_in_plugin
 
+# Variabili per gli stili delle caselle di testo
+var email_normal_style: StyleBox
+var email_focus_style: StyleBox
+var password_normal_style: StyleBox
+var password_focus_style: StyleBox
+
 func _ready():
 	if not has_node("MenuSound"):
 		var menu_sound = AudioStreamPlayer.new()
@@ -22,6 +28,23 @@ func _ready():
 		menu_sound.autoplay = true
 		menu_sound.volume_db = -25.0
 		add_child(menu_sound)
+		
+	# Salviamo gli stili originali
+	email_normal_style = email_input.get_theme_stylebox("normal")
+	var e_focus = email_input.get_theme_stylebox("focus")
+	email_focus_style = email_normal_style.duplicate()
+	if email_focus_style is StyleBoxTexture and e_focus is StyleBoxTexture:
+		email_focus_style.texture = e_focus.texture
+	
+	password_normal_style = password_input.get_theme_stylebox("normal")
+	var p_focus = password_input.get_theme_stylebox("focus")
+	password_focus_style = password_normal_style.duplicate()
+	if password_focus_style is StyleBoxTexture and p_focus is StyleBoxTexture:
+		password_focus_style.texture = p_focus.texture
+	
+	# Colleghiamo i segnali per il cambio testo
+	email_input.text_changed.connect(_on_email_text_changed)
+	password_input.text_changed.connect(_on_password_text_changed)
 		
 	# Colleghiamo i segnali di Auth (Autoload)
 	Auth.register_succeeded.connect(_on_register_success)
@@ -61,6 +84,19 @@ func _on_btnlogin_pressed():
 func _on_manual_login_success(local_id, id_token):
 	Global.current_username = email_input.text.strip_edges()
 	_mostra_menu_gioco("Login effettuato!")
+
+# --- GESTIONE STILI INPUT ---
+func _on_email_text_changed(new_text: String) -> void:
+	if new_text.length() > 0:
+		email_input.add_theme_stylebox_override("normal", email_focus_style)
+	else:
+		email_input.add_theme_stylebox_override("normal", email_normal_style)
+
+func _on_password_text_changed(new_text: String) -> void:
+	if new_text.length() > 0:
+		password_input.add_theme_stylebox_override("normal", password_focus_style)
+	else:
+		password_input.add_theme_stylebox_override("normal", password_normal_style)
 
 # --- REGISTRAZIONE ---
 func _on_btn_registrati_pressed():
@@ -122,3 +158,7 @@ func _on_save_manager_response(success: bool, message: String):
 
 func _on_btn_quit_pressed() -> void:
 	get_tree().quit()
+	
+	# Su Android a volte quit() non termina completamente il processo
+	if OS.get_name() == "Android":
+		OS.kill(OS.get_process_id())

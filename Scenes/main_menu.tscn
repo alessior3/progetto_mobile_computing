@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dgyxk34g8pity" path="res://Assets/CreaPress.png" id="10_wyh8j"]
 [ext_resource type="Texture2D" uid="uid://vgc7qjhoj6cb" path="res://Assets/NuovaPartitaN.png" id="11_t1dhk"]
 [ext_resource type="Texture2D" uid="uid://cu1i3sglidc6l" path="res://Assets/CaricaPartitaN(1).png" id="12_5egv6"]
+[ext_resource type="Texture2D" uid="uid://g35h88ety3jh" path="res://Assets/NuovaPartitaPress(1).png" id="14_ujyyl"]
 [ext_resource type="Texture2D" uid="uid://vy5ha58cs08" path="res://Assets/EscPress(1).png" id="16_ujyyl"]
 [ext_resource type="AudioStream" uid="uid://djoxahjtyk0wi" path="res://Sounds/menu_sound.wav" id="17_wyh8j"]
 
@@ -54,6 +55,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_1ehe0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=672948596]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -74,6 +76,7 @@ placeholder_text = "Inserisci Email"
 [node name="PasswordInput" type="LineEdit" parent="VBoxContainer" unique_id=1870473307]
 layout_mode = 2
 placeholder_text = "Inserisci Password"
+secret = true
 
 [node name="btnlogin" type="Button" parent="VBoxContainer" unique_id=1202566177]
 layout_mode = 2
@@ -138,6 +141,7 @@ theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxTexture_cp0ys")
 theme_override_styles/focus = SubResource("StyleBoxTexture_trj04")
 alignment = 1
+secret = true
 
 [node name="login" type="TextureButton" parent="VBoxContainer2" unique_id=471756564]
 custom_minimum_size = Vector2(200, 240)
@@ -165,15 +169,21 @@ stretch_mode = 0
 
 [node name="NuovaPartita" type="TextureButton" parent="VBoxContainer2" unique_id=1370023863]
 visible = false
+custom_minimum_size = Vector2(200, 240)
 layout_mode = 2
 texture_normal = ExtResource("11_t1dhk")
-texture_pressed = ExtResource("11_t1dhk")
+texture_pressed = ExtResource("14_ujyyl")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="CaricaPartita" type="TextureButton" parent="VBoxContainer2" unique_id=1563316014]
 visible = false
+custom_minimum_size = Vector2(200, 240)
 layout_mode = 2
 texture_normal = ExtResource("12_5egv6")
 texture_pressed = ExtResource("10_wyh8j")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Esc" type="TextureButton" parent="VBoxContainer2" unique_id=147951953]
 custom_minimum_size = Vector2(200, 240)
