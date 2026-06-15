@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://wh7vq7l5a2qe" path="res://Scenes/RedGladiator.tscn" id="10_vgbyd"]
 [ext_resource type="PackedScene" uid="uid://cu855uopkqbeq" path="res://Scenes/SnakeRed.tscn" id="12_vgbyd"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
+[ext_resource type="Script" uid="uid://sxf67o4wqn5i" path="res://Scripts/route_name_displayP4.gd" id="999_route"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("2_cy3v1")
@@ -815,5 +816,28 @@ position = Vector2(4450, 1780)
 
 [node name="PauseMenu" parent="." unique_id=1549986908 instance=ExtResource("999_pause")]
 
+[node name="RouteNameDisplay" type="CanvasLayer" parent="." unique_id=1286608621]
+script = ExtResource("999_route")
+
+[node name="RouteNameRect" type="ColorRect" parent="RouteNameDisplay" unique_id=1234567893]
+offset_left = 488.0
+offset_top = 74.0
+offset_right = 668.0
+offset_bottom = 114.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="RouteNameLabel" type="Label" parent="RouteNameDisplay/RouteNameRect" unique_id=1122334458]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Percorso N10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="IngressoVillaggio3" to="IngressoVillaggio3" method="_on_body_entered"]
 [connection signal="body_entered" from="UscitaPercorso2" to="UscitaPercorso2" method="_on_body_entered"]
+
+[editable path="PauseMenu"]

@@ -39,6 +39,47 @@ func _ready() -> void:
 			if not inv.gold_changed.is_connected(_on_gold_changed):
 				inv.gold_changed.connect(_on_gold_changed)
 			_on_gold_changed(Global.persistent_gold)
+			
+	# --- MIGLIORAMENTO GRAFICA ORO ---
+	if gold_label:
+		var custom_font = preload("res://Ninja Adventure - Asset Pack/Ui/Font/NormalFont.ttf")
+		if custom_font:
+			gold_label.add_theme_font_override("font", custom_font)
+		
+		# Impostazioni font
+		gold_label.add_theme_font_size_override("font_size", 24)
+		gold_label.add_theme_color_override("font_color", Color(1, 0.84, 0, 1)) # Colore dorato
+		gold_label.add_theme_color_override("font_outline_color", Color(0, 0, 0, 1))
+		gold_label.add_theme_constant_override("outline_size", 4)
+		gold_label.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.7))
+		gold_label.add_theme_constant_override("shadow_offset_x", 2)
+		gold_label.add_theme_constant_override("shadow_offset_y", 2)
+		
+		gold_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		gold_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		
+		# Aggiunta box di sfondo (simile ai percorsi)
+		var panel_texture = preload("res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png")
+		var nine_patch = NinePatchRect.new()
+		nine_patch.texture = panel_texture
+		nine_patch.patch_margin_left = 12
+		nine_patch.patch_margin_top = 12
+		nine_patch.patch_margin_right = 12
+		nine_patch.patch_margin_bottom = 12
+		
+		# Modifichiamo il colore del box (es: un marrone dorato scuro)
+		nine_patch.modulate = Color(0.35, 0.2, 0.1, 0.95) 
+		
+		# Espande il box leggermente fuori dal testo per creare del margine
+		nine_patch.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		nine_patch.offset_left = -15
+		nine_patch.offset_top = -10
+		nine_patch.offset_right = 15
+		nine_patch.offset_bottom = 10
+		nine_patch.show_behind_parent = true
+		
+		gold_label.add_child(nine_patch)
+	# ---------------------------------
 
 func _prepare_slots():
 	if slots_dictionary.is_empty():

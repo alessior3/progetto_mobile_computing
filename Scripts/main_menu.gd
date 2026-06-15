@@ -71,7 +71,7 @@ func _ready():
 		feedback_label.text = "ERRORE: secret.cfg NON TROVATO NELL'APK!"
 	else:
 		feedback_label.text = "Chiave OK (" + str(Auth.api_key.length()) + " car.)"
-
+		
 # --- LOGIN EMAIL STANDARD ---
 func _on_btnlogin_pressed():
 	var email = email_input.text.strip_edges()
@@ -159,6 +159,6 @@ func _on_save_manager_response(success: bool, message: String):
 func _on_btn_quit_pressed() -> void:
 	get_tree().quit()
 	
-	# Su Android a volte quit() non termina completamente il processo
-	if OS.get_name() == "Android":
+	# Su Android e iOS a volte quit() non funziona. Forziamo l'uscita:
+	if OS.get_name() == "Android" or OS.get_name() == "iOS":
 		OS.kill(OS.get_process_id())

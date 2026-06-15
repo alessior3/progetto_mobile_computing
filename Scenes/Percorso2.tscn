@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://jb6410dqkqbs" path="res://Resources/seedbeetroot/seedbeetroot.tres" id="13_lxtrv"]
 [ext_resource type="PackedScene" uid="uid://0i8xkji70u1c" path="res://Scenes/HouseRed1Percorso2.tscn" id="17_hsodn"]
 [ext_resource type="PackedScene" uid="uid://cg4gbwue83ael" path="res://Scenes/pause_menu.tscn" id="999_pause"]
+[ext_resource type="Script" uid="uid://d1koajfmeksdd" path="res://Scripts/route_name_displayP2.gd" id="999_route"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mo136"]
 texture = ExtResource("3_x8jna")
@@ -656,6 +657,27 @@ oggetto_iniziale = ExtResource("13_lxtrv")
 y_sort_enabled = true
 position = Vector2(3225, 1213)
 scale = Vector2(0.5, 0.5)
+
+[node name="RouteNameDisplay" type="CanvasLayer" parent="." unique_id=1286608619]
+script = ExtResource("999_route")
+
+[node name="RouteNameRect" type="ColorRect" parent="RouteNameDisplay" unique_id=1234567891]
+offset_left = 486.0
+offset_top = 74.0
+offset_right = 666.0
+offset_bottom = 114.0
+color = Color(0, 0, 0, 0.6)
+
+[node name="RouteNameLabel" type="Label" parent="RouteNameDisplay/RouteNameRect" unique_id=1122334456]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Percorso N18"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="ingressoPercorso2" to="ingressoPercorso2" method="_on_body_entered"]
 [connection signal="body_entered" from="IngressoVillaggio3" to="IngressoVillaggio3" method="_on_body_entered"]

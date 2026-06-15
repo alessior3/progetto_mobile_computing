@@ -47,10 +47,12 @@ script = ExtResource("1_48xlc")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=102948906]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.139
-anchor_bottom = 1.019
-offset_right = 1967.8717
-offset_bottom = 989.68787
+anchor_top = -0.008
+anchor_right = 1.11
+anchor_bottom = 1.011
+offset_top = 0.18400049
+offset_right = 1943.7798
+offset_bottom = 977.3718
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_1ehe0")
 
@@ -119,10 +121,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0020001
 anchor_bottom = 0.98100007
-offset_left = 472.0
-offset_top = 228.99997
-offset_right = 237.69592
-offset_bottom = 1186.312
+offset_left = 560.0
+offset_top = 227.99998
+offset_right = 403.69592
+offset_bottom = 1185.312
 scale = Vector2(0.211118, 0.23418999)
 
 [node name="EmailInput" type="LineEdit" parent="VBoxContainer2" unique_id=1015790433]
