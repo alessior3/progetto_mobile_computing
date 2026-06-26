@@ -58,7 +58,7 @@ func _ready() -> void:
 		gold_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		gold_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		
-		# Aggiunta box di sfondo (simile ai percorsi)
+		# Aggiunta box di sfondo
 		var panel_texture = preload("res://Ninja Adventure - Asset Pack/Ui/Dialog/DialogueBoxSimple.png")
 		var nine_patch = NinePatchRect.new()
 		nine_patch.texture = panel_texture
@@ -67,10 +67,8 @@ func _ready() -> void:
 		nine_patch.patch_margin_right = 12
 		nine_patch.patch_margin_bottom = 12
 		
-		# Modifichiamo il colore del box (es: un marrone dorato scuro)
 		nine_patch.modulate = Color(0.35, 0.2, 0.1, 0.95) 
 		
-		# Espande il box leggermente fuori dal testo per creare del margine
 		nine_patch.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 		nine_patch.offset_left = -15
 		nine_patch.offset_top = -10
@@ -79,6 +77,7 @@ func _ready() -> void:
 		nine_patch.show_behind_parent = true
 		
 		gold_label.add_child(nine_patch)
+		
 	# ---------------------------------
 
 func _prepare_slots():

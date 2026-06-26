@@ -76,7 +76,20 @@ func save_game():
 		"mano": serialize_item(Global.persistent_hand),
 		"pozioni": serialize_item(Global.persistent_potions),
 		"cibo": serialize_item(Global.persistent_food),
-		"raccolti": Global.collected_item_ids
+		"raccolti": Global.collected_item_ids,
+		"from_percorso": Global.from_percorso,
+		"from_grotta_to_percorso": Global.from_grotta_to_percorso,
+		"from_house3_to_percorso": Global.from_house3_to_percorso,
+		"from_villaggio2_to_percorso1": Global.from_villaggio2_to_percorso1,
+		"from_percorso1_to_villaggio2": Global.from_percorso1_to_villaggio2,
+		"from_villaggio2_to_percorso2": Global.from_villaggio2_to_percorso2,
+		"from_percorso2_to_villaggio2": Global.from_percorso2_to_villaggio2,
+		"from_percorso2_to_villaggio3": Global.from_percorso2_to_villaggio3,
+		"from_villaggio3_to_percorso2": Global.from_villaggio3_to_percorso2,
+		"from_percorso4_to_villaggio3": Global.from_percorso4_to_villaggio3,
+		"from_villaggio4_to_percorso3": Global.from_villaggio4_to_percorso3,
+		"from_percorso3_to_villaggio4": Global.from_percorso3_to_villaggio4,
+		"from_grotta2_to_dungeon2": Global.from_grotta2_to_dungeon2
 	}
 	
 	var http = HTTPRequest.new()
@@ -152,6 +165,20 @@ func _on_load_request_completed(result, response_code, headers, body, http_node)
 		Global.collected_item_ids.clear() 
 		for id_raccolto in raccolti_temporanei:
 			Global.collected_item_ids.append(str(id_raccolto)) 
+			
+		Global.from_percorso = json.get("from_percorso", false)
+		Global.from_grotta_to_percorso = json.get("from_grotta_to_percorso", false)
+		Global.from_house3_to_percorso = json.get("from_house3_to_percorso", false)
+		Global.from_villaggio2_to_percorso1 = json.get("from_villaggio2_to_percorso1", false)
+		Global.from_percorso1_to_villaggio2 = json.get("from_percorso1_to_villaggio2", false)
+		Global.from_villaggio2_to_percorso2 = json.get("from_villaggio2_to_percorso2", false)
+		Global.from_percorso2_to_villaggio2 = json.get("from_percorso2_to_villaggio2", false)
+		Global.from_percorso2_to_villaggio3 = json.get("from_percorso2_to_villaggio3", false)
+		Global.from_villaggio3_to_percorso2 = json.get("from_villaggio3_to_percorso2", false)
+		Global.from_percorso4_to_villaggio3 = json.get("from_percorso4_to_villaggio3", false)
+		Global.from_villaggio4_to_percorso3 = json.get("from_villaggio4_to_percorso3", false)
+		Global.from_percorso3_to_villaggio4 = json.get("from_percorso3_to_villaggio4", false)
+		Global.from_grotta2_to_dungeon2 = json.get("from_grotta2_to_dungeon2", false)
 		
 		if json.has("saved_scene"):
 			emit_signal("load_response", true, "Dati caricati! Avvio in corso...")
@@ -178,7 +205,20 @@ func save_new_game_plus(scene_path: String, spawn_pos: Vector2):
 		"mano": serialize_item(Global.persistent_hand),
 		"pozioni": serialize_item(Global.persistent_potions),
 		"cibo": serialize_item(Global.persistent_food),
-		"raccolti": Global.collected_item_ids
+		"raccolti": Global.collected_item_ids,
+		"from_percorso": Global.from_percorso,
+		"from_grotta_to_percorso": Global.from_grotta_to_percorso,
+		"from_house3_to_percorso": Global.from_house3_to_percorso,
+		"from_villaggio2_to_percorso1": Global.from_villaggio2_to_percorso1,
+		"from_percorso1_to_villaggio2": Global.from_percorso1_to_villaggio2,
+		"from_villaggio2_to_percorso2": Global.from_villaggio2_to_percorso2,
+		"from_percorso2_to_villaggio2": Global.from_percorso2_to_villaggio2,
+		"from_percorso2_to_villaggio3": Global.from_percorso2_to_villaggio3,
+		"from_villaggio3_to_percorso2": Global.from_villaggio3_to_percorso2,
+		"from_percorso4_to_villaggio3": Global.from_percorso4_to_villaggio3,
+		"from_villaggio4_to_percorso3": Global.from_villaggio4_to_percorso3,
+		"from_percorso3_to_villaggio4": Global.from_percorso3_to_villaggio4,
+		"from_grotta2_to_dungeon2": Global.from_grotta2_to_dungeon2
 	}
 	
 	var http = HTTPRequest.new()

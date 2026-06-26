@@ -17,24 +17,7 @@ var current_allow_skip: bool = true
 
 # Forza la configurazione della label del nome a runtime in modo impermeabile ai bug di cache di Godot!
 func _ready():
-	hide() 
-	
-	var settings = LabelSettings.new()
-	settings.font_size = 17
-	settings.font_color = Color(0.98, 0.96, 0.9, 1)
-	settings.outline_size = 4
-	settings.outline_color = Color(0.08, 0.05, 0.03, 1)
-	
-	name_label.label_settings = settings
-	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	name_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
-	
-	# Centratura pixel-perfect orizzontale e verticale basata sulla targhetta originale
-	name_label.offset_left = 22.0
-	name_label.offset_right = 142.0
-	name_label.offset_top = -116.0
-	name_label.offset_bottom = -96.0
+	hide()
 
 # Accetta il testo del dialogo e opzionalmente il nome del parlante!
 func show_message(dialogue_data, speaker: String = "", block_player: bool = true, allow_skip: bool = true):

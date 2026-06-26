@@ -36,25 +36,60 @@ func try_craft_torch() -> void:
 	var inv = current_player.get_node_or_null("Inventory")
 	if not inv: return
 
-	# 1. Controlliamo cosa c'è attualmente nella mano
+	# 1. Controlliamo prima se lo Stick è nell'inventario
+	var stick_in_inv_idx = -1
+	for i in range(inv.items.size()):
+		if inv.items[i] != null and inv.items[i].name == "Stick":
+			stick_in_inv_idx = i
+			break
+			
 	var equipped_hand = Global.persistent_hand
+	var has_crafted = false
 	
-	# ATTENZIONE: Assicurati che "Stick" sia esattamente il nome che hai dato all'oggetto bastone!
-	if equipped_hand != null and equipped_hand.name == "Stick":
-		print("DEBUG (CoalBox): Stick trovato! Creo la Torcia...")
-		
-		# 2. Sostituiamo i dati nel salvataggio globale
-		inv._save_equipment_to_global("Hand", torch_item)
-		
-		# 3. Aggiorniamo la UI a schermo
-		if inv.on_screen_ui:
-			inv.on_screen_ui.equip_item(torch_item, "Hand")
-			
-		# 4. Aggiorniamo lo sprite nella mano del personaggio
-		if inv.equipped_sprite:
-			inv.equipped_sprite.texture = torch_item.texture
-			inv.equipped_sprite.show()
-			
-		print("DEBUG (CoalBox): Torcia equipaggiata con successo!")
+	if stick_in_inv_idx != -1:
+		print("DEBUG (CoalBox): Stick trovato nello zaino! Lo consumo...")
+		inv.items[stick_in_inv_idx].stacks -= 1
+		if inv.items[stick_in_inv_idx].stacks <= 0:
+			inv.items[stick_in_inv_idx] = null
+		Global.persistent_items = inv.items
+		if inv.inventory_ui:
+			inv.inventory_ui.update_slots(inv.items)
+		has_crafted = true
+	elif equipped_hand != null and equipped_hand.name == "Stick":
+		print("DEBUG (CoalBox): Stick trovato nella mano! Lo consumo...")
+		equipped_hand.stacks -= 1
+		if equipped_hand.stacks <= 0:
+			inv._save_equipment_to_global("Hand", null)
+			if inv.on_screen_ui:
+				inv.on_screen_ui.equip_item(null, "Hand")
+			if inv.equipped_sprite:
+				inv.equipped_sprite.hide()
+		else:
+			inv._save_equipment_to_global("Hand", equipped_hand)
+			if inv.on_screen_ui:
+				inv.on_screen_ui.equip_item(equipped_hand, "Hand")
+		has_crafted = true
 	else:
-		print("DEBUG (CoalBox): Il giocatore non ha uno Stick in mano.")
+		print("DEBUG (CoalBox): Nessuno Stick trovato.")
+		return
+		
+	if has_crafted:
+		# 2. Se c'era già un oggetto nelle Pozioni, lo rimettiamo nello zaino per non perderlo
+		var old_potion = Global.persistent_potions
+		if old_potion != null:
+			if not inv._insert_item_into_array(old_potion):
+				inv._drop_physical_item(old_potion)
+			Global.persistent_items = inv.items
+			if inv.inventory_ui:
+				inv.inventory_ui.update_slots(inv.items)
+		
+		# 3. Equipaggiamo la Torcia nello slot Pozioni
+		# Per assicurarci che si comporti correttamente, duplichiamo la risorsa
+		var new_torch = torch_item.duplicate()
+		new_torch.slot_type = "Potions"
+		new_torch.stacks = 1
+		inv._save_equipment_to_global("Potions", new_torch)
+		if inv.on_screen_ui:
+			inv.on_screen_ui.equip_item(new_torch, "Potions")
+			
+		print("DEBUG (CoalBox): Torcia creata ed equipaggiata nello slot Pozioni con successo!")

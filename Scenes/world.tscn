@@ -872,7 +872,6 @@ scale = Vector2(0.9999998, 0.9999998)
 position = Vector2(-11.654834, 15.5383835)
 
 [node name="PickUpItem" parent="." unique_id=259802131 instance=ExtResource("15_hgpy0")]
-z_index = -1
 position = Vector2(295.25452, 1393.6089)
 scale = Vector2(0.02, 0.02)
 inventory_item = ExtResource("16_1vso6")

@@ -126,7 +126,20 @@ func save_game():
 			"pc_boss_1_on": pc_boss_1_on,
 			"pc_boss_2_on": pc_boss_2_on,
 			"pc_boss_3_on": pc_boss_3_on,
-			"growing_zones_data": growing_zones_data
+			"growing_zones_data": growing_zones_data,
+			"from_percorso": from_percorso,
+			"from_grotta_to_percorso": from_grotta_to_percorso,
+			"from_house3_to_percorso": from_house3_to_percorso,
+			"from_villaggio2_to_percorso1": from_villaggio2_to_percorso1,
+			"from_percorso1_to_villaggio2": from_percorso1_to_villaggio2,
+			"from_villaggio2_to_percorso2": from_villaggio2_to_percorso2,
+			"from_percorso2_to_villaggio2": from_percorso2_to_villaggio2,
+			"from_percorso2_to_villaggio3": from_percorso2_to_villaggio3,
+			"from_villaggio3_to_percorso2": from_villaggio3_to_percorso2,
+			"from_percorso4_to_villaggio3": from_percorso4_to_villaggio3,
+			"from_villaggio4_to_percorso3": from_villaggio4_to_percorso3,
+			"from_percorso3_to_villaggio4": from_percorso3_to_villaggio4,
+			"from_grotta2_to_dungeon2": from_grotta2_to_dungeon2
 		}
 		file.store_var(data)
 		file.close()
@@ -170,6 +183,20 @@ func load_game() -> bool:
 		pc_boss_2_on = data.get("pc_boss_2_on", false)
 		pc_boss_3_on = data.get("pc_boss_3_on", false)
 		growing_zones_data = data.get("growing_zones_data", {})
+		
+		from_percorso = data.get("from_percorso", false)
+		from_grotta_to_percorso = data.get("from_grotta_to_percorso", false)
+		from_house3_to_percorso = data.get("from_house3_to_percorso", false)
+		from_villaggio2_to_percorso1 = data.get("from_villaggio2_to_percorso1", false)
+		from_percorso1_to_villaggio2 = data.get("from_percorso1_to_villaggio2", false)
+		from_villaggio2_to_percorso2 = data.get("from_villaggio2_to_percorso2", false)
+		from_percorso2_to_villaggio2 = data.get("from_percorso2_to_villaggio2", false)
+		from_percorso2_to_villaggio3 = data.get("from_percorso2_to_villaggio3", false)
+		from_villaggio3_to_percorso2 = data.get("from_villaggio3_to_percorso2", false)
+		from_percorso4_to_villaggio3 = data.get("from_percorso4_to_villaggio3", false)
+		from_villaggio4_to_percorso3 = data.get("from_villaggio4_to_percorso3", false)
+		from_percorso3_to_villaggio4 = data.get("from_percorso3_to_villaggio4", false)
+		from_grotta2_to_dungeon2 = data.get("from_grotta2_to_dungeon2", false)
 		
 		return true
 	return false

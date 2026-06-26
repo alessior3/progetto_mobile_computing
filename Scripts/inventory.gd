@@ -96,6 +96,10 @@ func add_item(item: InventoryItem, amount: int = 1) -> void:
 func _on_slot_item_clicked(item: InventoryItem):
 	if item == null: return
 	
+	# --- FIX: Forza la torcia nello slot Pozioni a prescindere da come è configurata ---
+	if item.name == "Torch" or item.name == "Torcia":
+		item.slot_type = "Potions"
+		
 	# --- FIX ORO: Se clicchiamo "Metti in tasca" su una moneta già nello zaino ---
 	if item.name == "Gold Coin":
 		var amt = item.stacks if item.stacks > 0 else 1
@@ -265,8 +269,17 @@ func smart_add_pickup(item: InventoryItem, amount: int):
 	# Controlliamo PRIMA se possiamo equipaggiarlo subito nella UI a schermo
 	if on_screen_ui != null:
 		
-		# Se è un'arma e abbiamo le mani libere
-		if item.get("is_weapon") == true and Global.persistent_hand == null:
+		# Se è la Torcia e abbiamo lo slot Pozioni libero
+		if (item.name == "Torch" or item.name == "Torcia") and Global.persistent_potions == null:
+			item.slot_type = "Potions"
+			item.stacks = amount
+			on_screen_ui.equip_item(item, "Potions")
+			Global.persistent_potions = item
+			print("Auto-equipaggiata torcia nelle pozioni: ", item.name)
+			return
+			
+		# Se è un'arma (e non è la torcia) e abbiamo le mani libere
+		if item.get("is_weapon") == true and item.name != "Torch" and item.name != "Torcia" and Global.persistent_hand == null:
 			item.stacks = amount # Impostiamo la quantità raccolta
 			on_screen_ui.equip_item(item, "Hand")
 			Global.persistent_hand = item

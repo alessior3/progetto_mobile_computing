@@ -289,6 +289,7 @@ func _physics_process(delta):
 		return
 		
 	var hand_item = Global.persistent_hand
+	var potion_item = Global.persistent_potions
 	
 	# LA SOLUZIONE ALL'ARMA VISIBILE:
 	# Togliamo tutta la logica che mostrava il WeaponSprite. 
@@ -299,7 +300,9 @@ func _physics_process(delta):
 	
 	# Manteniamo solo la logica della luce della torcia (se serve)
 	if has_node("TorchLight"):
-		$TorchLight.visible = (hand_item != null and hand_item.name == "Torch" or hand_item != null and hand_item.name == "Torcia")
+		var torch_in_hand = (hand_item != null and (hand_item.name == "Torch" or hand_item.name == "Torcia"))
+		var torch_in_potion = (potion_item != null and (potion_item.name == "Torch" or potion_item.name == "Torcia"))
+		$TorchLight.visible = (torch_in_hand or torch_in_potion)
 	
 	if not is_attacking:
 		player_movement(delta)
