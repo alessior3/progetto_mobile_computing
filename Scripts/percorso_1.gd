@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var player = find_child("player", true, false)
-@onready var spawn_point = $PlayerSpawnPoint
+@onready var spawn_point = $UscitaVillaggio1
 
 func _ready():
 	if not has_node("GameSound"):

@@ -9,7 +9,7 @@ offset_bottom = 40.0
 script = ExtResource("1_x53ij")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=489290674]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 texture = ExtResource("2_0cd4b")
 patch_margin_left = 8
@@ -43,14 +43,14 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/CenterContainer" unique_id=2073349538]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 5
 
 [node name="MenuButton" type="MenuButton" parent="NinePatchRect/CenterContainer" unique_id=1462835850]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
 item_count = 1
 popup/item_0/text = "Unequip"

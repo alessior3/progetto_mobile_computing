@@ -22,6 +22,10 @@ var chest_items: Array = []
 @onready var sprite = $Sprite2D
 
 func _ready() -> void:
+	# FIX: Duplica gli array esportati per evitare che tutte le casse del gioco condividano la stessa pool di loot.
+	loot_pool_items = loot_pool_items.duplicate()
+	loot_pool_weights = loot_pool_weights.duplicate()
+	
 	if not has_node("OpenSound"):
 		var open_sound = AudioStreamPlayer.new()
 		open_sound.name = "OpenSound"

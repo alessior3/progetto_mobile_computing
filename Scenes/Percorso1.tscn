@@ -643,6 +643,7 @@ position = Vector2(5320, -491)
 
 [node name="Loop" type="Area2D" parent="." unique_id=616510164]
 position = Vector2(3768, 463)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Loop" unique_id=2051214141]
 position = Vector2(0.5, -18.5)
